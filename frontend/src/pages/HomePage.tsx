@@ -147,10 +147,13 @@ const HomePage: React.FC = () => {
         <Box
           sx={{
             display: 'flex',
-            flexWrap: 'wrap',
+            flexDirection: 'row',
             justifyContent: 'center',
-            gap: 6,
+            alignItems: 'stretch',
+            gap: 4,
             animation: `${fadeIn} 0.8s ease-out`,
+            overflowX: { xs: 'auto', md: 'visible' },
+            pb: 2,
           }}
         >
           {cardItems.map((card) => (
@@ -158,12 +161,15 @@ const HomePage: React.FC = () => {
               key={card.title}
               elevation={3}
               sx={{
-                width: { xs: '100%', sm: 300, md: 300 },
+                minWidth: 260,
+                maxWidth: 300,
+                width: { xs: 260, sm: 260, md: 260 },
                 display: 'flex',
                 flexDirection: 'column',
                 borderRadius: 3,
                 transition: 'transform 0.3s, box-shadow 0.3s',
                 '&:hover': { transform: 'translateY(-10px)', boxShadow: 6 },
+                flex: '0 0 auto',
               }}
             >
               <Box sx={{ p: 3, textAlign: 'center', color: theme.palette.primary.main }}>
