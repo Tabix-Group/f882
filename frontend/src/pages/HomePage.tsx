@@ -93,6 +93,10 @@ const HomePage: React.FC = () => {
   const primaryGradient = `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`;
   const secondaryGradient = `linear-gradient(135deg, ${theme.palette.secondary.light} 0%, ${theme.palette.secondary.main} 100%)`;
 
+  // Blue background similar to image 2
+  const heroBlue = '#21A6FF';
+  const getStartedGradient = 'linear-gradient(135deg, #1B7ED6 0%, #21A6FF 100%)';
+
   return (
     <Box component="main" sx={{ bgcolor: theme.palette.background.default }}>
       {/* AppBar removed, now handled by Layout */}
@@ -102,22 +106,27 @@ const HomePage: React.FC = () => {
         sx={{
           position: 'relative',
           height: isMd ? 600 : 400,
-          background: 'url(/hero-bg.jpg) center/cover no-repeat',
+          bgcolor: heroBlue,
           display: 'flex',
           alignItems: 'center',
+          overflow: 'hidden',
           animation: `${fadeIn} 1s ease-out`,
+          // Subtle diagonal lines pattern for prestige
+          backgroundImage:
+            `repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 24px)`,
         }}
       >
-        <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(0,0,0,0.6)' }} />
+        {/* Subtle overlay for depth */}
+        <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(255,255,255,0.01)' }} />
         <Container sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
           <Typography
             variant={isMd ? 'h2' : 'h4'}
-            sx={{ fontWeight: 800, color: '#fff', mb: 2 }}
+            sx={{ fontWeight: 800, color: '#fff', mb: 2, textShadow: '0 2px 8px rgba(33,166,255,0.10)' }}
             gutterBottom
           >
             Transform - Fortitude - F88
           </Typography>
-          <Typography variant="h6" sx={{ color: alpha('#fff', 0.9), mb: 4 }}>
+          <Typography variant="h6" sx={{ color: alpha('#fff', 0.92), mb: 4, textShadow: '0 1px 4px rgba(33,166,255,0.08)' }}>
             Gain, Physical, Mental, Emotional, Character, Will
           </Typography>
           <Button
@@ -125,13 +134,17 @@ const HomePage: React.FC = () => {
             size="large"
             onClick={() => navigate('/steps-to-do')}
             sx={{
-              background: primaryGradient,
+              background: getStartedGradient,
               textTransform: 'none',
               fontWeight: 700,
               py: 1.5,
               px: 4,
               borderRadius: '50px',
-              '&:hover': { filter: 'brightness(1.15)' },
+              boxShadow: '0 4px 16px rgba(33,166,255,0.18)',
+              '&:hover': {
+                filter: 'brightness(1.08)',
+                background: 'linear-gradient(135deg, #21A6FF 0%, #1B7ED6 100%)',
+              },
             }}
           >
             Get Started

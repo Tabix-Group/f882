@@ -15,16 +15,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <AppBar position="static" color="default" elevation={1}>
+      <AppBar position="static" elevation={1} sx={{ bgcolor: '#18181C' }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: 700, cursor: 'pointer', mr: 3 }}
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', mr: 3 }}
               onClick={() => navigate('/')}
             >
-              F88 Transformation
-            </Typography>
+              <img src={process.env.PUBLIC_URL + '/favicon.svg'} alt="F88 Logo" style={{ height: 32, marginRight: 8 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, letterSpacing: 1 }}>
+                F88
+              </Typography>
+            </Box>
             {navItems.map((item) => (
               <Button
                 key={item.label}
@@ -53,13 +55,46 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             ))}
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Button color="inherit" sx={{ textTransform: 'none' }} onClick={() => navigate('/login')}>
+            <Button
+              color="inherit"
+              sx={{
+                textTransform: 'none',
+                fontWeight: 700,
+                fontSize: '1.08rem',
+                px: 2,
+                borderRadius: '8px',
+                transition: 'all 0.2s',
+                backgroundColor: 'transparent',
+                boxShadow: 'none',
+                '&:hover': {
+                  backgroundColor: 'primary.main',
+                  color: '#fff',
+                  fontSize: '1.18rem',
+                  fontWeight: 900,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                },
+              }}
+              onClick={() => navigate('/login')}
+            >
               Login
             </Button>
             <Button
               variant="contained"
               color="primary"
-              sx={{ textTransform: 'none', fontWeight: 600, borderRadius: '40px', px: 3 }}
+              sx={{
+                textTransform: 'none',
+                fontWeight: 600,
+                borderRadius: '40px',
+                px: 3,
+                transition: 'all 0.2s',
+                '&:hover': {
+                  backgroundColor: 'primary.main',
+                  color: '#fff',
+                  fontSize: '1.18rem',
+                  fontWeight: 900,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                },
+              }}
               onClick={() => navigate('/register')}
             >
               Sign Up
