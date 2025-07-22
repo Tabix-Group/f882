@@ -1,0 +1,36 @@
+import express from 'express';
+import cors from 'cors';
+
+import userRoutes from './routes/userRoutes';
+
+import paymentRoutes from './routes/paymentRoutes';
+
+import audioRoutes from './routes/audioRoutes';
+
+import videoRoutes from './routes/videoRoutes';
+
+import textRoutes from './routes/textRoutes';
+
+const app = express();
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+const PORT = process.env.PORT || 4000;
+
+app.use(express.json());
+
+app.use('/api/users', userRoutes);
+
+app.use('/api/payments', paymentRoutes);
+
+app.use('/api/audios', audioRoutes);
+
+app.use('/api/videos', videoRoutes);
+
+app.use('/api/texts', textRoutes);
+
+app.get('/', (req, res) => {
+  res.send('F88 Landing Page API funcionando');
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en puerto ${PORT}`);
+});
