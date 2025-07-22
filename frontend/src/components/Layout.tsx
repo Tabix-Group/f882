@@ -29,7 +29,23 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Button
                 key={item.label}
                 color="inherit"
-                sx={{ textTransform: 'none', fontWeight: 500 }}
+                sx={{
+                  textTransform: 'none',
+                  fontWeight: 700,
+                  fontSize: '1.08rem',
+                  px: 2,
+                  borderRadius: '8px',
+                  transition: 'all 0.2s',
+                  backgroundColor: 'transparent',
+                  boxShadow: 'none',
+                  '&:hover': {
+                    backgroundColor: 'primary.main',
+                    color: '#fff',
+                    fontSize: '1.18rem',
+                    fontWeight: 900,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                  },
+                }}
                 onClick={() => navigate(item.path)}
               >
                 {item.label}
