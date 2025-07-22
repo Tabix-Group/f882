@@ -4,7 +4,8 @@ FROM node:18
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+RUN npm ci
+RUN npm install --save-dev @types/pg @types/bcrypt
 
 COPY . .
 
