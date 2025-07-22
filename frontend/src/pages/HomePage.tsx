@@ -1,0 +1,275 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  Container,
+  Card,
+  CardContent,
+  CardActions,
+  useTheme,
+  useMediaQuery,
+  alpha,
+} from '@mui/material';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import InfoIcon from '@mui/icons-material/Info';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SchoolIcon from '@mui/icons-material/School';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import { keyframes } from '@mui/system';
+
+// Fade-in animation
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+interface CardItem {
+  title: string;
+  description: string;
+  buttonText: string;
+  path: string;
+  variant: 'contained' | 'outlined';
+  color: 'primary' | 'secondary' | 'success' | 'info';
+  icon: React.ReactNode;
+}
+
+const cardItems: CardItem[] = [
+  {
+    title: 'Steps to Do',
+    description: 'Structured steps to guide your journey.',
+    buttonText: 'View Steps',
+    path: '/steps-to-do',
+    variant: 'contained',
+    color: 'primary',
+    icon: <ArrowForwardIosIcon fontSize="large" />,
+  },
+  {
+    title: 'What is F88',
+    description: 'Understand the F88 Transformation Program.',
+    buttonText: 'Learn More',
+    path: '/what-is-f88',
+    variant: 'outlined',
+    color: 'primary',
+    icon: <InfoIcon fontSize="large" />,
+  },
+  {
+    title: 'Buy Book',
+    description: 'Get your official F88 guidebook.',
+    buttonText: 'Purchase Now',
+    path: '/buy-book',
+    variant: 'contained',
+    color: 'secondary',
+    icon: <MenuBookIcon fontSize="large" />,
+  },
+  {
+    title: 'Buy Book Mentor',
+    description: 'Exclusive mentor edition of the book.',
+    buttonText: 'Get Mentor Copy',
+    path: '/buy-book-mentor',
+    variant: 'contained',
+    color: 'success',
+    icon: <SchoolIcon fontSize="large" />,
+  },
+  {
+    title: 'Customer Service',
+    description: 'Need help? Contact our support team.',
+    buttonText: 'Contact Us',
+    path: '/customer-service',
+    variant: 'outlined',
+    color: 'info',
+    icon: <SupportAgentIcon fontSize="large" />,
+  },
+];
+
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up('md'));
+
+  const primaryGradient = `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`;
+  const secondaryGradient = `linear-gradient(135deg, ${theme.palette.secondary.light} 0%, ${theme.palette.secondary.main} 100%)`;
+
+  return (
+    <Box component="main" sx={{ bgcolor: theme.palette.background.default }}>
+      {/* AppBar */}
+      <AppBar
+        position="sticky"
+        sx={{
+          background: alpha(theme.palette.background.paper, 0.8),
+          backdropFilter: 'blur(10px)',
+          py: 1,
+          animation: `${fadeIn} 0.8s ease-out`,
+        }}
+        elevation={0}
+      >
+        <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+            F88 Transformation
+          </Typography>
+          <Box>
+            <Button sx={{ textTransform: 'none', mr: 2 }} onClick={() => navigate('/login')}>
+              Login
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => navigate('/signup')}
+              sx={{
+                textTransform: 'none',
+                fontWeight: 600,
+                background: primaryGradient,
+                borderRadius: '40px',
+                py: 1,
+                px: 3,
+                '&:hover': { filter: 'brightness(1.1)' },
+              }}
+            >
+              Sign Up
+            </Button>
+          </Box>
+        </Container>
+      </AppBar>
+
+      {/* Hero Section */}
+      <Box
+        sx={{
+          position: 'relative',
+          height: isMd ? 600 : 400,
+          background: 'url(/hero-bg.jpg) center/cover no-repeat',
+          display: 'flex',
+          alignItems: 'center',
+          animation: `${fadeIn} 1s ease-out`,
+        }}
+      >
+        <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(0,0,0,0.6)' }} />
+        <Container sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+          <Typography
+            variant={isMd ? 'h2' : 'h4'}
+            sx={{ fontWeight: 800, color: '#fff', mb: 2 }}
+            gutterBottom
+          >
+            Transform Your Life with F88
+          </Typography>
+          <Typography variant="h6" sx={{ color: alpha('#fff', 0.9), mb: 4 }}>
+            Physical, Mental, and Emotional Mastery
+          </Typography>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={() => navigate('/steps-to-do')}
+            sx={{
+              background: primaryGradient,
+              textTransform: 'none',
+              fontWeight: 700,
+              py: 1.5,
+              px: 4,
+              borderRadius: '50px',
+              '&:hover': { filter: 'brightness(1.15)' },
+            }}
+          >
+            Get Started
+          </Button>
+        </Container>
+      </Box>
+
+      {/* Features Section */}
+      <Container sx={{ py: 10 }}>
+        <Typography variant="h4" align="center" sx={{ mb: 6, fontWeight: 700 }}>
+          Explore Our Features
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: 6,
+            animation: `${fadeIn} 0.8s ease-out`,
+          }}
+        >
+          {cardItems.map((card) => (
+            <Card
+              key={card.title}
+              elevation={3}
+              sx={{
+                width: { xs: '100%', sm: 300, md: 300 },
+                display: 'flex',
+                flexDirection: 'column',
+                borderRadius: 3,
+                transition: 'transform 0.3s, box-shadow 0.3s',
+                '&:hover': { transform: 'translateY(-10px)', boxShadow: 6 },
+              }}
+            >
+              <Box sx={{ p: 3, textAlign: 'center', color: theme.palette.primary.main }}>
+                {card.icon}
+              </Box>
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+                  {card.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {card.description}
+                </Typography>
+              </CardContent>
+              <CardActions sx={{ p: 2 }}>
+                <Button
+                  fullWidth
+                  variant={card.variant}
+                  color={card.color}
+                  onClick={() => navigate(card.path)}
+                  sx={{
+                    textTransform: 'none',
+                    fontWeight: 600,
+                    py: 1,
+                    background:
+                      card.variant === 'contained'
+                        ? card.color === 'primary'
+                          ? primaryGradient
+                          : card.color === 'secondary'
+                          ? secondaryGradient
+                          : undefined
+                        : 'transparent',
+                    border:
+                      card.variant === 'outlined'
+                        ? `2px solid ${theme.palette[card.color].main}`
+                        : 'none',
+                    color:
+                      card.variant === 'outlined'
+                        ? theme.palette[card.color].main
+                        : '#fff',
+                    borderRadius: '30px',
+                    '&:hover': { filter: 'brightness(1.1)' },
+                  }}
+                >
+                  {card.buttonText}
+                </Button>
+              </CardActions>
+            </Card>
+          ))}
+        </Box>
+      </Container>
+
+      {/* Footer */}
+      <Box sx={{ bgcolor: theme.palette.background.paper, py: 6, mt: 4 }}>
+        <Container sx={{ textAlign: 'center' }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
+            Join Our Community
+          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mb: 3 }}>
+            {/* Placeholder for social icons */}
+            <Button aria-label="Facebook">FB</Button>
+            <Button aria-label="Twitter">TW</Button>
+            <Button aria-label="Instagram">IG</Button>
+          </Box>
+          <Typography variant="body2" color="text.secondary">
+            © {new Date().getFullYear()} F88. All rights reserved.
+          </Typography>
+        </Container>
+      </Box>
+    </Box>
+  );
+};
+
+export default HomePage;
