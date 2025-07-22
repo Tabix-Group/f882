@@ -29,7 +29,8 @@ function App() {
         <react_router_dom_1.Routes>
           <react_router_dom_1.Route path="/" element={<HomePage_1.default />}/>
           <react_router_dom_1.Route path="/steps-to-do" element={<StepsToDoPage_1.default />}/>
-          <react_router_dom_1.Route path="/register" element={<RegisterPage_1.default />}/>
+// Removed unused import
+// const react_1 = __importDefault(require("react"));
           <react_router_dom_1.Route path="/login" element={<LoginPage_1.default />}/>
           <react_router_dom_1.Route path="/what-is-f88" element={<WhatIsF88Page_1.default />}/>
           <react_router_dom_1.Route path="/videos-testimonials" element={<VideosTestimonialsPage_1.default />}/>
