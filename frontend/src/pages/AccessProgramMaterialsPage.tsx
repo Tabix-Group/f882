@@ -6,13 +6,13 @@ const AccessProgramMaterialsPage: React.FC = () => {
   const navigate = useNavigate();
   return (
     <Box maxWidth={600} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>Materiales del Programa F88</Typography>
-      <Typography mb={2}>Aquí puedes descargar audios, ver videos de YouTube y leer textos exclusivos del programa.</Typography>
+      <Typography variant="h4" mb={2}>F88 Program Materials</Typography>
+      <Typography mb={2}>Here you can download audios, watch YouTube videos, and read exclusive program texts.</Typography>
       <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-        Descargar materiales
+        Download Materials
       </Button>
       <Button variant="text" color="primary" onClick={() => navigate('/steps-to-do')} sx={{ mt: 2 }}>
-        Volver a pasos
+        Back to Steps
       </Button>
     </Box>
   );

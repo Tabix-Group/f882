@@ -19,30 +19,30 @@ const RegisterPage: React.FC = () => {
     setMessage('');
     try {
       await registerUser(form);
-      setMessage('Registro exitoso. Redirigiendo al login...');
+      setMessage('Registration successful. Redirecting to login...');
       setTimeout(() => navigate('/login'), 1500);
       setForm({ name: '', email: '', password: '' });
     } catch (err: any) {
-      setMessage(err.response?.data?.message || 'Error en el registro.');
+      setMessage(err.response?.data?.message || 'Registration error.');
     }
     setLoading(false);
   };
 
   return (
     <Box maxWidth={400} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>Registro de Usuario</Typography>
-      <Typography mb={2}>Crea tu cuenta para acceder al programa F88.</Typography>
+      <Typography variant="h4" mb={2}>User Registration</Typography>
+      <Typography mb={2}>Create your account to access the F88 program.</Typography>
       <form onSubmit={handleSubmit}>
-        <TextField label="Nombre" name="name" value={form.name} onChange={handleChange} fullWidth margin="normal" required />
+        <TextField label="Name" name="name" value={form.name} onChange={handleChange} fullWidth margin="normal" required />
         <TextField label="Email" name="email" value={form.email} onChange={handleChange} fullWidth margin="normal" required type="email" />
-        <TextField label="Contraseña" name="password" value={form.password} onChange={handleChange} fullWidth margin="normal" required type="password" />
+        <TextField label="Password" name="password" value={form.password} onChange={handleChange} fullWidth margin="normal" required type="password" />
         <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading} sx={{ mt: 2 }}>
-          {loading ? 'Registrando...' : 'Registrarse'}
+          {loading ? 'Registering...' : 'Register'}
         </Button>
       </form>
       {message && <Typography color="secondary" mt={2}>{message}</Typography>}
       <Button variant="text" color="primary" onClick={() => navigate('/login')} sx={{ mt: 2 }}>
-        ¿Ya tienes cuenta? Inicia sesión
+        Already have an account? Login
       </Button>
     </Box>
   );

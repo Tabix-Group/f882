@@ -19,23 +19,23 @@ const LoginPage: React.FC = () => {
     setMessage('');
     try {
       await loginUser(form);
-      setMessage('Login exitoso.');
-      // Aquí podrías guardar el token y redirigir al flujo principal
+      setMessage('Login successful.');
+      // You could save the token and redirect to the main flow here
       setTimeout(() => navigate('/steps-to-do'), 1000);
     } catch (err: any) {
-      setMessage(err.response?.data?.message || 'Error al iniciar sesión.');
+      setMessage(err.response?.data?.message || 'Error logging in.');
     }
     setLoading(false);
   };
 
   return (
     <Box maxWidth={400} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>Iniciar Sesión</Typography>
+      <Typography variant="h4" mb={2}>Login</Typography>
       <form onSubmit={handleSubmit}>
         <TextField label="Email" name="email" value={form.email} onChange={handleChange} fullWidth margin="normal" required type="email" />
-        <TextField label="Contraseña" name="password" value={form.password} onChange={handleChange} fullWidth margin="normal" required type="password" />
+        <TextField label="Password" name="password" value={form.password} onChange={handleChange} fullWidth margin="normal" required type="password" />
         <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading} sx={{ mt: 2 }}>
-          {loading ? 'Ingresando...' : 'Ingresar'}
+          {loading ? 'Logging in...' : 'Login'}
         </Button>
       </form>
       {message && <Typography color="secondary" mt={2}>{message}</Typography>}

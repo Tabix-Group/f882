@@ -17,38 +17,38 @@ const PaymentPage: React.FC = () => {
     setMessage('');
     try {
       await processPayment({ method, details });
-      setMessage('Pago procesado correctamente.');
+      setMessage('Payment processed successfully.');
     } catch (err: any) {
-      setMessage('Error al procesar el pago.');
+      setMessage('Error processing payment.');
     }
     setLoading(false);
   };
   return (
     <Box maxWidth={500} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>Pago del Programa F88</Typography>
-      <Typography mb={2}>Completa el pago para desbloquear todos los materiales y mentoría personalizada.</Typography>
+      <Typography variant="h4" mb={2}>F88 Program Payment</Typography>
+      <Typography mb={2}>Complete your payment to unlock all materials and personalized mentoring.</Typography>
       <form onSubmit={handleSubmit}>
-        <TextField select label="Método de pago" value={method} onChange={e => setMethod(e.target.value)} fullWidth margin="normal">
-          <MenuItem value="credit">Tarjeta de crédito</MenuItem>
+        <TextField select label="Payment Method" value={method} onChange={e => setMethod(e.target.value)} fullWidth margin="normal">
+          <MenuItem value="credit">Credit Card</MenuItem>
           <MenuItem value="paypal">PayPal</MenuItem>
-          <MenuItem value="other">Otro</MenuItem>
+          <MenuItem value="other">Other</MenuItem>
         </TextField>
         {method === 'credit' && (
-          <TextField label="Datos de tarjeta" name="card" value={details.card} onChange={handleChange} fullWidth margin="normal" required />
+          <TextField label="Card Details" name="card" value={details.card} onChange={handleChange} fullWidth margin="normal" required />
         )}
         {method === 'paypal' && (
-          <TextField label="Email de PayPal" name="paypal" value={details.paypal} onChange={handleChange} fullWidth margin="normal" required />
+          <TextField label="PayPal Email" name="paypal" value={details.paypal} onChange={handleChange} fullWidth margin="normal" required />
         )}
         {method === 'other' && (
-          <TextField label="Otro método" name="other" value={details.other} onChange={handleChange} fullWidth margin="normal" required />
+          <TextField label="Other Method" name="other" value={details.other} onChange={handleChange} fullWidth margin="normal" required />
         )}
         <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading} sx={{ mt: 2 }}>
-          {loading ? 'Procesando...' : 'Pagar'}
+          {loading ? 'Processing...' : 'Pay'}
         </Button>
       </form>
       {message && <Typography color="secondary" mt={2}>{message}</Typography>}
       <Button variant="text" color="primary" onClick={() => window.location.href = '/steps-to-do'} sx={{ mt: 2 }}>
-        Volver a pasos
+        Back to Steps
       </Button>
     </Box>
   );

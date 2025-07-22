@@ -95,43 +95,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Box component="main" sx={{ bgcolor: theme.palette.background.default }}>
-      {/* AppBar */}
-      <AppBar
-        position="sticky"
-        sx={{
-          background: alpha(theme.palette.background.paper, 0.8),
-          backdropFilter: 'blur(10px)',
-          py: 1,
-          animation: `${fadeIn} 0.8s ease-out`,
-        }}
-        elevation={0}
-      >
-        <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>
-            F88 Transformation
-          </Typography>
-          <Box>
-            <Button sx={{ textTransform: 'none', mr: 2 }} onClick={() => navigate('/login')}>
-              Login
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => navigate('/signup')}
-              sx={{
-                textTransform: 'none',
-                fontWeight: 600,
-                background: primaryGradient,
-                borderRadius: '40px',
-                py: 1,
-                px: 3,
-                '&:hover': { filter: 'brightness(1.1)' },
-              }}
-            >
-              Sign Up
-            </Button>
-          </Box>
-        </Container>
-      </AppBar>
+      {/* AppBar removed, now handled by Layout */}
 
       {/* Hero Section */}
       <Box
@@ -151,10 +115,10 @@ const HomePage: React.FC = () => {
             sx={{ fontWeight: 800, color: '#fff', mb: 2 }}
             gutterBottom
           >
-            Transform Your Life with F88
+            Transform - Fortitude - F88
           </Typography>
           <Typography variant="h6" sx={{ color: alpha('#fff', 0.9), mb: 4 }}>
-            Physical, Mental, and Emotional Mastery
+            Gain, Physical, Mental, Emotional, Character, Will
           </Typography>
           <Button
             variant="contained"
@@ -251,23 +215,6 @@ const HomePage: React.FC = () => {
         </Box>
       </Container>
 
-      {/* Footer */}
-      <Box sx={{ bgcolor: theme.palette.background.paper, py: 6, mt: 4 }}>
-        <Container sx={{ textAlign: 'center' }}>
-          <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-            Join Our Community
-          </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mb: 3 }}>
-            {/* Placeholder for social icons */}
-            <Button aria-label="Facebook">FB</Button>
-            <Button aria-label="Twitter">TW</Button>
-            <Button aria-label="Instagram">IG</Button>
-          </Box>
-          <Typography variant="body2" color="text.secondary">
-            © {new Date().getFullYear()} F88. All rights reserved.
-          </Typography>
-        </Container>
-      </Box>
     </Box>
   );
 };
