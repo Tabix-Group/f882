@@ -78,6 +78,11 @@ const Footer: React.FC = () => {
             <InstagramIcon fontSize="medium" />
           </IconButton>
         </Box>
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: 500 }}>
+            <a href="https://tabix.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Tabix Group</a>
+          </Typography>
+        </Box>
         <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.95rem' }}>
           © {new Date().getFullYear()} F88. All rights reserved.
         </Typography>
