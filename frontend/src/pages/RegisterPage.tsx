@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Link } from '@mui/material';
+import { TextField, Button, Box, Typography } from '@mui/material';
 import { registerUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
