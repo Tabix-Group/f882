@@ -11,8 +11,13 @@ import videoRoutes from './routes/videoRoutes';
 
 import textRoutes from './routes/textRoutes';
 
+
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://frontend-production-1b9f.up.railway.app'
+];
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
