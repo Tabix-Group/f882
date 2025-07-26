@@ -5,15 +5,10 @@ import {
   Button,
   Box,
   Container,
-  Card,
-  CardContent,
-  CardActions,
   useTheme,
   useMediaQuery,
   alpha,
-  Divider,
   Fade,
-  CardActionArea,
 } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import InfoIcon from '@mui/icons-material/Info';
@@ -21,73 +16,16 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SchoolIcon from '@mui/icons-material/School';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
-interface CardItem {
-  title: string;
-  description: string;
-  buttonText: string;
-  path: string;
-  variant: 'contained' | 'outlined';
-  color: 'primary' | 'secondary' | 'success' | 'info';
-  icon: React.ReactNode;
-}
+// ...existing code...
 
-const cardItems: CardItem[] = [
-  {
-    title: 'Steps to Do',
-    description: 'Structured steps to guide your journey.',
-    buttonText: 'View Steps',
-    path: '/steps-to-do',
-    variant: 'contained',
-    color: 'primary',
-    icon: <ArrowForwardIosIcon fontSize="large" aria-hidden />,
-  },
-  {
-    title: 'What is F88',
-    description: 'Understand the F88 Transformation Program.',
-    buttonText: 'Learn More',
-    path: '/what-is-f88',
-    variant: 'outlined',
-    color: 'primary',
-    icon: <InfoIcon fontSize="large" aria-hidden />,
-  },
-  {
-    title: 'Buy Book',
-    description: 'Get your official F88 guidebook.',
-    buttonText: 'Purchase Now',
-    path: '/buy-book',
-    variant: 'contained',
-    color: 'secondary',
-    icon: <MenuBookIcon fontSize="large" aria-hidden />,
-  },
-  {
-    title: 'Buy Book Mentor',
-    description: 'Exclusive mentor edition of the book.',
-    buttonText: 'Get Mentor Copy',
-    path: '/buy-book-mentor',
-    variant: 'contained',
-    color: 'success',
-    icon: <SchoolIcon fontSize="large" aria-hidden />,
-  },
-  {
-    title: 'Customer Service',
-    description: 'Need help? Contact our support team.',
-    buttonText: 'Contact Us',
-    path: '/customer-service',
-    variant: 'outlined',
-    color: 'info',
-    icon: <SupportAgentIcon fontSize="large" aria-hidden />,
-  },
-];
+// ...existing code...
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
-  const primaryGradient = `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`;
-  const secondaryGradient = `linear-gradient(135deg, ${theme.palette.secondary.light} 0%, ${theme.palette.secondary.main} 100%)`;
-  const heroBlue = '#21A6FF';
-  const getStartedGradient = 'linear-gradient(135deg, #1B7ED6 0%, #21A6FF 100%)';
+  // ...existing code...
 
   // Imagen hero más humana/emocional
   const heroImageUrl =
