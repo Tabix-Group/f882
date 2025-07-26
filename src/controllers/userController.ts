@@ -31,23 +31,23 @@ export const loginUser = async (req: Request, res: Response) => {
 // ...existing code...
 
 export const registerUser = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
+  console.log('Datos recibidos en registro:', req.body);
+  const { name, email, password, birthdate, gender, country } = req.body;
   if (!name || !email || !password) {
-    return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
+    return res.status(400).json({ message: 'Name, email and password are required.' });
   }
-  // No se aplican restricciones de complejidad al password
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await pool.query(
-      'INSERT INTO users (name, email, password, created_at) VALUES ($1, $2, $3, NOW()) RETURNING id',
-      [name, email, hashedPassword]
+      'INSERT INTO users (name, email, password, birthdate, gender, country, created_at) VALUES ($1, $2, $3, $4, $5, $6, NOW()) RETURNING id',
+      [name, email, hashedPassword, birthdate, gender, country]
     );
-    res.status(201).json({ id: result.rows[0].id, message: 'Usuario registrado exitosamente.' });
+    res.status(201).json({ id: result.rows[0].id, message: 'User registered successfully.' });
   } catch (error) {
-    console.error('Error en registro:', error);
+    console.error('Registration error:', error);
     if ((error as any).code === '23505') {
-      return res.status(409).json({ message: 'El email ya está registrado.' });
+      return res.status(409).json({ message: 'Email already registered.' });
     }
-    res.status(500).json({ message: 'Error al registrar usuario.' });
+    res.status(500).json({ message: 'Error registering user.' });
   }
 };

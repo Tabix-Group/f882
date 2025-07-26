@@ -7,10 +7,10 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Footer: React.FC = () => {
   return (
-    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 1, borderTop: '1px solid #eee', width: '100%' }}>
-      <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 36 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Typography variant="body1" sx={{ fontWeight: 600, fontSize: '1rem' }}>
+    <Box component="footer" sx={{ bgcolor: '#0d1b2a', py: 1.5, borderTop: 'none', width: '100%' }}>
+      <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 44 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="body1" sx={{ fontWeight: 700, fontSize: '1.08rem', color: '#f8f9fa', letterSpacing: 0.5 }}>
             Join Our Community
           </Typography>
           <IconButton
@@ -18,12 +18,14 @@ const Footer: React.FC = () => {
             size="small"
             href="https://youtube.com"
             target="_blank"
-            color="error"
             sx={{
+              color: '#ff0000',
+              background: 'rgba(13,27,42,0.18)',
               transition: 'transform 0.2s, box-shadow 0.2s',
               '&:hover': {
                 transform: 'scale(1.25)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+                background: 'rgba(13,27,42,0.38)',
               },
             }}
           >
@@ -34,12 +36,14 @@ const Footer: React.FC = () => {
             size="small"
             href="https://facebook.com"
             target="_blank"
-            color="primary"
             sx={{
+              color: '#1877f3',
+              background: 'rgba(13,27,42,0.18)',
               transition: 'transform 0.2s, box-shadow 0.2s',
               '&:hover': {
                 transform: 'scale(1.25)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+                background: 'rgba(13,27,42,0.38)',
               },
             }}
           >
@@ -51,11 +55,13 @@ const Footer: React.FC = () => {
             href="https://twitter.com"
             target="_blank"
             sx={{
-              color: '#1DA1F2',
+              color: '#1da1f2',
+              background: 'rgba(13,27,42,0.18)',
               transition: 'transform 0.2s, box-shadow 0.2s',
               '&:hover': {
                 transform: 'scale(1.25)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+                background: 'rgba(13,27,42,0.38)',
               },
             }}
           >
@@ -67,23 +73,21 @@ const Footer: React.FC = () => {
             href="https://instagram.com"
             target="_blank"
             sx={{
-              color: '#E1306C',
+              color: '#e1306c',
+              background: 'rgba(13,27,42,0.18)',
               transition: 'transform 0.2s, box-shadow 0.2s',
               '&:hover': {
                 transform: 'scale(1.25)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+                background: 'rgba(13,27,42,0.38)',
               },
             }}
           >
             <InstagramIcon fontSize="medium" />
           </IconButton>
         </Box>
-        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: 500 }}>
-            <a href="https://tabix.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Tabix Group</a>
-          </Typography>
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.95rem' }}>
+
+        <Typography variant="body2" sx={{ fontSize: '1rem', color: '#f8f9fa', fontWeight: 500, letterSpacing: 0.2 }}>
           © {new Date().getFullYear()} F88. All rights reserved.
         </Typography>
       </Container>

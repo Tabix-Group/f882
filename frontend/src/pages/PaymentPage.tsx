@@ -37,9 +37,7 @@ const PaymentPage: React.FC = () => {
           <MenuItem value="credit"><CreditCardIcon sx={{ mr: 1 }} />Credit Card</MenuItem>
           <MenuItem value="mercado"><AttachMoneyIcon sx={{ mr: 1, color: '#009EE3' }} />Mercado Pago</MenuItem>
           <MenuItem value="crypto"><CurrencyBitcoinIcon sx={{ mr: 1, color: '#F7931A' }} />Cryptocurrency</MenuItem>
-          <MenuItem value="bank"><AccountBalanceIcon sx={{ mr: 1, color: 'success.main' }} />Bank Transfer</MenuItem>
           <MenuItem value="paypal"><AccountBalanceWalletIcon sx={{ mr: 1, color: '#003087' }} />PayPal</MenuItem>
-          <MenuItem value="other">Other</MenuItem>
         </TextField>
         {method === 'credit' && (
           <TextField label="Card Details" name="card" value={details.card} onChange={handleChange} fullWidth margin="normal" required />
