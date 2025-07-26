@@ -10,11 +10,7 @@ import {
   alpha,
   Fade,
 } from '@mui/material';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import InfoIcon from '@mui/icons-material/Info';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import SchoolIcon from '@mui/icons-material/School';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+// unused icon imports removed
 
 // ...existing code...
 
