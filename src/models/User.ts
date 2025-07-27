@@ -6,5 +6,6 @@ export interface User {
   birthdate: string;
   gender: string;
   country: string;
+  tel: string;
   created_at: Date;
 }

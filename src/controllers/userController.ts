@@ -32,15 +32,15 @@ export const loginUser = async (req: Request, res: Response) => {
 
 export const registerUser = async (req: Request, res: Response) => {
   console.log('Datos recibidos en registro:', req.body);
-  const { name, email, password, birthdate, gender, country } = req.body;
+  const { name, email, password, birthdate, gender, country, tel } = req.body;
   if (!name || !email || !password) {
     return res.status(400).json({ message: 'Name, email and password are required.' });
   }
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await pool.query(
-      'INSERT INTO users (name, email, password, birthdate, gender, country, created_at) VALUES ($1, $2, $3, $4, $5, $6, NOW()) RETURNING id',
-      [name, email, hashedPassword, birthdate, gender, country]
+      'INSERT INTO users (name, email, password, birthdate, gender, country, tel, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, NOW()) RETURNING id',
+      [name, email, hashedPassword, birthdate, gender, country, tel]
     );
     res.status(201).json({ id: result.rows[0].id, message: 'User registered successfully.' });
   } catch (error) {

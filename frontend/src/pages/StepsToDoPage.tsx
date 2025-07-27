@@ -18,8 +18,8 @@ const StepsToDoPage: React.FC = () => {
         <li>Make your payment</li>
         <li>Access the program materials</li>
         <li>Access personalized mentoring</li>
-        <li>Start your F88 change</li>
-        <li>Share your progress and motivate others</li>
+        <li>Acceso to your book</li>
+        <li>Access PE trainning</li>
       </ol>
       <Box mt={4} display="flex" justifyContent="center" gap={2}>
         <Button variant="contained" color="primary" size="large" onClick={() => navigate('/register')} sx={{ fontWeight: 600, px: 4 }}>

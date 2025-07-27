@@ -14,6 +14,7 @@ const RegisterPage: React.FC = () => {
     birthdate: '',
     gender: '',
     country: '',
+    tel: ''
   });
   const countries = [
     "Argentina", "Brazil", "Chile", "Colombia", "Mexico", "United States", "Canada", "Spain", "France", "Germany", "Italy", "United Kingdom", "Australia", "Japan", "China", "India", "South Africa", "Peru", "Uruguay", "Paraguay", "Bolivia", "Ecuador", "Venezuela", "Costa Rica", "Panama", "Guatemala", "Honduras", "El Salvador", "Nicaragua", "Dominican Republic", "Cuba", "Puerto Rico", "Other"
@@ -44,7 +45,7 @@ const RegisterPage: React.FC = () => {
       await registerUser(form);
       setMessage('Registration successful. Redirecting to login...');
       setTimeout(() => navigate('/login'), 1500);
-      setForm({ name: '', email: '', password: '', birthdate: '', gender: '', country: '' });
+      setForm({ name: '', email: '', password: '', birthdate: '', gender: '', country: '', tel: '' });
     } catch (err: any) {
       setMessage(err.response?.data?.message || 'Registration error.');
     }
@@ -58,6 +59,17 @@ const RegisterPage: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <TextField label="Full Name" name="name" value={form.name} onChange={handleChange} fullWidth margin="normal" required />
         <TextField label="Email" name="email" value={form.email} onChange={handleChange} fullWidth margin="normal" required type="email" />
+        <TextField label="Phone Number" name="tel" value={form.tel} onChange={handleChange} fullWidth margin="normal" required type="tel" />
+        <Autocomplete
+          options={countries}
+          value={form.country}
+          onChange={handleCountryChange}
+          renderInput={(params) => (
+            <TextField {...params} label="Country" name="country" margin="normal" required fullWidth />
+          )}
+          fullWidth
+          sx={{ mb: 2 }}
+        />
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             label="Birthdate"
@@ -75,16 +87,6 @@ const RegisterPage: React.FC = () => {
           onChange={handleGenderChange}
           renderInput={(params) => (
             <TextField {...params} label="Gender" name="gender" margin="normal" required fullWidth />
-          )}
-          fullWidth
-          sx={{ mb: 2 }}
-        />
-        <Autocomplete
-          options={countries}
-          value={form.country}
-          onChange={handleCountryChange}
-          renderInput={(params) => (
-            <TextField {...params} label="Country" name="country" margin="normal" required fullWidth />
           )}
           fullWidth
           sx={{ mb: 2 }}
