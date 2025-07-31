@@ -20,7 +20,7 @@ const LoginPage: React.FC = () => {
       await loginUser(form);
       setMessage('Login successful.');
       // You could save the token and redirect to the main flow here
-      setTimeout(() => navigate('/steps-to-do'), 1000);
+      setTimeout(() => navigate('/read-book'), 1000);
     } catch (err: any) {
       setMessage(err.response?.data?.message || 'Error logging in.');
     }

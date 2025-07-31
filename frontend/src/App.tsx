@@ -19,6 +19,7 @@ import EndPage from './pages/EndPage';
 import CustomerServicePage from './pages/CustomerServicePage';
 import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
+import ReadBookPage from './pages/ReadBookPage';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/access-will-88-day-program" element={<AccessWill88DayProgramPage />} />
           <Route path="/end" element={<EndPage />} />
           <Route path="/customer-service" element={<CustomerServicePage />} />
+          <Route path="/read-book" element={<ReadBookPage />} />
         </Routes>
       </Layout>
     </Router>
