@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Paper, Divider, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Typography, Paper, Divider, List, ListItem } from '@mui/material';
 const WhatIsF88Page: React.FC = () => {
   return (
     <Box minHeight="100vh" display="flex" alignItems="center" justifyContent="center" sx={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%)', py: 6 }}>
