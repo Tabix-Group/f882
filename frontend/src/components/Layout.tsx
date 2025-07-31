@@ -29,13 +29,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <div className="hidden md:flex gap-1 md:gap-4">
               {navItems.map((item) => {
                 const isBuyBook = item.label === 'Buy Book' || item.label === 'Buy Book & Advance Mentoring';
+                const isActive = location.pathname === item.path;
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
                     className={`px-2 py-1 rounded-md font-semibold text-sm md:text-base transition-all duration-200
-                      ${location.pathname === item.path ? 'bg-blue-700 text-white shadow-md' : 'text-white'}
-                      ${isBuyBook ? 'border border-blue-400 bg-blue-50 text-blue-900' : ''}
+                      ${isActive ? 'bg-blue-700 text-white shadow-md' : isBuyBook ? 'border border-blue-400 bg-blue-50 text-blue-900' : 'text-white'}
                       hover:scale-105 hover:bg-blue-200 hover:text-blue-900`}
                   >
                     {item.label}

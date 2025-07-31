@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 // Dummy data for chapters and audio (replace with real data/fetch)
 const chapters = [
@@ -28,7 +27,6 @@ const ReadBookPage: React.FC = () => {
   const [chat, setChat] = useState<{ sender: 'user' | 'bot'; message: string }[]>([]);
   const [input, setInput] = useState('');
   const [audioPlaying, setAudioPlaying] = useState(false);
-  const navigate = useNavigate();
 
   // Dummy chatbot response (replace with real AI integration)
   const handleChat = (e: React.FormEvent) => {

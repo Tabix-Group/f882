@@ -47,15 +47,10 @@ const HomePage: React.FC = () => {
     return () => {
       if (testimonialInterval.current) clearInterval(testimonialInterval.current);
     };
-  }, []);
+  }, [testimonials.length]);
 
   // Cards de logros
-  const achievements = [
-    { icon: '💪', label: 'Physical Strength' },
-    { icon: '🧠', label: 'Mental Clarity' },
-    { icon: '💡', label: 'Emotional Balance' },
-    { icon: '🎯', label: 'Goal Achievement' },
-  ];
+  // ...existing code...
 
   return (
     <div
