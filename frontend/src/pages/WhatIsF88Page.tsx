@@ -1,18 +1,5 @@
 import React from 'react';
 import { Box, Typography, Paper, Divider, List, ListItem, ListItemText } from '@mui/material';
-
-	Desarrollar tu Fortaleza en cinco dimensiones esenciales;
-	💪 Física
-	🧠 Mental
-	❤️ Emocional
-	🛡️ De Carácter
-	🔥 De Voluntad
-	2. Redefinir tu identidad;
-...basado en un nuevo código de creencias que tú mismo elegís adoptar. (alt.)
-...a partir de nuevos valores y principios que tú eliges VIVIR. (alt.)
-F88 comienza con un ciclo de 88 días.
-No se rinde, no se aprueba: se ELIGE !!!
-Y al finalizar los primeros 88 días, el camino continúa →: F88 es una comunidad de crecimiento y desarrollo continuo, desafíos personales y expansión permanente !!!`}
 const WhatIsF88Page: React.FC = () => {
   return (
     <Box minHeight="100vh" display="flex" alignItems="center" justifyContent="center" sx={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%)', py: 6 }}>
