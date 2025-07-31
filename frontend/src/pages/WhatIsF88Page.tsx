@@ -1,63 +1,84 @@
-import React from 'react';
-import { Box, Typography, Paper, Divider, List, ListItem } from '@mui/material';
 const WhatIsF88Page: React.FC = () => {
   return (
-    <Box minHeight="100vh" display="flex" alignItems="center" justifyContent="center" sx={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e3f2fd 100%)', py: 6 }}>
-      <Paper elevation={8} sx={{ maxWidth: 700, width: '100%', borderRadius: 5, p: { xs: 3, sm: 5 }, boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}>
-        <Typography variant="h3" align="center" fontWeight={800} color="primary.main" gutterBottom sx={{ letterSpacing: 1 }}>
-          ¿QUÉ ES F88?
-        </Typography>
-        <Divider sx={{ mb: 3, mt: 1 }} />
-        <Typography variant="h6" align="center" color="text.secondary" fontWeight={500} mb={3}>
-          Un camino de crecimiento y transformación personal, con la <b>FORTALEZA</b> como eje central.
-        </Typography>
-        <Box sx={{ background: '#f5f7fa', borderRadius: 3, p: 3, mb: 2, boxShadow: '0 2px 8px 0 rgba(31,38,135,0.07)' }}>
-          <Typography variant="body1" mb={1}>
-            Está diseñado para ayudarte a:
-          </Typography>
-          <List sx={{ pl: 2 }}>
-            <ListItem disableGutters sx={{ display: 'list-item', pl: 2, fontWeight: 700, fontSize: '1.08rem', listStyleType: 'none' }}>
-              <span style={{ fontWeight: 700 }}>Desarrollar tu Fortaleza en cinco dimensiones esenciales:</span>
-            </ListItem>
-            <List sx={{ pl: 4 }}>
-              <ListItem disableGutters sx={{ display: 'list-item', pl: 2, listStyleType: 'none' }}>
-                <span role="img" aria-label="Física">💪</span> <b>Física</b>
-              </ListItem>
-              <ListItem disableGutters sx={{ display: 'list-item', pl: 2, listStyleType: 'none' }}>
-                <span role="img" aria-label="Mental">🧠</span> <b>Mental</b>
-              </ListItem>
-              <ListItem disableGutters sx={{ display: 'list-item', pl: 2, listStyleType: 'none' }}>
-                <span role="img" aria-label="Emocional">❤️</span> <b>Emocional</b>
-              </ListItem>
-              <ListItem disableGutters sx={{ display: 'list-item', pl: 2, listStyleType: 'none' }}>
-                <span role="img" aria-label="De Carácter">🛡️</span> <b>De Carácter</b>
-              </ListItem>
-              <ListItem disableGutters sx={{ display: 'list-item', pl: 2, listStyleType: 'none' }}>
-                <span role="img" aria-label="De Voluntad">🔥</span> <b>De Voluntad</b>
-              </ListItem>
-            </List>
-            <ListItem disableGutters sx={{ display: 'list-item', pl: 2, fontWeight: 700, fontSize: '1.08rem', listStyleType: 'none', mt: 1 }}>
-              <span style={{ fontWeight: 700 }}>2. Redefinir tu identidad;</span>
-            </ListItem>
-          </List>
-          <Typography variant="body2" sx={{ mt: 1, mb: 1 }}>
-            ...basado en un <b>nuevo código de creencias</b> que tú mismo elegís adoptar. <i>(alt.)</i>
-          </Typography>
-          <Typography variant="body2" sx={{ mb: 2 }}>
-            ...a partir de <b>nuevos valores y principios</b> que tú eliges <b>VIVIR</b>. <i>(alt.)</i>
-          </Typography>
-          <Typography variant="body1" sx={{ fontWeight: 700, mb: 1 }}>
-            F88 comienza con un ciclo de 88 días.
-          </Typography>
-          <Typography variant="body1" sx={{ fontWeight: 500, mb: 1 }}>
-            No se rinde, no se aprueba: <span style={{ fontWeight: 700, textDecoration: 'underline', color: '#1976d2' }}>se ELIGE !!!</span>
-          </Typography>
-          <Typography variant="body2" sx={{ fontStyle: 'italic', color: 'text.secondary', mt: 2 }}>
-            Y al finalizar los primeros 88 días, <b>el camino continúa →</b>: F88 es una comunidad de crecimiento y desarrollo continuo, desafíos personales y expansión <b><u>permanente !!!</u></b>
-          </Typography>
-        </Box>
-      </Paper>
-    </Box>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-100">
+      <div className="max-w-2xl w-full rounded-3xl shadow-2xl bg-white/90 p-4 md:p-8">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-blue-700 tracking-wide mb-2">
+          WHAT IS F88?
+        </h1>
+        <div className="w-20 h-1 bg-blue-300 rounded mx-auto mb-6" />
+        <h2 className="text-xl md:text-2xl text-center text-gray-600 font-medium mb-6">
+          A path of personal growth and transformation, with{" "}
+          <span className="font-bold">FORTITUDE</span> as the central axis.
+        </h2>
+        <div className="bg-slate-100 rounded-xl p-6 shadow-inner">
+          <p className="text-base md:text-lg mb-3">It is designed to help you:</p>
+          <ul className="pl-5 mb-3 space-y-1">
+            <li className="font-bold text-base md:text-lg">
+              Develop your Fortitude in five essential dimensions:
+            </li>
+            <ul className="pl-6 space-y-1">
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="Physical">
+                  💪
+                </span>{" "}
+                <span className="font-semibold">Physical</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="Mental">
+                  🧠
+                </span>{" "}
+                <span className="font-semibold">Mental</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="Emotional">
+                  ❤️
+                </span>{" "}
+                <span className="font-semibold">Emotional</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="Character">
+                  🛡️
+                </span>{" "}
+                <span className="font-semibold">Character</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <span role="img" aria-label="Will">
+                  🔥
+                </span>{" "}
+                <span className="font-semibold">Will</span>
+              </li>
+            </ul>
+            <li className="font-bold text-base md:text-lg mt-2">
+              2. Redefine your identity;
+            </li>
+          </ul>
+          <p className="text-sm md:text-base mt-2 mb-1">
+            ...based on a{" "}
+            <span className="font-bold">new code of beliefs</span> that you choose
+            to adopt. <i>(alt.)</i>
+          </p>
+          <p className="text-sm md:text-base mb-3">
+            ...from{" "}
+            <span className="font-bold">new values and principles</span> that you
+            choose to <span className="font-bold">LIVE</span>. <i>(alt.)</i>
+          </p>
+          <p className="font-bold text-base md:text-lg mb-1">
+            F88 starts with a cycle of 88 days.
+          </p>
+          <p className="font-semibold text-base md:text-lg mb-1">
+            You don't pass or fail:{" "}
+            <span className="font-bold underline text-blue-700">you CHOOSE !!!</span>
+          </p>
+          <p className="italic text-gray-500 mt-3 text-sm md:text-base">
+            And after the first 88 days,{" "}
+            <span className="font-bold">the journey continues →</span>: F88 is a
+            community of continuous growth and development, personal challenges,
+            and{" "}
+            <span className="font-bold underline">permanent expansion !!!</span>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

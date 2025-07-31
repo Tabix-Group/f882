@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, TextField, MenuItem } from '@mui/material';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-// import removed, not used
-import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { processPayment } from '../services/api';
 
 const PaymentPage: React.FC = () => {
@@ -29,43 +23,85 @@ const PaymentPage: React.FC = () => {
     setLoading(false);
   };
   return (
-    <Box maxWidth={500} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>F88 Program Payment</Typography>
-      <Typography mb={2}>Complete your payment to unlock all materials and personalized mentoring.</Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField select label="Payment Method" value={method} onChange={e => setMethod(e.target.value)} fullWidth margin="normal">
-          <MenuItem value="credit"><CreditCardIcon sx={{ mr: 1 }} />Credit Card</MenuItem>
-          <MenuItem value="mercado"><AttachMoneyIcon sx={{ mr: 1, color: '#009EE3' }} />Mercado Pago</MenuItem>
-          <MenuItem value="crypto"><CurrencyBitcoinIcon sx={{ mr: 1, color: '#F7931A' }} />Cryptocurrency</MenuItem>
-          <MenuItem value="paypal"><AccountBalanceWalletIcon sx={{ mr: 1, color: '#003087' }} />PayPal</MenuItem>
-        </TextField>
+    <div className="max-w-lg mx-auto mt-12 p-8 rounded-3xl shadow-2xl bg-slate-50/90">
+      <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2 text-center">F88 Program Payment</h1>
+      <p className="mb-4 text-gray-600 text-center">Complete your payment to unlock all materials and personalized mentoring.</p>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="payment-method" className="block text-gray-700 font-semibold mb-1">Payment Method</label>
+          <select
+            id="payment-method"
+            value={method}
+            onChange={e => setMethod(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+          >
+            <option value="credit">💳 Credit Card</option>
+            <option value="mercado">💵 Mercado Pago</option>
+            <option value="crypto">₿ Cryptocurrency</option>
+            <option value="paypal">💼 PayPal</option>
+          </select>
+        </div>
         {method === 'credit' && (
-          <TextField label="Card Details" name="card" value={details.card} onChange={handleChange} fullWidth margin="normal" required />
+          <input
+            type="text"
+            name="card"
+            value={details.card}
+            onChange={handleChange}
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+            placeholder="Card details"
+            required
+          />
         )}
         {method === 'mercado' && (
-          <TextField label="Mercado Pago Email or Phone" name="mercado" value={details.mercado} onChange={handleChange} fullWidth margin="normal" required />
+          <input
+            type="text"
+            name="mercado"
+            value={details.mercado}
+            onChange={handleChange}
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+            placeholder="Mercado Pago email or phone"
+            required
+          />
         )}
         {method === 'crypto' && (
-          <TextField label="Crypto Wallet Address" name="crypto" value={details.crypto} onChange={handleChange} fullWidth margin="normal" required />
-        )}
-        {method === 'bank' && (
-          <TextField label="Bank Account/CBU" name="bank" value={details.bank} onChange={handleChange} fullWidth margin="normal" required />
+          <input
+            type="text"
+            name="crypto"
+            value={details.crypto}
+            onChange={handleChange}
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+            placeholder="Crypto wallet address"
+            required
+          />
         )}
         {method === 'paypal' && (
-          <TextField label="PayPal Email" name="paypal" value={details.paypal} onChange={handleChange} fullWidth margin="normal" required />
+          <input
+            type="text"
+            name="paypal"
+            value={details.paypal}
+            onChange={handleChange}
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+            placeholder="PayPal email"
+            required
+          />
         )}
-        {method === 'other' && (
-          <TextField label="Other Method" name="other" value={details.other} onChange={handleChange} fullWidth margin="normal" required />
-        )}
-        <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading} sx={{ mt: 2 }}>
+        <button
+          type="submit"
+          className="w-full py-3 text-lg font-bold rounded-xl shadow-md bg-blue-700 hover:bg-blue-800 text-white transition"
+          disabled={loading}
+        >
           {loading ? 'Processing...' : 'Pay'}
-        </Button>
+        </button>
+        {message && <div className="text-blue-600 text-center mt-4 font-medium">{message}</div>}
       </form>
-      {message && <Typography color="secondary" mt={2}>{message}</Typography>}
-      <Button variant="text" color="primary" onClick={() => window.location.href = '/steps-to-do'} sx={{ mt: 2 }}>
-        Back to Steps
-      </Button>
-    </Box>
+      <button
+        type="button"
+        onClick={() => window.location.href = '/steps-to-do'}
+        className="w-full mt-4 text-blue-700 hover:underline font-semibold text-center"
+      >
+        Back to steps
+      </button>
+    </div>
   );
 };
 

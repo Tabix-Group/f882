@@ -1,35 +1,35 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-// import Layout from '../components/Layout';
 
 const StepsToDoPage: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <Box maxWidth={600} mx="auto" mt={5} p={4} boxShadow={3} borderRadius={4} bgcolor="#f5f7fa">
-      <Typography variant="h3" mb={2} color="primary" fontWeight={700} fontFamily="Montserrat, sans-serif">
-        Welcome to the F88 Program
-      </Typography>
-      <Typography mb={3} color="text.secondary" fontSize={18}>
-        Follow these steps to advance in your transformation:
-      </Typography>
-      <ol style={{ textAlign: 'left', fontSize: '1.15rem', marginLeft: '1.2em', color: '#333', fontFamily: 'Montserrat, sans-serif' }}>
+    <div className="max-w-xl mx-auto mt-12 p-8 rounded-3xl shadow-2xl bg-slate-50/90">
+      <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2 text-center">Welcome to the F88 Program</h1>
+      <p className="mb-4 text-gray-600 text-lg text-center">Follow these steps to advance in your transformation:</p>
+      <ol className="list-decimal pl-6 text-base md:text-lg text-gray-800 space-y-1 mb-6">
         <li>Complete your registration</li>
         <li>Make your payment</li>
         <li>Access the program materials</li>
         <li>Access personalized mentoring</li>
-        <li>Acceso to your book</li>
-        <li>Access PE trainning</li>
+        <li>Access your book</li>
+        <li>Access PE training</li>
       </ol>
-      <Box mt={4} display="flex" justifyContent="center" gap={2}>
-        <Button variant="contained" color="primary" size="large" onClick={() => navigate('/register')} sx={{ fontWeight: 600, px: 4 }}>
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-xl shadow-md transition"
+          onClick={() => navigate('/register')}
+        >
           Go to Registration
-        </Button>
-        <Button variant="outlined" color="primary" size="large" onClick={() => navigate('/login')} sx={{ fontWeight: 600, px: 4 }}>
-          Login
-        </Button>
-      </Box>
-    </Box>
+        </button>
+        <button
+          className="border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-bold py-3 px-6 rounded-xl shadow-md transition"
+          onClick={() => navigate('/login')}
+        >
+          Log In
+        </button>
+      </div>
+    </div>
   );
 };
 

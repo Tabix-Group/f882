@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Autocomplete } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { registerUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,17 +20,8 @@ const RegisterPage: React.FC = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const handleBirthdateChange = (date: Date | null) => {
-    setForm({ ...form, birthdate: date ? date.toISOString().split('T')[0] : '' });
-  };
-  const handleCountryChange = (_: any, value: string | null) => {
-    setForm({ ...form, country: value || '' });
-  };
-  const handleGenderChange = (_: any, value: string | null) => {
-    setForm({ ...form, gender: value || '' });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,54 +40,128 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <Box maxWidth={400} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>User Registration</Typography>
-      <Typography mb={2}>Create your account to access the F88 program.</Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField label="Full Name" name="name" value={form.name} onChange={handleChange} fullWidth margin="normal" required />
-        <TextField label="Email" name="email" value={form.email} onChange={handleChange} fullWidth margin="normal" required type="email" />
-        <TextField label="Phone Number" name="tel" value={form.tel} onChange={handleChange} fullWidth margin="normal" required type="tel" />
-        <Autocomplete
-          options={countries}
-          value={form.country}
-          onChange={handleCountryChange}
-          renderInput={(params) => (
-            <TextField {...params} label="Country" name="country" margin="normal" required fullWidth />
-          )}
-          fullWidth
-          sx={{ mb: 2 }}
-        />
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            label="Birthdate"
-            value={form.birthdate ? new Date(form.birthdate) : null}
-            onChange={handleBirthdateChange}
-            disableFuture
-            openTo="year"
-            views={["year", "month", "day"]}
-            slotProps={{ textField: { name: "birthdate", margin: "normal", required: true, fullWidth: true } }}
-          />
-        </LocalizationProvider>
-        <Autocomplete
-          options={genders}
-          value={form.gender}
-          onChange={handleGenderChange}
-          renderInput={(params) => (
-            <TextField {...params} label="Gender" name="gender" margin="normal" required fullWidth />
-          )}
-          fullWidth
-          sx={{ mb: 2 }}
-        />
-        <TextField label="Password" name="password" value={form.password} onChange={handleChange} fullWidth margin="normal" required type="password" />
-        <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading} sx={{ mt: 2 }}>
-          {loading ? 'Registering...' : 'Register'}
-        </Button>
-      </form>
-      {message && <Typography color="secondary" mt={2}>{message}</Typography>}
-      <Button variant="text" color="primary" onClick={() => navigate('/login')} sx={{ mt: 2 }}>
-        Already have an account? Login
-      </Button>
-    </Box>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-100 py-10">
+      <div className="max-w-md w-full p-8 md:p-12 rounded-3xl shadow-2xl bg-white/90">
+        <h1 className="text-4xl font-extrabold text-blue-700 text-center mb-2">User Registration</h1>
+        <div className="w-20 h-1 bg-blue-300 rounded mx-auto mb-4" />
+        <p className="mb-4 text-center text-gray-600">Create your account to access the F88 program.</p>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="block text-gray-700 font-semibold mb-1">Full Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+              placeholder="Your full name"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-gray-700 font-semibold mb-1">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+              placeholder="Enter your email"
+              autoComplete="email"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="tel" className="block text-gray-700 font-semibold mb-1">Phone</label>
+            <input
+              id="tel"
+              name="tel"
+              type="tel"
+              value={form.tel}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+              placeholder="Phone number"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="country" className="block text-gray-700 font-semibold mb-1">Country</label>
+            <select
+              id="country"
+              name="country"
+              value={form.country}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+              required
+            >
+              <option value="">Select your country</option>
+              {countries.map((country) => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="birthdate" className="block text-gray-700 font-semibold mb-1">Birthdate</label>
+            <input
+              id="birthdate"
+              name="birthdate"
+              type="date"
+              value={form.birthdate}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="gender" className="block text-gray-700 font-semibold mb-1">Gender</label>
+            <select
+              id="gender"
+              name="gender"
+              value={form.gender}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+              required
+            >
+              <option value="">Select your gender</option>
+              {genders.map((gender) => (
+                <option key={gender} value={gender}>{gender}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-gray-700 font-semibold mb-1">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none text-base bg-white shadow-sm"
+              placeholder="Create a password"
+              autoComplete="new-password"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 text-lg font-bold rounded-xl shadow-md bg-blue-700 hover:bg-blue-800 text-white transition"
+            disabled={loading}
+          >
+            {loading ? 'Registering...' : 'Register'}
+          </button>
+        </form>
+        {message && <div className="text-blue-600 text-center mt-4 font-medium">{message}</div>}
+        <button
+          type="button"
+          onClick={() => navigate('/login')}
+          className="w-full mt-4 text-blue-700 hover:underline font-semibold text-center"
+        >
+          Already have an account? Log in
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -1,122 +1,91 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Typography,
-  Button,
-  Box,
-  Container,
-  useTheme,
-  useMediaQuery,
-  alpha,
-  Fade,
-} from '@mui/material';
-// unused icon imports removed
-
-// ...existing code...
-
-// ...existing code...
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'));
-
-  // ...existing code...
-
-  // Imagen hero más humana/emocional
   const heroImageUrl =
     "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1600&q=80";
 
+  // Animación fade-in al hacer scroll
+  useEffect(() => {
+    const reveal = () => {
+      document.querySelectorAll('.fadein').forEach((el) => {
+        if (el instanceof HTMLElement) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 80) {
+            el.classList.add('opacity-100', 'translate-y-0');
+          }
+        }
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    reveal();
+    return () => window.removeEventListener('scroll', reveal);
+  }, []);
+
+  // Slider de testimonios
+  const testimonials = [
+    {
+      name: 'Lucas M.',
+      text: 'F88 changed my life. I feel stronger and more confident every day!',
+    },
+    {
+      name: 'Sofia R.',
+      text: 'The program is motivating and the community is amazing.',
+    },
+    {
+      name: 'Martin G.',
+      text: 'I achieved my goals faster than I thought possible.',
+    },
+  ];
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const testimonialInterval = useRef<NodeJS.Timeout | null>(null);
+  useEffect(() => {
+    testimonialInterval.current = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => {
+      if (testimonialInterval.current) clearInterval(testimonialInterval.current);
+    };
+  }, []);
+
+  // Cards de logros
+  const achievements = [
+    { icon: '💪', label: 'Physical Strength' },
+    { icon: '🧠', label: 'Mental Clarity' },
+    { icon: '💡', label: 'Emotional Balance' },
+    { icon: '🎯', label: 'Goal Achievement' },
+  ];
+
   return (
-    <Box
-      component="main"
-      sx={{
-        minHeight: '100vh',
-        bgcolor: (t) => (t.palette.mode === 'light' ? '#f4f6f8' : t.palette.background.default),
-        backgroundImage: `linear-gradient(rgba(10,25,41,0.45), rgba(10,25,41,0.55)), url('${heroImageUrl}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+    <div
+      className="min-h-screen w-full bg-cover bg-center bg-fixed flex flex-col items-center justify-center"
+      style={{
+        backgroundImage:
+          `linear-gradient(rgba(10,25,41,0.45), rgba(10,25,41,0.55)), url('${heroImageUrl}')`,
       }}
     >
-      {/* Hero */}
-      <Box
-        sx={{
-          position: 'relative',
-          height: isMd ? 720 : 500,
-          bgcolor: 'transparent',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-          boxShadow: 'none',
-        }}
-      >
-        <Container>
-          <Fade in timeout={1200}>
-            <Box>
-              <Typography
-                variant={isMd ? 'h2' : 'h4'}
-                sx={{ fontWeight: 900, color: '#fff', mb: 2, letterSpacing: '-1.2px', lineHeight: 1.1 }}
-              >
-                Fortitude F88
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{ color: alpha('#fff', 0.95), mb: 5, fontWeight: 400, fontSize: isMd ? '1.25rem' : '1rem' }}
-              >
-                Gain, Physical, Mental, Emotional, Character, Will
-              </Typography>
-              <Button
-                aria-label="Get Started"
-                variant="contained"
-                size="large"
-                onClick={() => navigate('/steps-to-do')}
-                sx={{
-                  background: 'linear-gradient(135deg, #21A6FF 0%, #1B7ED6 100%)',
-                  color: '#fff',
-                  textTransform: 'none',
-                  fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
-                  fontWeight: 800,
-                  letterSpacing: 0.5,
-                  py: 2,
-                  px: 6,
-                  borderRadius: '50px',
-                  fontSize: isMd ? '1.22rem' : '1.08rem',
-                  boxShadow: '0 8px 32px rgba(33,166,255,0.18), 0 2px 8px rgba(0,0,0,0.18)',
-                  transition: 'all 0.22s cubic-bezier(.4,2,.3,1)',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  '&:hover': {
-                    background: 'linear-gradient(135deg, #1B7ED6 0%, #21A6FF 100%)',
-                    color: '#fff',
-                    boxShadow: '0 16px 48px rgba(33,166,255,0.28), 0 4px 16px rgba(0,0,0,0.22)',
-                    transform: 'scale(1.07) translateY(-2px)',
-                  },
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    left: 0,
-                    top: 0,
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '50px',
-                    pointerEvents: 'none',
-                    boxShadow: '0 0 0 0 rgba(33,166,255,0)',
-                    transition: 'box-shadow 0.3s',
-                  },
-                }}
-              >
-                <span style={{ fontFamily: 'inherit', fontWeight: 800, letterSpacing: 0.5 }}>Get Started</span>
-              </Button>
-            </Box>
-          </Fade>
-        </Container>
-      </Box>
+      <div className="w-full flex flex-col items-center justify-center text-center py-20 px-4">
+        <h1 className="text-white font-extrabold text-5xl md:text-6xl mb-4 tracking-tight drop-shadow-lg animate-fadein">Fortitude F88</h1>
+        <h2 className="text-white/90 text-xl md:text-2xl font-medium mb-8 drop-shadow">Gain, Physical, Mental, Emotional, Character, Will</h2>
+        <button
+          aria-label="Get Started"
+          className="bg-gradient-to-r from-blue-400 to-blue-700 text-white font-bold py-3 px-10 rounded-full text-lg md:text-xl shadow-xl hover:scale-105 hover:from-blue-700 hover:to-blue-400 transition-all duration-200 mb-8"
+          onClick={() => navigate('/steps-to-do')}
+        >
+          Get Started
+        </button>
+        {/* Slider de testimonios */}
+        <div className="w-full max-w-xl mx-auto mb-12 fadein opacity-0 translate-y-8 transition-all duration-700">
+          <div className="bg-white/80 rounded-2xl shadow-lg px-6 py-6 min-h-[120px] flex flex-col items-center">
+            <p className="text-lg text-slate-800 italic mb-2">“{testimonials[currentTestimonial].text}”</p>
+            <span className="text-blue-700 font-bold">{testimonials[currentTestimonial].name}</span>
+          </div>
+        </div>
+        {/* Cards de logros */}
 
-      {/* Features */}
-      {/* ...resto del contenido... */}
-    </Box>
+      </div>
+    </div>
   );
 };
 

@@ -1,23 +1,19 @@
 import React from 'react';
-import { Box, Typography, Button, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const BuyBookPage: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <Container maxWidth="sm" sx={{ py: 6 }}>
-      <Box sx={{ textAlign: 'center' }}>
-        <Typography variant="h4" fontWeight={800} mb={2} color="primary">
-          Buy the Official F88 Book
-        </Typography>
-        <Typography variant="body1" mb={4} color="text.secondary">
-          Get your copy of the Fortitude F88 guidebook and start your transformation journey. The book includes all the steps, principles, and strategies to help you achieve your goals.
-        </Typography>
-        <Button variant="contained" color="primary" size="large" onClick={() => navigate('/payment')}>
-          Purchase Book
-        </Button>
-      </Box>
-    </Container>
+    <div className="max-w-lg mx-auto mt-12 p-8 rounded-3xl shadow-2xl bg-slate-50/90 text-center">
+      <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2">Buy the Official F88 Book</h1>
+      <p className="mb-6 text-gray-600 text-lg">Get your copy of the F88 guide and start your transformation journey. The book includes all the steps, principles, and strategies to help you achieve your goals.</p>
+      <button
+        className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-xl shadow-md transition text-lg"
+        onClick={() => navigate('/payment')}
+      >
+        Buy Book
+      </button>
+    </div>
   );
 };
 

@@ -1,14 +1,23 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-
 const ProceedToPaymentPage: React.FC = () => {
-  const navigate = useNavigate();
   return (
-    <Box maxWidth={600} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>Proceed to Payment</Typography>
-      <Button variant="contained" color="primary" onClick={() => navigate('/payment')}>Go to Payment</Button>
-    </Box>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-100 py-10">
+      <div className="max-w-md w-full rounded-3xl shadow-2xl bg-white/90 p-8 md:p-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-center text-blue-700 tracking-wide mb-4">
+          Confirmar y Proceder al Pago
+        </h1>
+        <div className="w-16 h-1 bg-blue-300 rounded mx-auto mb-6" />
+        <p className="text-base md:text-lg text-center text-gray-600 mb-6">
+          Por favor revisa los detalles de tu compra antes de continuar.
+        </p>
+        {/* Aquí puedes agregar detalles del pedido, resumen, etc. */}
+        <button
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg py-3 rounded-xl shadow-md transition-colors duration-200 mt-2"
+        >
+          Proceder al Pago
+        </button>
+      </div>
+    </div>
   );
 };
 

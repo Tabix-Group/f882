@@ -1,12 +1,11 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
 
 const StartF88FitnessChangePage: React.FC = () => {
   return (
-    <Box maxWidth={600} mx="auto" mt={5}>
-      <Typography variant="h4" mb={2}>Start Your F88 Fitness Change</Typography>
-      <Typography>Begin your transformation journey here.</Typography>
-    </Box>
+    <div className="max-w-xl mx-auto mt-12 p-8 rounded-3xl shadow-2xl bg-slate-50/90 text-center">
+      <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2">Comienza tu Cambio Físico F88</h1>
+      <p className="mb-4 text-gray-600 text-lg">Inicia tu viaje de transformación aquí.</p>
+    </div>
   );
 };
 
