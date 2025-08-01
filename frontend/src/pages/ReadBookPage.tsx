@@ -38,7 +38,10 @@ const ReadBookPage: React.FC = () => {
       const res = await fetch('https://be-production-36c6.up.railway.app/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({
+          message: input,
+          chapter: chapters[currentChapter].text
+        }),
       });
       const data = await res.json();
       setChat((prev) => [
