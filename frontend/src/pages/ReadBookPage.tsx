@@ -28,18 +28,29 @@ const ReadBookPage: React.FC = () => {
   const [input, setInput] = useState('');
   const [audioPlaying, setAudioPlaying] = useState(false);
 
-  // Dummy chatbot response (replace with real AI integration)
-  const handleChat = (e: React.FormEvent) => {
+  // Chatbot real con backend
+  const handleChat = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
     setChat([...chat, { sender: 'user', message: input }]);
-    setTimeout(() => {
+    setInput('');
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: input }),
+      });
+      const data = await res.json();
       setChat((prev) => [
         ...prev,
-        { sender: 'bot', message: `I'm your reading assistant! You asked: "${input}". (Here would be a smart answer about the book.)` },
+        { sender: 'bot', message: data.reply || 'No response from assistant.' },
       ]);
-    }, 800);
-    setInput('');
+    } catch {
+      setChat((prev) => [
+        ...prev,
+        { sender: 'bot', message: 'Error al conectar con el asistente.' },
+      ]);
+    }
   };
 
   return (
