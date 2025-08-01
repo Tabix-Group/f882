@@ -96,19 +96,30 @@ const ReadBookPage: React.FC = () => {
           </div>
         </div>
         {/* Chatbot section */}
-        <div className="w-full md:w-80 flex flex-col bg-slate-100 rounded-2xl shadow-lg p-4">
+        <div className="w-full md:w-80 flex flex-col bg-slate-100 rounded-2xl shadow-lg p-4 h-full">
           <h3 className="text-lg font-bold text-blue-700 mb-2">Reading Assistant</h3>
-          <div className="flex-1 overflow-y-auto mb-2 max-h-64">
+          <div className="flex-1 overflow-y-auto mb-2">
             {chat.length === 0 && (
               <div className="text-gray-400 text-sm text-center">Ask me anything about this chapter!</div>
             )}
-            {chat.map((msg, idx) => (
-              <div key={idx} className={`mb-2 flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`px-3 py-2 rounded-xl max-w-[80%] ${msg.sender === 'user' ? 'bg-blue-200 text-blue-900' : 'bg-white text-gray-700 border'}`}>
-                  {msg.message}
-                </div>
+            {chat.length > 0 && (
+              <div className="relative mb-2">
+                {chat.map((msg, idx) => (
+                  <div key={idx} className={`mb-2 flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`px-3 py-2 rounded-xl max-w-[80%] ${msg.sender === 'user' ? 'bg-blue-200 text-blue-900' : 'bg-white text-gray-700 border'}`}>
+                      {msg.message}
+                    </div>
+                  </div>
+                ))}
+                <button
+                  className="absolute top-0 left-0 mt-1 ml-1 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-full w-7 h-7 flex items-center justify-center shadow transition"
+                  title="Cerrar respuesta"
+                  onClick={() => setChat([])}
+                >
+                  <span className="text-lg">&times;</span>
+                </button>
               </div>
-            ))}
+            )}
           </div>
           <form onSubmit={handleChat} className="flex gap-2 mt-auto">
             <input
@@ -117,10 +128,12 @@ const ReadBookPage: React.FC = () => {
               placeholder="Ask about the book..."
               value={input}
               onChange={e => setInput(e.target.value)}
+              disabled={chat.length > 0}
             />
             <button
               type="submit"
               className="bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 transition"
+              disabled={chat.length > 0}
             >
               Send
             </button>
