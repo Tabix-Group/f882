@@ -35,7 +35,7 @@ const ReadBookPage: React.FC = () => {
     setChat([...chat, { sender: 'user', message: input }]);
     setInput('');
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch('https://be-production-36c6.up.railway.app/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),
