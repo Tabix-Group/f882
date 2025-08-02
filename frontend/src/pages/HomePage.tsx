@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const heroImageUrl =
-    'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1600&q=80';
+    '/fondo.jpg'; // Imagen local de fondo
 
   useEffect(() => {
     const reveal = () => {
