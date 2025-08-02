@@ -29,18 +29,31 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     ? 'bg-transparent'
     : 'bg-black/95 backdrop-blur-sm shadow-lg';
 
+  const [logoHovered, setLogoHovered] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-950 text-white font-sans">
       {/* Header */}
       <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${headerClass}`}>
         <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-transform">
+          <Link
+            to="/"
+            className="flex items-center gap-3 transition-transform cursor-pointer overflow-hidden w-[120px] md:w-[200px] lg:w-[220px]"
+            onMouseEnter={() => setLogoHovered(true)}
+            onMouseLeave={() => setLogoHovered(false)}
+          >
             <img
-              src="/logo.png"
+              src={logoHovered ? "/favicon3.png" : "/favicon2.png"}
               alt="F88 Logo"
-              className="h-14 w-auto object-contain drop-shadow-lg"
+              className={`h-14 w-14 object-cover rounded-full drop-shadow-lg transition-all duration-300 ${logoHovered ? 'scale-105' : 'scale-100'}`}
             />
+            <span
+              className={`font-extrabold ${logoHovered ? 'text-base md:text-lg lg:text-xl' : 'text-2xl'} text-gray-300 transition-all duration-300 ${logoHovered ? 'scale-105' : 'scale-100'}`}
+              style={{ fontFamily: 'Poppins, Arial, sans-serif', letterSpacing: '0.05em' }}
+            >
+              {logoHovered ? 'Fortitude' : 'F88'}
+            </span>
           </Link>
 
           {/* Navigation - Desktop */}
