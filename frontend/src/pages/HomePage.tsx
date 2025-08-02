@@ -48,9 +48,10 @@ const HomePage: React.FC = () => {
             </p>
             <button
               onClick={() => navigate('/steps-to-do')}
-              className="bg-blue-600 text-white text-lg md:text-xl px-8 py-4 rounded-full font-bold hover:bg-blue-700 transition-all duration-300 hover:scale-105 transform hover:shadow-xl hover:shadow-blue-500/25"
+              className="bg-white text-black text-base md:text-lg px-8 py-3 rounded-full font-semibold border border-gray-300 hover:bg-gray-100 transition-all duration-200 focus:outline-none"
+              style={{ boxShadow: 'none' }}
             >
-              COMIENZA AHORA
+              Comienza ahora
             </button>
           </div>
           {/* Columna Derecha: Testimonios más compactos */}
