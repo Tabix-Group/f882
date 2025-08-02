@@ -1,110 +1,136 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from './Footer';
 
 const navItems = [
-  { label: 'Steps to Do', path: '/steps-to-do' },
-  { label: 'What is F88', path: '/what-is-f88' },
-  { label: 'Buy Book', path: '/buy-book' },
-  { label: 'Buy Book & Advance Mentoring', path: '/buy-book-mentor' },
-  { label: 'Customer Service', path: '/customer-service' },
+  { label: 'Pasos a Seguir', path: '/steps-to-do' },
+  { label: '¿Qué es F88?', path: '/what-is-f88' },
+  { label: 'Comprar Libro', path: '/buy-book' },
+  { label: 'Libro + Mentoría Avanzada', path: '/buy-book-mentor' },
+  { label: 'Atención al Socio', path: '/customer-service' },
 ];
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const isHomePage = location.pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const headerClass = isHomePage && !isScrolled
+    ? 'bg-transparent'
+    : 'bg-black/95 backdrop-blur-sm shadow-lg';
+
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-blue-100">
-      <header className="w-full bg-slate-900 shadow-md sticky top-0 z-50 transition-all duration-300" id="main-header">
-        <nav className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-          {/* Logo at far left */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center gap-1 transition-all duration-200 hover:scale-105 rounded-full p-0.5">
-              <img src="/logo.png" alt="F88 Logo" className="h-10 object-contain transition-all duration-200" />
-            </Link>
+    <div className="min-h-screen flex flex-col bg-neutral-950 text-white font-sans">
+      {/* Header */}
+      <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${headerClass}`}>
+        <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-transform">
+            <img
+              src="/logo.png"
+              alt="F88 Logo"
+              className="h-14 w-auto object-contain drop-shadow-lg"
+            />
+          </Link>
+
+          {/* Navigation - Desktop */}
+          <div className="hidden md:flex gap-8 items-center text-lg font-semibold">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`transition-all duration-200 whitespace-nowrap hover:text-white relative group ${
+                    isActive ? 'text-white' : 'text-gray-300'
+                  }`}
+                >
+                  {item.label}
+                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500 transform origin-left transition-transform duration-200 ease-out ${
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`}></span>
+                </Link>
+              );
+            })}
           </div>
-          {/* Centered nav items */}
-          {/* Responsive nav: hamburger for mobile */}
-          <div className="flex-1 flex justify-center gap-1 md:gap-4">
-            <div className="hidden md:flex gap-1 md:gap-4">
-              {navItems.map((item) => {
-                const isBuyBook = item.label === 'Buy Book' || item.label === 'Buy Book & Advance Mentoring';
-                const isActive = location.pathname === item.path;
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`px-2 py-1 rounded-md font-semibold text-sm md:text-base transition-all duration-200
-                      ${isActive ? 'bg-blue-700 text-white shadow-md' : isBuyBook ? 'border border-blue-400 bg-blue-50 text-blue-900' : 'text-white'}
-                      hover:scale-105 hover:bg-blue-200 hover:text-blue-900`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
-            {/* Hamburger menu for mobile */}
-            <div className="md:hidden flex items-center">
-              <button
-                className="text-white focus:outline-none p-2"
-                onClick={() => {
-                  const menu = document.getElementById('mobile-nav');
-                  if (menu) menu.classList.toggle('hidden');
-                }}
-                aria-label="Open navigation menu"
+
+          {/* Ingresar */}
+          <div className="flex items-center gap-4">
+            <Link
+              to="/login"
+              className="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+            >
+              Ingresar
+            </Link>
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-gray-300 hover:text-white"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-              <div id="mobile-nav" className="absolute top-16 left-0 w-full bg-slate-900 shadow-lg hidden flex-col z-50">
-                {navItems.map((item) => {
-                  const isBuyBook = item.label === 'Buy Book' || item.label === 'Buy Book & Advance Mentoring';
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={`block px-4 py-3 border-b border-slate-800 font-semibold text-base transition-all duration-200
-                        ${location.pathname === item.path ? 'bg-blue-700 text-white shadow-md' : 'text-white'}
-                        ${isBuyBook ? 'border border-blue-400 bg-blue-50 text-blue-900' : ''}
-                        hover:bg-blue-200 hover:text-blue-900`}
-                      onClick={() => {
-                        const menu = document.getElementById('mobile-nav');
-                        if (menu) menu.classList.add('hidden');
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          {/* Login at far right */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/login" className="text-white font-semibold hover:underline text-sm md:text-base">
-              Login
-            </Link>
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
         </nav>
+
+        {/* Mobile Navigation Menu */}
+        <div
+          className={`md:hidden transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen
+              ? 'opacity-100 max-h-screen'
+              : 'opacity-0 max-h-0 pointer-events-none'
+          }`}
+        >
+          <div className="bg-black/95 backdrop-blur-sm px-6 py-4 space-y-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="block text-lg font-semibold text-gray-300 hover:text-white transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </header>
-      <main className="flex-1 w-full min-h-screen p-0 m-0">
-        {children}
-      </main>
-      {/* Sticky header shadow on scroll */}
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          window.addEventListener('scroll', function() {
-            const header = document.getElementById('main-header');
-            if (!header) return;
-            if (window.scrollY > 10) {
-              header.classList.add('shadow-lg', 'bg-slate-900/95', 'backdrop-blur');
-            } else {
-              header.classList.remove('shadow-lg', 'bg-slate-900/95', 'backdrop-blur');
-            }
-          });
-        `
-      }} />
+
+      {/* Main Content with padding for fixed header */}
+      <main className="flex-1 w-full pt-20">{children}</main>
+
+      {/* Footer */}
       <Footer />
     </div>
   );

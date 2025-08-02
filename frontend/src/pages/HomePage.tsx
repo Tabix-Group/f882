@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const heroImageUrl =
-    "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1600&q=80";
+    'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1600&q=80';
 
-  // Animación fade-in al hacer scroll
   useEffect(() => {
     const reveal = () => {
       document.querySelectorAll('.fadein').forEach((el) => {
@@ -23,62 +22,54 @@ const HomePage: React.FC = () => {
     return () => window.removeEventListener('scroll', reveal);
   }, []);
 
-  // Slider de testimonios
   const testimonials = [
-    {
-      name: 'Lucas M.',
-      text: 'F88 changed my life. I feel stronger and more confident every day!',
-    },
-    {
-      name: 'Sofia R.',
-      text: 'The program is motivating and the community is amazing.',
-    },
-    {
-      name: 'Martin G.',
-      text: 'I achieved my goals faster than I thought possible.',
-    },
+    { name: 'Lucas M.', text: 'F88 cambió mi vida. ¡Me siento más fuerte y seguro cada día!' },
+    { name: 'Sofía R.', text: 'El programa es motivador y la comunidad es increíble.' },
+    { name: 'Martín G.', text: 'Alcancé mis metas más rápido de lo que imaginaba.' },
   ];
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const testimonialInterval = useRef<NodeJS.Timeout | null>(null);
-  useEffect(() => {
-    testimonialInterval.current = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => {
-      if (testimonialInterval.current) clearInterval(testimonialInterval.current);
-    };
-  }, [testimonials.length]);
-
-  // Cards de logros
-  // ...existing code...
 
   return (
-    <div
-      className="min-h-screen w-full bg-cover bg-center bg-fixed flex flex-col items-center justify-center"
-      style={{
-        backgroundImage:
-          `linear-gradient(rgba(10,25,41,0.45), rgba(10,25,41,0.55)), url('${heroImageUrl}')`,
-      }}
-    >
-      <div className="w-full flex flex-col items-center justify-center text-center py-20 px-4">
-        <h1 className="text-white font-extrabold text-5xl md:text-6xl mb-4 tracking-tight drop-shadow-lg animate-fadein">Fortitude F88</h1>
-        <h2 className="text-white/90 text-xl md:text-2xl font-medium mb-8 drop-shadow">Gain, Physical, Mental, Emotional, Character, Will</h2>
-        <button
-          aria-label="Get Started"
-          className="bg-gradient-to-r from-blue-400 to-blue-700 text-white font-bold py-3 px-10 rounded-full text-lg md:text-xl shadow-xl hover:scale-105 hover:from-blue-700 hover:to-blue-400 transition-all duration-200 mb-8"
-          onClick={() => navigate('/steps-to-do')}
-        >
-          Get Started
-        </button>
-        {/* Slider de testimonios */}
-        <div className="w-full max-w-xl mx-auto mb-12 fadein opacity-0 translate-y-8 transition-all duration-700">
-          <div className="bg-white/80 rounded-2xl shadow-lg px-6 py-6 min-h-[120px] flex flex-col items-center">
-            <p className="text-lg text-slate-800 italic mb-2">“{testimonials[currentTestimonial].text}”</p>
-            <span className="text-blue-700 font-bold">{testimonials[currentTestimonial].name}</span>
+    <div className="relative min-h-screen flex flex-col">
+      {/* Hero Section */}
+      <div
+        className="min-h-screen w-full bg-cover bg-center bg-fixed bg-no-repeat text-white flex flex-col relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('${heroImageUrl}')`,
+        }}
+      >
+        {/* Contenido Principal */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-24 md:py-40">
+          <div className="max-w-5xl mx-auto fadein opacity-0 translate-y-8 transition-all duration-700">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
+              Fortitud 88
+            </h1>
+            <p className="text-2xl md:text-4xl lg:text-5xl font-bold mb-12 max-w-4xl mx-auto text-gray-200" style={{lineHeight: '1.2'}}>
+              Maestría Física, Mental, Emocional, Carácter, Voluntad
+            </p>
+            <button
+              onClick={() => navigate('/steps-to-do')}
+              className="bg-blue-600 text-white text-xl md:text-2xl px-12 py-5 rounded-full font-bold hover:bg-blue-700 transition-all duration-300 hover:scale-105 transform hover:shadow-xl hover:shadow-blue-500/25"
+            >
+              COMIENZA AHORA
+            </button>
           </div>
         </div>
-        {/* Cards de logros */}
 
+
+        {/* Testimonios Grid */}
+        <div className="w-full max-w-7xl mx-auto px-4 mb-20">
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-black/40 backdrop-blur-sm rounded-xl p-6 shadow-lg transform hover:scale-105 transition-all duration-300"
+              >
+                <p className="text-lg text-gray-300 italic mb-4">"{testimonial.text}"</p>
+                <span className="text-blue-400 font-semibold block">{testimonial.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

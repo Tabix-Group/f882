@@ -1,83 +1,99 @@
+import React from 'react';
+
 const WhatIsF88Page: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-100">
-      <div className="max-w-2xl w-full rounded-3xl shadow-2xl bg-white/90 p-4 md:p-8">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-blue-700 tracking-wide mb-2">
-          WHAT IS F88?
-        </h1>
-        <div className="w-20 h-1 bg-blue-300 rounded mx-auto mb-6" />
-        <h2 className="text-xl md:text-2xl text-center text-gray-600 font-medium mb-6">
-          A path of personal growth and transformation, with{" "}
-          <span className="font-bold">FORTITUDE</span> as the central axis.
-        </h2>
-        <div className="bg-slate-100 rounded-xl p-6 shadow-inner">
-          <p className="text-base md:text-lg mb-3">It is designed to help you:</p>
-          <ul className="pl-5 mb-3 space-y-1">
-            <li className="font-bold text-base md:text-lg">
-              Develop your Fortitude in five essential dimensions:
-            </li>
-            <ul className="pl-6 space-y-1">
-              <li className="flex items-center gap-2">
-                <span role="img" aria-label="Physical">
-                  💪
-                </span>{" "}
-                <span className="font-semibold">Physical</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span role="img" aria-label="Mental">
-                  🧠
-                </span>{" "}
-                <span className="font-semibold">Mental</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span role="img" aria-label="Emotional">
-                  ❤️
-                </span>{" "}
-                <span className="font-semibold">Emotional</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span role="img" aria-label="Character">
-                  🛡️
-                </span>{" "}
-                <span className="font-semibold">Character</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span role="img" aria-label="Will">
-                  🔥
-                </span>{" "}
-                <span className="font-semibold">Will</span>
-              </li>
-            </ul>
-            <li className="font-bold text-base md:text-lg mt-2">
-              2. Redefine your identity;
-            </li>
-          </ul>
-          <p className="text-sm md:text-base mt-2 mb-1">
-            ...based on a{" "}
-            <span className="font-bold">new code of beliefs</span> that you choose
-            to adopt. <i>(alt.)</i>
-          </p>
-          <p className="text-sm md:text-base mb-3">
-            ...from{" "}
-            <span className="font-bold">new values and principles</span> that you
-            choose to <span className="font-bold">LIVE</span>. <i>(alt.)</i>
-          </p>
-          <p className="font-bold text-base md:text-lg mb-1">
-            F88 starts with a cycle of 88 days.
-          </p>
-          <p className="font-semibold text-base md:text-lg mb-1">
-            You don't pass or fail:{" "}
-            <span className="font-bold underline text-blue-700">you CHOOSE !!!</span>
-          </p>
-          <p className="italic text-gray-500 mt-3 text-sm md:text-base">
-            And after the first 88 days,{" "}
-            <span className="font-bold">the journey continues →</span>: F88 is a
-            community of continuous growth and development, personal challenges,
-            and{" "}
-            <span className="font-bold underline">permanent expansion !!!</span>
-          </p>
+    <div className="min-h-screen bg-black text-white">
+      {/* Sección con imagen de fondo y overlay */}
+      <div
+        className="w-full bg-cover bg-center bg-fixed bg-no-repeat relative"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.92)), url('/images/flow.jpeg')`,
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-12 sm:py-16 relative z-10">
+          {/* Título y subtítulo */}
+          <div className="text-center mb-12 animate-fade-in-up">
+            <h1 className="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+              ¿Qué es F88?
+            </h1>
+            <h2 className="text-xl md:text-2xl text-gray-200 font-bold max-w-3xl mx-auto">
+              Un camino de crecimiento personal y transformación, con{' '}
+              <span className="text-blue-400">FORTALEZA</span> como eje central.
+            </h2>
+          </div>
+
+          {/* Contenido principal */}
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl border border-white/10">
+              <h3 className="text-lg md:text-xl font-bold text-blue-400 mb-6">
+                Está diseñado para ayudarte a:
+              </h3>
+
+              {/* Dimensiones esenciales */}
+              <div className="mb-10">
+                <h4 className="text-lg font-bold mb-4">
+                  Desarrollar tu fortaleza en cinco dimensiones esenciales:
+                </h4>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    { emoji: '💪', label: 'Físico' },
+                    { emoji: '🧠', label: 'Mental' },
+                    { emoji: '❤️', label: 'Emocional' },
+                    { emoji: '🛡️', label: 'Carácter' },
+                    { emoji: '🔥', label: 'Voluntad' },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="bg-blue-900/30 p-6 rounded-xl backdrop-blur-sm border border-white/10 hover:scale-[1.03] transition-all duration-300 shadow-sm"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-bold bg-blue-600/70 text-white rounded-full px-3 py-1">
+                          {i + 1}
+                        </span>
+                        <span className="text-2xl">{item.emoji}</span>
+                        <span className="font-bold text-lg">{item.label}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sección identidad y programa */}
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Identidad */}
+                <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm border border-white/10 hover:scale-[1.02] transition-all duration-300 shadow-sm">
+                  <h4 className="text-xl font-bold mb-3">Redefinir tu identidad</h4>
+                  <p className="text-gray-300">
+                    Basado en un{' '}
+                    <span className="font-bold text-blue-400">nuevo código de creencias</span>{' '}
+                    que eliges adoptar y{' '}
+                    <span className="font-bold text-blue-400">nuevos valores y principios</span>{' '}
+                    que eliges <span className="font-bold">VIVIR</span>.
+                  </p>
+                </div>
+
+                {/* Programa */}
+                <div className="bg-gradient-to-r from-blue-900/40 to-blue-700/40 p-6 rounded-xl backdrop-blur-sm border border-white/10 hover:scale-[1.02] transition-all duration-300 shadow-sm">
+                  <h4 className="text-xl font-bold mb-3">El Programa</h4>
+                  <p className="text-lg font-bold text-blue-300 mb-2">
+                    F88 comienza con un ciclo de 88 días.
+                  </p>
+                  <p className="text-lg mb-4">
+                    No apruebas ni repruebas: <span className="font-bold text-blue-300">¡TÚ ELIGES!</span>
+                  </p>
+                  <p className="text-gray-300 italic">
+                    Y después de los primeros 88 días,{' '}
+                    <span className="font-bold text-blue-400">el viaje continúa →</span>
+                    <br />
+                    F88 es una comunidad de crecimiento y desarrollo continuo, retos personales y{' '}
+                    <span className="font-bold">¡expansión permanente!</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </div> 
     </div>
   );
 };

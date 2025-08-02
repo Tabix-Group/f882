@@ -87,22 +87,22 @@ const ReadBookPage: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="text-sm text-gray-700 font-medium">Tamaño fuente:</div>
-              <div className="flex gap-1 items-center">
+              <div className="text-sm text-gray-600">Font Size:</div>
+              <div className="flex gap-1">
                 <button
                   onClick={() => setFontSize(Math.max(12, fontSize - 2))}
-                  className="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold text-xl flex items-center justify-center transition-all duration-200 border-2 border-blue-200 hover:border-blue-300 shadow-sm hover:shadow-md"
-                  title="Disminuir tamaño de fuente"
+                  className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                  title="Decrease font size"
                 >
-                  <span className="leading-none">−</span>
+                  <span className="text-lg">−</span>
                 </button>
-                <span className="w-10 text-center text-sm font-semibold bg-gray-100 py-2 px-1 rounded border">{fontSize}</span>
+                <span className="w-8 text-center text-sm">{fontSize}</span>
                 <button
                   onClick={() => setFontSize(Math.min(24, fontSize + 2))}
-                  className="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold text-xl flex items-center justify-center transition-all duration-200 border-2 border-blue-200 hover:border-blue-300 shadow-sm hover:shadow-md"
-                  title="Aumentar tamaño de fuente"
+                  className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                  title="Increase font size"
                 >
-                  <span className="leading-none">+</span>
+                  <span className="text-lg">+</span>
                 </button>
               </div>
             </div>
@@ -212,7 +212,7 @@ const ReadBookPage: React.FC = () => {
             <div className="flex items-center justify-between p-4 border-b border-blue-200">
               <h3 className="text-lg font-bold text-blue-700 flex items-center gap-2">
                 <span>🤖</span>
-                Jordan
+                Reading Assistant
               </h3>
               {chat.length > 0 && (
                 <button
@@ -230,10 +230,10 @@ const ReadBookPage: React.FC = () => {
                 <div className="text-center py-8">
                   <div className="text-4xl mb-2">📚</div>
                   <div className="text-gray-500 text-sm">
-                    Preguntame lo que sea sobre este capitulo!
+                    Ask me anything about this chapter!
                   </div>
                   <div className="text-xs text-gray-400 mt-2">
-                    Puedo ayudar a explicar conceptos, responder preguntas o discutir el contenido.
+                    I can help explain concepts, answer questions, or discuss the content.
                   </div>
                 </div>
               )}
@@ -274,8 +274,8 @@ const ReadBookPage: React.FC = () => {
               <div className="flex gap-2">
                 <input
                   type="text"
-                  className="flex-1 rounded-xl border-2 border-gray-300 px-4 py-3 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all disabled:bg-gray-100 disabled:text-gray-500"
-                  placeholder="Pregunta sobre el libro..."
+                  className="flex-1 rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                  placeholder="Ask about the book..."
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   disabled={isLoading}

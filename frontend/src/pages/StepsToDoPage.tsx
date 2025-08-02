@@ -1,33 +1,69 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  UserPlus,
+  CreditCard,
+  BookOpenCheck,
+  Users,
+  Book,
+  Dumbbell
+} from 'lucide-react';
+
+const steps = [
+  { icon: UserPlus, label: 'Completa tu registro' },
+  { icon: CreditCard, label: 'Realiza tu pago' },
+  { icon: BookOpenCheck, label: 'Accede a los materiales del programa' },
+  { icon: Users, label: 'Accede a la mentoría personalizada' },
+  { icon: Book, label: 'Accede a tu libro' },
+  { icon: Dumbbell, label: 'Accede al entrenamiento' },
+];
 
 const StepsToDoPage: React.FC = () => {
   const navigate = useNavigate();
+
   return (
-    <div className="max-w-xl mx-auto mt-12 p-8 rounded-3xl shadow-2xl bg-slate-50/90">
-      <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2 text-center">Welcome to the F88 Program</h1>
-      <p className="mb-4 text-gray-600 text-lg text-center">Follow these steps to advance in your transformation:</p>
-      <ol className="list-decimal pl-6 text-base md:text-lg text-gray-800 space-y-1 mb-6">
-        <li>Complete your registration</li>
-        <li>Make your payment</li>
-        <li>Access the program materials</li>
-        <li>Access personalized mentoring</li>
-        <li>Access your book</li>
-        <li>Access PE training</li>
-      </ol>
-      <div className="flex justify-center gap-4 mt-6">
-        <button
-          className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-xl shadow-md transition"
-          onClick={() => navigate('/register')}
-        >
-          Go to Registration
-        </button>
-        <button
-          className="border-2 border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white font-bold py-3 px-6 rounded-xl shadow-md transition"
-          onClick={() => navigate('/login')}
-        >
-          Log In
-        </button>
+    <div className="min-h-screen flex items-center justify-center px-4 py-16 bg-black">
+      <div className="w-full max-w-3xl px-6 py-10 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-lg shadow-xl">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 text-center leading-tight">
+          Bienvenido al Programa F88
+        </h1>
+        <p className="mb-10 text-gray-300 text-lg text-center max-w-md mx-auto">
+          Sigue estos pasos para avanzar en tu transformación:
+        </p>
+
+        <div className="space-y-4">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4 transition-all hover:bg-white/10"
+            >
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600/10 text-blue-400">
+                <step.icon className="w-6 h-6" />
+              </div>
+              <div className="flex-1 text-gray-100 text-base md:text-lg font-medium flex items-center gap-2">
+                <span className="inline-block bg-blue-600/80 text-white text-sm font-semibold px-2 py-0.5 rounded-md min-w-[28px] text-center">
+                  {index + 1}
+                </span>
+                {step.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-10 rounded-xl shadow-md transition-transform hover:scale-105 text-lg"
+            onClick={() => navigate('/register')}
+          >
+            Ir al Registro
+          </button>
+          <button
+            className="border-2 border-blue-600 text-blue-400 font-semibold py-3 px-10 rounded-xl shadow-md transition-transform hover:scale-105 hover:bg-blue-600/10 text-lg bg-transparent"
+            onClick={() => navigate('/login')}
+          >
+            Ingresar
+          </button>
+        </div>
       </div>
     </div>
   );

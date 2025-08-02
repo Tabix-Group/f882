@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer className="w-full py-4 bg-slate-900 text-slate-100 text-center text-sm font-medium shadow-inner">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 gap-2">
         <div className="flex items-center gap-3 mb-2 md:mb-0">
-          <span className="font-bold text-base tracking-wide">Join our community</span>
+          <span className="font-bold text-base tracking-wide">Únete a nuestra comunidad</span>
           <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
             <svg className="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.12C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.391.566A2.994 2.994 0 0 0 .502 6.186C0 8.36 0 12 0 12s0 3.64.502 5.814a2.994 2.994 0 0 0 2.107 2.12C4.772 20.5 12 20.5 12 20.5s7.228 0 9.391-.566a2.994 2.994 0 0 0 2.107-2.12C24 15.64 24 12 24 12s0-3.64-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           </a>
         </div>
         <div className="text-slate-100 text-sm font-medium">
-          &copy; {new Date().getFullYear()} F88. All rights reserved.
+          &copy; {new Date().getFullYear()} F88. Todos los derechos reservados.
         </div>
       </div>
     </footer>
