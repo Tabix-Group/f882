@@ -5,8 +5,7 @@ import Footer from './Footer';
 const navItems = [
   { label: 'Pasos a Seguir', path: '/steps-to-do' },
   { label: '¿Qué es F88?', path: '/what-is-f88' },
-  { label: 'Comprar Libro', path: '/buy-book' },
-  { label: 'Libro + Mentoría Avanzada', path: '/buy-book-mentor' },
+  { label: 'Asociarse', path: '/buy-book' },
   { label: 'Atención al Socio', path: '/customer-service' },
 ];
 
