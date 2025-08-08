@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
               Fortitud 88
             </h1>
             <p className="text-xl md:text-2xl lg:text-3xl font-bold mb-8 text-gray-200 text-left" style={{lineHeight: '1.3'}}>
-              Maestría Física, Mental, Emocional, Carácter, Voluntad
+              Maestría Física, Mental, Emocional, De Carácter y de Voluntad
             </p>
             <button
               onClick={() => navigate('/steps-to-do')}
