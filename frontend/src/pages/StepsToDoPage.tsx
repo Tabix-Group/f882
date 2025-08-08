@@ -13,9 +13,9 @@ const steps = [
   { icon: UserPlus, label: 'Completa tu registro' },
   { icon: CreditCard, label: 'Realiza tu pago' },
   { icon: BookOpenCheck, label: 'Accede a los materiales del programa' },
-  { icon: Users, label: 'Accede a la mentoría personalizada' },
+  { icon: Users, label: 'Accede a tu mentor' },
   { icon: Book, label: 'Accede a tu libro' },
-  { icon: Dumbbell, label: 'Accede al entrenamiento' },
+  { icon: Dumbbell, label: 'Accede a tu programa de entrenamiento físico' },
 ];
 
 const StepsToDoPage: React.FC = () => {

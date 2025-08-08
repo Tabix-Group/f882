@@ -43,8 +43,8 @@ const HomePage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 text-left">
               Fortitud 88
             </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl font-bold mb-8 text-gray-200 text-left" style={{lineHeight: '1.3'}}>
-              Maestría Física, Mental, Emocional, De Carácter y de Voluntad
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 text-gray-200 text-left" style={{lineHeight: '1.3'}}>
+              Maestría Física, Mental, Emocional, de Carácter y de Voluntad en solo 88 días.
             </p>
             <button
               onClick={() => navigate('/steps-to-do')}
