@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
       >
         <div className="flex-1 flex flex-col md:flex-row items-center justify-between px-4 py-24 md:py-40 gap-8 max-w-7xl mx-auto w-full">
           {/* Columna Izquierda: Título, Subtítulo y Botón */}
-          <div className="w-full md:w-3/5 fadein opacity-0 translate-y-8 transition-all duration-700 flex flex-col items-start justify-center">
+          <div className="w-full md:w-3/5 flex flex-col items-start justify-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 text-white text-left">
               Fortitud 88
             </h1>
