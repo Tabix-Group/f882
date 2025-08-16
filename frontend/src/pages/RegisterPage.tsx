@@ -21,7 +21,6 @@ const RegisterPage: React.FC = () => {
   const genders = ["Male", "Female", "Other"];
 
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const { show } = useToast();
 
@@ -32,7 +31,7 @@ const RegisterPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+  // message handled via toasts
     // basic client validation
     if (form.password.length < 6) {
       show('La contraseña debe tener al menos 6 caracteres', 'error');

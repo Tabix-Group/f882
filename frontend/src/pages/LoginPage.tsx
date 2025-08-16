@@ -7,7 +7,6 @@ import Spinner from '../components/Spinner';
 const LoginPage: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const { show } = useToast();
 
@@ -18,7 +17,7 @@ const LoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+  // message handled via toasts
     try {
       await loginUser(form);
   show('Ingreso exitoso', 'success');
