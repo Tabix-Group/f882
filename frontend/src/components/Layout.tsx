@@ -22,10 +22,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Keep the header white for a cleaner, professional look. Add subtle shadow when scrolled.
+  // Adaptive header: transparent on home until user scrolls, darker/translucent on other pages
+  const isHome = location.pathname === '/';
   const headerClass = isScrolled
-    ? 'bg-white shadow-md border-b border-gray-200'
-    : 'bg-white';
+    ? 'bg-neutral-900/95 border-b border-neutral-800 shadow-md'
+    : isHome
+    ? 'bg-transparent'
+    : 'bg-neutral-900/90';
 
   const [logoHovered, setLogoHovered] = useState(false);
 
@@ -49,7 +52,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               />
             </div>
             <span
-              className={`font-extrabold ${logoHovered ? 'text-base md:text-lg lg:text-xl' : 'text-2xl'} text-gray-800 transition-all duration-300 ${logoHovered ? 'scale-105' : 'scale-100'}`}
+              className={`font-extrabold ${logoHovered ? 'text-base md:text-lg lg:text-xl' : 'text-2xl'} transition-all duration-300 ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} ${logoHovered ? 'scale-105' : 'scale-100'}`}
               style={{ fontFamily: 'Poppins, Arial, sans-serif', letterSpacing: '0.02em' }}
             >
               {logoHovered ? 'Fortitude' : 'F88'}
@@ -64,9 +67,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`transition-all duration-200 whitespace-nowrap hover:text-blue-600 relative group ${
-                    isActive ? 'text-blue-600' : 'text-gray-700'
-                  }`}
+                  className={`transition-all duration-200 whitespace-nowrap relative group ${
+                    (!isScrolled && isHome) ? (isActive ? 'text-blue-300' : 'text-white') : (isActive ? 'text-blue-400' : 'text-gray-200')
+                  } hover:opacity-90`}
                 >
                   {item.label}
                   <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500 transform origin-left transition-transform duration-200 ease-out ${
@@ -78,7 +81,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
 
           {/* Ingresar */}
-      <div className="flex items-center gap-4">
+  <div className="flex items-center gap-4">
             <Link
               to="/login"
         className="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
@@ -92,7 +95,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 aria-controls="mobile-menu"
                 aria-expanded={isMobileMenuOpen}
                 aria-label="Abrir menú"
-                className="md:hidden p-2 text-gray-800 hover:text-gray-900"
+                className={`md:hidden p-2 ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} hover:opacity-90`}
               >
               <svg
                 className="w-6 h-6"
@@ -132,12 +135,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             if (e.key === 'Escape') setIsMobileMenuOpen(false);
           }}
         >
-          <div className="bg-white px-6 py-4 space-y-4 border-t border-gray-100">
+          <div className={`${(!isScrolled && isHome) ? 'bg-transparent' : 'bg-neutral-900/95'} px-6 py-6 space-y-4 border-t ${(!isScrolled && isHome) ? '' : 'border-neutral-800'}`}>
             {navItems.map((item, idx) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="block text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors"
+                className={`block text-lg font-semibold ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} hover:opacity-90 transition-colors`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 ref={idx === 0 ? (el) => { if (isMobileMenuOpen && el) (el as HTMLAnchorElement).focus(); } : undefined}
               >
