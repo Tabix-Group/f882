@@ -87,9 +87,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-gray-300 hover:text-white"
-            >
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-controls="mobile-menu"
+                aria-expanded={isMobileMenuOpen}
+                aria-label="Abrir menú"
+                className="md:hidden p-2 text-gray-300 hover:text-white"
+              >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -118,19 +121,24 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
         {/* Mobile Navigation Menu */}
         <div
+          id="mobile-menu"
           className={`md:hidden transition-all duration-300 ease-in-out ${
             isMobileMenuOpen
               ? 'opacity-100 max-h-screen'
               : 'opacity-0 max-h-0 pointer-events-none'
           }`}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setIsMobileMenuOpen(false);
+          }}
         >
           <div className="bg-black/95 backdrop-blur-sm px-6 py-4 space-y-4">
-            {navItems.map((item) => (
+            {navItems.map((item, idx) => (
               <Link
                 key={item.path}
                 to={item.path}
                 className="block text-lg font-semibold text-gray-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
+                ref={idx === 0 ? (el) => { if (isMobileMenuOpen && el) (el as HTMLAnchorElement).focus(); } : undefined}
               >
                 {item.label}
               </Link>

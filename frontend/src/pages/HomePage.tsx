@@ -32,10 +32,12 @@ const HomePage: React.FC = () => {
     <div className="relative min-h-screen flex flex-col">
       {/* Hero Section */}
       <div
-        className="min-h-screen w-full bg-cover bg-center bg-fixed bg-no-repeat text-white flex flex-col relative overflow-hidden"
+        className="min-h-screen w-full bg-cover bg-center bg-no-repeat md:bg-fixed text-white flex flex-col relative overflow-hidden"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('${heroImageUrl}')`,
         }}
+        role="region"
+        aria-label="Hero - Fortitud 88"
       >
         <div className="flex-1 flex flex-col md:flex-row items-center justify-between px-4 py-24 md:py-40 gap-8 max-w-7xl mx-auto w-full">
           {/* Columna Izquierda: Título, Subtítulo y Botón */}

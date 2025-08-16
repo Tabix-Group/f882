@@ -5,7 +5,7 @@ const WhatIsF88Page: React.FC = () => {
     <div className="min-h-screen bg-black text-white">
       {/* Sección con imagen de fondo y overlay */}
       <div
-        className="w-full bg-cover bg-center bg-fixed bg-no-repeat relative"
+        className="w-full bg-cover bg-center bg-no-repeat md:bg-fixed relative"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.92)), url('/images/flow.jpeg')`,
         }}
