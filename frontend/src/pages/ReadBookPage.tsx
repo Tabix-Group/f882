@@ -56,15 +56,18 @@ const ReadBookPage: React.FC = () => {
     if (!a) return;
     const onTime = () => setAudioCurrentTime(a.currentTime || 0);
     const onDur = () => setAudioDuration(a.duration || 0);
+    const onEnded = () => setAudioPlaying(false);
     a.addEventListener('timeupdate', onTime);
     a.addEventListener('loadedmetadata', onDur);
-    a.addEventListener('ended', () => setAudioPlaying(false));
+    a.addEventListener('ended', onEnded);
     return () => {
       a.removeEventListener('timeupdate', onTime);
       a.removeEventListener('loadedmetadata', onDur);
-      a.removeEventListener('ended', () => setAudioPlaying(false));
+      a.removeEventListener('ended', onEnded);
     };
-  }, [audioRef.current]);
+    // audioRef.current is intentionally excluded from deps: we attach listeners once to the element reference
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle escape key to exit fullscreen
   useEffect(() => {
