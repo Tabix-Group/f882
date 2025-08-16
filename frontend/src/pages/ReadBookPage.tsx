@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 // Dummy data for chapters and audio (replace with real data/fetch)
 const chapters = [
   {
-    title: 'Chapter 1: Introduction',
+    title: 'Capítulo 1: Introducción',
     text: `Este es el cayo emocional que construyes con el tiempo y de poco a poco. La mente es un 
 primer filtro de información,  tu fuerza emocional es tu segundo filtro o búfer. 
 Las experiencias se disparan  en tu mente y tu código de creencias de fortaleza reestudiado como 
@@ -13,8 +13,8 @@ aprendidos por tu propio cuerpo respecto de ciertas experiencias pasadas. Estos 
 provienen de tu memoria muscular, celular, inmunológica y somática en lo general y no 
 necesariamente provienen de una señal de tu mente.`
   },
-  { title: 'Chapter 2: The Journey', text: 'This is the content of chapter 2.' },
-  { title: 'Chapter 3: Success', text: 'This is the content of chapter 3.' },
+  { title: 'Capítulo 2: El Viaje', text: 'Este es el contenido del capítulo 2.' },
+  { title: 'Capítulo 3: Éxito', text: 'Este es el contenido del capítulo 3.' },
 ];
 const audioUrls = [
   '/audio/zaratustra.mp3',
@@ -32,6 +32,8 @@ const ReadBookPage: React.FC = () => {
   const [showChat, setShowChat] = useState(false);
   const [isFullscreenReading, setIsFullscreenReading] = useState(false);
   const [showChatInFullscreen, setShowChatInFullscreen] = useState(false);
+  const [audioCurrentTime, setAudioCurrentTime] = useState(0);
+  const [audioDuration, setAudioDuration] = useState(0);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -47,6 +49,22 @@ const ReadBookPage: React.FC = () => {
       audioRef.current.load(); // Reload the audio element
     }
   }, [currentChapter]);
+
+  // audio event listeners
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    const onTime = () => setAudioCurrentTime(a.currentTime || 0);
+    const onDur = () => setAudioDuration(a.duration || 0);
+    a.addEventListener('timeupdate', onTime);
+    a.addEventListener('loadedmetadata', onDur);
+    a.addEventListener('ended', () => setAudioPlaying(false));
+    return () => {
+      a.removeEventListener('timeupdate', onTime);
+      a.removeEventListener('loadedmetadata', onDur);
+      a.removeEventListener('ended', () => setAudioPlaying(false));
+    };
+  }, [audioRef.current]);
 
   // Handle escape key to exit fullscreen
   useEffect(() => {
@@ -87,6 +105,70 @@ const ReadBookPage: React.FC = () => {
   const toggleChatInFullscreen = () => {
     setShowChatInFullscreen(!showChatInFullscreen);
   };
+
+  // Format seconds to mm:ss
+  const formatTime = (s: number) => {
+    if (!s || isNaN(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60).toString().padStart(2, '0');
+    return `${m}:${sec}`;
+  };
+
+  // Seek audio when clicking on progress bar
+  const handleAudioSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = e.currentTarget as HTMLDivElement;
+    const rect = el.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const pct = Math.max(0, Math.min(1, clickX / rect.width));
+    if (audioRef.current && !isNaN(audioDuration) && audioDuration > 0) {
+      audioRef.current.currentTime = pct * audioDuration;
+      setAudioCurrentTime(pct * audioDuration);
+    }
+  };
+
+  // Fullscreen API toggle for the main reading area
+  const readingContainerRef = useRef<HTMLDivElement | null>(null);
+  const toggleFullscreen = async () => {
+    const el = readingContainerRef.current || document.documentElement;
+    if (!document.fullscreenElement) {
+      try {
+        await (el as any).requestFullscreen();
+        setIsFullscreenReading(true);
+      } catch (e) {
+        // ignore
+      }
+    } else {
+      try {
+        await document.exitFullscreen();
+        setIsFullscreenReading(false);
+      } catch (e) {
+        // ignore
+      }
+    }
+  };
+
+  // Keyboard shortcuts: ← previous, → next, f fullscreen, space play/pause
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if ((e.target as HTMLElement)?.tagName === 'INPUT' || (e.target as HTMLElement)?.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') {
+        setCurrentChapter((c) => Math.max(0, c - 1));
+      } else if (e.key === 'ArrowRight') {
+        setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1));
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key === ' ') {
+        // prevent page scroll
+        e.preventDefault();
+        if (audioRef.current) {
+          if (audioPlaying) audioRef.current.pause();
+          else audioRef.current.play();
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [audioPlaying, audioDuration]);
 
   // Chatbot real con backend
   const handleChat = async (e: React.FormEvent) => {
@@ -181,6 +263,8 @@ const ReadBookPage: React.FC = () => {
             <div 
               className="flex-1 bg-white/95 rounded-2xl p-8 overflow-y-auto text-gray-800 leading-relaxed"
               style={{ fontSize: `${fontSize + 2}px`, lineHeight: 1.8 }}
+              role="article"
+              aria-label={`Contenido del ${chapters[currentChapter].title}`}
             >
               {chapters[currentChapter].text}
             </div>
@@ -234,15 +318,31 @@ const ReadBookPage: React.FC = () => {
                     )}
                   </button>
                   <div className="flex flex-col">
-                    <span className="text-white text-sm font-medium">
-                      {audioPlaying ? 'Audio Reproduciéndose' : 'Reproducir Audio'}
+                    <span className="text-white text-sm font-medium" aria-live="polite">
+                      {audioPlaying ? 'Reproduciendo' : 'Audio - escuchar'}
                     </span>
                     <span className="text-white/70 text-xs">
                       {chapters[currentChapter].title}
                     </span>
+                    <div className="mt-2 w-48" role="group" aria-label="Control de progreso de audio">
+                      <div className="w-full h-2 bg-white/30 rounded-full cursor-pointer" onClick={handleAudioSeek} aria-hidden={false}>
+                        <div className="h-2 bg-white rounded-full" style={{ width: `${(audioDuration ? (audioCurrentTime / audioDuration) : 0) * 100}%` }} />
+                      </div>
+                      <div className="text-xs text-white/80 mt-1 flex justify-between">
+                        <span aria-label="tiempo actual">{formatTime(audioCurrentTime)}</span>
+                        <span aria-label="duración">{formatTime(audioDuration)}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <button
+                onClick={toggleFullscreen}
+                className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
+              >
+                {isFullscreenReading ? 'Salir Pantalla Completa' : 'Pantalla Completa'}
+              </button>
             </div>
           </div>
 
@@ -258,13 +358,13 @@ const ReadBookPage: React.FC = () => {
 
               <div className="flex-1 overflow-y-auto p-4 space-y-3">
                 {chat.length === 0 && (
-                  <div className="text-center py-8">
-                    <div className="text-4xl mb-2">📚</div>
-                    <div className="text-gray-500 text-sm">
-                      Preguntame lo que sea sobre este capitulo!
-                    </div>
+                <div className="text-center py-8">
+                  <div className="text-4xl mb-2">📚</div>
+                  <div className="text-gray-500 text-sm">
+                    Construye tu nueva identidad aquí
                   </div>
-                )}
+                </div>
+              )}
                 
                 {chat.map((msg, idx) => (
                   <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -332,7 +432,7 @@ const ReadBookPage: React.FC = () => {
             <div>
               <h2 className="text-3xl font-bold text-blue-800 mb-1">{chapters[currentChapter].title}</h2>
               <div className="text-sm text-gray-600">
-                Chapter {currentChapter + 1} of {chapters.length}
+                Capítulo {currentChapter + 1} de {chapters.length}
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -366,7 +466,7 @@ const ReadBookPage: React.FC = () => {
               ></div>
             </div>
             <div className="text-xs text-gray-500 mt-1">
-              Progress: {Math.round(((currentChapter + 1) / chapters.length) * 100)}%
+              Progreso: {Math.round(((currentChapter + 1) / chapters.length) * 100)}%
             </div>
           </div>
 
@@ -384,12 +484,13 @@ const ReadBookPage: React.FC = () => {
               className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-100 text-blue-900 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-200 transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
               onClick={() => setCurrentChapter((c) => Math.max(0, c - 1))}
               disabled={currentChapter === 0}
+              aria-label="Capítulo anterior"
             >
               <span>←</span>
-              Previous
+              Anterior
             </button>
             
-            <div className="flex gap-2">
+            <div className="flex gap-2" role="tablist" aria-label="Navegación de capítulos">
               {chapters.map((_, idx) => (
                 <button
                   key={idx}
@@ -399,6 +500,9 @@ const ReadBookPage: React.FC = () => {
                       ? 'bg-blue-600 text-white shadow-lg scale-110'
                       : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
                   }`}
+                  aria-selected={idx === currentChapter}
+                  role="tab"
+                  aria-label={`Capítulo ${idx + 1}`}
                 >
                   {idx + 1}
                 </button>
@@ -409,16 +513,17 @@ const ReadBookPage: React.FC = () => {
               className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
               onClick={() => setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1))}
               disabled={currentChapter === chapters.length - 1}
+              aria-label="Capítulo siguiente"
             >
-              Next
+              Siguiente
               <span>→</span>
             </button>
           </div>
 
           {/* Enhanced Audio book player */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-100 shadow-sm">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-100 shadow-sm">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="text-lg font-semibold text-blue-800">Audio Book</h4>
+              <h4 className="text-lg font-semibold text-blue-800">Audiolibro</h4>
               <div className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 ${
                 audioPlaying 
                   ? 'bg-green-100 text-green-800' 
@@ -429,14 +534,14 @@ const ReadBookPage: React.FC = () => {
                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
-                    <span>Playing</span>
+                    <span>Reproduciendo</span>
                   </>
                 ) : (
                   <>
                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                     </svg>
-                    <span>Paused</span>
+                    <span>Pausado</span>
                   </>
                 )}
               </div>
@@ -481,7 +586,7 @@ const ReadBookPage: React.FC = () => {
               </div>
             </div>
             <div className="text-sm text-gray-600">
-              Listen to chapter {currentChapter + 1} while reading along
+              Escucha el capítulo {currentChapter + 1} mientras lees
             </div>
           </div>
         </div>
@@ -489,13 +594,13 @@ const ReadBookPage: React.FC = () => {
         {/* Enhanced Chatbot section */}
         <div className="w-full lg:w-96 flex flex-col">
           {/* Mobile toggle for chat */}
-          <div className="lg:hidden mb-4">
+            <div className="lg:hidden mb-4">
             <button
               onClick={() => setShowChat(!showChat)}
               className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
             >
               <span>💬</span>
-              {showChat ? 'Hide Assistant' : 'Show Reading Assistant'}
+              {showChat ? 'Ocultar Asistente de Lectura' : 'Mostrar Asistente de Lectura'}
             </button>
           </div>
 
@@ -525,9 +630,7 @@ const ReadBookPage: React.FC = () => {
                   <div className="text-gray-500 text-sm">
                     Preguntame lo que sea sobre este capitulo!
                   </div>
-                  <div className="text-xs text-gray-400 mt-2">
-                    Puedo ayudar a explicar conceptos, responder preguntas o discutir el contenido.
-                  </div>
+                  {/* removed helper sentence as requested */}
                 </div>
               )}
               
@@ -539,7 +642,7 @@ const ReadBookPage: React.FC = () => {
                       : 'bg-white text-gray-800 border border-gray-200'
                   }`}>
                     <div className="text-sm font-medium mb-1 opacity-75">
-                      {msg.sender === 'user' ? 'You' : 'Assistant'}
+                      {msg.sender === 'user' ? 'Tú' : 'Jordan'}
                     </div>
                     <div className="leading-relaxed">{msg.message}</div>
                   </div>
@@ -555,7 +658,7 @@ const ReadBookPage: React.FC = () => {
                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
-                      <span className="text-sm text-gray-500">Thinking...</span>
+                      <span className="text-sm text-gray-500">Pensando...</span>
                     </div>
                   </div>
                 </div>
@@ -568,7 +671,7 @@ const ReadBookPage: React.FC = () => {
                 <input
                   type="text"
                   className="flex-1 rounded-xl border-2 border-gray-300 px-4 py-3 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all disabled:bg-gray-100 disabled:text-gray-500"
-                  placeholder="Pregunta sobre el libro..."
+                  placeholder="Conversemos"
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   disabled={isLoading}
@@ -578,7 +681,7 @@ const ReadBookPage: React.FC = () => {
                   className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 disabled:hover:scale-100"
                   disabled={isLoading || !input.trim()}
                 >
-                  {isLoading ? '...' : 'Send'}
+                  {isLoading ? '...' : 'Enviar'}
                 </button>
               </div>
             </form>
