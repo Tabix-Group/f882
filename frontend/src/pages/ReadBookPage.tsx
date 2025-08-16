@@ -322,7 +322,7 @@ const ReadBookPage: React.FC = () => {
                   </button>
                   <div className="flex flex-col">
                     <span className="text-white text-sm font-medium" aria-live="polite">
-                      {audioPlaying ? 'Reproduciendo' : 'Audio - escuchar'}
+                      {audioPlaying ? 'Reproduciendo' : 'Audiolibro, dar click para escuchar'}
                     </span>
                     <span className="text-white/70 text-xs">
                       {chapters[currentChapter].title}
@@ -439,7 +439,7 @@ const ReadBookPage: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="text-sm text-gray-700 font-medium">Tamaño fuente:</div>
+              <div className="text-sm text-gray-700 font-medium">Tamaño Letra</div>
               <div className="flex gap-1 items-center">
                 <button
                   onClick={() => setFontSize(Math.max(12, fontSize - 2))}
@@ -631,7 +631,7 @@ const ReadBookPage: React.FC = () => {
                 <div className="text-center py-8">
                   <div className="text-4xl mb-2">📚</div>
                   <div className="text-gray-500 text-sm">
-                    Preguntame lo que sea sobre este capitulo!
+                    Construye tu nueva identidad aquí
                   </div>
                   {/* removed helper sentence as requested */}
                 </div>
