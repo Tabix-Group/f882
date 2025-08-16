@@ -42,10 +42,10 @@ const HomePage: React.FC = () => {
         <div className="flex-1 flex flex-col md:flex-row items-center justify-between px-4 py-24 md:py-40 gap-8 max-w-7xl mx-auto w-full">
           {/* Columna Izquierda: Título, Subtítulo y Botón */}
           <div className="w-full md:w-3/5 fadein opacity-0 translate-y-8 transition-all duration-700 flex flex-col items-start justify-center">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 text-left">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 text-white text-left">
               Fortitud 88
             </h1>
-            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 text-gray-200 text-left" style={{lineHeight: '1.3'}}>
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 text-white text-left" style={{lineHeight: '1.3'}}>
               Maestría Física, Mental, Emocional, de Carácter y de Voluntad en solo 88 días.
             </p>
             <button
