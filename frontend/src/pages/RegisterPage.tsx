@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { registerUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../hooks/useToast';
+import Spinner from '../components/Spinner';
 
 const RegisterPage: React.FC = () => {
   const [form, setForm] = useState({
@@ -21,6 +23,7 @@ const RegisterPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const { show } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -30,13 +33,20 @@ const RegisterPage: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
+    // basic client validation
+    if (form.password.length < 6) {
+      show('La contraseña debe tener al menos 6 caracteres', 'error');
+      setLoading(false);
+      return;
+    }
     try {
       await registerUser(form);
-      setMessage('Registro exitoso. Redirigiendo al login...');
-      setTimeout(() => navigate('/login'), 1500);
+      show('Registro exitoso. Redirigiendo al login...', 'success');
+      setTimeout(() => navigate('/login'), 1200);
       setForm({ name: '', email: '', password: '', birthdate: '', gender: '', country: '', tel: '' });
     } catch (err: any) {
-      setMessage(err.response?.data?.message || 'Error en el registro.');
+      const msg = err.response?.data?.message || 'Error en el registro.';
+      show(msg, 'error');
     }
     setLoading(false);
   };
@@ -44,7 +54,7 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="bg-black text-white">
       <div className="min-h-screen flex items-center justify-center px-4 py-16">
-        <div className="max-w-4xl w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl p-8 md:p-12">
+  <div className="max-w-4xl w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl p-8 md:p-12 fadein show">
           <h1 className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300 text-center mb-4">
             Registro de Usuario
           </h1>
@@ -164,16 +174,14 @@ const RegisterPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 text-lg font-bold rounded-xl shadow-md bg-blue-600 hover:bg-blue-700 text-white transition"
+                className="w-full py-3 text-lg font-bold rounded-xl shadow-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-3"
               >
-                {loading ? 'Registrando...' : 'Registrarse'}
+                {loading ? <><Spinner size={18}/> Registrando...</> : 'Registrarse'}
               </button>
             </div>
           </form>
 
-          {message && (
-            <div className="text-blue-400 text-center mt-4 font-medium">{message}</div>
-          )}
+          {/* messages shown via toast */}
 
           <button
             type="button"

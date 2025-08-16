@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { loginUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../hooks/useToast';
+import Spinner from '../components/Spinner';
 
 const LoginPage: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const { show } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,10 +21,11 @@ const LoginPage: React.FC = () => {
     setMessage('');
     try {
       await loginUser(form);
-      setMessage('Ingreso exitoso.');
-      setTimeout(() => navigate('/read-book'), 1000);
+  show('Ingreso exitoso', 'success');
+  setTimeout(() => navigate('/read-book'), 800);
     } catch (err: any) {
-      setMessage(err.response?.data?.message || 'Error al ingresar.');
+  const msg = err.response?.data?.message || 'Error al ingresar.';
+  show(msg, 'error');
     }
     setLoading(false);
   };
@@ -29,7 +33,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="bg-black text-white">
       <div className="min-h-screen flex items-center justify-center px-4 py-16">
-        <div className="max-w-md w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl p-8 md:p-12">
+        <div className="max-w-md w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl p-8 md:p-12 fadein show">
           <h1 className="text-4xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300 mb-2">
             Ingresar
           </h1>
@@ -68,15 +72,12 @@ const LoginPage: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 text-lg font-bold rounded-xl shadow-md bg-blue-600 hover:bg-blue-700 text-white transition-transform hover:scale-105"
+              className="w-full py-3 text-lg font-bold rounded-xl shadow-md bg-blue-600 hover:bg-blue-700 text-white transition-transform hover:scale-105 flex items-center justify-center gap-3"
             >
-              {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+              {loading ? <><Spinner size={18} /> Iniciando...</> : 'Iniciar sesión'}
             </button>
           </form>
-
-          {message && (
-            <div className="text-blue-400 text-center mt-4 font-medium">{message}</div>
-          )}
+          {/* message handled by toast */}
         </div>
       </div>
     </div>

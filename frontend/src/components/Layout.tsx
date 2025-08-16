@@ -42,11 +42,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             onMouseEnter={() => setLogoHovered(true)}
             onMouseLeave={() => setLogoHovered(false)}
           >
-            <img
-              src={logoHovered ? "/favicon3.png" : "/favicon2.png"}
-              alt="F88 Logo"
-              className={`h-14 w-14 object-cover rounded-full drop-shadow-lg transition-all duration-300 ${logoHovered ? 'scale-105' : 'scale-100'}`}
-            />
+            <div className={`h-14 w-14 aspect-square rounded-full overflow-hidden flex-shrink-0 drop-shadow-lg transition-all duration-300 ${logoHovered ? 'scale-105' : 'scale-100'}`}>
+              <img
+                src={logoHovered ? "/favicon3.png" : "/favicon2.png"}
+                alt="F88 Logo"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <span
               className={`font-extrabold ${logoHovered ? 'text-base md:text-lg lg:text-xl' : 'text-2xl'} text-gray-300 transition-all duration-300 ${logoHovered ? 'scale-105' : 'scale-100'}`}
               style={{ fontFamily: 'Poppins, Arial, sans-serif', letterSpacing: '0.05em' }}
