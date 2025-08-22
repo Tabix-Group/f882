@@ -13,6 +13,13 @@ const ChatWidget: React.FC = () => {
         endRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [msgs, open]);
 
+    // Listen for programmatic minimize events so pages can close the panel and leave the bubble
+    useEffect(() => {
+        const handler = () => setOpen(false);
+        window.addEventListener('chat:minimize', handler as EventListener);
+        return () => window.removeEventListener('chat:minimize', handler as EventListener);
+    }, []);
+
     const send = async (e?: React.FormEvent) => {
         e?.preventDefault();
         if (!input.trim() || loading) return;

@@ -68,6 +68,12 @@ const CustomerServicePage: React.FC = () => {
                 >
                   Abrir Jordan
                 </button>
+                <button
+                  onClick={() => { window.dispatchEvent(new Event('chat:minimize')); }}
+                  className="mt-2 inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-full font-semibold shadow-sm"
+                >
+                  Minimizar Jordan
+                </button>
                 <div className="text-xs text-gray-400 mt-2">Respuestas inmediatas y acompañamiento continuo.</div>
               </div>
             </div>
