@@ -8,8 +8,8 @@ const CustomerServicePage: React.FC = () => {
         <header className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">Atención al Cliente</h1>
-              <p className="text-gray-300 mt-3">¿Necesitas ayuda? Elige una opción o consulta con nuestro asistente.</p>
+              <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">Atención al socio</h1>
+              <p className="text-gray-300 mt-3">¿Necesitas ayuda? Elige una opción o consulta con Jordan, tu mentor</p>
             </div>
 
             <div className="hidden md:flex items-center gap-4">
@@ -43,8 +43,8 @@ const CustomerServicePage: React.FC = () => {
               </article>
 
               <article className="p-6 rounded-xl bg-gradient-to-r from-white/3 to-white/2 border border-white/6 hover:scale-102 transition-transform shadow-sm">
-                <h3 className="font-semibold text-lg">Consultas de Coaching</h3>
-                <p className="text-gray-300 mt-2">Pregunta sobre coaching ontológico, espiritual o estoico con nuestro asistente.</p>
+                <h3 className="font-semibold text-lg">Consultas de Mentoria</h3>
+                <p className="text-gray-300 mt-2">Construye tu personalidad, tu identidad</p>
                 <button onClick={() => { const el = document.querySelector('#chat-widget-button') as HTMLElement; el?.click(); }} className="mt-3 text-sm text-blue-300 hover:underline">Abrir asistente</button>
               </article>
             </div>

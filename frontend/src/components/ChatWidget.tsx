@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 type ChatMsg = { sender: 'user' | 'bot'; message: string };
 
 const ChatWidget: React.FC = () => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true); // open by default when page loads
     const [msgs, setMsgs] = useState<ChatMsg[]>([]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
@@ -38,16 +38,19 @@ const ChatWidget: React.FC = () => {
     };
 
     return (
-        <div className="fixed left-4 bottom-6 z-50">
-            <div className="flex flex-col items-start">
+        <div className="fixed right-4 bottom-6 z-50">
+            <div className="flex flex-col items-end">
                 {/* Panel */}
-                <div className={`w-80 md:w-96 bg-white/95 text-gray-900 rounded-2xl shadow-2xl overflow-hidden transition-transform ${open ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'} ${open ? '' : 'opacity-95'}`} style={{ display: open ? 'block' : 'none' }}>
+                <div className={`w-80 md:w-96 bg-white/95 text-gray-900 rounded-2xl shadow-2xl overflow-hidden transition-transform ${open ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'} ${open ? '' : 'opacity-95'}`}>
                     <div className="p-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center">🤖</div>
+                            <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center">
+                                {/* more human, serious icon (svg) */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path><path d="M6 20v-1a4 4 0 014-4h4a4 4 0 014 4v1"></path></svg>
+                            </div>
                             <div>
-                                <div className="font-semibold">Asistente F88</div>
-                                <div className="text-xs opacity-80">Coaching ontológico • espiritual • estoico</div>
+                                <div className="font-semibold">Soy Jordan</div>
+                                <div className="text-xs opacity-80">Tu mentor</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -57,7 +60,7 @@ const ChatWidget: React.FC = () => {
 
                     <div className="p-3 max-h-72 overflow-y-auto space-y-3 bg-white">
                         {msgs.length === 0 && (
-                            <div className="text-sm text-gray-600">Hola — puedes preguntar sobre el programa, el libro o consultas de coaching.</div>
+                            <div className="text-sm text-gray-600">Hola soy Jordan — puedes preguntar sobre el programa, el libro o consultas sobre tu mentor</div>
                         )}
                         {msgs.map((m, i) => (
                             <div key={i} className={`flex ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -89,7 +92,8 @@ const ChatWidget: React.FC = () => {
                     className="mt-3 bg-gradient-to-br from-blue-600 to-indigo-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
                     aria-label="Abrir chat"
                 >
-                    💬
+                    {/* improved person icon (serious) */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path><path d="M6 20v-1a4 4 0 014-4h4a4 4 0 014 4v1"></path></svg>
                 </button>
             </div>
         </div>
