@@ -56,17 +56,19 @@ const CustomerServicePage: React.FC = () => {
           </section>
 
           <aside className="md:col-span-1">
-            <div className="bg-white/4 p-6 rounded-2xl shadow-lg border border-white/8">
-              <h4 className="text-lg font-bold text-gray-100">Horario de Atención</h4>
-              <p className="text-gray-300 mt-2">Lunes a Viernes — 9:00 a 18:00 (GMT)</p>
+            <div className="bg-gradient-to-br from-white/4 to-white/3 p-6 rounded-2xl shadow-lg border border-white/8 text-center">
+              <h4 className="text-2xl font-extrabold text-blue-200">Atención 24x7 • 365</h4>
+              <p className="text-gray-300 mt-2">Jordan, tu mentor — siempre disponible para acompañarte en tu proceso.</p>
 
-              <h4 className="text-lg font-bold text-gray-100 mt-6">Teléfono</h4>
-              <p className="text-gray-300">+54 9 11 0000 0000</p>
-
-              <h4 className="text-lg font-bold text-gray-100 mt-6">Redes</h4>
-              <div className="flex items-center gap-3 mt-2">
-                <button onClick={() => window.open('https://www.instagram.com', '_blank')} className="text-blue-300 hover:underline">Instagram</button>
-                <button onClick={() => window.open('https://www.facebook.com', '_blank')} className="text-blue-300 hover:underline">Facebook</button>
+              <div className="mt-6 flex flex-col items-center gap-3">
+                <a href="mailto:support@f88.com" className="text-sm text-blue-300 hover:underline">support@f88.com</a>
+                <button
+                  onClick={() => { const el = document.querySelector('#chat-widget-button') as HTMLElement; el?.click(); }}
+                  className="mt-2 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full font-semibold shadow-md"
+                >
+                  Abrir Jordan
+                </button>
+                <div className="text-xs text-gray-400 mt-2">Respuestas inmediatas y acompañamiento continuo.</div>
               </div>
             </div>
           </aside>
