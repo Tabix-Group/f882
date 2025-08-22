@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dumbbell, Brain, Heart, ShieldCheck, Zap } from 'lucide-react';
+import { Dumbbell, Brain, Heart, ShieldCheck, Zap, Lightbulb, Handshake } from 'lucide-react';
 
 const WhatIsF88Page: React.FC = () => {
   return (
@@ -32,6 +32,8 @@ const WhatIsF88Page: React.FC = () => {
                   { icon: Heart, label: 'Emocional' },
                   { icon: ShieldCheck, label: 'Carácter' },
                   { icon: Zap, label: 'Voluntad' },
+                  { icon: Lightbulb, label: 'Axiomas' },
+                  { icon: Handshake, label: 'Tu poder de negociación' },
                 ].map((item, i) => {
                   const Icon = item.icon;
                   return (

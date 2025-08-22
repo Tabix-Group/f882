@@ -7,7 +7,6 @@ import {
   Users,
   Book,
   Dumbbell
-  , Lightbulb, Handshake
 } from 'lucide-react';
 
 const steps = [
@@ -17,14 +16,12 @@ const steps = [
   { icon: Users, label: 'Accede a tu mentor' },
   { icon: Book, label: 'Accede a tu libro' },
   { icon: Dumbbell, label: 'Accede a tu programa de entrenamiento físico' },
-  { icon: Lightbulb, label: 'Axiomas' },
-  { icon: Handshake, label: 'Tu poder de negociación' },
 ];
 
 const StepsToDoPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const targetRoutes = ['/register', '/buy-book', '/login', '/login', '/login', '/what-is-f88', '/customer-service'];
+  const targetRoutes = ['/register', '/buy-book', '/login', '/login', '/login', '/login'];
 
   const handleKeyNav = (ev: React.KeyboardEvent, route: string) => {
     if (ev.key === 'Enter' || ev.key === ' ') {
