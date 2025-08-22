@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from './Footer';
 
@@ -14,6 +14,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const firstMenuItemRef = useRef<HTMLAnchorElement | null>(null);
+  const lastMenuItemRef = useRef<HTMLAnchorElement | null>(null);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -21,6 +25,30 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // focus trap & keyboard handling for mobile menu
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+      if (e.key === 'Tab') {
+        const first = firstMenuItemRef.current;
+        const last = lastMenuItemRef.current;
+        if (!first || !last) return;
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    // set focus to first menu item when opening
+    setTimeout(() => firstMenuItemRef.current?.focus(), 0);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isMobileMenuOpen]);
 
   // Adaptive header: transparent on home until user scrolls, darker/translucent on other pages
   const isHome = location.pathname === '/';
