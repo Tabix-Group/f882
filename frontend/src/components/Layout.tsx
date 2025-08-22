@@ -149,6 +149,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {/* Mobile Navigation Menu */}
         <div
           id="mobile-menu"
+          ref={mobileMenuRef}
           className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
             ? 'opacity-100 max-h-screen'
             : 'opacity-0 max-h-0 pointer-events-none'
