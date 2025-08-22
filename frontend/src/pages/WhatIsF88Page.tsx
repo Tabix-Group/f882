@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dumbbell, Brain, Heart, ShieldCheck, Zap } from 'lucide-react';
 
 const WhatIsF88Page: React.FC = () => {
   return (
@@ -26,20 +27,36 @@ const WhatIsF88Page: React.FC = () => {
               <h4 className="text-lg font-bold mb-4">Desarrollar tu fortaleza en cinco dimensiones esenciales:</h4>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { emoji: '💪', label: 'Físico' },
-                  { emoji: '🧠', label: 'Mental' },
-                  { emoji: '❤️', label: 'Emocional' },
-                  { emoji: '🛡️', label: 'Carácter' },
-                  { emoji: '🔥', label: 'Voluntad' },
-                ].map((item, i) => (
-                  <div key={i} className="bg-blue-900/30 p-6 rounded-xl backdrop-blur-sm border border-white/10 hover:scale-[1.03] transition-all duration-300 shadow-sm fadein show">
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm font-bold bg-gradient-to-br from-blue-700 to-blue-500 text-white rounded-full px-3 py-1">{i + 1}</span>
-                      <span className="text-2xl">{item.emoji}</span>
-                      <span className="font-bold text-lg">{item.label}</span>
+                  { icon: Dumbbell, label: 'Físico' },
+                  { icon: Brain, label: 'Mental' },
+                  { icon: Heart, label: 'Emocional' },
+                  { icon: ShieldCheck, label: 'Carácter' },
+                  { icon: Zap, label: 'Voluntad' },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={i}
+                      className="bg-gradient-to-br from-white/2 to-white/3 p-6 rounded-2xl backdrop-blur-sm border border-white/6 hover:scale-105 transition-all duration-300 shadow-lg"
+                      role="group"
+                      aria-label={item.label}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 h-14 w-14 rounded-xl bg-gradient-to-br from-blue-700 to-blue-500 text-white flex items-center justify-center shadow-md">
+                          <Icon className="w-7 h-7" />
+                        </div>
+
+                        <div>
+                          <div className="flex items-center gap-3 mb-1">
+                            <span className="inline-block text-sm font-semibold text-blue-200">{i + 1}</span>
+                            <h5 className="text-lg font-bold text-gray-100">{item.label}</h5>
+                          </div>
+                          <p className="text-gray-300">{/* preserve text locations only: label is the visible title */}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -53,12 +70,12 @@ const WhatIsF88Page: React.FC = () => {
                 <h4 className="text-xl font-bold mb-3">El Programa</h4>
                 <p className="text-lg font-bold text-blue-300 mb-2">F88 comienza con un ciclo de 88 días.</p>
                 <p className="text-lg mb-4">No apruebas ni repruebas: <span className="font-bold text-blue-300">¡TÚ ELIGES!</span></p>
-                <p className="text-gray-300 italic">Y después de los primeros 88 días, <span className="font-bold text-blue-400">el viaje continúa →</span><br/>F88 es una comunidad de crecimiento y desarrollo continuo, retos personales y <span className="font-bold">¡expansión permanente!</span></p>
+                <p className="text-gray-300 italic">Y después de los primeros 88 días, <span className="font-bold text-blue-400">el viaje continúa →</span><br />F88 es una comunidad de crecimiento y desarrollo continuo, retos personales y <span className="font-bold">¡expansión permanente!</span></p>
               </div>
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 };
