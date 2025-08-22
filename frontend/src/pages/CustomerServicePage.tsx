@@ -65,8 +65,8 @@ const CustomerServicePage: React.FC = () => {
 
               <h4 className="text-lg font-bold text-gray-100 mt-6">Redes</h4>
               <div className="flex items-center gap-3 mt-2">
-                <a className="text-blue-300 hover:underline" href="#">Instagram</a>
-                <a className="text-blue-300 hover:underline" href="#">Facebook</a>
+                <button onClick={() => window.open('https://www.instagram.com', '_blank')} className="text-blue-300 hover:underline">Instagram</button>
+                <button onClick={() => window.open('https://www.facebook.com', '_blank')} className="text-blue-300 hover:underline">Facebook</button>
               </div>
             </div>
           </aside>

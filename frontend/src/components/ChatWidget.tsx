@@ -84,6 +84,7 @@ const ChatWidget: React.FC = () => {
 
                 {/* Floating button */}
                 <button
+                    id="chat-widget-button"
                     onClick={() => setOpen((s) => !s)}
                     className="mt-3 bg-gradient-to-br from-blue-600 to-indigo-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
                     aria-label="Abrir chat"
