@@ -42,15 +42,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             to="/"
             className="flex items-center gap-3 transition-transform cursor-pointer overflow-hidden w-[120px] md:w-[200px] lg:w-[220px]"
           >
-            <div className="h-14 w-14 aspect-square rounded-full overflow-hidden flex-shrink-0 drop-shadow transition-all duration-300">
+            <div className="h-14 w-14 aspect-square rounded-full overflow-hidden flex-shrink-0 drop-shadow transition-transform duration-300 transform will-change-transform hover:scale-105 hover:-translate-y-0.5 hover:shadow-xl">
               <img
                 src="/favicon2.png"
                 alt="F88 Logo"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
               />
             </div>
             <span
-              className="font-extrabold text-2xl text-white transition-all duration-300"
+              className="font-extrabold text-2xl text-white transition-transform duration-300 transform hover:scale-105"
               style={{ fontFamily: 'Poppins, Arial, sans-serif', letterSpacing: '0.02em' }}
             >
               F88
@@ -122,8 +122,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div
           id="mobile-menu"
           className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
-              ? 'opacity-100 max-h-screen'
-              : 'opacity-0 max-h-0 pointer-events-none'
+            ? 'opacity-100 max-h-screen'
+            : 'opacity-0 max-h-0 pointer-events-none'
             }`}
           onKeyDown={(e) => {
             if (e.key === 'Escape') setIsMobileMenuOpen(false);

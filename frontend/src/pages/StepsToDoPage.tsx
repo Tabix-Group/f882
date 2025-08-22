@@ -31,23 +31,42 @@ const StepsToDoPage: React.FC = () => {
           <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Sigue estos pasos para avanzar en tu transformación</p>
         </header>
 
-        <section className="grid gap-4">
-          {steps.map((step, index) => (
-            <article
-              key={index}
-              className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 transition-transform hover:translate-y-[-4px] hover:shadow-2xl fadein show"
-            >
-              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-700 to-blue-500 text-white shadow-md flex-shrink-0">
-                <step.icon className="w-6 h-6" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-3">
-                  <span className="inline-block bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-md">{index + 1}</span>
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-100">{step.label}</h3>
+        <section className="relative mt-6" aria-label="Línea de tiempo de pasos">
+          {/* vertical line (desktop) */}
+          <div className="hidden sm:block absolute left-10 top-6 bottom-6 w-0.5 bg-gradient-to-b from-blue-700 to-blue-500 opacity-30 rounded"></div>
+
+          <div className="flex flex-col gap-6">
+            {steps.map((step, index) => (
+              <article
+                key={index}
+                role="listitem"
+                className="flex items-start gap-4 sm:gap-6"
+              >
+                <div className="flex flex-col items-center">
+                  <div
+                    className="h-14 w-14 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-500 text-white shadow-md transform transition-all duration-300 hover:scale-105"
+                    aria-hidden="true"
+                  >
+                    <step.icon className="w-6 h-6" />
+                  </div>
+
+                  {/* connector between steps (desktop only) */}
+                  {index !== steps.length - 1 && (
+                    <span className="hidden sm:block w-px bg-white/10 mt-3 h-8"></span>
+                  )}
                 </div>
-              </div>
-            </article>
-          ))}
+
+                <div className="flex-1">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 transition-transform hover:-translate-y-1 hover:shadow-2xl">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-block bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-md">{index + 1}</span>
+                      <h3 className="text-lg md:text-xl font-semibold text-gray-100">{step.label}</h3>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
