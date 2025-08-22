@@ -1,7 +1,24 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--bg: #0f1724;
+	--text: #E6EDF3;
+	--cta: #2563EB;
+	--cta-hover: #1D4ED8;
+	--accent: #FB923C;
+	--muted: #9CA3AF;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+	.motion-safe\:transition-transform,
+	.motion-safe\:duration-200 {
+		transition: none !important;
+	}
+}
 
 /* Accessibility focus visible */
 :focus {
@@ -10,7 +27,7 @@
 
 /* Show a clear focus ring for keyboard users */
 .focus-visible:focus {
-	outline: 3px solid rgba(59,130,246,0.45);
+	outline: 3px solid rgba(59, 130, 246, 0.45);
 	outline-offset: 2px;
 }
 
@@ -20,6 +37,7 @@
 	transform: translateY(8px);
 	transition: opacity 600ms ease, transform 600ms ease;
 }
+
 .fadein.show {
 	opacity: 1;
 	transform: translateY(0);
@@ -43,7 +61,7 @@
 	padding: 0;
 	margin: -1px;
 	overflow: hidden;
-	clip: rect(0,0,0,0);
+	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 	border: 0;
 }

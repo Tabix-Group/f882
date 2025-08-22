@@ -53,7 +53,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Adaptive header: transparent on home until user scrolls, darker/translucent on other pages
   const isHome = location.pathname === '/';
   const headerClass = isScrolled
-    ? 'bg-neutral-900/95 border-b border-neutral-800 shadow-md'
+    ? 'backdrop-blur-sm bg-neutral-900/70 border-b border-neutral-800 shadow-md'
     : isHome
       ? 'bg-transparent'
       : 'bg-neutral-900/90';
@@ -147,12 +147,22 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </nav>
 
         {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div
+            className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         <div
           id="mobile-menu"
           ref={mobileMenuRef}
-          className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
-            ? 'opacity-100 max-h-screen'
-            : 'opacity-0 max-h-0 pointer-events-none'
+          role="menu"
+          aria-hidden={!isMobileMenuOpen}
+          className={`md:hidden transform origin-top motion-safe:transition-transform motion-safe:duration-200 transition-all duration-300 ease-in-out ${isMobileMenuOpen
+            ? 'opacity-100 max-h-screen z-50 translate-y-0'
+            : 'opacity-0 max-h-0 pointer-events-none -translate-y-2'
             }`}
           onKeyDown={(e) => {
             if (e.key === 'Escape') setIsMobileMenuOpen(false);
@@ -163,9 +173,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Link
                 key={item.path}
                 to={item.path}
+                role="menuitem"
+                tabIndex={0}
                 className={`block text-lg font-semibold ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} hover:opacity-90 transition-colors`}
                 onClick={() => setIsMobileMenuOpen(false)}
-                ref={idx === 0 ? (el) => { if (isMobileMenuOpen && el) (el as HTMLAnchorElement).focus(); } : undefined}
+                ref={idx === 0 ? (el) => { firstMenuItemRef.current = el as HTMLAnchorElement; if (isMobileMenuOpen && el) (el as HTMLAnchorElement).focus(); } : (idx === navItems.length - 1 ? (el) => { lastMenuItemRef.current = el as HTMLAnchorElement; } : undefined)}
               >
                 {item.label}
               </Link>
