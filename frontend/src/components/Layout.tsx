@@ -27,10 +27,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const headerClass = isScrolled
     ? 'bg-neutral-900/95 border-b border-neutral-800 shadow-md'
     : isHome
-    ? 'bg-transparent'
-    : 'bg-neutral-900/90';
+      ? 'bg-transparent'
+      : 'bg-neutral-900/90';
 
-  const [logoHovered, setLogoHovered] = useState(false);
+  // logo is static now (always favicon2 + 'F88')
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-950 text-white font-sans">
@@ -41,24 +41,21 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Link
             to="/"
             className="flex items-center gap-3 transition-transform cursor-pointer overflow-hidden w-[120px] md:w-[200px] lg:w-[220px]"
-            onMouseEnter={() => setLogoHovered(true)}
-            onMouseLeave={() => setLogoHovered(false)}
           >
-            <div className={`h-14 w-14 aspect-square rounded-full overflow-hidden flex-shrink-0 drop-shadow transition-all duration-300 ${logoHovered ? 'scale-105' : 'scale-100'}`}>
+            <div className="h-14 w-14 aspect-square rounded-full overflow-hidden flex-shrink-0 drop-shadow transition-all duration-300">
               <img
-                src={logoHovered ? "/favicon3.png" : "/favicon2.png"}
+                src="/favicon2.png"
                 alt="F88 Logo"
                 className="w-full h-full object-cover"
               />
             </div>
             <span
-              className={`font-extrabold ${logoHovered ? 'text-base md:text-lg lg:text-xl' : 'text-2xl'} transition-all duration-300 ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} ${logoHovered ? 'scale-105' : 'scale-100'}`}
+              className="font-extrabold text-2xl text-white transition-all duration-300"
               style={{ fontFamily: 'Poppins, Arial, sans-serif', letterSpacing: '0.02em' }}
             >
-              {logoHovered ? 'Fortitude' : 'F88'}
+              F88
             </span>
           </Link>
-
           {/* Navigation - Desktop */}
           <div className="hidden md:flex gap-8 items-center text-lg font-semibold">
             {navItems.map((item) => {
@@ -67,36 +64,34 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`transition-all duration-200 whitespace-nowrap relative group ${
-                    (!isScrolled && isHome) ? (isActive ? 'text-blue-300' : 'text-white') : (isActive ? 'text-blue-400' : 'text-gray-200')
-                  } hover:opacity-90`}
+                  className={`transition-all duration-200 whitespace-nowrap relative group ${(!isScrolled && isHome) ? (isActive ? 'text-blue-300' : 'text-white') : (isActive ? 'text-blue-400' : 'text-gray-200')
+                    } hover:opacity-90`}
                 >
                   {item.label}
-                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500 transform origin-left transition-transform duration-200 ease-out ${
-                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}></span>
+                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500 transform origin-left transition-transform duration-200 ease-out ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}></span>
                 </Link>
               );
             })}
           </div>
 
           {/* Ingresar */}
-  <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4">
             <Link
               to="/login"
-        className="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+              className="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-blue-700 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
             >
               Ingresar
             </Link>
-            
+
             {/* Mobile Menu Button */}
             <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-controls="mobile-menu"
-                aria-expanded={isMobileMenuOpen}
-                aria-label="Abrir menú"
-                className={`md:hidden p-2 ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} hover:opacity-90`}
-              >
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-controls="mobile-menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-label="Abrir menú"
+              className={`md:hidden p-2 ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} hover:opacity-90`}
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -126,11 +121,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {/* Mobile Navigation Menu */}
         <div
           id="mobile-menu"
-          className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen
+          className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
               ? 'opacity-100 max-h-screen'
               : 'opacity-0 max-h-0 pointer-events-none'
-          }`}
+            }`}
           onKeyDown={(e) => {
             if (e.key === 'Escape') setIsMobileMenuOpen(false);
           }}
