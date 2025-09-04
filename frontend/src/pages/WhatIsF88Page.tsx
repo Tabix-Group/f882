@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dumbbell, Brain, Heart, ShieldCheck, Zap, Lightbulb, Handshake } from 'lucide-react';
+import { Dumbbell, Brain, Heart, ShieldCheck, Zap, Lightbulb, Handshake, Grid3X3 } from 'lucide-react';
 
 const WhatIsF88Page: React.FC = () => {
   return (
@@ -32,8 +32,6 @@ const WhatIsF88Page: React.FC = () => {
                   { icon: Heart, label: 'Emocional' },
                   { icon: ShieldCheck, label: 'Carácter' },
                   { icon: Zap, label: 'Voluntad' },
-                  { icon: Lightbulb, label: 'Axiomas' },
-                  { icon: Handshake, label: 'Tu poder de negociación' },
                 ].map((item, i) => {
                   const Icon = item.icon;
                   return (
@@ -53,6 +51,65 @@ const WhatIsF88Page: React.FC = () => {
                             <span className="inline-block text-sm font-semibold text-blue-200">{i + 1}</span>
                             <h5 className="text-lg font-bold text-gray-100">{item.label}</h5>
                           </div>
+                          <p className="text-gray-300">{/* preserve text locations only: label is the visible title */}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <h4 className="text-lg font-bold mb-4">Construye tu nueva identidad con El GRID</h4>
+              <div className="grid sm:grid-cols-2 gap-6">
+                {[
+                  { icon: Lightbulb, label: 'Axiomas' },
+                  { icon: Grid3X3, label: 'GRID' },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={i}
+                      className="bg-gradient-to-br from-green-500/20 to-green-400/20 p-6 rounded-2xl backdrop-blur-sm border border-white/6 hover:scale-105 transition-all duration-300 shadow-lg"
+                      role="group"
+                      aria-label={item.label}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 h-14 w-14 rounded-xl bg-gradient-to-br from-green-700 to-green-500 text-white flex items-center justify-center shadow-md">
+                          <Icon className="w-7 h-7" />
+                        </div>
+                        <div>
+                          <h5 className="text-lg font-bold text-gray-100">{item.label}</h5>
+                          <p className="text-gray-300">{/* preserve text locations only: label is the visible title */}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <h4 className="text-lg font-bold mb-4">Genera riqueza</h4>
+              <div className="grid gap-6">
+                {[
+                  { icon: Handshake, label: 'Tu poder de negociación' },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={i}
+                      className="bg-gradient-to-br from-white/2 to-white/3 p-6 rounded-2xl backdrop-blur-sm border border-white/6 hover:scale-105 transition-all duration-300 shadow-lg"
+                      role="group"
+                      aria-label={item.label}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 h-14 w-14 rounded-xl bg-gradient-to-br from-blue-700 to-blue-500 text-white flex items-center justify-center shadow-md">
+                          <Icon className="w-7 h-7" />
+                        </div>
+                        <div>
+                          <h5 className="text-lg font-bold text-gray-100">{item.label}</h5>
                           <p className="text-gray-300">{/* preserve text locations only: label is the visible title */}</p>
                         </div>
                       </div>

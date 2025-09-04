@@ -8,8 +8,9 @@ import {
   Book,
   Dumbbell
 } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
-const steps = [
+const allSteps = [
   { icon: UserPlus, label: 'Completa tu registro' },
   { icon: CreditCard, label: 'Realiza tu pago' },
   { icon: BookOpenCheck, label: 'Accede a los materiales del programa' },
@@ -18,10 +19,15 @@ const steps = [
   { icon: Dumbbell, label: 'Accede a tu programa de entrenamiento físico' },
 ];
 
+const allTargetRoutes = ['/register', '/buy-book', '/login', '/login', '/login', '/login'];
+
 const StepsToDoPage: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const isLoggedIn = !!user;
 
-  const targetRoutes = ['/register', '/buy-book', '/login', '/login', '/login', '/login'];
+  const steps = isLoggedIn ? allSteps : allSteps.slice(0, 3);
+  const targetRoutes = isLoggedIn ? allTargetRoutes : allTargetRoutes.slice(0, 3);
 
   const handleKeyNav = (ev: React.KeyboardEvent, route: string) => {
     if (ev.key === 'Enter' || ev.key === ' ') {
