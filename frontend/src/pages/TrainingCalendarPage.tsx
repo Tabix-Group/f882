@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { TRAINING_ACTIVITIES, getActivityForDay } from '../utils/trainingActivities';
+import { getActivityForDay } from '../utils/trainingActivities';
 
 interface TrainingDay {
     dayNumber: number;
@@ -35,7 +35,6 @@ const TrainingCalendarPage: React.FC = () => {
     const loadTrainingData = useCallback(async () => {
         try {
             setIsLoading(true);
-            console.log('Cargando datos de entrenamiento...');
 
             // Cargar calendario
             const calendarResponse = await fetch(`http://localhost:4000/api/training/calendar/${user?.id}`);
@@ -43,7 +42,6 @@ const TrainingCalendarPage: React.FC = () => {
                 throw new Error('Error al cargar el calendario');
             }
             const calendarData = await calendarResponse.json();
-            console.log('Datos del calendario:', calendarData);
 
             // Transformar los datos para que tengan la estructura esperada
             const transformedDays = (calendarData.days || []).map((day: any) => ({
@@ -54,16 +52,13 @@ const TrainingCalendarPage: React.FC = () => {
                 activity: day.is_rest_day ? 'Descanso' : 'Entrenamiento'
             }));
             setTrainingDays(transformedDays);
-            console.log('Días transformados:', transformedDays.length);
 
             // Guardar información adicional del programa
             if (calendarData.startDate) {
                 setProgramStartDate(new Date(calendarData.startDate));
-                console.log('Fecha de inicio:', calendarData.startDate);
             }
             if (calendarData.restDay) {
                 setRestDay(calendarData.restDay);
-                console.log('Día de descanso:', calendarData.restDay);
             }
 
             // Cargar progreso
@@ -71,7 +66,6 @@ const TrainingCalendarPage: React.FC = () => {
             if (progressResponse.ok) {
                 const progressData = await progressResponse.json();
                 setProgress(progressData.progress);
-                console.log('Progreso cargado:', progressData.progress);
             }
 
         } catch (error) {
@@ -93,7 +87,6 @@ const TrainingCalendarPage: React.FC = () => {
     }, [user, navigate, loadTrainingData]);
 
     const handleDayClick = (day: TrainingDay) => {
-        console.log('Click en día:', day);
         setSelectedDay(day);
         setShowActivityModal(true);
     };
@@ -154,12 +147,7 @@ const TrainingCalendarPage: React.FC = () => {
     };
 
     const getTrainingDayForDate = (date: Date) => {
-        console.log('Calculando día para fecha:', date);
-        console.log('Fecha de inicio del programa:', programStartDate);
-        console.log('Día de descanso:', restDay);
-
         if (!programStartDate) {
-            console.log('No hay fecha de inicio del programa');
             return null;
         }
 
@@ -172,38 +160,29 @@ const TrainingCalendarPage: React.FC = () => {
         const diffTime = targetDate.getTime() - startDate.getTime();
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-        console.log('Diferencia en días:', diffDays);
-
         // Si la fecha está fuera del rango del programa (0-87 días), no es un día del programa
         if (diffDays < 0 || diffDays > 87) {
-            console.log('Fecha fuera del rango del programa');
             return null;
         }
 
         // Calcular el número del día del programa (1-88)
         const dayNumber = diffDays + 1;
-        console.log('Número del día del programa:', dayNumber);
 
         // Determinar si es día de descanso
         const dayOfWeek = targetDate.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
         const isRestDay = dayOfWeek === restDay;
-        console.log('Día de la semana:', dayOfWeek, 'Es descanso:', isRestDay);
 
         // Buscar si este día existe en los datos de la base de datos
         const existingDay = trainingDays.find((day: TrainingDay) => day.dayNumber === dayNumber);
-        console.log('Día existente en BD:', existingDay);
 
         // Crear el objeto del día, usando datos de la BD si existen, o valores por defecto
-        const result = {
+        return {
             dayNumber: dayNumber,
             date: targetDate.toISOString(),
             isRestDay: isRestDay,
             isCompleted: existingDay ? existingDay.isCompleted : false,
             activity: isRestDay ? 'Descanso' : 'Entrenamiento'
         };
-
-        console.log('Resultado del día:', result);
-        return result;
     };
 
     const renderCalendar = () => {
