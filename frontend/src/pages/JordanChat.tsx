@@ -26,6 +26,24 @@ const JordanChat: React.FC = () => {
                 return;
             }
 
+            const setWelcomeMessage = () => {
+                const welcomeMessage: Message = {
+                    id: '1',
+                    content: `¡Hola ${user.name}! Soy Jordan, tu mentor personal en F88. Estoy aquí para guiarte en tu transformación física y mental durante los 88 días del programa.
+
+¿En qué puedo ayudarte hoy? Podemos hablar sobre:
+• Tu progreso en el entrenamiento
+• Técnicas de nutrición
+• Motivación y mentalidad
+• Cualquier duda que tengas sobre el programa
+
+¡Estoy emocionado de ser parte de tu viaje de transformación!`,
+                    role: 'assistant',
+                    timestamp: new Date()
+                };
+                setMessages([welcomeMessage]);
+            };
+
             try {
                 // Intentar obtener sesión existente o crear una nueva
                 const sessionsResponse = await fetch(`http://localhost:4000/sessions/${user.id}`);
@@ -90,24 +108,6 @@ const JordanChat: React.FC = () => {
 
         loadChatHistory();
     }, [user, navigate]);
-
-    const setWelcomeMessage = () => {
-        const welcomeMessage: Message = {
-            id: '1',
-            content: `¡Hola ${user?.name}! Soy Jordan, tu mentor personal en F88. Estoy aquí para guiarte en tu transformación física y mental durante los 88 días del programa.
-
-¿En qué puedo ayudarte hoy? Podemos hablar sobre:
-• Tu progreso en el entrenamiento
-• Técnicas de nutrición
-• Motivación y mentalidad
-• Cualquier duda que tengas sobre el programa
-
-¡Estoy emocionado de ser parte de tu viaje de transformación!`,
-            role: 'assistant',
-            timestamp: new Date()
-        };
-        setMessages([welcomeMessage]);
-    };
 
     // Guardar mensajes en localStorage cada vez que cambien
     useEffect(() => {
