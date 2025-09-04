@@ -21,6 +21,7 @@ import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
 import ReadBookPage from './pages/ReadBookPage';
 import UserDashboard from './pages/UserDashboard';
+import JordanChat from './pages/JordanChat';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
             <Route path="/customer-service" element={<CustomerServicePage />} />
             <Route path="/read-book" element={<ReadBookPage />} />
             <Route path="/dashboard" element={<UserDashboard />} />
+            <Route path="/jordan-chat" element={<JordanChat />} />
           </Routes>
         </Layout>
       </Router>

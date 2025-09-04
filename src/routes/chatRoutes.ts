@@ -1,8 +1,35 @@
 import express from 'express';
 import axios from 'axios';
+import {
+  createChatSession,
+  getChatSessions,
+  getChatMessages,
+  saveChatMessage,
+  sendChatMessage,
+  deleteChatSession
+} from '../controllers/chatController';
 
 const router = express.Router();
 
+// Crear nueva sesión de chat
+router.post('/session', createChatSession);
+
+// Obtener todas las sesiones de un usuario
+router.get('/sessions/:userId', getChatSessions);
+
+// Obtener mensajes de una sesión específica
+router.get('/messages/:sessionId', getChatMessages);
+
+// Guardar mensaje manualmente
+router.post('/message', saveChatMessage);
+
+// Enviar mensaje y obtener respuesta de IA (método principal)
+router.post('/send', sendChatMessage);
+
+// Eliminar sesión de chat
+router.delete('/session/:sessionId', deleteChatSession);
+
+// Ruta legacy para compatibilidad (puedes deprecarla después)
 router.post('/api/chat', async (req, res) => {
   const { message, chapter } = req.body;
   try {
