@@ -20,7 +20,7 @@ const initializeDatabase = () => __awaiter(void 0, void 0, void 0, function* () 
     try {
         console.log('🔄 Inicializando base de datos...');
         // Leer el archivo SQL
-        const sqlPath = path_1.default.join(__dirname, '../db_init.sql');
+        const sqlPath = path_1.default.join(__dirname, '../../db_init.sql');
         const sqlContent = fs_1.default.readFileSync(sqlPath, 'utf8');
         // Ejecutar el SQL
         yield db_1.default.query(sqlContent);

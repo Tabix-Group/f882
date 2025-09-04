@@ -7,7 +7,7 @@ export const initializeDatabase = async () => {
         console.log('🔄 Inicializando base de datos...');
 
         // Leer el archivo SQL
-        const sqlPath = path.join(__dirname, '../db_init.sql');
+        const sqlPath = path.join(__dirname, '../../db_init.sql');
         const sqlContent = fs.readFileSync(sqlPath, 'utf8');
 
         // Ejecutar el SQL
