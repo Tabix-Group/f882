@@ -6,6 +6,7 @@ import audioRoutes from './routes/audioRoutes';
 import videoRoutes from './routes/videoRoutes';
 import textRoutes from './routes/textRoutes';
 import chatRoutes from './routes/chatRoutes';
+import trainingRoutes from './routes/trainingRoutes';
 
 const app = express();
 const allowedOrigins = [
@@ -21,6 +22,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/audios', audioRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/texts', textRoutes);
+app.use('/api/training', trainingRoutes);
 app.use(chatRoutes);
 
 app.get('/', (req, res) => {

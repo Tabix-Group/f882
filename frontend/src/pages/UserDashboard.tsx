@@ -32,7 +32,7 @@ const UserDashboard: React.FC = () => {
                 <svg className="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-            ), path: '#'
+            ), path: '/start-training'
         },
         {
             id: 3, title: 'Jordan', description: 'Accede a tu mentor', icon: (

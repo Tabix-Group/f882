@@ -393,8 +393,8 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
                             >
                                 <div
                                     className={`max-w-[85%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 sm:py-3 rounded-2xl shadow-lg ${message.role === 'user'
-                                            ? 'bg-blue-600 text-white rounded-br-md'
-                                            : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-bl-md'
+                                        ? 'bg-blue-600 text-white rounded-br-md'
+                                        : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-bl-md'
                                         }`}
                                 >
                                     <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words">

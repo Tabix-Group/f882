@@ -22,6 +22,8 @@ import Layout from './components/Layout';
 import ReadBookPage from './pages/ReadBookPage';
 import UserDashboard from './pages/UserDashboard';
 import JordanChat from './pages/JordanChat';
+import F88AssessmentPage from './pages/F88AssessmentPage';
+import TrainingCalendarPage from './pages/TrainingCalendarPage';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -50,6 +52,8 @@ function App() {
             <Route path="/read-book" element={<ReadBookPage />} />
             <Route path="/dashboard" element={<UserDashboard />} />
             <Route path="/jordan-chat" element={<JordanChat />} />
+            <Route path="/f88-assessment" element={<F88AssessmentPage />} />
+            <Route path="/training-calendar" element={<TrainingCalendarPage />} />
           </Routes>
         </Layout>
       </Router>
