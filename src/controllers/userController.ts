@@ -28,6 +28,22 @@ export const loginUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Error al iniciar sesión.' });
   }
 };
+
+export const getAssessmentStatus = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  if (!userId) {
+    return res.status(400).json({ message: 'ID de usuario requerido.' });
+  }
+  try {
+    const result = await pool.query('SELECT id FROM f88_assessments WHERE user_id = $1', [userId]);
+    const hasCompletedAssessment = result.rows.length > 0;
+    res.status(200).json({ hasCompletedAssessment });
+  } catch (error) {
+    console.error('Error al verificar estado de evaluación:', error);
+    res.status(500).json({ message: 'Error al verificar estado de evaluación.' });
+  }
+};
+
 // ...existing code...
 
 export const registerUser = async (req: Request, res: Response) => {

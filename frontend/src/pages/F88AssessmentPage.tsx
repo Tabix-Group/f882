@@ -51,7 +51,7 @@ const F88AssessmentPage: React.FC = () => {
     };
 
     const nextStep = () => {
-        if (currentStep < 4) {
+        if (currentStep < 5) {
             setCurrentStep(currentStep + 1);
         }
     };
@@ -109,7 +109,29 @@ const F88AssessmentPage: React.FC = () => {
         return 'IDEAL';
     };
 
-    const renderQuestion1 = () => (
+    const getLevelDescription = (level: string) => {
+        const descriptions = {
+            'INICIAL': {
+                title: '¡Despierta tu Cuerpo!',
+                description: 'F88 te acompaña a incorporar hábitos simples y sostenibles. ¡Tu camino hacia una vida más activa comienza hoy!',
+                color: 'from-orange-500 to-red-500',
+                emoji: '💪'
+            },
+            'FUNCIONAL': {
+                title: '¡Activa tu Potencial!',
+                description: 'Ya cuentas con una base de actividad física. Ahora puedes dar un paso más hacia la constancia. F88 te acompaña a consolidar una rutina sostenida en el tiempo y a mantener tu motivación alta.',
+                color: 'from-yellow-500 to-orange-500',
+                emoji: '🎯'
+            },
+            'IDEAL': {
+                title: '¡Rinde de por Vida!',
+                description: '¡Excelente! Mantienes una rutina fluida en la actualidad. F88 te acompaña a generar el hábito de por vida, y a descubrir nuevos desafíos.',
+                color: 'from-green-500 to-blue-500',
+                emoji: '🏆'
+            }
+        };
+        return descriptions[level as keyof typeof descriptions];
+    }; const renderQuestion1 = () => (
         <div className="space-y-6">
             <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-white mb-4">Pregunta 1 de 3</h2>
@@ -263,28 +285,7 @@ const F88AssessmentPage: React.FC = () => {
 
     const renderSummary = () => {
         const level = calculateLevel();
-        const levelDescriptions = {
-            'INICIAL': {
-                title: '¡Despierta tu Cuerpo!',
-                description: 'F88 te acompaña a incorporar hábitos simples y sostenibles. ¡Tu camino hacia una vida más activa comienza hoy!',
-                color: 'from-orange-500 to-red-500',
-                emoji: '💪'
-            },
-            'FUNCIONAL': {
-                title: '¡Activa tu Potencial!',
-                description: 'Ya cuentas con una base de actividad física. Ahora puedes dar un paso más hacia la constancia. F88 te acompaña a consolidar una rutina sostenida en el tiempo y a mantener tu motivación alta.',
-                color: 'from-yellow-500 to-orange-500',
-                emoji: '🎯'
-            },
-            'IDEAL': {
-                title: '¡Rinde de por Vida!',
-                description: '¡Excelente! Mantienes una rutina fluida en la actualidad. F88 te acompaña a generar el hábito de por vida, y a descubrir nuevos desafíos.',
-                color: 'from-green-500 to-blue-500',
-                emoji: '🏆'
-            }
-        };
-
-        const levelInfo = levelDescriptions[level as keyof typeof levelDescriptions];
+        const levelInfo = getLevelDescription(level);
 
         return (
             <div className="space-y-8">
@@ -302,6 +303,7 @@ const F88AssessmentPage: React.FC = () => {
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
                     <h4 className="text-white font-semibold mb-4">Resumen de tu evaluación:</h4>
                     <div className="space-y-2 text-gray-300">
+                        <p>• Nivel: <span className="font-bold text-white">{level}</span></p>
                         <p>• Día de descanso: {formData.restDay === 'monday' ? 'Lunes' :
                             formData.restDay === 'tuesday' ? 'Martes' :
                                 formData.restDay === 'wednesday' ? 'Miércoles' :
@@ -314,9 +316,7 @@ const F88AssessmentPage: React.FC = () => {
                 </div>
             </div>
         );
-    };
-
-    const renderCurrentStep = () => {
+    }; const renderCurrentStep = () => {
         switch (currentStep) {
             case 1: return renderQuestion1();
             case 2: return renderQuestion2();

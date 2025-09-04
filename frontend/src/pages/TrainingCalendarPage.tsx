@@ -43,7 +43,7 @@ const TrainingCalendarPage: React.FC = () => {
             const progressResponse = await fetch(`http://localhost:4000/api/training/progress/${user?.id}`);
             if (progressResponse.ok) {
                 const progressData = await progressResponse.json();
-                setProgress(progressData);
+                setProgress(progressData.progress);
             }
 
         } catch (error) {
@@ -65,6 +65,20 @@ const TrainingCalendarPage: React.FC = () => {
     }, [user, navigate, loadTrainingData]);
 
     const handleDayToggle = async (dayNumber: number) => {
+        const day = trainingDays.find((d: TrainingDay) => d.dayNumber === dayNumber);
+        if (!day) return;
+
+        // Solo permitir marcar días pasados o del día actual
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const dayDate = new Date(day.date);
+        dayDate.setHours(0, 0, 0, 0);
+
+        if (dayDate > today) {
+            alert('No puedes marcar actividades futuras como completadas.');
+            return;
+        }
+
         try {
             const response = await fetch(`http://localhost:4000/api/training/day/${user?.id}/${dayNumber}`, {
                 method: 'PUT',
@@ -72,7 +86,7 @@ const TrainingCalendarPage: React.FC = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    completed: !trainingDays.find(d => d.dayNumber === dayNumber)?.isCompleted
+                    completed: !day.isCompleted
                 })
             });
 
@@ -99,7 +113,7 @@ const TrainingCalendarPage: React.FC = () => {
 
     const getTrainingDayForDate = (date: Date) => {
         const dayNumber = Math.ceil((date.getTime() - new Date(trainingDays[0]?.date).getTime()) / (1000 * 60 * 60 * 24)) + 1;
-        return trainingDays.find(day => day.dayNumber === dayNumber);
+        return trainingDays.find((day: TrainingDay) => day.dayNumber === dayNumber);
     };
 
     const renderCalendar = () => {

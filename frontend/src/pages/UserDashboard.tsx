@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const UserDashboard: React.FC = () => {
     const [userName, setUserName] = useState<string>('');
+    const [hasCompletedAssessment, setHasCompletedAssessment] = useState<boolean>(false);
     const navigate = useNavigate();
     const { user } = useAuth();
 
@@ -13,6 +14,21 @@ const UserDashboard: React.FC = () => {
             return;
         }
         setUserName(user.name);
+
+        // Verificar si el usuario ya completó la evaluación
+        const checkAssessmentStatus = async () => {
+            try {
+                const response = await fetch(`http://localhost:4000/api/users/assessment-status/${user.id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setHasCompletedAssessment(data.hasCompletedAssessment);
+                }
+            } catch (error) {
+                console.error('Error checking assessment status:', error);
+            }
+        };
+
+        checkAssessmentStatus();
     }, [user, navigate]);
 
     const sections = [
@@ -28,11 +44,15 @@ const UserDashboard: React.FC = () => {
             path: '/read-book'
         },
         {
-            id: 2, title: 'Inicia tu entrenamiento', description: 'Comienza los 88 días de transformación física', icon: (
+            id: 2,
+            title: hasCompletedAssessment ? 'Calendario de entrenamiento' : 'Inicia tu entrenamiento',
+            description: hasCompletedAssessment ? 'Revisa tu progreso y marca actividades completadas' : 'Comienza los 88 días de transformación física',
+            icon: (
                 <svg className="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-            ), path: '/start-training'
+            ),
+            path: hasCompletedAssessment ? '/training-calendar' : '/f88-assessment'
         },
         {
             id: 3, title: 'Jordan', description: 'Accede a tu mentor', icon: (

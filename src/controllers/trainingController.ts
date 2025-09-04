@@ -27,28 +27,79 @@ export const createAssessment = async (req: Request, res: Response) => {
         const startDate = new Date();
         startDate.setDate(startDate.getDate() + 1);
 
-        // Crear la evaluación
-        const assessmentResult = await pool.query(
-            `INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
-       RETURNING *`,
-            [userId, question1, question2, question3, level, restDay, startDate]
+        // Verificar si ya existe una evaluación para este usuario
+        const existingAssessment = await pool.query(
+            'SELECT id FROM f88_assessments WHERE user_id = $1',
+            [userId]
         );
 
-        const assessment = assessmentResult.rows[0];
+        let assessmentId: number;
+
+        if (existingAssessment.rows.length > 0) {
+            // Actualizar evaluación existente
+            const updateResult = await pool.query(
+                `UPDATE f88_assessments
+           SET question1 = $1, question2 = $2, question3 = $3, level = $4, rest_day = $5, start_date = $6
+           WHERE user_id = $7
+           RETURNING id`,
+                [question1, question2, question3, level, restDay, startDate, userId]
+            );
+            assessmentId = updateResult.rows[0].id;
+
+            // Eliminar días de entrenamiento existentes
+            await pool.query('DELETE FROM training_days WHERE user_id = $1', [userId]);
+
+            // Reiniciar progreso existente en lugar de eliminarlo
+            await pool.query(
+                `UPDATE training_progress
+                 SET completed_days = 0, current_streak = 0, longest_streak = 0, last_completed_date = NULL, assessment_id = $1, updated_at = CURRENT_TIMESTAMP
+                 WHERE user_id = $2`,
+                [assessmentId, userId]
+            );
+        } else {
+            // Crear nueva evaluación
+            const assessmentResult = await pool.query(
+                `INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
+           VALUES ($1, $2, $3, $4, $5, $6)
+           RETURNING *`,
+                [userId, question1, question2, question3, level, restDay, startDate]
+            );
+            assessmentId = assessmentResult.rows[0].id;
+        }
+
+        const assessment = existingAssessment.rows.length > 0 ?
+            { id: assessmentId, level, rest_day: restDay, start_date: startDate } :
+            await pool.query('SELECT * FROM f88_assessments WHERE id = $1', [assessmentId]).then(result => result.rows[0]);
 
         // Crear el calendario de 88 días
-        await createTrainingCalendar(userId, assessment.id, startDate, restDay);
+        await createTrainingCalendar(userId, assessmentId, startDate, restDay);
 
-        // Crear registro de progreso
-        await pool.query(
-            `INSERT INTO training_progress (user_id, assessment_id)
-       VALUES ($1, $2)`,
-            [userId, assessment.id]
+        // Crear registro de progreso solo si no existe
+        const existingProgress = await pool.query(
+            'SELECT id FROM training_progress WHERE user_id = $1',
+            [userId]
         );
 
+        if (existingProgress.rows.length === 0) {
+            await pool.query(
+                `INSERT INTO training_progress (user_id, assessment_id)
+                 VALUES ($1, $2)`,
+                [userId, assessmentId]
+            );
+        } else {
+            // Actualizar el assessment_id si cambió
+            await pool.query(
+                `UPDATE training_progress
+                 SET assessment_id = $1, updated_at = CURRENT_TIMESTAMP
+                 WHERE user_id = $2`,
+                [assessmentId, userId]
+            );
+        }
+
         res.status(201).json({
-            message: 'Evaluación F88 completada exitosamente.',
+            message: existingAssessment.rows.length > 0 ?
+                'Evaluación F88 actualizada exitosamente.' :
+                'Evaluación F88 completada exitosamente.',
             assessment: {
                 id: assessment.id,
                 level: assessment.level,
@@ -60,7 +111,7 @@ export const createAssessment = async (req: Request, res: Response) => {
     } catch (error) {
         console.error('Error creando evaluación:', error);
         if ((error as any).code === '23505') {
-            return res.status(409).json({ message: 'El usuario ya tiene una evaluación F88.' });
+            return res.status(409).json({ message: 'Ya existe una evaluación activa para este usuario.' });
         }
         res.status(500).json({ message: 'Error al crear la evaluación F88.' });
     }
@@ -117,7 +168,7 @@ export const getTrainingCalendar = async (req: Request, res: Response) => {
 
         res.status(200).json({
             message: 'Calendario obtenido exitosamente.',
-            calendar: result.rows,
+            days: result.rows,
             level: result.rows[0].level,
             restDay: result.rows[0].rest_day
         });
@@ -217,13 +268,10 @@ const createTrainingCalendar = async (
             is_rest_day: isRestDay
         });
 
-        // Solo incrementar el número de día si no es día de descanso
-        if (!isRestDay) {
-            dayNumber++;
-        }
-
         // Avanzar al siguiente día
         currentDate.setDate(currentDate.getDate() + 1);
+        // Incrementar el número de día
+        dayNumber++;
     }
 
     // Insertar todos los días en la base de datos

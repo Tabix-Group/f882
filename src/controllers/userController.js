@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerUser = exports.loginUser = void 0;
+exports.registerUser = exports.getAssessmentStatus = exports.loginUser = void 0;
 const db_1 = __importDefault(require("../config/db"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -43,6 +43,22 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.loginUser = loginUser;
+const getAssessmentStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    if (!userId) {
+        return res.status(400).json({ message: 'ID de usuario requerido.' });
+    }
+    try {
+        const result = yield db_1.default.query('SELECT id FROM f88_assessments WHERE user_id = $1', [userId]);
+        const hasCompletedAssessment = result.rows.length > 0;
+        res.status(200).json({ hasCompletedAssessment });
+    }
+    catch (error) {
+        console.error('Error al verificar estado de evaluación:', error);
+        res.status(500).json({ message: 'Error al verificar estado de evaluación.' });
+    }
+});
+exports.getAssessmentStatus = getAssessmentStatus;
 // ...existing code...
 const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log('Datos recibidos en registro:', req.body);
