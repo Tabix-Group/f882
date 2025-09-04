@@ -1,11 +1,22 @@
 import axios from './axios';
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface LoginResponse {
+  message: string;
+  user: User;
+}
+
 export const registerUser = async (data: { name: string; email: string; password: string; birthdate: string; gender: string; country: string; tel: string }) => {
   return axios.post(`/users/register`, data);
 };
 
 export const loginUser = async (data: { email: string; password: string }) => {
-  return axios.post(`/users/login`, data);
+  return axios.post<LoginResponse>(`/users/login`, data);
 };
 
 export const getVideos = async () => {

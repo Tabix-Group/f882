@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { loginUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../hooks/useToast';
+import { useAuth } from '../contexts/AuthContext';
 import Spinner from '../components/Spinner';
 
 const LoginPage: React.FC = () => {
@@ -10,6 +11,7 @@ const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { show } = useToast();
+  const { login } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,9 +22,10 @@ const LoginPage: React.FC = () => {
     setLoading(true);
     // message handled via toasts
     try {
-      await loginUser(form);
+      const response = await loginUser(form);
+      login(response.data.user);
       show('Ingreso exitoso', 'success');
-      setTimeout(() => navigate('/read-book'), 800);
+      setTimeout(() => navigate('/dashboard'), 800);
     } catch (err: any) {
       const msg = err.response?.data?.message || 'Error al ingresar.';
       show(msg, 'error');
