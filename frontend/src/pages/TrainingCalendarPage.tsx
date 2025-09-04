@@ -205,7 +205,7 @@ const TrainingCalendarPage: React.FC = () => {
             days.push(
                 <div
                     key={day}
-                    className={`h-12 flex items-center justify-center text-sm font-medium rounded-lg transition-all duration-200 ${trainingDay
+                    className={`h-16 flex flex-col justify-between p-2 text-sm font-medium rounded-lg transition-all duration-200 ${trainingDay
                         ? trainingDay.isRestDay
                             ? 'bg-green-500/20 text-green-300 border border-green-500/30'
                             : trainingDay.isCompleted
@@ -218,18 +218,35 @@ const TrainingCalendarPage: React.FC = () => {
                     onClick={() => trainingDay && handleDayClick(trainingDay)}
                 >
                     {trainingDay ? (
-                        <div className="flex flex-col items-center">
-                            <span>{day}</span>
-                            {trainingDay.isRestDay ? (
-                                <span className="text-xs">Descanso</span>
-                            ) : trainingDay.isCompleted ? (
-                                <span className="text-xs">✓</span>
-                            ) : (
-                                <span className="text-xs">•</span>
-                            )}
-                        </div>
+                        <>
+                            {/* Número del día del programa en el centro */}
+                            <div className="flex-1 flex items-center justify-center">
+                                <span className="text-lg font-bold">{trainingDay.dayNumber}</span>
+                            </div>
+
+                            {/* Número del día del mes abajo a la derecha */}
+                            <div className="flex justify-end">
+                                <span className="text-xs opacity-70 italic">{day}-{selectedMonth + 1}</span>
+                            </div>
+
+                            {/* Indicador de estado (completado, descanso, etc.) */}
+                            <div className="absolute top-1 left-1">
+                                {trainingDay.isRestDay ? (
+                                    <span className="text-xs bg-green-500/30 px-1 py-0.5 rounded">Desc</span>
+                                ) : trainingDay.isCompleted ? (
+                                    <span className="text-xs bg-blue-500/30 px-1 py-0.5 rounded">✓</span>
+                                ) : (
+                                    <span className="text-xs bg-white/20 px-1 py-0.5 rounded">•</span>
+                                )}
+                            </div>
+                        </>
                     ) : (
-                        day
+                        <div className="flex flex-col justify-between h-full">
+                            <div className="flex-1"></div>
+                            <div className="flex justify-end">
+                                <span className="text-xs opacity-70 italic">{day}-{selectedMonth + 1}</span>
+                            </div>
+                        </div>
                     )}
                 </div>
             );
