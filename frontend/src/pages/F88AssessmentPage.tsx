@@ -88,6 +88,11 @@ const F88AssessmentPage: React.FC = () => {
             });
 
             if (!response.ok) {
+                // Si ya existe una evaluación (409), redirigir al calendario
+                if (response.status === 409) {
+                    navigate('/training-calendar');
+                    return;
+                }
                 throw new Error('Error al enviar la evaluación');
             }
 

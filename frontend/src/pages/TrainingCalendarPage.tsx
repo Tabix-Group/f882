@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { TRAINING_ACTIVITIES, getActivityForDay } from '../utils/trainingActivities';
 
 interface TrainingDay {
     dayNumber: number;
@@ -24,6 +25,8 @@ const TrainingCalendarPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+    const [selectedDay, setSelectedDay] = useState<TrainingDay | null>(null);
+    const [showActivityModal, setShowActivityModal] = useState(false);
     const navigate = useNavigate();
     const { user } = useAuth();
 
@@ -37,7 +40,15 @@ const TrainingCalendarPage: React.FC = () => {
                 throw new Error('Error al cargar el calendario');
             }
             const calendarData = await calendarResponse.json();
-            setTrainingDays(calendarData.days);
+            // Transformar los datos para que tengan la estructura esperada
+            const transformedDays = (calendarData.calendar || calendarData.days || []).map((day: any) => ({
+                dayNumber: day.day_number,
+                date: day.scheduled_date,
+                isRestDay: day.is_rest_day,
+                isCompleted: day.is_completed,
+                activity: day.is_rest_day ? 'Descanso' : 'Entrenamiento'
+            }));
+            setTrainingDays(transformedDays);
 
             // Cargar progreso
             const progressResponse = await fetch(`http://localhost:4000/api/training/progress/${user?.id}`);
@@ -64,6 +75,11 @@ const TrainingCalendarPage: React.FC = () => {
         loadTrainingData();
     }, [user, navigate, loadTrainingData]);
 
+    const handleDayClick = (day: TrainingDay) => {
+        setSelectedDay(day);
+        setShowActivityModal(true);
+    };
+
     const handleDayToggle = async (dayNumber: number) => {
         const day = trainingDays.find((d: TrainingDay) => d.dayNumber === dayNumber);
         if (!day) return;
@@ -86,7 +102,7 @@ const TrainingCalendarPage: React.FC = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    completed: !day.isCompleted
+                    isCompleted: !day.isCompleted
                 })
             });
 
@@ -103,6 +119,11 @@ const TrainingCalendarPage: React.FC = () => {
         }
     };
 
+    const closeModal = () => {
+        setShowActivityModal(false);
+        setSelectedDay(null);
+    };
+
     const getDaysInMonth = (month: number, year: number) => {
         return new Date(year, month + 1, 0).getDate();
     };
@@ -112,6 +133,9 @@ const TrainingCalendarPage: React.FC = () => {
     };
 
     const getTrainingDayForDate = (date: Date) => {
+        if (!trainingDays || trainingDays.length === 0) {
+            return null;
+        }
         const dayNumber = Math.ceil((date.getTime() - new Date(trainingDays[0]?.date).getTime()) / (1000 * 60 * 60 * 24)) + 1;
         return trainingDays.find((day: TrainingDay) => day.dayNumber === dayNumber);
     };
@@ -146,7 +170,7 @@ const TrainingCalendarPage: React.FC = () => {
                                     : 'bg-white/5 text-white border border-white/20 cursor-pointer hover:bg-white/10'
                         : 'text-gray-500'
                         } ${isToday ? 'ring-2 ring-blue-400' : ''}`}
-                    onClick={() => trainingDay && !trainingDay.isRestDay && handleDayToggle(trainingDay.dayNumber)}
+                    onClick={() => trainingDay && handleDayClick(trainingDay)}
                 >
                     {trainingDay ? (
                         <div className="flex flex-col items-center">
@@ -364,6 +388,103 @@ const TrainingCalendarPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Activity Modal */}
+                {showActivityModal && selectedDay && (
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                        <div className="bg-neutral-900 border border-white/20 rounded-2xl p-6 max-w-md w-full shadow-2xl">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-xl font-bold text-white">
+                                    Día {selectedDay.dayNumber}
+                                </h3>
+                                <button
+                                    onClick={closeModal}
+                                    className="text-gray-400 hover:text-white transition-colors"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="text-center">
+                                    <div className="text-4xl mb-2">
+                                        {selectedDay.isRestDay ? '😴' : '💪'}
+                                    </div>
+                                    <p className="text-gray-300 text-sm">
+                                        {new Date(selectedDay.date).toLocaleDateString('es-ES', {
+                                            weekday: 'long',
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        })}
+                                    </p>
+                                </div>
+
+                                {selectedDay.isRestDay ? (
+                                    <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-4 text-center">
+                                        <h4 className="text-green-300 font-semibold mb-2">Día de Descanso</h4>
+                                        <p className="text-green-200 text-sm">
+                                            Hoy es tu día de recuperación. Descansa, hidrátate y prepárate para los próximos entrenamientos.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    (() => {
+                                        const activity = getActivityForDay(progress?.level || 'INICIAL', selectedDay.dayNumber);
+                                        return activity ? (
+                                            <div className="space-y-3">
+                                                <div className="bg-blue-500/20 border border-blue-500/30 rounded-xl p-4">
+                                                    <h4 className="text-blue-300 font-semibold mb-2">Actividad del Día</h4>
+                                                    <p className="text-blue-200 text-lg font-medium">{activity.activity}</p>
+                                                </div>
+
+                                                <div className="grid grid-cols-2 gap-3">
+                                                    <div className="bg-white/10 rounded-lg p-3 text-center">
+                                                        <div className="text-xs text-gray-400 mb-1">Calentamiento</div>
+                                                        <div className="text-white font-medium">
+                                                            {activity.warmup === 'na' ? 'Sin especificar' : `${activity.warmup} min`}
+                                                        </div>
+                                                    </div>
+                                                    <div className="bg-white/10 rounded-lg p-3 text-center">
+                                                        <div className="text-xs text-gray-400 mb-1">Ejercicio</div>
+                                                        <div className="text-white font-medium">
+                                                            {activity.exercise === 'na' ? 'Libre' : `${activity.exercise} min`}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="bg-white/5 rounded-lg p-3">
+                                                    <div className="text-xs text-gray-400 mb-1">Estado</div>
+                                                    <div className="flex items-center justify-between">
+                                                        <span className={`text-sm font-medium ${selectedDay.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
+                                                            {selectedDay.isCompleted ? 'Completado ✓' : 'Pendiente'}
+                                                        </span>
+                                                        {!selectedDay.isCompleted && (
+                                                            <button
+                                                                onClick={() => {
+                                                                    handleDayToggle(selectedDay.dayNumber);
+                                                                    closeModal();
+                                                                }}
+                                                                className="px-3 py-1 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded-lg transition-colors"
+                                                            >
+                                                                Marcar como completado
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-4 text-center">
+                                                <p className="text-yellow-200">No se encontró actividad para este día.</p>
+                                            </div>
+                                        );
+                                    })()
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

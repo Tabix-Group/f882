@@ -28,78 +28,50 @@ export const createAssessment = async (req: Request, res: Response) => {
         startDate.setDate(startDate.getDate() + 1);
 
         // Verificar si ya existe una evaluación para este usuario
+        console.log('Verificando evaluación existente para userId:', userId);
         const existingAssessment = await pool.query(
             'SELECT id FROM f88_assessments WHERE user_id = $1',
             [userId]
         );
+        console.log('Resultado de verificación:', existingAssessment.rows.length, 'evaluaciones encontradas');
 
-        let assessmentId: number;
-
+        // Si existe una evaluación, eliminarla completamente junto con sus datos relacionados
         if (existingAssessment.rows.length > 0) {
-            // Actualizar evaluación existente
-            const updateResult = await pool.query(
-                `UPDATE f88_assessments
-           SET question1 = $1, question2 = $2, question3 = $3, level = $4, rest_day = $5, start_date = $6
-           WHERE user_id = $7
-           RETURNING id`,
-                [question1, question2, question3, level, restDay, startDate, userId]
-            );
-            assessmentId = updateResult.rows[0].id;
-
-            // Eliminar días de entrenamiento existentes
+            console.log('Eliminando evaluación existente...');
             await pool.query('DELETE FROM training_days WHERE user_id = $1', [userId]);
-
-            // Reiniciar progreso existente en lugar de eliminarlo
-            await pool.query(
-                `UPDATE training_progress
-                 SET completed_days = 0, current_streak = 0, longest_streak = 0, last_completed_date = NULL, assessment_id = $1, updated_at = CURRENT_TIMESTAMP
-                 WHERE user_id = $2`,
-                [assessmentId, userId]
-            );
-        } else {
-            // Crear nueva evaluación
-            const assessmentResult = await pool.query(
-                `INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
-           VALUES ($1, $2, $3, $4, $5, $6)
-           RETURNING *`,
-                [userId, question1, question2, question3, level, restDay, startDate]
-            );
-            assessmentId = assessmentResult.rows[0].id;
+            await pool.query('DELETE FROM training_progress WHERE user_id = $1', [userId]);
+            await pool.query('DELETE FROM f88_assessments WHERE user_id = $1', [userId]);
+            console.log('Evaluación existente eliminada');
         }
 
-        const assessment = existingAssessment.rows.length > 0 ?
-            { id: assessmentId, level, rest_day: restDay, start_date: startDate } :
-            await pool.query('SELECT * FROM f88_assessments WHERE id = $1', [assessmentId]).then(result => result.rows[0]);
+        // Crear nueva evaluación
+        console.log('Creando nueva evaluación...');
+        const assessmentResult = await pool.query(
+            `INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
+             VALUES ($1, $2, $3, $4, $5, $6)
+             RETURNING *`,
+            [userId, question1, question2, question3, level, restDay, startDate]
+        );
+        const assessmentId = assessmentResult.rows[0].id;
+        const assessment = assessmentResult.rows[0];
+
+        console.log('Evaluación creada con ID:', assessmentId);
 
         // Crear el calendario de 88 días
+        console.log('Creando calendario de entrenamiento...');
         await createTrainingCalendar(userId, assessmentId, startDate, restDay);
 
-        // Crear registro de progreso solo si no existe
-        const existingProgress = await pool.query(
-            'SELECT id FROM training_progress WHERE user_id = $1',
-            [userId]
+        // Crear registro de progreso
+        console.log('Creando registro de progreso...');
+        await pool.query(
+            `INSERT INTO training_progress (user_id, assessment_id)
+             VALUES ($1, $2)`,
+            [userId, assessmentId]
         );
 
-        if (existingProgress.rows.length === 0) {
-            await pool.query(
-                `INSERT INTO training_progress (user_id, assessment_id)
-                 VALUES ($1, $2)`,
-                [userId, assessmentId]
-            );
-        } else {
-            // Actualizar el assessment_id si cambió
-            await pool.query(
-                `UPDATE training_progress
-                 SET assessment_id = $1, updated_at = CURRENT_TIMESTAMP
-                 WHERE user_id = $2`,
-                [assessmentId, userId]
-            );
-        }
-
+        console.log('Evaluación completada exitosamente');
         res.status(201).json({
-            message: existingAssessment.rows.length > 0 ?
-                'Evaluación F88 actualizada exitosamente.' :
-                'Evaluación F88 completada exitosamente.',
+            message: 'Evaluación F88 completada exitosamente.',
             assessment: {
                 id: assessment.id,
                 level: assessment.level,
@@ -110,6 +82,8 @@ export const createAssessment = async (req: Request, res: Response) => {
 
     } catch (error) {
         console.error('Error creando evaluación:', error);
+        console.error('Código de error:', (error as any).code);
+        console.error('Mensaje de error:', (error as any).message);
         if ((error as any).code === '23505') {
             return res.status(409).json({ message: 'Ya existe una evaluación activa para este usuario.' });
         }
