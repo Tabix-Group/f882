@@ -27,12 +27,15 @@ const TrainingCalendarPage: React.FC = () => {
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     const [selectedDay, setSelectedDay] = useState<TrainingDay | null>(null);
     const [showActivityModal, setShowActivityModal] = useState(false);
+    const [programStartDate, setProgramStartDate] = useState<Date | null>(null);
+    const [restDay, setRestDay] = useState<string>('');
     const navigate = useNavigate();
     const { user } = useAuth();
 
     const loadTrainingData = useCallback(async () => {
         try {
             setIsLoading(true);
+            console.log('Cargando datos de entrenamiento...');
 
             // Cargar calendario
             const calendarResponse = await fetch(`http://localhost:4000/api/training/calendar/${user?.id}`);
@@ -40,8 +43,10 @@ const TrainingCalendarPage: React.FC = () => {
                 throw new Error('Error al cargar el calendario');
             }
             const calendarData = await calendarResponse.json();
+            console.log('Datos del calendario:', calendarData);
+
             // Transformar los datos para que tengan la estructura esperada
-            const transformedDays = (calendarData.calendar || calendarData.days || []).map((day: any) => ({
+            const transformedDays = (calendarData.days || []).map((day: any) => ({
                 dayNumber: day.day_number,
                 date: day.scheduled_date,
                 isRestDay: day.is_rest_day,
@@ -49,12 +54,24 @@ const TrainingCalendarPage: React.FC = () => {
                 activity: day.is_rest_day ? 'Descanso' : 'Entrenamiento'
             }));
             setTrainingDays(transformedDays);
+            console.log('Días transformados:', transformedDays.length);
+
+            // Guardar información adicional del programa
+            if (calendarData.startDate) {
+                setProgramStartDate(new Date(calendarData.startDate));
+                console.log('Fecha de inicio:', calendarData.startDate);
+            }
+            if (calendarData.restDay) {
+                setRestDay(calendarData.restDay);
+                console.log('Día de descanso:', calendarData.restDay);
+            }
 
             // Cargar progreso
             const progressResponse = await fetch(`http://localhost:4000/api/training/progress/${user?.id}`);
             if (progressResponse.ok) {
                 const progressData = await progressResponse.json();
                 setProgress(progressData.progress);
+                console.log('Progreso cargado:', progressData.progress);
             }
 
         } catch (error) {
@@ -76,18 +93,22 @@ const TrainingCalendarPage: React.FC = () => {
     }, [user, navigate, loadTrainingData]);
 
     const handleDayClick = (day: TrainingDay) => {
+        console.log('Click en día:', day);
         setSelectedDay(day);
         setShowActivityModal(true);
     };
 
     const handleDayToggle = async (dayNumber: number) => {
         const day = trainingDays.find((d: TrainingDay) => d.dayNumber === dayNumber);
-        if (!day) return;
 
         // Solo permitir marcar días pasados o del día actual
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        const dayDate = new Date(day.date);
+
+        if (!programStartDate) return;
+
+        const dayDate = new Date(programStartDate);
+        dayDate.setDate(dayDate.getDate() + dayNumber - 1);
         dayDate.setHours(0, 0, 0, 0);
 
         if (dayDate > today) {
@@ -102,7 +123,7 @@ const TrainingCalendarPage: React.FC = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    isCompleted: !day.isCompleted
+                    isCompleted: day ? !day.isCompleted : true
                 })
             });
 
@@ -133,11 +154,56 @@ const TrainingCalendarPage: React.FC = () => {
     };
 
     const getTrainingDayForDate = (date: Date) => {
-        if (!trainingDays || trainingDays.length === 0) {
+        console.log('Calculando día para fecha:', date);
+        console.log('Fecha de inicio del programa:', programStartDate);
+        console.log('Día de descanso:', restDay);
+
+        if (!programStartDate) {
+            console.log('No hay fecha de inicio del programa');
             return null;
         }
-        const dayNumber = Math.ceil((date.getTime() - new Date(trainingDays[0]?.date).getTime()) / (1000 * 60 * 60 * 24)) + 1;
-        return trainingDays.find((day: TrainingDay) => day.dayNumber === dayNumber);
+
+        // Calcular la diferencia en días desde la fecha de inicio
+        const startDate = new Date(programStartDate);
+        startDate.setHours(0, 0, 0, 0);
+        const targetDate = new Date(date);
+        targetDate.setHours(0, 0, 0, 0);
+
+        const diffTime = targetDate.getTime() - startDate.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        console.log('Diferencia en días:', diffDays);
+
+        // Si la fecha está fuera del rango del programa (0-87 días), no es un día del programa
+        if (diffDays < 0 || diffDays > 87) {
+            console.log('Fecha fuera del rango del programa');
+            return null;
+        }
+
+        // Calcular el número del día del programa (1-88)
+        const dayNumber = diffDays + 1;
+        console.log('Número del día del programa:', dayNumber);
+
+        // Determinar si es día de descanso
+        const dayOfWeek = targetDate.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+        const isRestDay = dayOfWeek === restDay;
+        console.log('Día de la semana:', dayOfWeek, 'Es descanso:', isRestDay);
+
+        // Buscar si este día existe en los datos de la base de datos
+        const existingDay = trainingDays.find((day: TrainingDay) => day.dayNumber === dayNumber);
+        console.log('Día existente en BD:', existingDay);
+
+        // Crear el objeto del día, usando datos de la BD si existen, o valores por defecto
+        const result = {
+            dayNumber: dayNumber,
+            date: targetDate.toISOString(),
+            isRestDay: isRestDay,
+            isCompleted: existingDay ? existingDay.isCompleted : false,
+            activity: isRestDay ? 'Descanso' : 'Entrenamiento'
+        };
+
+        console.log('Resultado del día:', result);
+        return result;
     };
 
     const renderCalendar = () => {
@@ -288,7 +354,12 @@ const TrainingCalendarPage: React.FC = () => {
                                     <div className="text-sm text-gray-400">Mejor Racha</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-yellow-400">{Math.round((progress.completedDays / progress.totalDays) * 100)}%</div>
+                                    <div className="text-2xl font-bold text-yellow-400">
+                                        {progress.totalDays && progress.totalDays > 0
+                                            ? `${Math.round((progress.completedDays / progress.totalDays) * 100)}%`
+                                            : '0%'
+                                        }
+                                    </div>
                                     <div className="text-sm text-gray-400">Progreso Total</div>
                                 </div>
                             </div>
@@ -302,7 +373,11 @@ const TrainingCalendarPage: React.FC = () => {
                                 <div className="w-full bg-white/10 rounded-full h-3">
                                     <div
                                         className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-500"
-                                        style={{ width: `${(progress.completedDays / progress.totalDays) * 100}%` }}
+                                        style={{
+                                            width: progress.totalDays && progress.totalDays > 0
+                                                ? `${(progress.completedDays / progress.totalDays) * 100}%`
+                                                : '0%'
+                                        }}
                                     ></div>
                                 </div>
                             </div>

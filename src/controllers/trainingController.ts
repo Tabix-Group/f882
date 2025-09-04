@@ -128,7 +128,7 @@ export const getTrainingCalendar = async (req: Request, res: Response) => {
 
     try {
         const result = await pool.query(
-            `SELECT td.*, fa.level, fa.rest_day
+            `SELECT td.*, fa.level, fa.rest_day, fa.start_date
        FROM training_days td
        JOIN f88_assessments fa ON td.assessment_id = fa.id
        WHERE td.user_id = $1
@@ -144,7 +144,8 @@ export const getTrainingCalendar = async (req: Request, res: Response) => {
             message: 'Calendario obtenido exitosamente.',
             days: result.rows,
             level: result.rows[0].level,
-            restDay: result.rows[0].rest_day
+            restDay: result.rows[0].rest_day,
+            startDate: result.rows[0].start_date
         });
 
     } catch (error) {

@@ -37,16 +37,34 @@ const createAssessment = (req, res) => __awaiter(void 0, void 0, void 0, functio
         // Fecha de inicio: mañana
         const startDate = new Date();
         startDate.setDate(startDate.getDate() + 1);
-        // Crear la evaluación
+        // Verificar si ya existe una evaluación para este usuario
+        console.log('Verificando evaluación existente para userId:', userId);
+        const existingAssessment = yield db_1.default.query('SELECT id FROM f88_assessments WHERE user_id = $1', [userId]);
+        console.log('Resultado de verificación:', existingAssessment.rows.length, 'evaluaciones encontradas');
+        // Si existe una evaluación, eliminarla completamente junto con sus datos relacionados
+        if (existingAssessment.rows.length > 0) {
+            console.log('Eliminando evaluación existente...');
+            yield db_1.default.query('DELETE FROM training_days WHERE user_id = $1', [userId]);
+            yield db_1.default.query('DELETE FROM training_progress WHERE user_id = $1', [userId]);
+            yield db_1.default.query('DELETE FROM f88_assessments WHERE user_id = $1', [userId]);
+            console.log('Evaluación existente eliminada');
+        }
+        // Crear nueva evaluación
+        console.log('Creando nueva evaluación...');
         const assessmentResult = yield db_1.default.query(`INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
-       RETURNING *`, [userId, question1, question2, question3, level, restDay, startDate]);
+             VALUES ($1, $2, $3, $4, $5, $6)
+             RETURNING *`, [userId, question1, question2, question3, level, restDay, startDate]);
+        const assessmentId = assessmentResult.rows[0].id;
         const assessment = assessmentResult.rows[0];
+        console.log('Evaluación creada con ID:', assessmentId);
         // Crear el calendario de 88 días
-        yield createTrainingCalendar(userId, assessment.id, startDate, restDay);
+        console.log('Creando calendario de entrenamiento...');
+        yield createTrainingCalendar(userId, assessmentId, startDate, restDay);
         // Crear registro de progreso
+        console.log('Creando registro de progreso...');
         yield db_1.default.query(`INSERT INTO training_progress (user_id, assessment_id)
-       VALUES ($1, $2)`, [userId, assessment.id]);
+             VALUES ($1, $2)`, [userId, assessmentId]);
+        console.log('Evaluación completada exitosamente');
         res.status(201).json({
             message: 'Evaluación F88 completada exitosamente.',
             assessment: {
@@ -59,8 +77,10 @@ const createAssessment = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
     catch (error) {
         console.error('Error creando evaluación:', error);
+        console.error('Código de error:', error.code);
+        console.error('Mensaje de error:', error.message);
         if (error.code === '23505') {
-            return res.status(409).json({ message: 'El usuario ya tiene una evaluación F88.' });
+            return res.status(409).json({ message: 'Ya existe una evaluación activa para este usuario.' });
         }
         res.status(500).json({ message: 'Error al crear la evaluación F88.' });
     }
@@ -93,7 +113,7 @@ const getTrainingCalendar = (req, res) => __awaiter(void 0, void 0, void 0, func
         return res.status(400).json({ message: 'User ID es requerido.' });
     }
     try {
-        const result = yield db_1.default.query(`SELECT td.*, fa.level, fa.rest_day
+        const result = yield db_1.default.query(`SELECT td.*, fa.level, fa.rest_day, fa.start_date
        FROM training_days td
        JOIN f88_assessments fa ON td.assessment_id = fa.id
        WHERE td.user_id = $1
@@ -103,9 +123,10 @@ const getTrainingCalendar = (req, res) => __awaiter(void 0, void 0, void 0, func
         }
         res.status(200).json({
             message: 'Calendario obtenido exitosamente.',
-            calendar: result.rows,
+            days: result.rows,
             level: result.rows[0].level,
-            restDay: result.rows[0].rest_day
+            restDay: result.rows[0].rest_day,
+            startDate: result.rows[0].start_date
         });
     }
     catch (error) {
@@ -179,12 +200,10 @@ const createTrainingCalendar = (userId, assessmentId, startDate, restDay) => __a
             scheduled_date: new Date(currentDate),
             is_rest_day: isRestDay
         });
-        // Solo incrementar el número de día si no es día de descanso
-        if (!isRestDay) {
-            dayNumber++;
-        }
         // Avanzar al siguiente día
         currentDate.setDate(currentDate.getDate() + 1);
+        // Incrementar el número de día
+        dayNumber++;
     }
     // Insertar todos los días en la base de datos
     for (const day of trainingDays) {
