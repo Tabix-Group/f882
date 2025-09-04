@@ -7,6 +7,7 @@ import videoRoutes from './routes/videoRoutes';
 import textRoutes from './routes/textRoutes';
 import chatRoutes from './routes/chatRoutes';
 import trainingRoutes from './routes/trainingRoutes';
+import { initializeDatabase } from './utils/databaseInit';
 
 const app = express();
 const allowedOrigins = [
@@ -29,6 +30,14 @@ app.get('/', (req, res) => {
   res.send('F88 Landing Page API funcionando');
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en puerto ${PORT}`);
+app.listen(PORT, async () => {
+  console.log(`🚀 Servidor escuchando en puerto ${PORT}`);
+
+  // Inicializar base de datos
+  try {
+    await initializeDatabase();
+  } catch (error) {
+    console.error('Error al inicializar la base de datos:', error);
+    process.exit(1);
+  }
 });
