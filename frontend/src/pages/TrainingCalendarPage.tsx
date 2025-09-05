@@ -32,10 +32,12 @@ const TrainingCalendarPage: React.FC = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
 
+    // Define API_BASE at component level so it's accessible throughout
+    const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+
     const loadTrainingData = useCallback(async () => {
         try {
             setIsLoading(true);
-            const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
 
             // Cargar calendario
             const calendarResponse = await fetch(`${API_BASE}/training/calendar/${user?.id}`);
