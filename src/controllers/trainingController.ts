@@ -11,6 +11,12 @@ export const createAssessment = async (req: Request, res: Response) => {
     }
 
     try {
+        // Verificar que el usuario existe
+        const userCheck = await pool.query('SELECT id FROM users WHERE id = $1', [userId]);
+        if (userCheck.rows.length === 0) {
+            return res.status(404).json({ message: 'Usuario no encontrado.' });
+        }
+
         // Calcular el nivel basado en las respuestas
         const totalScore = question1 + question2 + question3;
         let level: 'INICIAL' | 'FUNCIONAL' | 'IDEAL';
@@ -48,7 +54,7 @@ export const createAssessment = async (req: Request, res: Response) => {
         console.log('Creando nueva evaluación...');
         const assessmentResult = await pool.query(
             `INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
-             VALUES ($1, $2, $3, $4, $5, $6)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)
              RETURNING *`,
             [userId, question1, question2, question3, level, restDay, startDate]
         );
