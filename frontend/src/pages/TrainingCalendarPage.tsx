@@ -35,9 +35,10 @@ const TrainingCalendarPage: React.FC = () => {
     const loadTrainingData = useCallback(async () => {
         try {
             setIsLoading(true);
+            const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
 
             // Cargar calendario
-            const calendarResponse = await fetch(`http://localhost:4000/api/training/calendar/${user?.id}`);
+            const calendarResponse = await fetch(`${API_BASE}/training/calendar/${user?.id}`);
             if (!calendarResponse.ok) {
                 throw new Error('Error al cargar el calendario');
             }
@@ -62,10 +63,17 @@ const TrainingCalendarPage: React.FC = () => {
             }
 
             // Cargar progreso
-            const progressResponse = await fetch(`http://localhost:4000/api/training/progress/${user?.id}`);
+            const progressResponse = await fetch(`${API_BASE}/training/progress/${user?.id}`);
             if (progressResponse.ok) {
                 const progressData = await progressResponse.json();
-                setProgress(progressData.progress);
+                // Mapear correctamente los datos del progreso
+                setProgress({
+                    totalDays: progressData.progress.total_days || 88,
+                    completedDays: progressData.progress.completed_days || 0,
+                    currentStreak: progressData.progress.current_streak || 0,
+                    longestStreak: progressData.progress.longest_streak || 0,
+                    level: calendarData.level || 'INICIAL'
+                });
             }
 
         } catch (error) {
@@ -110,7 +118,7 @@ const TrainingCalendarPage: React.FC = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:4000/api/training/day/${user?.id}/${dayNumber}`, {
+            const response = await fetch(`${API_BASE}/training/day/${user?.id}/${dayNumber}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
