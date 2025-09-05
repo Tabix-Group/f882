@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { getActivityForDay } from '../utils/trainingActivities';
 
+// Define API_BASE outside component to avoid dependency issues
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+
 interface TrainingDay {
     dayNumber: number;
     date: string;
@@ -31,9 +34,6 @@ const TrainingCalendarPage: React.FC = () => {
     const [restDay, setRestDay] = useState<string>('');
     const navigate = useNavigate();
     const { user } = useAuth();
-
-    // Define API_BASE at component level so it's accessible throughout
-    const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
 
     const loadTrainingData = useCallback(async () => {
         try {
