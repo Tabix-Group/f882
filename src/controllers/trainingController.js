@@ -52,7 +52,7 @@ const createAssessment = (req, res) => __awaiter(void 0, void 0, void 0, functio
         // Crear nueva evaluación
         console.log('Creando nueva evaluación...');
         const assessmentResult = yield db_1.default.query(`INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
-             VALUES ($1, $2, $3, $4, $5, $6)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)
              RETURNING *`, [userId, question1, question2, question3, level, restDay, startDate]);
         const assessmentId = assessmentResult.rows[0].id;
         const assessment = assessmentResult.rows[0];
