@@ -23,7 +23,8 @@ const F88AssessmentPage: React.FC = () => {
 
     const checkExistingAssessment = useCallback(async () => {
         try {
-            const response = await fetch(`http://localhost:4000/api/training/assessment/${user?.id}`);
+            const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+            const response = await fetch(`${API_BASE}/training/assessment/${user?.id}`);
             if (response.ok) {
                 // Usuario ya tiene evaluación, redirigir al calendario
                 navigate('/training-calendar');
@@ -73,7 +74,8 @@ const F88AssessmentPage: React.FC = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:4000/api/training/assessment', {
+            const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+            const response = await fetch(`${API_BASE}/training/assessment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
