@@ -22,6 +22,12 @@ const createAssessment = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
     try {
+        // Verificar que el usuario existe
+        const userCheck = yield db_1.default.query('SELECT id FROM users WHERE id = $1', [userId]);
+        if (userCheck.rows.length === 0) {
+            return res.status(404).json({ message: 'Usuario no encontrado.' });
+        }
+
         // Calcular el nivel basado en las respuestas
         const totalScore = question1 + question2 + question3;
         let level;

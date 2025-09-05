@@ -93,6 +93,12 @@ const F88AssessmentPage: React.FC = () => {
                     navigate('/training-calendar');
                     return;
                 }
+                // Si el usuario no existe (404), mostrar mensaje específico
+                if (response.status === 404) {
+                    alert('Usuario no encontrado. Por favor, inicia sesión nuevamente.');
+                    navigate('/login');
+                    return;
+                }
                 throw new Error('Error al enviar la evaluación');
             }
 
