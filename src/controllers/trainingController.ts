@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import pool from '../config/db';
 
 export const createAssessment = async (req: Request, res: Response) => {
-    const { userId, question1, question2, question3, restDay } = req.body;
+    const { userId, question1, question2, question3, restDay, startDate } = req.body;
 
     if (!userId || !question1 || !question2 || !question3 || !restDay) {
         return res.status(400).json({
@@ -29,9 +29,20 @@ export const createAssessment = async (req: Request, res: Response) => {
             level = 'IDEAL';
         }
 
-        // Fecha de inicio: mañana
-        const startDate = new Date();
-        startDate.setDate(startDate.getDate() + 1);
+        // Fecha de inicio: usar la proporcionada o mañana por defecto
+        let startDateObj: Date;
+        if (startDate) {
+            startDateObj = new Date(startDate);
+            // Validar que no sea una fecha pasada
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (startDateObj < today) {
+                return res.status(400).json({ message: 'La fecha de inicio no puede ser anterior a hoy.' });
+            }
+        } else {
+            startDateObj = new Date();
+            startDateObj.setDate(startDateObj.getDate() + 1);
+        }
 
         // Verificar si ya existe una evaluación para este usuario
         console.log('Verificando evaluación existente para userId:', userId);
@@ -56,7 +67,7 @@ export const createAssessment = async (req: Request, res: Response) => {
             `INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
              VALUES ($1, $2, $3, $4, $5, $6, $7)
              RETURNING *`,
-            [userId, question1, question2, question3, level, restDay, startDate]
+            [userId, question1, question2, question3, level, restDay, startDateObj]
         );
         const assessmentId = assessmentResult.rows[0].id;
         const assessment = assessmentResult.rows[0];
@@ -65,7 +76,7 @@ export const createAssessment = async (req: Request, res: Response) => {
 
         // Crear el calendario de 88 días
         console.log('Creando calendario de entrenamiento...');
-        await createTrainingCalendar(userId, assessmentId, startDate, restDay);
+        await createTrainingCalendar(userId, assessmentId, startDateObj, restDay);
 
         // Crear registro de progreso
         console.log('Creando registro de progreso...');

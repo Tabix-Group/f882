@@ -346,27 +346,20 @@ const TrainingCalendarPage: React.FC = () => {
                 {progress && (
                     <div className="bg-neutral-900/50 backdrop-blur-md border-b border-white/10 px-4 py-6">
                         <div className="max-w-6xl mx-auto">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div className="grid grid-cols-2 gap-6">
                                 <div className="text-center">
                                     <div className="text-2xl font-bold text-blue-400">{progress.completedDays}</div>
                                     <div className="text-sm text-gray-400">Días Completados</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-green-400">{progress.currentStreak}</div>
-                                    <div className="text-sm text-gray-400">Racha Actual</div>
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-2xl font-bold text-purple-400">{progress.longestStreak}</div>
-                                    <div className="text-sm text-gray-400">Mejor Racha</div>
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-2xl font-bold text-yellow-400">
-                                        {progress.totalDays && progress.totalDays > 0
-                                            ? `${Math.round((progress.completedDays / progress.totalDays) * 100)}%`
-                                            : '0%'
-                                        }
+                                    <div className="text-2xl font-bold text-red-400">
+                                        {programStartDate ? (() => {
+                                            const today = new Date();
+                                            const daysElapsed = Math.floor((today.getTime() - programStartDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+                                            return Math.max(0, daysElapsed - progress.completedDays);
+                                        })() : 0}
                                     </div>
-                                    <div className="text-sm text-gray-400">Progreso Total</div>
+                                    <div className="text-sm text-gray-400">Días Perdidos</div>
                                 </div>
                             </div>
 

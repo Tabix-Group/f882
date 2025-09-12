@@ -281,34 +281,6 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
         }
     };
 
-    const clearChat = async () => {
-        if (!window.confirm('¿Estás seguro de que quieres borrar todo el historial del chat? Esta acción no se puede deshacer.')) {
-            return;
-        }
-
-        try {
-            if (sessionId) {
-                // Eliminar sesión del backend
-                await fetch(`http://localhost:4000/session/${sessionId}`, {
-                    method: 'DELETE'
-                });
-            }
-
-            // Limpiar estado local
-            setMessages([]);
-            setSessionId(null);
-
-            // Limpiar localStorage como backup
-            localStorage.removeItem(`chat_history_${user?.id}`);
-
-        } catch (error) {
-            console.error('Error eliminando chat:', error);
-            // Fallback: solo limpiar local
-            setMessages([]);
-            localStorage.removeItem(`chat_history_${user?.id}`);
-        }
-    };
-
     return (
         <div className="bg-gradient-to-br from-black via-neutral-900 to-black text-white min-h-screen flex flex-col relative overflow-hidden">
             {/* Background Effects */}
@@ -350,16 +322,6 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
                             >
                                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                            </button>
-                            <button
-                                onClick={clearChat}
-                                disabled={messages.length === 0}
-                                className="p-2 hover:bg-red-500/20 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                                title="Limpiar chat"
-                            >
-                                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
                             </button>
                             <div className="flex items-center gap-1 sm:gap-2">
@@ -436,7 +398,7 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
                                     type="text"
                                     value={inputMessage}
                                     onChange={(e) => setInputMessage(e.target.value)}
-                                    placeholder="Escribe tu mensaje a Jordan..."
+                                    placeholder="Soy Jordan, preguntame lo que desees"
                                     className="w-full px-4 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base resize-none"
                                     disabled={isLoading}
                                     maxLength={1000}

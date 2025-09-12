@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTrainingProgress = exports.updateTrainingDay = exports.getTrainingCalendar = exports.getAssessment = exports.createAssessment = void 0;
 const db_1 = __importDefault(require("../config/db"));
 const createAssessment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId, question1, question2, question3, restDay } = req.body;
+    const { userId, question1, question2, question3, restDay, startDate } = req.body;
     if (!userId || !question1 || !question2 || !question3 || !restDay) {
         return res.status(400).json({
             message: 'Todos los campos son requeridos: userId, question1, question2, question3, restDay.'
@@ -40,9 +40,21 @@ const createAssessment = (req, res) => __awaiter(void 0, void 0, void 0, functio
         else {
             level = 'IDEAL';
         }
-        // Fecha de inicio: mañana
-        const startDate = new Date();
-        startDate.setDate(startDate.getDate() + 1);
+        // Fecha de inicio: usar la proporcionada o mañana por defecto
+        let startDateObj;
+        if (startDate) {
+            startDateObj = new Date(startDate);
+            // Validar que no sea una fecha pasada
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (startDateObj < today) {
+                return res.status(400).json({ message: 'La fecha de inicio no puede ser anterior a hoy.' });
+            }
+        }
+        else {
+            startDateObj = new Date();
+            startDateObj.setDate(startDateObj.getDate() + 1);
+        }
         // Verificar si ya existe una evaluación para este usuario
         console.log('Verificando evaluación existente para userId:', userId);
         const existingAssessment = yield db_1.default.query('SELECT id FROM f88_assessments WHERE user_id = $1', [userId]);
@@ -59,13 +71,13 @@ const createAssessment = (req, res) => __awaiter(void 0, void 0, void 0, functio
         console.log('Creando nueva evaluación...');
         const assessmentResult = yield db_1.default.query(`INSERT INTO f88_assessments (user_id, question1, question2, question3, level, rest_day, start_date)
              VALUES ($1, $2, $3, $4, $5, $6, $7)
-             RETURNING *`, [userId, question1, question2, question3, level, restDay, startDate]);
+             RETURNING *`, [userId, question1, question2, question3, level, restDay, startDateObj]);
         const assessmentId = assessmentResult.rows[0].id;
         const assessment = assessmentResult.rows[0];
         console.log('Evaluación creada con ID:', assessmentId);
         // Crear el calendario de 88 días
         console.log('Creando calendario de entrenamiento...');
-        yield createTrainingCalendar(userId, assessmentId, startDate, restDay);
+        yield createTrainingCalendar(userId, assessmentId, startDateObj, restDay);
         // Crear registro de progreso
         console.log('Creando registro de progreso...');
         yield db_1.default.query(`INSERT INTO training_progress (user_id, assessment_id)

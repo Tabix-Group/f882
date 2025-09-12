@@ -7,6 +7,7 @@ interface AssessmentForm {
     question2: number;
     question3: number;
     restDay: string;
+    startDate: string;
 }
 
 const F88AssessmentPage: React.FC = () => {
@@ -14,7 +15,8 @@ const F88AssessmentPage: React.FC = () => {
         question1: 0,
         question2: 0,
         question3: 0,
-        restDay: ''
+        restDay: '',
+        startDate: new Date().toISOString().split('T')[0] // Default to today
     });
     const [isLoading, setIsLoading] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
@@ -66,8 +68,17 @@ const F88AssessmentPage: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (formData.question1 === 0 || formData.question2 === 0 || formData.question3 === 0 || !formData.restDay) {
+        if (formData.question1 === 0 || formData.question2 === 0 || formData.question3 === 0 || !formData.restDay || !formData.startDate) {
             alert('Por favor completa todas las preguntas antes de continuar.');
+            return;
+        }
+
+        // Validate start date is not in the past
+        const selectedDate = new Date(formData.startDate);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (selectedDate < today) {
+            alert('La fecha de inicio no puede ser anterior a hoy.');
             return;
         }
 
@@ -85,7 +96,8 @@ const F88AssessmentPage: React.FC = () => {
                     question1: formData.question1,
                     question2: formData.question2,
                     question3: formData.question3,
-                    restDay: formData.restDay
+                    restDay: formData.restDay,
+                    startDate: formData.startDate
                 })
             });
 
@@ -323,8 +335,30 @@ const F88AssessmentPage: React.FC = () => {
                                     formData.restDay === 'thursday' ? 'Jueves' :
                                         formData.restDay === 'friday' ? 'Viernes' :
                                             formData.restDay === 'saturday' ? 'Sábado' : 'Domingo'}</p>
-                        <p>• Inicio del programa: Mañana</p>
                         <p>• Duración: 88 días de actividad</p>
+                    </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
+                    <h4 className="text-white font-semibold mb-4">Elige tu fecha de inicio</h4>
+                    <p className="text-gray-300 text-sm mb-4">
+                        Selecciona cuándo quieres comenzar tu transformación F88. Los 88 días se programarán desde esta fecha.
+                    </p>
+                    <div className="space-y-4">
+                        <label className="block">
+                            <span className="text-white text-sm font-medium">Fecha de inicio:</span>
+                            <input
+                                type="date"
+                                value={formData.startDate}
+                                onChange={(e) => handleInputChange('startDate', e.target.value)}
+                                min={new Date().toISOString().split('T')[0]}
+                                className="mt-1 block w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                        </label>
+                        <p className="text-xs text-gray-400">
+                            • El programa comenzará el día seleccionado<br />
+                            • Asegúrate de estar listo para comprometerte con los 88 días
+                        </p>
                     </div>
                 </div>
             </div>

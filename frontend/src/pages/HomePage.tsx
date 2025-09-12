@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 text-white text-left">
               Fortitud 88
             </h1>
-            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 text-white text-left" style={{lineHeight: '1.3'}}>
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 text-white text-left" style={{ lineHeight: '1.3' }}>
               Maestría Física, Mental, Emocional, de Carácter y de Voluntad en solo 88 días.
             </p>
             <button
@@ -61,10 +61,10 @@ const HomePage: React.FC = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-black/30 backdrop-blur-sm rounded-lg p-4 shadow-lg transform hover:scale-105 transition-all duration-300 w-full max-w-[300px] text-right"
+                className="bg-black/30 backdrop-blur-sm rounded-lg p-8 shadow-lg transform hover:scale-105 transition-all duration-300 w-full max-w-[450px] text-right"
               >
-                <p className="text-sm md:text-base text-gray-300 italic mb-2 leading-relaxed">"{testimonial.text}"</p>
-                <span className="text-blue-400 font-semibold text-sm">{testimonial.name}</span>
+                <p className="text-lg md:text-xl text-gray-300 italic mb-2 leading-relaxed">"{testimonial.text}"</p>
+                <span className="text-blue-400 font-semibold text-lg">{testimonial.name}</span>
               </div>
             ))}
           </div>
