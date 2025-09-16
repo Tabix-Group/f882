@@ -289,59 +289,59 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
 
             <div className="relative z-10 flex flex-col min-h-screen">
-                {/* Header */}
-                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-3 sm:px-4 py-3 sm:py-4 sticky top-0 z-10">
-                    <div className="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
-                        <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
+                {/* Minimal Header */}
+                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-4 py-2">
+                    <div className="max-w-6xl mx-auto flex items-center justify-between">
+                        <div className="flex items-center gap-4">
                             <button
                                 onClick={() => navigate('/dashboard')}
-                                className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200 flex-shrink-0"
+                                className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
                             >
-                                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
 
-                            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0">
+                            <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
                                     J
                                 </div>
-                                <div className="min-w-0 flex-1">
-                                    <h1 className="text-sm sm:text-lg font-semibold truncate">Jordan - Tu Mentor</h1>
-                                    <p className="text-xs sm:text-sm text-gray-400 truncate">Online • Mentor F88</p>
+                                <div>
+                                    <h1 className="text-lg font-semibold">Jordan - Tu Mentor</h1>
+                                    <p className="text-xs text-gray-400">Online • Mentor F88</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                        <div className="flex items-center gap-2">
                             <button
                                 onClick={downloadChat}
                                 disabled={messages.length === 0}
                                 className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                 title="Descargar chat"
                             >
-                                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </button>
-                            <div className="flex items-center gap-1 sm:gap-2">
-                                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
-                                <span className="text-xs sm:text-sm text-gray-400 hidden sm:inline">Activo</span>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                <span className="text-sm text-gray-400">Activo</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Chat Messages */}
-                <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 sm:py-6">
-                    <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+                {/* Chat Messages - Fullscreen */}
+                <div className="flex-1 overflow-y-auto px-4 py-6">
+                    <div className="max-w-6xl mx-auto space-y-6">
                         {messages.length === 0 && !isLoading && (
-                            <div className="text-center py-8 sm:py-12">
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg mx-auto mb-4">
+                            <div className="text-center py-12">
+                                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg mx-auto mb-6">
                                     J
                                 </div>
-                                <h3 className="text-lg sm:text-xl font-semibold mb-2">¡Bienvenido a tu sesión con Jordan!</h3>
-                                <p className="text-gray-400 text-sm sm:text-base max-w-md mx-auto">
+                                <h3 className="text-2xl font-semibold mb-4">¡Bienvenido a tu sesión con Jordan!</h3>
+                                <p className="text-gray-400 text-lg max-w-lg mx-auto leading-relaxed">
                                     Tu mentor personal está listo para guiarte en tu transformación F88.
                                     Escribe tu primer mensaje para comenzar.
                                 </p>
@@ -354,12 +354,12 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
                                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
                                 <div
-                                    className={`max-w-[85%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 sm:py-3 rounded-2xl shadow-lg ${message.role === 'user'
+                                    className={`max-w-[90%] sm:max-w-lg lg:max-w-xl px-4 py-3 rounded-2xl shadow-lg ${message.role === 'user'
                                         ? 'bg-blue-600 text-white rounded-br-md'
                                         : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-bl-md'
                                         }`}
                                 >
-                                    <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words">
+                                    <p className="text-base leading-relaxed whitespace-pre-wrap break-words">
                                         {message.content}
                                     </p>
                                     <p className={`text-xs mt-2 ${message.role === 'user' ? 'text-blue-200' : 'text-gray-400'
@@ -372,14 +372,14 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
 
                         {isLoading && (
                             <div className="flex justify-start">
-                                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl rounded-bl-md px-3 sm:px-4 py-2 sm:py-3 shadow-lg max-w-[85%] sm:max-w-xs">
-                                    <div className="flex items-center gap-2">
+                                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl rounded-bl-md px-4 py-3 shadow-lg max-w-[90%] sm:max-w-lg">
+                                    <div className="flex items-center gap-3">
                                         <div className="flex gap-1">
-                                            <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-                                            <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                                            <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                            <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
+                                            <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                                            <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                                         </div>
-                                        <span className="text-sm text-gray-400">Jordan está escribiendo...</span>
+                                        <span className="text-base text-gray-400">Jordan está escribiendo...</span>
                                     </div>
                                 </div>
                             </div>
@@ -389,50 +389,48 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
                     </div>
                 </div>
 
-                {/* Message Input */}
-                <div className="bg-neutral-900/80 backdrop-blur-md border-t border-white/10 px-3 sm:px-4 py-3 sm:py-4 sticky bottom-0">
-                    <div className="max-w-4xl mx-auto">
-                        <form onSubmit={sendMessage} className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                {/* Message Input - Fullscreen */}
+                <div className="bg-neutral-900/90 backdrop-blur-md border-t border-white/10 px-4 py-4">
+                    <div className="max-w-6xl mx-auto">
+                        <form onSubmit={sendMessage} className="flex gap-4">
                             <div className="flex-1 relative">
                                 <input
                                     type="text"
                                     value={inputMessage}
                                     onChange={(e) => setInputMessage(e.target.value)}
                                     placeholder="Soy Jordan, preguntame lo que desees"
-                                    className="w-full px-4 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base resize-none"
+                                    className="w-full px-6 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base resize-none"
                                     disabled={isLoading}
                                     maxLength={1000}
                                 />
-                                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-500">
+                                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-500">
                                     {inputMessage.length}/1000
                                 </div>
                             </div>
                             <button
                                 type="submit"
                                 disabled={!inputMessage.trim() || isLoading}
-                                className="px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-medium rounded-2xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 min-w-[100px] sm:min-w-[120px]"
+                                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-medium rounded-2xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 min-w-[140px]"
                             >
                                 {isLoading ? (
                                     <>
-                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                        <span className="hidden sm:inline">Enviando</span>
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                        <span>Enviando</span>
                                     </>
                                 ) : (
                                     <>
-                                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                         </svg>
-                                        <span className="hidden sm:inline">Enviar</span>
-                                        <span className="sm:hidden">Enviar</span>
+                                        <span>Enviar</span>
                                     </>
                                 )}
                             </button>
                         </form>
 
-                        <div className="mt-2 sm:mt-3 text-center">
-                            <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
-                                <span className="hidden sm:inline">💡 Recuerda: Jordan está aquí para guiarte en tu transformación F88</span>
-                                <span className="sm:hidden">💡 Mentor F88 disponible</span>
+                        <div className="mt-3 text-center">
+                            <p className="text-sm text-gray-500">
+                                💡 Recuerda: Jordan está aquí para guiarte en tu transformación F88
                             </p>
                         </div>
                     </div>
