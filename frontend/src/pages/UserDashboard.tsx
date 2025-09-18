@@ -20,7 +20,8 @@ const UserDashboard: React.FC = () => {
         // Verificar si el usuario ya completó la evaluación
         const checkAssessmentStatus = async () => {
             try {
-                const response = await fetch(`http://localhost:4000/api/users/assessment-status/${user.id}`);
+                const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+                const response = await fetch(`${API_BASE}/users/assessment-status/${user.id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setHasCompletedAssessment(data.hasCompletedAssessment);
