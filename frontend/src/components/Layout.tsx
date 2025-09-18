@@ -131,7 +131,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <div className="relative" ref={userMenuRef}>
                 {/* User Profile Button - Clickable */}
                 <button
-                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  onClick={() => {
+                    setIsUserMenuOpen(!isUserMenuOpen);
+                    setIsMobileMenuOpen(false); // Close mobile menu when opening user menu
+                  }}
                   className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-2 hover:bg-white/10 transition-all duration-300 hover:border-white/20 cursor-pointer group"
                 >
                   {/* User Avatar */}
@@ -160,7 +163,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
                 {/* Dropdown Menu */}
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-64 bg-neutral-900/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl py-2 z-50">
+                  <div className="absolute right-0 mt-2 w-64 bg-neutral-900/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl py-2 z-60">
                     {/* User Info Header */}
                     <div className="px-4 py-3 border-b border-white/10">
                       <div className="flex items-center gap-3">
@@ -286,7 +289,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+                setIsUserMenuOpen(false); // Close user menu when opening mobile menu
+              }}
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuOpen}
               aria-label="Abrir menú"
@@ -322,7 +328,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {isMobileMenuOpen && (
           <div
             className="fixed inset-0 bg-black/40 z-40 md:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              setIsUserMenuOpen(false); // Also close user menu
+            }}
             aria-hidden="true"
           />
         )}
