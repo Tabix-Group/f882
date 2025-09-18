@@ -108,7 +108,7 @@ const JordanChat: React.FC = () => {
         };
 
         loadChatHistory();
-    }, [user, navigate]);
+    }, [user, authLoading, navigate]);
 
     // Guardar mensajes en localStorage cada vez que cambien
     useEffect(() => {
