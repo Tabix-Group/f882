@@ -126,7 +126,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
 
           {/* User Info or Login */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="flex items-center gap-3">
             {user ? (
               <div className="relative" ref={userMenuRef}>
                 {/* User Profile Button - Clickable */}
