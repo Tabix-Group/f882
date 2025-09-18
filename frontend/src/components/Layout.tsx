@@ -17,6 +17,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(typeof window !== 'undefined' ? window.innerWidth < 1280 : false);
 
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement | null>(null);
@@ -27,7 +28,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+    // track screen size to control mobile button visibility
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 1280);
+    };
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    // call once to set initial state
+    handleResize();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -85,7 +93,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col bg-neutral-950 text-white font-sans">
       {/* Header */}
-      <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${headerClass}`}>
+      <header className={`w-full fixed top-0 z-40 transition-all duration-300 ${headerClass}`}>
         <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link
@@ -286,42 +294,45 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               </Link>
             )}
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(!isMobileMenuOpen);
-                setIsUserMenuOpen(false); // Close user menu when opening mobile menu
-              }}
-              aria-controls="mobile-menu"
-              aria-expanded={isMobileMenuOpen}
-              aria-label="Abrir menú"
-              className="xl:hidden p-2 text-white hover:opacity-90 bg-black/50 rounded-lg border border-white/20"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
+            {/* Mobile Menu Button is rendered outside this desktop-only container (see after) */}
           </div>
         </nav>
+
+        {/* Mobile Menu Button - render outside the desktop-only container so it's visible on small screens */}
+        <button
+          onClick={() => {
+            setIsMobileMenuOpen(!isMobileMenuOpen);
+            setIsUserMenuOpen(false); // Close user menu when opening mobile menu
+          }}
+          aria-controls="mobile-menu"
+          aria-expanded={isMobileMenuOpen}
+          aria-label="Abrir menú"
+          className="fixed top-4 right-4 xl:hidden z-50 p-2 text-white bg-black/75 hover:opacity-90 rounded-lg border border-white/20 focus:outline-none"
+          data-testid="mobile-menu-button"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isMobileMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
@@ -332,6 +343,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               setIsUserMenuOpen(false); // Also close user menu
             }}
             aria-hidden="true"
+            data-testid="mobile-menu-overlay"
           />
         )}
 
@@ -340,15 +352,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           ref={mobileMenuRef}
           role="menu"
           aria-hidden={!isMobileMenuOpen}
-          className={`xl:hidden transform origin-top motion-safe:transition-transform motion-safe:duration-200 transition-all duration-300 ease-in-out ${isMobileMenuOpen
-            ? 'opacity-100 max-h-screen z-50 translate-y-0'
+          className={`block xl:hidden fixed left-0 right-0 top-16 transform origin-top motion-safe:transition-transform motion-safe:duration-200 transition-all duration-300 ease-in-out ${isMobileMenuOpen
+            ? 'opacity-100 max-h-[calc(100vh-4rem)] z-50 translate-y-0'
             : 'opacity-0 max-h-0 pointer-events-none -translate-y-2'
             }`}
           onKeyDown={(e) => {
             if (e.key === 'Escape') setIsMobileMenuOpen(false);
           }}
         >
-          <div className="bg-neutral-900/95 px-6 py-6 space-y-4 border-t border-neutral-800">
+          <div className="bg-neutral-900/95 px-6 py-6 space-y-4 border-t border-neutral-800 overflow-auto">
             {navItems.map((item, idx) => (
               <Link
                 key={item.path}
