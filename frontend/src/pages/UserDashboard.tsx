@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import Spinner from '../components/Spinner';
 
 const UserDashboard: React.FC = () => {
     const [userName, setUserName] = useState<string>('');
     const [hasCompletedAssessment, setHasCompletedAssessment] = useState<boolean>(false);
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
 
     useEffect(() => {
+        if (isLoading) return;
         if (!user) {
             navigate('/login');
             return;
@@ -29,7 +31,15 @@ const UserDashboard: React.FC = () => {
         };
 
         checkAssessmentStatus();
-    }, [user, navigate]);
+    }, [user, isLoading, navigate]);
+
+    if (isLoading) {
+        return (
+            <div className="bg-black text-white min-h-screen flex items-center justify-center">
+                <Spinner size={50} />
+            </div>
+        );
+    }
 
     const sections = [
         {

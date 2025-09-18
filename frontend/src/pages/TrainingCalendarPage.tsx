@@ -33,7 +33,7 @@ const TrainingCalendarPage: React.FC = () => {
     const [programStartDate, setProgramStartDate] = useState<Date | null>(null);
     const [restDay, setRestDay] = useState<string>('');
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user, isLoading: authLoading } = useAuth();
 
     const loadTrainingData = useCallback(async () => {
         try {
@@ -88,13 +88,14 @@ const TrainingCalendarPage: React.FC = () => {
     }, [user?.id, navigate]);
 
     useEffect(() => {
+        if (authLoading) return;
         if (!user) {
             navigate('/login');
             return;
         }
 
         loadTrainingData();
-    }, [user, navigate, loadTrainingData]);
+    }, [user, authLoading, navigate, loadTrainingData]);
 
     const handleDayClick = (day: TrainingDay) => {
         setSelectedDay(day);
@@ -290,6 +291,14 @@ const TrainingCalendarPage: React.FC = () => {
             }
         }
     };
+
+    if (authLoading) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-black via-neutral-900 to-black flex items-center justify-center">
+                <div className="text-white text-xl">Cargando...</div>
+            </div>
+        );
+    }
 
     if (isLoading) {
         return (

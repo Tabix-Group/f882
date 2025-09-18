@@ -21,7 +21,7 @@ const F88AssessmentPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user, isLoading: authLoading } = useAuth();
 
     const checkExistingAssessment = useCallback(async () => {
         try {
@@ -37,6 +37,7 @@ const F88AssessmentPage: React.FC = () => {
     }, [user?.id, navigate]);
 
     useEffect(() => {
+        if (authLoading) return;
         if (!user) {
             navigate('/login');
             return;
@@ -44,7 +45,7 @@ const F88AssessmentPage: React.FC = () => {
 
         // Verificar si el usuario ya tiene una evaluación
         checkExistingAssessment();
-    }, [user, navigate, checkExistingAssessment]);
+    }, [user, authLoading, navigate, checkExistingAssessment]);
 
     const handleInputChange = (field: keyof AssessmentForm, value: number | string) => {
         setFormData(prev => ({
@@ -384,6 +385,14 @@ const F88AssessmentPage: React.FC = () => {
             default: return false;
         }
     };
+
+    if (authLoading) {
+        return (
+            <div className="bg-gradient-to-br from-black via-neutral-900 to-black text-white min-h-screen flex items-center justify-center">
+                <div className="text-white text-xl">Cargando...</div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-gradient-to-br from-black via-neutral-900 to-black text-white min-h-screen">

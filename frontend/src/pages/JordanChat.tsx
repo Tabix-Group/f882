@@ -16,11 +16,12 @@ const JordanChat: React.FC = () => {
     const [sessionId, setSessionId] = useState<number | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user, isLoading: authLoading } = useAuth();
 
     // Cargar historial de mensajes desde el backend
     useEffect(() => {
         const loadChatHistory = async () => {
+            if (authLoading) return;
             if (!user) {
                 navigate('/login');
                 return;
@@ -280,6 +281,14 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
             linkElement.click();
         }
     };
+
+    if (authLoading) {
+        return (
+            <div className="bg-gradient-to-br from-black via-neutral-900 to-black text-white min-h-screen flex items-center justify-center">
+                <div className="text-white text-xl">Cargando...</div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-gradient-to-br from-black via-neutral-900 to-black text-white min-h-screen flex flex-col relative overflow-hidden">
