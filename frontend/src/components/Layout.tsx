@@ -296,7 +296,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuOpen}
               aria-label="Abrir menú"
-              className={`md:hidden p-2 ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} hover:opacity-90`}
+              className="md:hidden p-2 text-gray-100 hover:opacity-90 bg-white/10 rounded-lg"
             >
               <svg
                 className="w-6 h-6"
@@ -349,14 +349,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             if (e.key === 'Escape') setIsMobileMenuOpen(false);
           }}
         >
-          <div className={`${(!isScrolled && isHome) ? 'bg-transparent' : 'bg-neutral-900/95'} px-6 py-6 space-y-4 border-t ${(!isScrolled && isHome) ? '' : 'border-neutral-800'}`}>
+          <div className="bg-neutral-900/95 px-6 py-6 space-y-4 border-t border-neutral-800">
             {navItems.map((item, idx) => (
               <Link
                 key={item.path}
                 to={item.path}
                 role="menuitem"
                 tabIndex={0}
-                className={`block text-lg font-semibold ${(!isScrolled && isHome) ? 'text-white' : 'text-gray-100'} hover:opacity-90 transition-colors`}
+                className="block text-lg font-semibold text-gray-100 hover:opacity-90 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
                 ref={idx === 0 ? (el) => { firstMenuItemRef.current = el as HTMLAnchorElement; if (isMobileMenuOpen && el) (el as HTMLAnchorElement).focus(); } : (idx === navItems.length - 1 ? (el) => { lastMenuItemRef.current = el as HTMLAnchorElement; } : undefined)}
               >
