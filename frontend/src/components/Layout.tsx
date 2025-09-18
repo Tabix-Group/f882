@@ -107,7 +107,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </span>
           </Link>
           {/* Navigation - Desktop */}
-          <div className="hidden md:flex gap-8 items-center text-lg font-semibold">
+          <div className="hidden lg:flex gap-8 items-center text-lg font-semibold">
             {navItems.map((item) => {
               const isActive = location.pathname === item.path;
               return (
@@ -126,7 +126,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
 
           {/* User Info or Login */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {user ? (
               <div className="relative" ref={userMenuRef}>
                 {/* User Profile Button - Clickable */}
@@ -296,7 +296,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuOpen}
               aria-label="Abrir menú"
-              className="md:hidden p-2 text-gray-100 hover:opacity-90 bg-white/10 rounded-lg"
+              className="lg:hidden p-2 text-white hover:opacity-90 bg-black/20 rounded-lg"
             >
               <svg
                 className="w-6 h-6"
@@ -327,7 +327,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div
-            className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            className="fixed inset-0 bg-black/40 z-40 lg:hidden"
             onClick={() => {
               setIsMobileMenuOpen(false);
               setIsUserMenuOpen(false); // Also close user menu
@@ -341,7 +341,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           ref={mobileMenuRef}
           role="menu"
           aria-hidden={!isMobileMenuOpen}
-          className={`md:hidden transform origin-top motion-safe:transition-transform motion-safe:duration-200 transition-all duration-300 ease-in-out ${isMobileMenuOpen
+          className={`lg:hidden transform origin-top motion-safe:transition-transform motion-safe:duration-200 transition-all duration-300 ease-in-out ${isMobileMenuOpen
             ? 'opacity-100 max-h-screen z-50 translate-y-0'
             : 'opacity-0 max-h-0 pointer-events-none -translate-y-2'
             }`}
