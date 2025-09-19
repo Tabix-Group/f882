@@ -1,13 +1,13 @@
 // Actividades de entrenamiento por nivel
 export const TRAINING_ACTIVITIES = {
     INICIAL: {
-        1: { activity: 'Caminata intensa', warmup: 'na', exercise: 12 },
-        2: { activity: 'AFm2', warmup: 2, exercise: 12 },
-        3: { activity: 'Subir/B escaleras', warmup: 'na', exercise: 12 },
-        4: { activity: 'AFm2', warmup: 2, exercise: 12 },
-        5: { activity: 'Caminata intensa', warmup: 'na', exercise: 12 },
-        6: { activity: 'AFm2', warmup: 2, exercise: 12 },
-        7: { activity: 'Libre', warmup: 'na', exercise: 'na' },
+        1: { activity: 'CARDIO: Caminata intensa', warmup: 'na', exercise: 12 },
+        2: { activity: 'CARDIO: Activacion Lateral + DR', warmup: 'na', exercise: 12 },
+        3: { activity: 'FLEXIBILIDAD', warmup: 3, exercise: 12 },
+        4: { activity: 'FUERZA', warmup: 3, exercise: 12 },
+        5: { activity: 'CARDIO: Activacion Lateral + Escaleras', warmup: 'na', exercise: 12 },
+        6: { activity: 'CARDIO: Caminata intensa', warmup: 'na', exercise: 12 },
+        7: { activity: 'LIBRE', warmup: 'na', exercise: 'na' },
         8: { activity: 'Caminata intensa', warmup: 'na', exercise: 13 },
         9: { activity: 'AFm2', warmup: 2, exercise: 13 },
         10: { activity: 'Subir/B escaleras', warmup: 'na', exercise: 13 },
