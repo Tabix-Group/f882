@@ -475,174 +475,173 @@ const TrainingCalendarPage: React.FC = () => {
                 {/* Activity Modal */}
                 {showActivityModal && selectedDay && (
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-                        <div className="bg-neutral-900 border border-white/20 rounded-2xl p-6 max-w-md w-full shadow-2xl">
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-xl font-bold text-white">
-                                    Día {selectedDay.dayNumber}
-                                </h3>
-                                <button
-                                    onClick={closeModal}
-                                    className="text-gray-400 hover:text-white transition-colors"
-                                >
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <div className="space-y-4">
-                                <div className="text-center">
-                                    <div className="text-4xl mb-2">
-                                        {selectedDay.isRestDay ? '😴' : '💪'}
-                                    </div>
-                                    <p className="text-gray-300 text-sm">
-                                        {new Date(selectedDay.date).toLocaleDateString('es-ES', {
-                                            weekday: 'long',
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric'
-                                        })}
-                                    </p>
+                        <div className="bg-neutral-900 border border-white/20 rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl">
+                            <div className="p-6">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-xl font-bold text-white">
+                                        Día {selectedDay.dayNumber}
+                                    </h3>
+                                    <button
+                                        onClick={closeModal}
+                                        className="text-gray-400 hover:text-white transition-colors"
+                                    >
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
                                 </div>
 
-                                {selectedDay.isRestDay ? (
-                                    <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-4 text-center">
-                                        <h4 className="text-green-300 font-semibold mb-2">Día de Descanso</h4>
-                                        <p className="text-green-200 text-sm">
-                                            Hoy es tu día de recuperación. Descansa, hidrátate y prepárate para los próximos entrenamientos.
+                                <div className="space-y-4">
+                                    <div className="text-center">
+                                        <p className="text-gray-300 text-sm">
+                                            {new Date(selectedDay.date).toLocaleDateString('es-ES', {
+                                                weekday: 'long',
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric'
+                                            })}
                                         </p>
                                     </div>
-                                ) : (
-                                    (() => {
-                                        const activity = getActivityForDay(progress?.level || 'INICIAL', selectedDay.dayNumber);
-                                        return activity ? (
-                                            <div className="space-y-4">
-                                                {/* Header con tipo de entrenamiento */}
-                                                <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-4 text-center">
-                                                    <h4 className="text-blue-300 font-bold text-xl mb-1">{activity.activity}</h4>
-                                                    <p className="text-blue-200/80 text-sm">
-                                                        Duración total: {activity.exercise === 'na' ? 'Libre' : `${activity.exercise} minutos`}
-                                                    </p>
-                                                </div>
 
-                                                {/* Detalles del entrenamiento en formato claro */}
-                                                {(activity as any).details && (
-                                                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                                                        <h5 className="text-white font-bold text-lg mb-4 flex items-center">
-                                                            <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
-                                                            Plan de Entrenamiento
-                                                        </h5>
+                                    {selectedDay.isRestDay ? (
+                                        <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-4 text-center">
+                                            <h4 className="text-green-300 font-semibold mb-2">Día de Descanso</h4>
+                                            <p className="text-green-200 text-sm">
+                                                Hoy es tu día de recuperación. Descansa, hidrátate y prepárate para los próximos entrenamientos.
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        (() => {
+                                            const activity = getActivityForDay(progress?.level || 'INICIAL', selectedDay.dayNumber);
+                                            return activity ? (
+                                                <div className="space-y-4">
+                                                    {/* Header con tipo de entrenamiento */}
+                                                    <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-4 text-center">
+                                                        <h4 className="text-blue-300 font-bold text-xl mb-1">{activity.activity}</h4>
+                                                        <p className="text-blue-200/80 text-sm">
+                                                            Duración total: {activity.exercise === 'na' ? 'Libre' : `${activity.exercise} minutos`}
+                                                        </p>
+                                                    </div>
 
-                                                        {/* Información de calentamiento y descanso */}
-                                                        {((activity as any).details.warmup || (activity as any).details.restBetweenSets) && (
-                                                            <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mb-4">
-                                                                <h6 className="text-yellow-300 font-semibold text-sm mb-2">📋 Preparación:</h6>
-                                                                {(activity as any).details.warmup && (
-                                                                    <div className="text-yellow-200 text-sm mb-1">
-                                                                        🔥 {(activity as any).details.warmup}
-                                                                    </div>
-                                                                )}
-                                                                {(activity as any).details.restBetweenSets && (
-                                                                    <div className="text-yellow-200 text-sm">
-                                                                        ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        )}
+                                                    {/* Detalles del entrenamiento en formato claro */}
+                                                    {(activity as any).details && (
+                                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                                            <h5 className="text-white font-bold text-lg mb-4 flex items-center">
+                                                                <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+                                                                Plan de Entrenamiento
+                                                            </h5>
 
-                                                        {/* Lista de ejercicios */}
-                                                        {(activity as any).details.exercises && (
-                                                            <div className="space-y-3">
-                                                                <h6 className="text-white font-semibold flex items-center">
-                                                                    💪 Ejercicios a realizar:
-                                                                </h6>
-                                                                <div className="space-y-2">
-                                                                    {(activity as any).details.exercises.map((exercise: string, index: number) => {
-                                                                        // Parsear el ejercicio para extraer series, reps y minutos
-                                                                        const parseExercise = (exerciseText: string) => {
-                                                                            const name = exerciseText.split(':')[0].trim();
-                                                                            const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
-
-                                                                            // Extraer sets
-                                                                            const setsMatch = details.match(/(\d+)\s*sets?/i);
-                                                                            const sets = setsMatch ? setsMatch[1] : '-';
-
-                                                                            // Extraer reps
-                                                                            const repsMatch = details.match(/(\d+)\s*reps?/i);
-                                                                            const reps = repsMatch ? repsMatch[1] : '-';
-
-                                                                            // Extraer minutos
-                                                                            const minutesMatch = details.match(/(\d+)\s*min/i);
-                                                                            const minutes = minutesMatch ? minutesMatch[1] : '-';
-
-                                                                            return { name, sets, reps, minutes };
-                                                                        };
-
-                                                                        const parsed = parseExercise(exercise);
-
-                                                                        return (
-                                                                            <div key={index} className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-                                                                                <div className="flex items-center mb-2">
-                                                                                    <span className="bg-blue-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">
-                                                                                        {index + 1}
-                                                                                    </span>
-                                                                                    <span className="text-blue-100 font-medium flex-1">{parsed.name}</span>
-                                                                                </div>
-
-                                                                                {/* Columnas para Series, Reps y Minutos */}
-                                                                                <div className="grid grid-cols-3 gap-2 mt-2 ml-9">
-                                                                                    <div className="bg-white/10 rounded-md p-2 text-center">
-                                                                                        <div className="text-xs text-gray-400 mb-1">Series</div>
-                                                                                        <div className="text-white font-semibold text-sm">{parsed.sets}</div>
-                                                                                    </div>
-                                                                                    <div className="bg-white/10 rounded-md p-2 text-center">
-                                                                                        <div className="text-xs text-gray-400 mb-1">Reps</div>
-                                                                                        <div className="text-white font-semibold text-sm">{parsed.reps}</div>
-                                                                                    </div>
-                                                                                    <div className="bg-white/10 rounded-md p-2 text-center">
-                                                                                        <div className="text-xs text-gray-400 mb-1">Min</div>
-                                                                                        <div className="text-white font-semibold text-sm">{parsed.minutes}</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        );
-                                                                    })}
+                                                            {/* Información de calentamiento y descanso */}
+                                                            {((activity as any).details.warmup || (activity as any).details.restBetweenSets) && (
+                                                                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mb-4">
+                                                                    <h6 className="text-yellow-300 font-semibold text-sm mb-2">📋 Preparación:</h6>
+                                                                    {(activity as any).details.warmup && (
+                                                                        <div className="text-yellow-200 text-sm mb-1">
+                                                                            🔥 {(activity as any).details.warmup}
+                                                                        </div>
+                                                                    )}
+                                                                    {(activity as any).details.restBetweenSets && (
+                                                                        <div className="text-yellow-200 text-sm">
+                                                                            ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
+                                                                        </div>
+                                                                    )}
                                                                 </div>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
+                                                            )}
 
-                                                {/* Información de estado y acción */}
-                                                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                                                    <div className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <div className={`w-3 h-3 rounded-full ${selectedDay.isCompleted ? 'bg-green-400' : 'bg-yellow-400'} animate-pulse`}></div>
-                                                            <span className={`font-semibold ${selectedDay.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
-                                                                {selectedDay.isCompleted ? '✅ Entrenamiento Completado' : '⏳ Pendiente de realizar'}
-                                                            </span>
+                                                            {/* Lista de ejercicios en dos columnas */}
+                                                            {(activity as any).details.exercises && (
+                                                                <div className="space-y-3">
+                                                                    <h6 className="text-white font-semibold flex items-center">
+                                                                        💪 Ejercicios a realizar:
+                                                                    </h6>
+                                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                                        {(activity as any).details.exercises.map((exercise: string, index: number) => {
+                                                                            // Parsear el ejercicio para extraer series, reps y minutos
+                                                                            const parseExercise = (exerciseText: string) => {
+                                                                                const name = exerciseText.split(':')[0].trim();
+                                                                                const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
+
+                                                                                // Extraer sets
+                                                                                const setsMatch = details.match(/(\d+)\s*sets?/i);
+                                                                                const sets = setsMatch ? setsMatch[1] : '-';
+
+                                                                                // Extraer reps
+                                                                                const repsMatch = details.match(/(\d+)\s*reps?/i);
+                                                                                const reps = repsMatch ? repsMatch[1] : '-';
+
+                                                                                // Extraer minutos
+                                                                                const minutesMatch = details.match(/(\d+)\s*min/i);
+                                                                                const minutes = minutesMatch ? minutesMatch[1] : '-';
+
+                                                                                return { name, sets, reps, minutes };
+                                                                            };
+
+                                                                            const parsed = parseExercise(exercise);
+
+                                                                            return (
+                                                                                <div key={index} className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
+                                                                                    <div className="flex items-center mb-2">
+                                                                                        <span className="bg-blue-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center mr-2 flex-shrink-0">
+                                                                                            {index + 1}
+                                                                                        </span>
+                                                                                        <span className="text-blue-100 font-medium text-sm flex-1">{parsed.name}</span>
+                                                                                    </div>
+
+                                                                                    {/* Columnas para Series, Reps y Minutos */}
+                                                                                    <div className="grid grid-cols-3 gap-1 mt-2 ml-7">
+                                                                                        <div className="bg-white/10 rounded-md p-1.5 text-center">
+                                                                                            <div className="text-xs text-gray-400 mb-0.5">Series</div>
+                                                                                            <div className="text-white font-semibold text-xs">{parsed.sets}</div>
+                                                                                        </div>
+                                                                                        <div className="bg-white/10 rounded-md p-1.5 text-center">
+                                                                                            <div className="text-xs text-gray-400 mb-0.5">Reps</div>
+                                                                                            <div className="text-white font-semibold text-xs">{parsed.reps}</div>
+                                                                                        </div>
+                                                                                        <div className="bg-white/10 rounded-md p-1.5 text-center">
+                                                                                            <div className="text-xs text-gray-400 mb-0.5">Min</div>
+                                                                                            <div className="text-white font-semibold text-xs">{parsed.minutes}</div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            );
+                                                                        })}
+                                                                    </div>
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                        {!selectedDay.isCompleted && (
-                                                            <button
-                                                                onClick={() => {
-                                                                    handleDayToggle(selectedDay.dayNumber);
-                                                                    closeModal();
-                                                                }}
-                                                                className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg"
-                                                            >
-                                                                ✓ Marcar Completado
-                                                            </button>
-                                                        )}
+                                                    )}
+
+                                                    {/* Información de estado y acción */}
+                                                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                                                        <div className="flex items-center justify-between">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className={`w-3 h-3 rounded-full ${selectedDay.isCompleted ? 'bg-green-400' : 'bg-yellow-400'} animate-pulse`}></div>
+                                                                <span className={`font-semibold ${selectedDay.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
+                                                                    {selectedDay.isCompleted ? '✅ Entrenamiento Completado' : '⏳ Pendiente de realizar'}
+                                                                </span>
+                                                            </div>
+                                                            {!selectedDay.isCompleted && (
+                                                                <button
+                                                                    onClick={() => {
+                                                                        handleDayToggle(selectedDay.dayNumber);
+                                                                        closeModal();
+                                                                    }}
+                                                                    className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg"
+                                                                >
+                                                                    ✓ Marcar Completado
+                                                                </button>
+                                                            )}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ) : (
-                                            <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-4 text-center">
-                                                <p className="text-yellow-200">No se encontró actividad para este día.</p>
-                                            </div>
-                                        );
-                                    })()
-                                )}
+                                            ) : (
+                                                <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-4 text-center">
+                                                    <p className="text-yellow-200">No se encontró actividad para este día.</p>
+                                                </div>
+                                            );
+                                        })()
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
