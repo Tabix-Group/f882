@@ -543,7 +543,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                                     </h6>
                                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                                                         {(activity as any).details.exercises.map((exercise: string, index: number) => {
-                                                                            // Parsear el ejercicio para extraer series, reps y minutos
+                                                                            // Parsear el ejercicio para extraer series, repeticiones y minutos
                                                                             const parseExercise = (exerciseText: string) => {
                                                                                 const name = exerciseText.split(':')[0].trim();
                                                                                 const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
@@ -552,7 +552,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                 const setsMatch = details.match(/(\d+)\s*sets?/i);
                                                                                 const sets = setsMatch ? setsMatch[1] : '-';
 
-                                                                                // Extraer reps
+                                                                                // Extraer repeticiones
                                                                                 const repsMatch = details.match(/(\d+)\s*reps?/i);
                                                                                 const reps = repsMatch ? repsMatch[1] : '-';
 
@@ -574,15 +574,15 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                         <span className="text-blue-100 font-medium text-sm flex-1">{parsed.name}</span>
                                                                                     </div>
 
-                                                                                    {/* Columnas para Series, Reps y Minutos */}
+                                                                                    {/* Columnas para Repeticiones, Series y Minutos */}
                                                                                     <div className="grid grid-cols-3 gap-1 mt-2 ml-7">
                                                                                         <div className="bg-white/10 rounded-md p-1.5 text-center">
-                                                                                            <div className="text-xs text-gray-400 mb-0.5">Series</div>
-                                                                                            <div className="text-white font-semibold text-xs">{parsed.sets}</div>
+                                                                                            <div className="text-xs text-gray-400 mb-0.5">Repeticiones</div>
+                                                                                            <div className="text-white font-semibold text-xs">{parsed.reps}</div>
                                                                                         </div>
                                                                                         <div className="bg-white/10 rounded-md p-1.5 text-center">
-                                                                                            <div className="text-xs text-gray-400 mb-0.5">Reps</div>
-                                                                                            <div className="text-white font-semibold text-xs">{parsed.reps}</div>
+                                                                                            <div className="text-xs text-gray-400 mb-0.5">Series (Veces)</div>
+                                                                                            <div className="text-white font-semibold text-xs">{parsed.sets}</div>
                                                                                         </div>
                                                                                         <div className="bg-white/10 rounded-md p-1.5 text-center">
                                                                                             <div className="text-xs text-gray-400 mb-0.5">Min</div>
