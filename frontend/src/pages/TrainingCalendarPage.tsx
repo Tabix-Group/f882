@@ -557,16 +557,56 @@ const TrainingCalendarPage: React.FC = () => {
                                                                     💪 Ejercicios a realizar:
                                                                 </h6>
                                                                 <div className="space-y-2">
-                                                                    {(activity as any).details.exercises.map((exercise: string, index: number) => (
-                                                                        <div key={index} className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-                                                                            <div className="flex items-start">
-                                                                                <span className="bg-blue-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
-                                                                                    {index + 1}
-                                                                                </span>
-                                                                                <span className="text-blue-100 font-medium flex-1">{exercise}</span>
+                                                                    {(activity as any).details.exercises.map((exercise: string, index: number) => {
+                                                                        // Parsear el ejercicio para extraer series, reps y minutos
+                                                                        const parseExercise = (exerciseText: string) => {
+                                                                            const name = exerciseText.split(':')[0].trim();
+                                                                            const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
+
+                                                                            // Extraer sets
+                                                                            const setsMatch = details.match(/(\d+)\s*sets?/i);
+                                                                            const sets = setsMatch ? setsMatch[1] : '-';
+
+                                                                            // Extraer reps
+                                                                            const repsMatch = details.match(/(\d+)\s*reps?/i);
+                                                                            const reps = repsMatch ? repsMatch[1] : '-';
+
+                                                                            // Extraer minutos
+                                                                            const minutesMatch = details.match(/(\d+)\s*min/i);
+                                                                            const minutes = minutesMatch ? minutesMatch[1] : '-';
+
+                                                                            return { name, sets, reps, minutes };
+                                                                        };
+
+                                                                        const parsed = parseExercise(exercise);
+
+                                                                        return (
+                                                                            <div key={index} className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
+                                                                                <div className="flex items-center mb-2">
+                                                                                    <span className="bg-blue-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">
+                                                                                        {index + 1}
+                                                                                    </span>
+                                                                                    <span className="text-blue-100 font-medium flex-1">{parsed.name}</span>
+                                                                                </div>
+
+                                                                                {/* Columnas para Series, Reps y Minutos */}
+                                                                                <div className="grid grid-cols-3 gap-2 mt-2 ml-9">
+                                                                                    <div className="bg-white/10 rounded-md p-2 text-center">
+                                                                                        <div className="text-xs text-gray-400 mb-1">Series</div>
+                                                                                        <div className="text-white font-semibold text-sm">{parsed.sets}</div>
+                                                                                    </div>
+                                                                                    <div className="bg-white/10 rounded-md p-2 text-center">
+                                                                                        <div className="text-xs text-gray-400 mb-1">Reps</div>
+                                                                                        <div className="text-white font-semibold text-sm">{parsed.reps}</div>
+                                                                                    </div>
+                                                                                    <div className="bg-white/10 rounded-md p-2 text-center">
+                                                                                        <div className="text-xs text-gray-400 mb-1">Min</div>
+                                                                                        <div className="text-white font-semibold text-sm">{parsed.minutes}</div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    ))}
+                                                                        );
+                                                                    })}
                                                                 </div>
                                                             </div>
                                                         )}
