@@ -1,9 +1,9 @@
 // Actividades de entrenamiento por nivel
 export const TRAINING_ACTIVITIES = {
     INICIAL: {
-        1: { 
-            activity: 'CARDIO: Caminata intensa', 
-            warmup: 'na', 
+        1: {
+            activity: 'CARDIO: Caminata intensa',
+            warmup: 'na',
             exercise: 12,
             details: {
                 type: 'CARDIO',
@@ -11,9 +11,9 @@ export const TRAINING_ACTIVITIES = {
                 exercises: ['Caminata intensa - 12 min']
             }
         },
-        2: { 
-            activity: 'CARDIO: Activación Lateral + DR', 
-            warmup: 'na', 
+        2: {
+            activity: 'CARDIO: Activación Lateral + DR',
+            warmup: 'na',
             exercise: 12,
             details: {
                 type: 'CARDIO',
@@ -25,9 +25,9 @@ export const TRAINING_ACTIVITIES = {
                 ]
             }
         },
-        3: { 
-            activity: 'FLEXIBILIDAD', 
-            warmup: 3, 
+        3: {
+            activity: 'FLEXIBILIDAD',
+            warmup: 3,
             exercise: 12,
             details: {
                 type: 'FLEXIBILIDAD',
@@ -43,9 +43,9 @@ export const TRAINING_ACTIVITIES = {
                 ]
             }
         },
-        4: { 
-            activity: 'FUERZA', 
-            warmup: 3, 
+        4: {
+            activity: 'FUERZA',
+            warmup: 3,
             exercise: 12,
             details: {
                 type: 'FUERZA',
@@ -62,9 +62,9 @@ export const TRAINING_ACTIVITIES = {
                 ]
             }
         },
-        5: { 
-            activity: 'CARDIO: Activación Lateral + Escaleras', 
-            warmup: 'na', 
+        5: {
+            activity: 'CARDIO: Activación Lateral + Escaleras',
+            warmup: 'na',
             exercise: 12,
             details: {
                 type: 'CARDIO',
@@ -76,9 +76,9 @@ export const TRAINING_ACTIVITIES = {
                 ]
             }
         },
-        6: { 
-            activity: 'CARDIO: Caminata intensa', 
-            warmup: 'na', 
+        6: {
+            activity: 'CARDIO: Caminata intensa',
+            warmup: 'na',
             exercise: 12,
             details: {
                 type: 'CARDIO',
@@ -86,9 +86,9 @@ export const TRAINING_ACTIVITIES = {
                 exercises: ['Caminata intensa - 12 min']
             }
         },
-        7: { 
-            activity: 'LIBRE', 
-            warmup: 'na', 
+        7: {
+            activity: 'LIBRE',
+            warmup: 'na',
             exercise: 'na',
             details: {
                 type: 'LIBRE',

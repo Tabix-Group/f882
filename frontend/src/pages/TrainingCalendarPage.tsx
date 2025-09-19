@@ -517,74 +517,80 @@ const TrainingCalendarPage: React.FC = () => {
                                         const activity = getActivityForDay(progress?.level || 'INICIAL', selectedDay.dayNumber);
                                         return activity ? (
                                             <div className="space-y-4">
-                                                <div className="bg-blue-500/20 border border-blue-500/30 rounded-xl p-4">
-                                                    <h4 className="text-blue-300 font-semibold mb-2">Actividad del Día</h4>
-                                                    <p className="text-blue-200 text-lg font-medium">{activity.activity}</p>
+                                                {/* Header con tipo de entrenamiento */}
+                                                <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-4 text-center">
+                                                    <h4 className="text-blue-300 font-bold text-xl mb-1">{activity.activity}</h4>
+                                                    <p className="text-blue-200/80 text-sm">
+                                                        Duración total: {activity.exercise === 'na' ? 'Libre' : `${activity.exercise} minutos`}
+                                                    </p>
                                                 </div>
 
-                                                {/* Detalles específicos de ejercicios si están disponibles */}
+                                                {/* Detalles del entrenamiento en formato claro */}
                                                 {(activity as any).details && (
-                                                    <div className="bg-white/5 rounded-xl p-4 space-y-3">
-                                                        <h5 className="text-white font-semibold text-sm">Detalles del Entrenamiento:</h5>
-                                                        
-                                                        {(activity as any).details.warmup && (
-                                                            <div className="text-sm">
-                                                                <span className="text-gray-400">• </span>
-                                                                <span className="text-gray-200">{(activity as any).details.warmup}</span>
-                                                            </div>
-                                                        )}
-                                                        
-                                                        {(activity as any).details.restBetweenSets && (
-                                                            <div className="text-sm">
-                                                                <span className="text-gray-400">• Descanso: </span>
-                                                                <span className="text-gray-200">{(activity as any).details.restBetweenSets}</span>
-                                                            </div>
-                                                        )}
-                                                        
-                                                        {(activity as any).details.exercises && (
-                                                            <div className="space-y-1">
-                                                                <div className="text-sm text-gray-400 font-medium">Ejercicios:</div>
-                                                                {(activity as any).details.exercises.map((exercise: string, index: number) => (
-                                                                    <div key={index} className="text-sm pl-2">
-                                                                        <span className="text-blue-400">• </span>
-                                                                        <span className="text-gray-200">{exercise}</span>
+                                                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                                        <h5 className="text-white font-bold text-lg mb-4 flex items-center">
+                                                            <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+                                                            Plan de Entrenamiento
+                                                        </h5>
+
+                                                        {/* Información de calentamiento y descanso */}
+                                                        {((activity as any).details.warmup || (activity as any).details.restBetweenSets) && (
+                                                            <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mb-4">
+                                                                <h6 className="text-yellow-300 font-semibold text-sm mb-2">📋 Preparación:</h6>
+                                                                {(activity as any).details.warmup && (
+                                                                    <div className="text-yellow-200 text-sm mb-1">
+                                                                        🔥 {(activity as any).details.warmup}
                                                                     </div>
-                                                                ))}
+                                                                )}
+                                                                {(activity as any).details.restBetweenSets && (
+                                                                    <div className="text-yellow-200 text-sm">
+                                                                        ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )}
+
+                                                        {/* Lista de ejercicios */}
+                                                        {(activity as any).details.exercises && (
+                                                            <div className="space-y-3">
+                                                                <h6 className="text-white font-semibold flex items-center">
+                                                                    💪 Ejercicios a realizar:
+                                                                </h6>
+                                                                <div className="space-y-2">
+                                                                    {(activity as any).details.exercises.map((exercise: string, index: number) => (
+                                                                        <div key={index} className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
+                                                                            <div className="flex items-start">
+                                                                                <span className="bg-blue-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                                                                    {index + 1}
+                                                                                </span>
+                                                                                <span className="text-blue-100 font-medium flex-1">{exercise}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
                                                             </div>
                                                         )}
                                                     </div>
                                                 )}
 
-                                                <div className="grid grid-cols-2 gap-3">
-                                                    <div className="bg-white/10 rounded-lg p-3 text-center">
-                                                        <div className="text-xs text-gray-400 mb-1">Calentamiento</div>
-                                                        <div className="text-white font-medium">
-                                                            {activity.warmup === 'na' ? 'Sin especificar' : `${activity.warmup} min`}
-                                                        </div>
-                                                    </div>
-                                                    <div className="bg-white/10 rounded-lg p-3 text-center">
-                                                        <div className="text-xs text-gray-400 mb-1">Ejercicio</div>
-                                                        <div className="text-white font-medium">
-                                                            {activity.exercise === 'na' ? 'Libre' : `${activity.exercise} min`}
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="bg-white/5 rounded-lg p-3">
-                                                    <div className="text-xs text-gray-400 mb-1">Estado</div>
+                                                {/* Información de estado y acción */}
+                                                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                                                     <div className="flex items-center justify-between">
-                                                        <span className={`text-sm font-medium ${selectedDay.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
-                                                            {selectedDay.isCompleted ? 'Completado ✓' : 'Pendiente'}
-                                                        </span>
+                                                        <div className="flex items-center gap-3">
+                                                            <div className={`w-3 h-3 rounded-full ${selectedDay.isCompleted ? 'bg-green-400' : 'bg-yellow-400'} animate-pulse`}></div>
+                                                            <span className={`font-semibold ${selectedDay.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
+                                                                {selectedDay.isCompleted ? '✅ Entrenamiento Completado' : '⏳ Pendiente de realizar'}
+                                                            </span>
+                                                        </div>
                                                         {!selectedDay.isCompleted && (
                                                             <button
                                                                 onClick={() => {
                                                                     handleDayToggle(selectedDay.dayNumber);
                                                                     closeModal();
                                                                 }}
-                                                                className="px-3 py-1 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded-lg transition-colors"
+                                                                className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg"
                                                             >
-                                                                Marcar como completado
+                                                                ✓ Marcar Completado
                                                             </button>
                                                         )}
                                                     </div>
