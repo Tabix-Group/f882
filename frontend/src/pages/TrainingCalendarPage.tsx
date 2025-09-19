@@ -518,24 +518,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                                 Plan de Entrenamiento
                                                             </h5>
 
-                                                            {/* Información de calentamiento y descanso */}
-                                                            {((activity as any).details.warmup || (activity as any).details.restBetweenSets) && (
-                                                                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mb-4">
-                                                                    <h6 className="text-yellow-300 font-semibold text-sm mb-2">📋 Preparación:</h6>
-                                                                    {(activity as any).details.warmup && (
-                                                                        <div className="text-yellow-200 text-sm mb-1">
-                                                                            🔥 {(activity as any).details.warmup}
-                                                                        </div>
-                                                                    )}
-                                                                    {(activity as any).details.restBetweenSets && (
-                                                                        <div className="text-yellow-200 text-sm">
-                                                                            ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
-                                                                        </div>
-                                                                    )}
-                                                                </div>
-                                                            )}
-
-                                                            {/* Lista de ejercicios en dos columnas */}
+                                                            {/* Lista de ejercicios en formato tabla */}
                                                             {(activity as any).details.exercises && (
                                                                 <div className="space-y-4">
                                                                     <h6 className="text-white font-semibold flex items-center">
@@ -554,40 +537,65 @@ const TrainingCalendarPage: React.FC = () => {
                                                                         </div>
 
                                                                         {/* Filas de ejercicios */}
-                                                                        {(activity as any).details.exercises.map((exercise: string, index: number) => {
-                                                                            // Parsear el ejercicio para extraer series, repeticiones y minutos
-                                                                            const parseExercise = (exerciseText: string) => {
-                                                                                const name = exerciseText.split(':')[0].trim();
-                                                                                const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
+                                                                        {(() => {
+                                                                            // Crear lista completa de ejercicios incluyendo precalentamiento
+                                                                            const allExercises = [];
 
-                                                                                // Extraer sets
-                                                                                const setsMatch = details.match(/(\d+)\s*sets?/i);
-                                                                                const sets = setsMatch ? setsMatch[1] : 'na';
+                                                                            // Agregar precalentamiento al inicio si existe
+                                                                            if ((activity as any).details.warmup) {
+                                                                                allExercises.push(`Precalentamiento: ${(activity as any).details.warmup}`);
+                                                                            }
 
-                                                                                // Extraer repeticiones
-                                                                                const repsMatch = details.match(/(\d+)\s*reps?/i);
-                                                                                const reps = repsMatch ? repsMatch[1] : 'na';
+                                                                            // Agregar el resto de ejercicios
+                                                                            allExercises.push(...(activity as any).details.exercises);
 
-                                                                                // Extraer minutos
-                                                                                const minutesMatch = details.match(/(\d+)\s*min/i);
-                                                                                const minutes = minutesMatch ? minutesMatch[1] : 'na';
+                                                                            return allExercises.map((exercise: string, index: number) => {
+                                                                                // Parsear el ejercicio para extraer series, repeticiones y minutos
+                                                                                const parseExercise = (exerciseText: string) => {
+                                                                                    const name = exerciseText.split(':')[0].trim();
+                                                                                    const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
 
-                                                                                return { name, sets, reps, minutes };
-                                                                            };
+                                                                                    // Extraer sets
+                                                                                    const setsMatch = details.match(/(\d+)\s*sets?/i);
+                                                                                    const sets = setsMatch ? setsMatch[1] : 'na';
 
-                                                                            const parsed = parseExercise(exercise);
+                                                                                    // Extraer repeticiones
+                                                                                    const repsMatch = details.match(/(\d+)\s*reps?/i);
+                                                                                    const reps = repsMatch ? repsMatch[1] : 'na';
 
-                                                                            return (
-                                                                                <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors`}>
-                                                                                    <div className="text-white font-bold text-center">{index + 1}</div>
-                                                                                    <div className="text-white text-sm font-medium">{parsed.name}</div>
-                                                                                    <div className="text-white text-sm text-center">{parsed.reps}</div>
-                                                                                    <div className="text-white text-sm text-center">{parsed.sets}</div>
-                                                                                    <div className="text-white text-sm text-center">{parsed.minutes}</div>
-                                                                                </div>
-                                                                            );
-                                                                        })}
+                                                                                    // Extraer minutos
+                                                                                    const minutesMatch = details.match(/(\d+)\s*min/i);
+                                                                                    const minutes = minutesMatch ? minutesMatch[1] : 'na';
+
+                                                                                    return { name, sets, reps, minutes };
+                                                                                };
+
+                                                                                const parsed = parseExercise(exercise);
+                                                                                const isWarmup = exercise.toLowerCase().includes('precalentamiento');
+
+                                                                                return (
+                                                                                    <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : ''}`}>
+                                                                                        <div className="text-white font-bold text-center">{index + 1}</div>
+                                                                                        <div className={`text-sm font-medium ${isWarmup ? 'text-orange-200' : 'text-white'}`}>
+                                                                                            {isWarmup && '🔥 '}{parsed.name}
+                                                                                        </div>
+                                                                                        <div className="text-white text-sm text-center">{parsed.reps}</div>
+                                                                                        <div className="text-white text-sm text-center">{parsed.sets}</div>
+                                                                                        <div className="text-white text-sm text-center">{parsed.minutes}</div>
+                                                                                    </div>
+                                                                                );
+                                                                            });
+                                                                        })()}
                                                                     </div>
+
+                                                                    {/* Información adicional sobre descanso entre ejercicios */}
+                                                                    {(activity as any).details.restBetweenSets && (
+                                                                        <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
+                                                                            <div className="text-yellow-200 text-sm text-center">
+                                                                                ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
                                                                 </div>
                                                             )}
                                                         </div>
