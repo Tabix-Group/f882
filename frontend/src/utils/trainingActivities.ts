@@ -1,13 +1,101 @@
 // Actividades de entrenamiento por nivel
 export const TRAINING_ACTIVITIES = {
     INICIAL: {
-        1: { activity: 'CARDIO: Caminata intensa', warmup: 'na', exercise: 12 },
-        2: { activity: 'CARDIO: Activacion Lateral + DR', warmup: 'na', exercise: 12 },
-        3: { activity: 'FLEXIBILIDAD', warmup: 3, exercise: 12 },
-        4: { activity: 'FUERZA', warmup: 3, exercise: 12 },
-        5: { activity: 'CARDIO: Activacion Lateral + Escaleras', warmup: 'na', exercise: 12 },
-        6: { activity: 'CARDIO: Caminata intensa', warmup: 'na', exercise: 12 },
-        7: { activity: 'LIBRE', warmup: 'na', exercise: 'na' },
+        1: { 
+            activity: 'CARDIO: Caminata intensa', 
+            warmup: 'na', 
+            exercise: 12,
+            details: {
+                type: 'CARDIO',
+                duration: 12,
+                exercises: ['Caminata intensa - 12 min']
+            }
+        },
+        2: { 
+            activity: 'CARDIO: Activación Lateral + DR', 
+            warmup: 'na', 
+            exercise: 12,
+            details: {
+                type: 'CARDIO',
+                duration: 12,
+                restBetweenSets: '30 a 60 segs',
+                exercises: [
+                    'Activación Lateral: 6 min',
+                    'DR (Directa/Reversa): 6 min'
+                ]
+            }
+        },
+        3: { 
+            activity: 'FLEXIBILIDAD', 
+            warmup: 3, 
+            exercise: 12,
+            details: {
+                type: 'FLEXIBILIDAD',
+                duration: 12,
+                warmup: 'Precalentamiento: 3 min',
+                restBetweenSets: '30 a 60 segs',
+                exercises: [
+                    'Aplausos del Colibrí: 2 sets - 30 reps c/set',
+                    'Vórtice pendular: 1 set - 30 reps',
+                    'Toque cruzado: 2 sets - 30 reps c/set',
+                    'Sembrando movimiento: 1 set - 30 reps',
+                    'Incentivo a la Flexibilidad: 5 min'
+                ]
+            }
+        },
+        4: { 
+            activity: 'FUERZA', 
+            warmup: 3, 
+            exercise: 12,
+            details: {
+                type: 'FUERZA',
+                duration: 12,
+                warmup: 'Precalentamiento: 3 min',
+                restBetweenSets: '30 a 60 segs',
+                exercises: [
+                    'Flexión Vertical: 2 sets - 30 reps c/set',
+                    'Abandonar la silla: 1 set - 30 reps',
+                    'Activador Zen: 1 set - 30 reps',
+                    'Puente de Glúteos: 2 sets - 30 reps c/set',
+                    'Abdominal Supino: 2 sets - 4 reps c/set',
+                    'Reductor Cintura: 2 sets - 20 reps c/ pierna c/set'
+                ]
+            }
+        },
+        5: { 
+            activity: 'CARDIO: Activación Lateral + Escaleras', 
+            warmup: 'na', 
+            exercise: 12,
+            details: {
+                type: 'CARDIO',
+                duration: 12,
+                restBetweenSets: '30 a 60 segs',
+                exercises: [
+                    'Activación Lateral: 6 min',
+                    'S/B Escaleras o Step: 6 min'
+                ]
+            }
+        },
+        6: { 
+            activity: 'CARDIO: Caminata intensa', 
+            warmup: 'na', 
+            exercise: 12,
+            details: {
+                type: 'CARDIO',
+                duration: 12,
+                exercises: ['Caminata intensa - 12 min']
+            }
+        },
+        7: { 
+            activity: 'LIBRE', 
+            warmup: 'na', 
+            exercise: 'na',
+            details: {
+                type: 'LIBRE',
+                duration: 'na',
+                exercises: ['Día libre - Descanso activo']
+            }
+        },
         8: { activity: 'Caminata intensa', warmup: 'na', exercise: 13 },
         9: { activity: 'AFm2', warmup: 2, exercise: 13 },
         10: { activity: 'Subir/B escaleras', warmup: 'na', exercise: 13 },

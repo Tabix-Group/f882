@@ -516,11 +516,44 @@ const TrainingCalendarPage: React.FC = () => {
                                     (() => {
                                         const activity = getActivityForDay(progress?.level || 'INICIAL', selectedDay.dayNumber);
                                         return activity ? (
-                                            <div className="space-y-3">
+                                            <div className="space-y-4">
                                                 <div className="bg-blue-500/20 border border-blue-500/30 rounded-xl p-4">
                                                     <h4 className="text-blue-300 font-semibold mb-2">Actividad del Día</h4>
                                                     <p className="text-blue-200 text-lg font-medium">{activity.activity}</p>
                                                 </div>
+
+                                                {/* Detalles específicos de ejercicios si están disponibles */}
+                                                {(activity as any).details && (
+                                                    <div className="bg-white/5 rounded-xl p-4 space-y-3">
+                                                        <h5 className="text-white font-semibold text-sm">Detalles del Entrenamiento:</h5>
+                                                        
+                                                        {(activity as any).details.warmup && (
+                                                            <div className="text-sm">
+                                                                <span className="text-gray-400">• </span>
+                                                                <span className="text-gray-200">{(activity as any).details.warmup}</span>
+                                                            </div>
+                                                        )}
+                                                        
+                                                        {(activity as any).details.restBetweenSets && (
+                                                            <div className="text-sm">
+                                                                <span className="text-gray-400">• Descanso: </span>
+                                                                <span className="text-gray-200">{(activity as any).details.restBetweenSets}</span>
+                                                            </div>
+                                                        )}
+                                                        
+                                                        {(activity as any).details.exercises && (
+                                                            <div className="space-y-1">
+                                                                <div className="text-sm text-gray-400 font-medium">Ejercicios:</div>
+                                                                {(activity as any).details.exercises.map((exercise: string, index: number) => (
+                                                                    <div key={index} className="text-sm pl-2">
+                                                                        <span className="text-blue-400">• </span>
+                                                                        <span className="text-gray-200">{exercise}</span>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
 
                                                 <div className="grid grid-cols-2 gap-3">
                                                     <div className="bg-white/10 rounded-lg p-3 text-center">
