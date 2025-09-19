@@ -537,11 +537,23 @@ const TrainingCalendarPage: React.FC = () => {
 
                                                             {/* Lista de ejercicios en dos columnas */}
                                                             {(activity as any).details.exercises && (
-                                                                <div className="space-y-3">
+                                                                <div className="space-y-4">
                                                                     <h6 className="text-white font-semibold flex items-center">
                                                                         💪 Ejercicios a realizar:
                                                                     </h6>
-                                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+                                                                    {/* Tabla horizontal de ejercicios */}
+                                                                    <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
+                                                                        {/* Header de la tabla */}
+                                                                        <div className="grid grid-cols-5 gap-2 bg-blue-600/20 p-3 border-b border-white/10">
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center">#</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center">Ejercicio</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center">Repeticiones</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center">Series (Veces)</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center">Minutos</div>
+                                                                        </div>
+
+                                                                        {/* Filas de ejercicios */}
                                                                         {(activity as any).details.exercises.map((exercise: string, index: number) => {
                                                                             // Parsear el ejercicio para extraer series, repeticiones y minutos
                                                                             const parseExercise = (exerciseText: string) => {
@@ -550,15 +562,15 @@ const TrainingCalendarPage: React.FC = () => {
 
                                                                                 // Extraer sets
                                                                                 const setsMatch = details.match(/(\d+)\s*sets?/i);
-                                                                                const sets = setsMatch ? setsMatch[1] : '-';
+                                                                                const sets = setsMatch ? setsMatch[1] : 'na';
 
                                                                                 // Extraer repeticiones
                                                                                 const repsMatch = details.match(/(\d+)\s*reps?/i);
-                                                                                const reps = repsMatch ? repsMatch[1] : '-';
+                                                                                const reps = repsMatch ? repsMatch[1] : 'na';
 
                                                                                 // Extraer minutos
                                                                                 const minutesMatch = details.match(/(\d+)\s*min/i);
-                                                                                const minutes = minutesMatch ? minutesMatch[1] : '-';
+                                                                                const minutes = minutesMatch ? minutesMatch[1] : 'na';
 
                                                                                 return { name, sets, reps, minutes };
                                                                             };
@@ -566,29 +578,12 @@ const TrainingCalendarPage: React.FC = () => {
                                                                             const parsed = parseExercise(exercise);
 
                                                                             return (
-                                                                                <div key={index} className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
-                                                                                    <div className="flex items-center mb-2">
-                                                                                        <span className="bg-blue-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center mr-2 flex-shrink-0">
-                                                                                            {index + 1}
-                                                                                        </span>
-                                                                                        <span className="text-blue-100 font-medium text-sm flex-1">{parsed.name}</span>
-                                                                                    </div>
-
-                                                                                    {/* Columnas para Repeticiones, Series y Minutos */}
-                                                                                    <div className="grid grid-cols-3 gap-1 mt-2 ml-7">
-                                                                                        <div className="bg-white/10 rounded-md p-1.5 text-center">
-                                                                                            <div className="text-xs text-gray-400 mb-0.5">Repeticiones</div>
-                                                                                            <div className="text-white font-semibold text-xs">{parsed.reps}</div>
-                                                                                        </div>
-                                                                                        <div className="bg-white/10 rounded-md p-1.5 text-center">
-                                                                                            <div className="text-xs text-gray-400 mb-0.5">Series (Veces)</div>
-                                                                                            <div className="text-white font-semibold text-xs">{parsed.sets}</div>
-                                                                                        </div>
-                                                                                        <div className="bg-white/10 rounded-md p-1.5 text-center">
-                                                                                            <div className="text-xs text-gray-400 mb-0.5">Min</div>
-                                                                                            <div className="text-white font-semibold text-xs">{parsed.minutes}</div>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors`}>
+                                                                                    <div className="text-white font-bold text-center">{index + 1}</div>
+                                                                                    <div className="text-white text-sm font-medium">{parsed.name}</div>
+                                                                                    <div className="text-white text-sm text-center">{parsed.reps}</div>
+                                                                                    <div className="text-white text-sm text-center">{parsed.sets}</div>
+                                                                                    <div className="text-white text-sm text-center">{parsed.minutes}</div>
                                                                                 </div>
                                                                             );
                                                                         })}
