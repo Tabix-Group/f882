@@ -518,6 +518,15 @@ const TrainingCalendarPage: React.FC = () => {
                                                                 Plan de Entrenamiento
                                                             </h5>
 
+                                                            {/* Información sobre descanso entre ejercicios */}
+                                                            {(activity as any).details.restBetweenSets && (
+                                                                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mb-4">
+                                                                    <div className="text-yellow-200 text-sm text-center">
+                                                                        ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
+                                                                    </div>
+                                                                </div>
+                                                            )}
+
                                                             {/* Lista de ejercicios en formato tabla */}
                                                             {(activity as any).details.exercises && (
                                                                 <div className="space-y-4">
@@ -587,15 +596,6 @@ const TrainingCalendarPage: React.FC = () => {
                                                                             });
                                                                         })()}
                                                                     </div>
-
-                                                                    {/* Información adicional sobre descanso entre ejercicios */}
-                                                                    {(activity as any).details.restBetweenSets && (
-                                                                        <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
-                                                                            <div className="text-yellow-200 text-sm text-center">
-                                                                                ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
-                                                                            </div>
-                                                                        </div>
-                                                                    )}
                                                                 </div>
                                                             )}
                                                         </div>
