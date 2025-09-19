@@ -30,32 +30,39 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/steps-to-do" element={<StepsToDoPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/what-is-f88" element={<WhatIsF88Page />} />
-            <Route path="/videos-testimonials" element={<VideosTestimonialsPage />} />
-            <Route path="/buy-book" element={<BuyBookPage />} />
-            <Route path="/buy-book-mentor" element={<BuyBookMentorPage />} />
-            <Route path="/proceed-to-payment" element={<ProceedToPaymentPage />} />
-            <Route path="/payment" element={<PaymentPage />} />
-            <Route path="/confirmation" element={<ConfirmationPage />} />
-            <Route path="/access-program-materials" element={<AccessProgramMaterialsPage />} />
-            <Route path="/access-mentor" element={<AccessMentorPage />} />
-            <Route path="/start-f88-fitness-change" element={<StartF88FitnessChangePage />} />
-            <Route path="/access-will-88-day-program" element={<AccessWill88DayProgramPage />} />
-            <Route path="/end" element={<EndPage />} />
-            <Route path="/customer-service" element={<CustomerServicePage />} />
-            <Route path="/read-book" element={<ReadBookPage />} />
-            <Route path="/dashboard" element={<UserDashboard />} />
-            <Route path="/jordan-chat" element={<JordanChat />} />
-            <Route path="/f88-assessment" element={<F88AssessmentPage />} />
-            <Route path="/training-calendar" element={<TrainingCalendarPage />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          {/* Fullscreen routes without Layout */}
+          <Route path="/jordan-chat" element={<JordanChat />} />
+
+          {/* Regular routes with Layout */}
+          <Route path="/*" element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/steps-to-do" element={<StepsToDoPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/what-is-f88" element={<WhatIsF88Page />} />
+                <Route path="/videos-testimonials" element={<VideosTestimonialsPage />} />
+                <Route path="/buy-book" element={<BuyBookPage />} />
+                <Route path="/buy-book-mentor" element={<BuyBookMentorPage />} />
+                <Route path="/proceed-to-payment" element={<ProceedToPaymentPage />} />
+                <Route path="/payment" element={<PaymentPage />} />
+                <Route path="/confirmation" element={<ConfirmationPage />} />
+                <Route path="/access-program-materials" element={<AccessProgramMaterialsPage />} />
+                <Route path="/access-mentor" element={<AccessMentorPage />} />
+                <Route path="/start-f88-fitness-change" element={<StartF88FitnessChangePage />} />
+                <Route path="/access-will-88-day-program" element={<AccessWill88DayProgramPage />} />
+                <Route path="/end" element={<EndPage />} />
+                <Route path="/customer-service" element={<CustomerServicePage />} />
+                <Route path="/read-book" element={<ReadBookPage />} />
+                <Route path="/dashboard" element={<UserDashboard />} />
+                <Route path="/f88-assessment" element={<F88AssessmentPage />} />
+                <Route path="/training-calendar" element={<TrainingCalendarPage />} />
+              </Routes>
+            </Layout>
+          } />
+        </Routes>
       </Router>
     </AuthProvider>
   );
