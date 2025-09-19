@@ -230,6 +230,18 @@ const TrainingCalendarPage: React.FC = () => {
                 >
                     {trainingDay ? (
                         <>
+                            {/* Semáforo minimalista - círculo de estado */}
+                            <div className="absolute top-1 right-1">
+                                <div className={`w-2 h-2 rounded-full ${trainingDay.isRestDay
+                                        ? 'bg-blue-400 shadow-blue-400/50'
+                                        : trainingDay.isCompleted
+                                            ? 'bg-green-400 shadow-green-400/50'
+                                            : isPast
+                                                ? 'bg-red-400 shadow-red-400/50'
+                                                : 'bg-yellow-400 shadow-yellow-400/50'
+                                    } shadow-lg animate-pulse`}></div>
+                            </div>
+
                             {/* Número del día del programa en el centro */}
                             <div className="flex-1 flex items-center justify-center">
                                 <span className="text-lg font-bold">{trainingDay.dayNumber}</span>
@@ -439,22 +451,50 @@ const TrainingCalendarPage: React.FC = () => {
                         </div>
 
                         {/* Legend */}
-                        <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm">
-                            <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-blue-500/20 border border-blue-500/30 rounded"></div>
-                                <span>Día completado</span>
+                        <div className="mt-8 space-y-4">
+                            {/* Leyenda de colores de fondo */}
+                            <div className="flex flex-wrap justify-center gap-6 text-sm">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 bg-blue-500/20 border border-blue-500/30 rounded"></div>
+                                    <span>Día completado</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 bg-white/5 border border-white/20 rounded"></div>
+                                    <span>Día pendiente</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 bg-red-500/20 border border-red-500/30 rounded"></div>
+                                    <span>Día perdido</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 bg-green-500/20 border border-green-500/30 rounded"></div>
+                                    <span>Día de descanso</span>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-white/5 border border-white/20 rounded"></div>
-                                <span>Día pendiente</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-red-500/20 border border-red-500/30 rounded"></div>
-                                <span>Día perdido</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-green-500/20 border border-green-500/30 rounded"></div>
-                                <span>Día de descanso</span>
+
+                            {/* Leyenda del semáforo */}
+                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+                                <h4 className="text-center text-white font-semibold mb-3 flex items-center justify-center gap-2">
+                                    🚦 Indicador de Estado
+                                </h4>
+                                <div className="flex flex-wrap justify-center gap-6 text-sm">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-green-400 rounded-full shadow-lg animate-pulse"></div>
+                                        <span>Completado</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-yellow-400 rounded-full shadow-lg animate-pulse"></div>
+                                        <span>Pendiente</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-red-400 rounded-full shadow-lg animate-pulse"></div>
+                                        <span>Perdido</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-blue-400 rounded-full shadow-lg animate-pulse"></div>
+                                        <span>Descanso</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -477,18 +517,10 @@ const TrainingCalendarPage: React.FC = () => {
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
                         <div className="bg-neutral-900 border border-white/20 rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl">
                             <div className="p-6">
-                                <div className="flex items-center justify-between mb-4">
+                                <div className="mb-4">
                                     <h3 className="text-xl font-bold text-white">
                                         Día {selectedDay.dayNumber}
                                     </h3>
-                                    <button
-                                        onClick={closeModal}
-                                        className="text-gray-400 hover:text-white transition-colors"
-                                    >
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
                                 </div>
 
                                 <div className="space-y-4">
