@@ -17,7 +17,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(typeof window !== 'undefined' ? window.innerWidth < 1280 : false);
 
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement | null>(null);
@@ -30,7 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
     // track screen size to control mobile button visibility
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 1280);
+      // Screen size tracking removed - mobile button visibility handled by CSS classes
     };
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
