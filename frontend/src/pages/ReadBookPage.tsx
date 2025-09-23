@@ -176,14 +176,7 @@ const ReadBookPage: React.FC = () => {
             {/* Top controls bar */}
             <div className="flex items-center justify-between mb-6 bg-white/10 backdrop-blur-sm rounded-2xl p-4">
               <div className="flex items-center gap-4">
-                <button
-                  onClick={exitFullscreen}
-                  className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-red-500/25 transform hover:scale-105"
-                  title="Presiona Escape para salir"
-                >
-                  <span className="text-lg group-hover:rotate-90 transition-transform duration-200">✕</span>
-                  <span>Salir del Modo Lectura</span>
-                </button>
+                {/* Removed duplicate exit button */}
               </div>
 
               <div className="text-white text-lg font-semibold bg-white/10 px-4 py-2 rounded-xl backdrop-blur-sm">
