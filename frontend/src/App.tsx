@@ -33,6 +33,7 @@ function App() {
         <Routes>
           {/* Fullscreen routes without Layout */}
           <Route path="/jordan-chat" element={<JordanChat />} />
+          <Route path="/read-book" element={<ReadBookPage />} />
 
           {/* Regular routes with Layout */}
           <Route path="/*" element={
@@ -55,7 +56,6 @@ function App() {
                 <Route path="/access-will-88-day-program" element={<AccessWill88DayProgramPage />} />
                 <Route path="/end" element={<EndPage />} />
                 <Route path="/customer-service" element={<CustomerServicePage />} />
-                <Route path="/read-book" element={<ReadBookPage />} />
                 <Route path="/dashboard" element={<UserDashboard />} />
                 <Route path="/f88-assessment" element={<F88AssessmentPage />} />
                 <Route path="/training-calendar" element={<TrainingCalendarPage />} />
