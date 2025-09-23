@@ -34,6 +34,7 @@ function App() {
           {/* Fullscreen routes without Layout */}
           <Route path="/jordan-chat" element={<JordanChat />} />
           <Route path="/read-book" element={<ReadBookPage />} />
+          <Route path="/training-calendar" element={<TrainingCalendarPage />} />
 
           {/* Regular routes with Layout */}
           <Route path="/*" element={
@@ -58,7 +59,6 @@ function App() {
                 <Route path="/customer-service" element={<CustomerServicePage />} />
                 <Route path="/dashboard" element={<UserDashboard />} />
                 <Route path="/f88-assessment" element={<F88AssessmentPage />} />
-                <Route path="/training-calendar" element={<TrainingCalendarPage />} />
               </Routes>
             </Layout>
           } />

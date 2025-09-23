@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Dummy data for chapters and audio (replace with real data/fetch)
 const chapters = [
@@ -6,15 +7,7 @@ const chapters = [
     title: 'Página 1: Introducción',
     text: `Este es el cayo emocional que construyes con el tiempo y de poco a poco. La mente es un 
 primer filtro de información,  tu fuerza emocional es tu segundo filtro o búfer. 
-Las experiencias se disparan  en tu mente y tu código de creencias de fortaleza reestudiado como                   {audioPlaying ? (
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                  ) : (
-                    <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                    </svg>
-                  )}o "The GRIT" las traduce y manda al cuerpo como realidades de sensaciones. 
+Las experiencias se disparan  en tu mente y tu código de creencias de fortaleza reestudiado como "The GRIT" las traduce y manda al cuerpo como realidades de sensaciones. 
 Las emociones, son también respuestas que experimentas a condicionamiento de patrones 
 aprendidos por tu propio cuerpo respecto de ciertas experiencias pasadas. Estos recuerdos 
 provienen de tu memoria muscular, celular, inmunológica y somática en lo general y no 
@@ -37,6 +30,7 @@ const ReadBookPage: React.FC = () => {
   const [audioCurrentTime, setAudioCurrentTime] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const navigate = useNavigate();
 
   // Update audio source when chapter changes
   useEffect(() => {
@@ -305,24 +299,50 @@ const ReadBookPage: React.FC = () => {
                   Página {currentChapter + 1} de {chapters.length}
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="text-xs text-gray-700 font-medium">Tamaño Letra</div>
-                <div className="flex gap-1 items-center">
+              <div className="flex items-center gap-4">
+                {/* Navigation Links */}
+                <div className="flex items-center gap-2">
                   <button
-                    onClick={() => setFontSize(Math.max(12, fontSize - 2))}
-                    className="w-8 h-8 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold text-lg flex items-center justify-center transition-all duration-200 border-2 border-blue-200 hover:border-blue-300 shadow-sm hover:shadow-md"
-                    title="Disminuir tamaño de fuente"
+                    onClick={() => navigate('/dashboard')}
+                    className="flex items-center gap-2 px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 font-medium rounded-lg transition-all duration-200 text-sm"
+                    title="Volver al Panel de Control"
                   >
-                    <span className="leading-none">−</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
+                    </svg>
+                    Panel
                   </button>
-                  <span className="w-8 text-center text-xs font-semibold bg-gray-100 py-1 px-1 rounded border">{fontSize}</span>
                   <button
-                    onClick={() => setFontSize(Math.min(24, fontSize + 2))}
-                    className="w-8 h-8 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold text-lg flex items-center justify-center transition-all duration-200 border-2 border-blue-200 hover:border-blue-300 shadow-sm hover:shadow-md"
-                    title="Aumentar tamaño de fuente"
+                    onClick={() => navigate('/jordan-chat')}
+                    className="flex items-center gap-2 px-3 py-2 bg-purple-100 hover:bg-purple-200 text-purple-700 font-medium rounded-lg transition-all duration-200 text-sm"
+                    title="Chat con Jordan"
                   >
-                    <span className="leading-none">+</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    Jordan
                   </button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="text-xs text-gray-700 font-medium">Tamaño Letra</div>
+                  <div className="flex gap-1 items-center">
+                    <button
+                      onClick={() => setFontSize(Math.max(12, fontSize - 2))}
+                      className="w-8 h-8 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold text-lg flex items-center justify-center transition-all duration-200 border-2 border-blue-200 hover:border-blue-300 shadow-sm hover:shadow-md"
+                      title="Disminuir tamaño de fuente"
+                    >
+                      <span className="leading-none">−</span>
+                    </button>
+                    <span className="w-8 text-center text-xs font-semibold bg-gray-100 py-1 px-1 rounded border">{fontSize}</span>
+                    <button
+                      onClick={() => setFontSize(Math.min(24, fontSize + 2))}
+                      className="w-8 h-8 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold text-lg flex items-center justify-center transition-all duration-200 border-2 border-blue-200 hover:border-blue-300 shadow-sm hover:shadow-md"
+                      title="Aumentar tamaño de fuente"
+                    >
+                      <span className="leading-none">+</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
