@@ -85,13 +85,6 @@ const ReadBookPage: React.FC = () => {
     // Keep fullscreen on pause - only exit when explicitly requested
   };
 
-  const exitFullscreen = () => {
-    setIsFullscreenReading(false);
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
-  };
-
   // Format seconds to mm:ss
   const formatTime = (s: number) => {
     if (!s || isNaN(s)) return '0:00';
