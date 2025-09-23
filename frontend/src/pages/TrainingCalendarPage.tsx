@@ -330,12 +330,6 @@ const TrainingCalendarPage: React.FC = () => {
                         </div>
 
                         <div className="flex items-center gap-4">
-                            <button
-                                onClick={() => navigate('/f88-assessment')}
-                                className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-all duration-200"
-                            >
-                                Ver Evaluación
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -344,32 +338,15 @@ const TrainingCalendarPage: React.FC = () => {
                 {progress && (
                     <div className="bg-neutral-900/50 backdrop-blur-md border-b border-white/10 px-4 py-6">
                         <div className="max-w-6xl mx-auto">
-                            <div className="grid grid-cols-2 gap-6">
-                                <div className="text-center">
-                                    <div className="text-2xl font-bold text-blue-400">{progress.completedDays}</div>
-                                    <div className="text-sm text-gray-400">Días Completados</div>
-                                </div>
-                                <div className="text-center">
-                                    <div className="text-2xl font-bold text-red-400">
-                                        {programStartDate ? (() => {
-                                            const today = new Date();
-                                            const daysElapsed = Math.floor((today.getTime() - programStartDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-                                            return Math.max(0, daysElapsed - progress.completedDays);
-                                        })() : 0}
-                                    </div>
-                                    <div className="text-sm text-gray-400">Días Perdidos</div>
-                                </div>
-                            </div>
-
                             {/* Progress Bar */}
                             <div className="mt-6">
                                 <div className="flex justify-between text-sm text-gray-400 mb-2">
                                     <span>Progreso del programa</span>
                                     <span>{progress.completedDays} de {progress.totalDays} días</span>
                                 </div>
-                                <div className="w-full bg-white/10 rounded-full h-3">
+                                <div className="w-full bg-red-500/20 rounded-full h-3 relative">
                                     <div
-                                        className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-500"
+                                        className="bg-green-500 h-3 rounded-full transition-all duration-500 absolute left-0 top-0"
                                         style={{
                                             width: progress.totalDays && progress.totalDays > 0
                                                 ? `${(progress.completedDays / progress.totalDays) * 100}%`
@@ -445,6 +422,24 @@ const TrainingCalendarPage: React.FC = () => {
                                 <div className="w-4 h-4 bg-green-500/20 border border-green-500/30 rounded"></div>
                                 <span>Día de descanso</span>
                             </div>
+                            {progress && (
+                                <>
+                                    <div className="flex items-center gap-2 text-xs">
+                                        <span className="text-blue-400 font-bold">{progress.completedDays}</span>
+                                        <span>Días completados</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-xs">
+                                        <span className="text-red-400 font-bold">
+                                            {programStartDate ? (() => {
+                                                const today = new Date();
+                                                const daysElapsed = Math.floor((today.getTime() - programStartDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+                                                return Math.max(0, daysElapsed - progress.completedDays);
+                                            })() : 0}
+                                        </span>
+                                        <span>Días perdidos</span>
+                                    </div>
+                                </>
+                            )}
                         </div>                        {/* Motivational Message */}
                         <div className="mt-8 text-center">
                             <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/20 rounded-xl p-6">
@@ -508,25 +503,16 @@ const TrainingCalendarPage: React.FC = () => {
                                                         <p className="text-blue-200/80 text-sm">
                                                             Duración total: {activity.exercise === 'na' ? 'Libre' : `${activity.exercise} minutos`}
                                                         </p>
+                                                        {(activity as any).details?.restBetweenSets && (
+                                                            <p className="text-blue-200/80 text-sm">
+                                                                Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
+                                                            </p>
+                                                        )}
                                                     </div>
 
                                                     {/* Detalles del entrenamiento en formato claro */}
                                                     {(activity as any).details && (
                                                         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                                                            <h5 className="text-white font-bold text-lg mb-4 flex items-center">
-                                                                <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
-                                                                Plan de Entrenamiento
-                                                            </h5>
-
-                                                            {/* Información sobre descanso entre ejercicios */}
-                                                            {(activity as any).details.restBetweenSets && (
-                                                                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mb-4">
-                                                                    <div className="text-yellow-200 text-sm text-center">
-                                                                        ⏱️ Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
-                                                                    </div>
-                                                                </div>
-                                                            )}
-
                                                             {/* Lista de ejercicios en formato tabla */}
                                                             {(activity as any).details.exercises && (
                                                                 <div className="space-y-4">
@@ -538,11 +524,11 @@ const TrainingCalendarPage: React.FC = () => {
                                                                     <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
                                                                         {/* Header de la tabla */}
                                                                         <div className="grid grid-cols-5 gap-2 bg-blue-600/20 p-3 border-b border-white/10">
-                                                                            <div className="text-blue-200 font-semibold text-sm text-center">#</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center w-8">#</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center">Ejercicio</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center">Repeticiones</div>
-                                                                            <div className="text-blue-200 font-semibold text-sm text-center">Series (Veces)</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center">Minutos</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center">Series</div>
                                                                         </div>
 
                                                                         {/* Filas de ejercicios */}
@@ -584,13 +570,13 @@ const TrainingCalendarPage: React.FC = () => {
 
                                                                                 return (
                                                                                     <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : ''}`}>
-                                                                                        <div className="text-white font-bold text-center">{index + 1}</div>
+                                                                                        <div className="text-white font-bold text-center w-8">{index + 1}</div>
                                                                                         <div className={`text-sm font-medium ${isWarmup ? 'text-orange-200' : 'text-white'}`}>
                                                                                             {isWarmup && '🔥 '}{parsed.name}
                                                                                         </div>
                                                                                         <div className="text-white text-sm text-center">{parsed.reps}</div>
-                                                                                        <div className="text-white text-sm text-center">{parsed.sets}</div>
                                                                                         <div className="text-white text-sm text-center">{parsed.minutes}</div>
+                                                                                        <div className="text-white text-sm text-center">{parsed.sets}</div>
                                                                                     </div>
                                                                                 );
                                                                             });
@@ -599,9 +585,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                                 </div>
                                                             )}
                                                         </div>
-                                                    )}
-
-                                                    {/* Información de estado y acción */}
+                                                    )}                                                    {/* Información de estado y acción */}
                                                     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                                                         <div className="flex items-center justify-between">
                                                             <div className="flex items-center gap-3">
