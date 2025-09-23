@@ -301,46 +301,46 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
 
             <div className="relative z-10 flex flex-col h-full">
                 {/* Compact Header */}
-                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-4 py-2 flex-shrink-0">
+                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-4 py-1 flex-shrink-0">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                             <button
                                 onClick={() => navigate('/dashboard')}
-                                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors duration-200"
+                                className="p-1 hover:bg-white/10 rounded-lg transition-colors duration-200"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
 
-                            <div className="flex items-center gap-2">
-                                <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-xs">
+                            <div className="flex items-center gap-1.5">
+                                <div className="w-5 h-5 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-xs">
                                     J
                                 </div>
                                 <div>
-                                    <h1 className="text-sm font-semibold">Jordan - Tu Mentor</h1>
+                                    <h1 className="text-xs font-semibold">Jordan - Tu Mentor</h1>
                                     <p className="text-xs text-gray-400">Online • Mentor F88</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
                             <button
                                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors duration-200"
+                                className="p-1 hover:bg-white/10 rounded-lg transition-colors duration-200"
                                 title="Buscar en el chat"
                             >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </button>
                             <button
                                 onClick={downloadChat}
                                 disabled={messages.length === 0}
-                                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="p-1 hover:bg-white/10 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                 title="Descargar chat"
                             >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </button>
@@ -497,11 +497,6 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
                             </button>
                         </form>
 
-                        <div className="mt-2 sm:mt-3 text-center">
-                            <p className="text-xs sm:text-sm text-gray-500">
-                                💡 Recuerda: Jordan está aquí para guiarte en tu transformación F88
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
