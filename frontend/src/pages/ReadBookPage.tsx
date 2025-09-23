@@ -31,23 +31,12 @@ const audioUrls = [
 
 const ReadBookPage: React.FC = () => {
   const [currentChapter, setCurrentChapter] = useState(0);
-  const [chat, setChat] = useState<{ sender: 'user' | 'bot'; message: string }[]>([]);
-  const [input, setInput] = useState('');
   const [audioPlaying, setAudioPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [fontSize, setFontSize] = useState(16);
-  const [showChat, setShowChat] = useState(false);
   const [isFullscreenReading, setIsFullscreenReading] = useState(false);
-  const [showChatInFullscreen, setShowChatInFullscreen] = useState(false);
   const [audioCurrentTime, setAudioCurrentTime] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
-  const chatEndRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  // Auto-scroll chat to bottom
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [chat]);
 
   // Update audio source when chapter changes
   useEffect(() => {
@@ -81,7 +70,6 @@ const ReadBookPage: React.FC = () => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isFullscreenReading) {
         setIsFullscreenReading(false);
-        setShowChatInFullscreen(false);
         if (audioRef.current) {
           audioRef.current.pause();
         }
@@ -105,14 +93,9 @@ const ReadBookPage: React.FC = () => {
 
   const exitFullscreen = () => {
     setIsFullscreenReading(false);
-    setShowChatInFullscreen(false);
     if (audioRef.current) {
       audioRef.current.pause();
     }
-  };
-
-  const toggleChatInFullscreen = () => {
-    setShowChatInFullscreen(!showChatInFullscreen);
   };
 
   // Format seconds to mm:ss
@@ -178,41 +161,6 @@ const ReadBookPage: React.FC = () => {
     document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
   }, [audioPlaying, audioDuration]);
-
-  // Chatbot real con backend
-  const handleChat = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
-
-    const userMessage = input;
-    setChat([...chat, { sender: 'user', message: userMessage }]);
-    setInput('');
-    setIsLoading(true);
-    setShowChat(true);
-
-    try {
-      const res = await fetch('https://be-production-36c6.up.railway.app/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: userMessage,
-          chapter: chapters[currentChapter].text
-        }),
-      });
-      const data = await res.json();
-      setChat((prev) => [
-        ...prev,
-        { sender: 'bot', message: data.reply || 'No response from assistant.' },
-      ]);
-    } catch {
-      setChat((prev) => [
-        ...prev,
-        { sender: 'bot', message: 'Error al conectar con el asistente.' },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <>
