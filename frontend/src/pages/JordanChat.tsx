@@ -14,6 +14,8 @@ const JordanChat: React.FC = () => {
     const [inputMessage, setInputMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [sessionId, setSessionId] = useState<number | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const { user, isLoading: authLoading } = useAuth();
@@ -299,24 +301,24 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
 
             <div className="relative z-10 flex flex-col h-full">
                 {/* Compact Header */}
-                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-4 py-3 flex-shrink-0">
+                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-4 py-2 flex-shrink-0">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <button
                                 onClick={() => navigate('/dashboard')}
-                                className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+                                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors duration-200"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
 
-                            <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                            <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-xs">
                                     J
                                 </div>
                                 <div>
-                                    <h1 className="text-lg font-semibold">Jordan - Tu Mentor</h1>
+                                    <h1 className="text-sm font-semibold">Jordan - Tu Mentor</h1>
                                     <p className="text-xs text-gray-400">Online • Mentor F88</p>
                                 </div>
                             </div>
@@ -324,60 +326,118 @@ Recuerda que el éxito en los 88 días depende de la consistencia. ¿Has podido 
 
                         <div className="flex items-center gap-2">
                             <button
+                                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors duration-200"
+                                title="Buscar en el chat"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </button>
+                            <button
                                 onClick={downloadChat}
                                 disabled={messages.length === 0}
-                                className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                 title="Descargar chat"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </button>
-                            <div className="flex items-center gap-2">
-                                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                                <span className="text-sm text-gray-400 hidden sm:inline">Activo</span>
-                            </div>
                         </div>
                     </div>
                 </div>
 
+                {/* Search Bar */}
+                {isSearchOpen && (
+                    <div className="bg-neutral-800/50 backdrop-blur-md border-b border-white/10 px-4 py-3 flex-shrink-0">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    placeholder="Buscar en el chat..."
+                                    className="w-full px-4 py-2 pl-10 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                />
+                                <svg className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                                {searchQuery && (
+                                    <button
+                                        onClick={() => setSearchQuery('')}
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Chat Messages Container - Takes remaining height */}
                 <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 min-h-0">
                     <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
-                        {messages.length === 0 && !isLoading && (
-                            <div className="text-center py-8 sm:py-12">
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg mx-auto mb-4 sm:mb-6">
-                                    J
-                                </div>
-                                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">¡Bienvenido a tu sesión con Jordan!</h3>
-                                <p className="text-gray-400 text-base sm:text-lg max-w-lg mx-auto leading-relaxed px-4">
-                                    Tu mentor personal está listo para guiarte en tu transformación F88.
-                                    Escribe tu primer mensaje para comenzar.
-                                </p>
-                            </div>
-                        )}
+                        {(() => {
+                            const filteredMessages = searchQuery
+                                ? messages.filter(message =>
+                                    message.content.toLowerCase().includes(searchQuery.toLowerCase())
+                                )
+                                : messages;
 
-                        {messages.map((message) => (
-                            <div
-                                key={message.id}
-                                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                            >
-                                <div
-                                    className={`max-w-[85%] sm:max-w-[75%] lg:max-w-xl px-3 sm:px-4 py-2 sm:py-3 rounded-2xl shadow-lg ${message.role === 'user'
-                                        ? 'bg-blue-600 text-white rounded-br-md'
-                                        : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-bl-md'
-                                        }`}
-                                >
-                                    <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words">
-                                        {message.content}
-                                    </p>
-                                    <p className={`text-xs mt-1 sm:mt-2 ${message.role === 'user' ? 'text-blue-200' : 'text-gray-400'
-                                        }`}>
-                                        {formatTime(message.timestamp)}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
+                            return (
+                                <>
+                                    {filteredMessages.length === 0 && !isLoading && (
+                                        <div className="text-center py-8 sm:py-12">
+                                            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg mx-auto mb-4 sm:mb-6">
+                                                J
+                                            </div>
+                                            <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
+                                                {searchQuery ? 'No se encontraron resultados' : '¡Bienvenido a tu sesión con Jordan!'}
+                                            </h3>
+                                            <p className="text-gray-400 text-base sm:text-lg max-w-lg mx-auto leading-relaxed px-4">
+                                                {searchQuery
+                                                    ? `No hay mensajes que contengan "${searchQuery}". Intenta con otros términos.`
+                                                    : 'Tu mentor personal está listo para guiarte en tu transformación F88. Escribe tu primer mensaje para comenzar.'
+                                                }
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    {filteredMessages.map((message) => (
+                                        <div
+                                            key={message.id}
+                                            className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                                        >
+                                            <div
+                                                className={`max-w-[85%] sm:max-w-[75%] lg:max-w-xl px-3 sm:px-4 py-2 sm:py-3 rounded-2xl shadow-lg ${message.role === 'user'
+                                                    ? 'bg-blue-600 text-white rounded-br-md'
+                                                    : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-bl-md'
+                                                    } ${searchQuery && message.content.toLowerCase().includes(searchQuery.toLowerCase()) ? 'ring-2 ring-yellow-400' : ''}`}
+                                            >
+                                                <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words">
+                                                    {searchQuery
+                                                        ? message.content.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, index) =>
+                                                            part.toLowerCase() === searchQuery.toLowerCase() ? (
+                                                                <mark key={index} className="bg-yellow-400 text-black px-1 rounded">{part}</mark>
+                                                            ) : part
+                                                        )
+                                                        : message.content
+                                                    }
+                                                </p>
+                                                <p className={`text-xs mt-1 sm:mt-2 ${message.role === 'user' ? 'text-blue-200' : 'text-gray-400'
+                                                    }`}>
+                                                    {formatTime(message.timestamp)}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
+                            );
+                        })()}
 
                         {isLoading && (
                             <div className="flex justify-start">

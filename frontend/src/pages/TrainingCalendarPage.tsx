@@ -524,7 +524,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                                     <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
                                                                         {/* Header de la tabla */}
                                                                         <div className="grid grid-cols-5 gap-2 bg-blue-600/20 p-3 border-b border-white/10">
-                                                                            <div className="text-blue-200 font-semibold text-sm text-center w-8">#</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center w-6">#</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center">Ejercicio</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center">Repeticiones</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center">Minutos</div>
@@ -570,7 +570,7 @@ const TrainingCalendarPage: React.FC = () => {
 
                                                                                 return (
                                                                                     <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : ''}`}>
-                                                                                        <div className="text-white font-bold text-center w-8">{index + 1}</div>
+                                                                                        <div className="text-white font-bold text-center w-6">{index + 1}</div>
                                                                                         <div className={`text-sm font-medium ${isWarmup ? 'text-orange-200' : 'text-white'}`}>
                                                                                             {isWarmup && '🔥 '}{parsed.name}
                                                                                         </div>
