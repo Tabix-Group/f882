@@ -502,7 +502,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                         <h4 className="text-blue-300 font-bold text-xl mb-1">{activity.activity}</h4>
                                                         <p className="text-blue-200/80 text-sm">
                                                             Duración total: {activity.exercise === 'na' ? 'Libre' : (() => {
-                                                                const baseDuration = parseInt(activity.exercise) || 0;
+                                                                const baseDuration = parseInt(String(activity.exercise)) || 0;
                                                                 const hasRespiracion = (activity as any).details?.respiracionConsciente;
                                                                 return hasRespiracion ? `${baseDuration + 10} minutos (incluye 10 min de respiración)` : `${baseDuration} minutos`;
                                                             })()}
