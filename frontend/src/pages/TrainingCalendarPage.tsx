@@ -501,7 +501,11 @@ const TrainingCalendarPage: React.FC = () => {
                                                     <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-4 text-center">
                                                         <h4 className="text-blue-300 font-bold text-xl mb-1">{activity.activity}</h4>
                                                         <p className="text-blue-200/80 text-sm">
-                                                            Duración total: {activity.exercise === 'na' ? 'Libre' : `${activity.exercise} minutos`}
+                                                            Duración total: {activity.exercise === 'na' ? 'Libre' : (() => {
+                                                                const baseDuration = parseInt(activity.exercise) || 0;
+                                                                const hasRespiracion = (activity as any).details?.respiracionConsciente;
+                                                                return hasRespiracion ? `${baseDuration + 10} minutos (incluye 10 min de respiración)` : `${baseDuration} minutos`;
+                                                            })()}
                                                         </p>
                                                         {(activity as any).details?.restBetweenSets && (
                                                             <p className="text-blue-200/80 text-sm">
@@ -544,9 +548,24 @@ const TrainingCalendarPage: React.FC = () => {
                                                                             // Agregar el resto de ejercicios
                                                                             allExercises.push(...(activity as any).details.exercises);
 
+                                                                            // Agregar respiración consciente al final si existe
+                                                                            if ((activity as any).details.respiracionConsciente) {
+                                                                                allExercises.push((activity as any).details.respiracionConsciente);
+                                                                            }
+
                                                                             return allExercises.map((exercise: string, index: number) => {
                                                                                 // Parsear el ejercicio para extraer series, repeticiones y minutos
                                                                                 const parseExercise = (exerciseText: string) => {
+                                                                                    // Caso especial para respiración consciente
+                                                                                    if (exerciseText.toLowerCase().includes('respiración consciente')) {
+                                                                                        return {
+                                                                                            name: 'Respiración Consciente',
+                                                                                            sets: '1',
+                                                                                            reps: 'na',
+                                                                                            minutes: '10'
+                                                                                        };
+                                                                                    }
+
                                                                                     const name = exerciseText.split(':')[0].trim();
                                                                                     const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
 
@@ -567,12 +586,13 @@ const TrainingCalendarPage: React.FC = () => {
 
                                                                                 const parsed = parseExercise(exercise);
                                                                                 const isWarmup = exercise.toLowerCase().includes('precalentamiento');
+                                                                                const isRespiracion = exercise.toLowerCase().includes('respiración consciente');
 
                                                                                 return (
-                                                                                    <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : ''}`}>
+                                                                                    <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : isRespiracion ? 'bg-green-500/10 border-l-4 border-green-400' : ''}`}>
                                                                                         <div className="text-white font-bold text-center w-6">{index + 1}</div>
-                                                                                        <div className={`text-sm font-medium ${isWarmup ? 'text-orange-200' : 'text-white'}`}>
-                                                                                            {isWarmup && '🔥 '}{parsed.name}
+                                                                                        <div className={`text-sm font-medium ${isWarmup ? 'text-orange-200' : isRespiracion ? 'text-green-200' : 'text-white'}`}>
+                                                                                            {isWarmup && '🔥 '}{isRespiracion && '🧘 '}{parsed.name}
                                                                                         </div>
                                                                                         <div className="text-white text-sm text-center">{parsed.reps}</div>
                                                                                         <div className="text-white text-sm text-center">{parsed.minutes}</div>
