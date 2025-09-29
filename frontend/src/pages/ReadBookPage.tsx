@@ -46,6 +46,7 @@ const ReadBookPage: React.FC = () => {
   const [fontSize, setFontSize] = useState(16);
   const [fontFamily, setFontFamily] = useState('serif');
   const [isFullscreenReading, setIsFullscreenReading] = useState(false);
+  const [isAudioFullscreen, setIsAudioFullscreen] = useState(false);
   const [highlights, setHighlights] = useState<Highlight[]>([]);
   const [showHighlightMenu, setShowHighlightMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
@@ -53,16 +54,27 @@ const ReadBookPage: React.FC = () => {
   const [showHighlightsModal, setShowHighlightsModal] = useState(false);
   const [audioCurrentTime, setAudioCurrentTime] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
+  const [currentHighlightsPage, setCurrentHighlightsPage] = useState(1);
+  const highlightsPerPage = 5;
   const audioRef = useRef<HTMLAudioElement>(null);
+  const readingContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  // Update audio source when chapter changes
+  // Load saved chapter on component mount
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.src = audioUrls[currentChapter];
-      audioRef.current.load(); // Reload the audio element
+    const savedChapter = localStorage.getItem('f88-current-chapter');
+    if (savedChapter !== null) {
+      const chapterIndex = parseInt(savedChapter, 10);
+      if (chapterIndex >= 0 && chapterIndex < chapters.length) {
+        setCurrentChapter(chapterIndex);
+      }
     }
+  }, []);
+
+  // Save current chapter when it changes
+  useEffect(() => {
+    localStorage.setItem('f88-current-chapter', currentChapter.toString());
   }, [currentChapter]);
 
   // audio event listeners
@@ -107,7 +119,7 @@ const ReadBookPage: React.FC = () => {
   // Handle audio play/pause for fullscreen mode
   const handleAudioPlay = () => {
     setAudioPlaying(true);
-    setIsFullscreenReading(true);
+    // Don't auto-enter fullscreen here - let user control it
   };
 
   const handleAudioPause = () => {
@@ -119,7 +131,7 @@ const ReadBookPage: React.FC = () => {
   useEffect(() => {
     if (user) {
       console.log('Loading highlights for user:', user.id);
-      axios.get(`http://localhost:4000/api/books/highlights/${user.id}`)
+      axios.get(`https://f88-backend-production.up.railway.app/api/books/highlights/${user.id}`)
         .then(response => {
           console.log('Highlights loaded successfully:', response.data);
           const data = response.data as GetHighlightsResponse;
@@ -174,7 +186,7 @@ const ReadBookPage: React.FC = () => {
   const addHighlight = () => {
     if (selectedText && user) {
       console.log('Adding highlight:', { userId: user.id, text: selectedText, chapter: currentChapter });
-      axios.post('http://localhost:4000/api/books/highlights', {
+      axios.post('https://f88-backend-production.up.railway.app/api/books/highlights', {
         userId: user.id,
         text: selectedText,
         chapter: currentChapter
@@ -205,7 +217,6 @@ const ReadBookPage: React.FC = () => {
   };
 
   // Fullscreen API toggle for the main reading area
-  const readingContainerRef = useRef<HTMLDivElement | null>(null);
   const toggleFullscreen = async () => {
     const el = readingContainerRef.current || document.documentElement;
     if (!document.fullscreenElement) {
@@ -225,28 +236,40 @@ const ReadBookPage: React.FC = () => {
     }
   };
 
-  // Keyboard shortcuts: ← previous, → next, f fullscreen, space play/pause
+  // Auto-enter fullscreen mode when component mounts
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement)?.tagName === 'INPUT' || (e.target as HTMLElement)?.tagName === 'TEXTAREA') return;
-      if (e.key === 'ArrowLeft') {
-        setCurrentChapter((c) => Math.max(0, c - 1));
-      } else if (e.key === 'ArrowRight') {
-        setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1));
-      } else if (e.key.toLowerCase() === 'f') {
-        toggleFullscreen();
-      } else if (e.key === ' ') {
-        // prevent page scroll
-        e.preventDefault();
-        if (audioRef.current) {
-          if (audioPlaying) audioRef.current.pause();
-          else audioRef.current.play();
-        }
+    const enterFullscreen = async () => {
+      try {
+        await document.documentElement.requestFullscreen();
+        setIsFullscreenReading(true);
+      } catch (e) {
+        // If fullscreen fails, just continue in normal mode
+        console.log('Fullscreen not available');
       }
     };
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
-  }, [audioPlaying, audioDuration]);
+
+    // Small delay to ensure component is fully rendered
+    const timer = setTimeout(enterFullscreen, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Listen for fullscreen changes to update state
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        setIsFullscreenReading(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // Calculate pagination
+  const totalHighlightsPages = Math.ceil(highlights.length / highlightsPerPage);
+  const startIndex = (currentHighlightsPage - 1) * highlightsPerPage;
+  const endIndex = startIndex + highlightsPerPage;
+  const currentHighlights = highlights.slice(startIndex, endIndex);
 
   return (
     <>
@@ -262,109 +285,171 @@ const ReadBookPage: React.FC = () => {
 
       {/* Fullscreen Reading Mode */}
       {isFullscreenReading && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex">
-          {/* Main reading area */}
-          <div className={`flex-1 flex flex-col p-8 transition-all duration-300 mr-0`}>
-            {/* Top controls bar */}
-            <div className="flex items-center justify-between mb-6 bg-white/10 backdrop-blur-sm rounded-2xl p-4">
-              <div className="flex items-center gap-4">
-                {/* Removed duplicate exit button */}
-              </div>
+        <div className="fixed inset-0 bg-black z-50 flex">
+          {/* Exit fullscreen button - top right corner */}
+          <button
+            onClick={() => setIsFullscreenReading(false)}
+            className="absolute top-6 right-6 z-60 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg transition-all duration-200"
+            title="Salir de pantalla completa"
+            aria-label="Salir de pantalla completa"
+          >
+            ×
+          </button>
 
-              <div className="text-white text-lg font-semibold bg-white/10 px-4 py-2 rounded-xl backdrop-blur-sm">
-                {chapters[currentChapter].title}
-              </div>
+          {/* Navigation buttons - left side */}
+          <button
+            onClick={() => setCurrentChapter((c) => Math.max(0, c - 1))}
+            disabled={currentChapter === 0}
+            className="absolute left-6 top-1/2 transform -translate-y-1/2 z-60 w-12 h-12 bg-black/50 hover:bg-black/70 disabled:opacity-30 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center text-2xl transition-all duration-200"
+            title="Página anterior"
+            aria-label="Página anterior"
+          >
+            ‹
+          </button>
 
-              <div className="flex items-center gap-4">
-                <div className="text-white text-sm bg-white/10 px-3 py-2 rounded-lg backdrop-blur-sm">
-                  Página {currentChapter + 1} de {chapters.length}
-                </div>
-              </div>
-            </div>
+          {/* Navigation buttons - right side */}
+          <button
+            onClick={() => setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1))}
+            disabled={currentChapter === chapters.length - 1}
+            className="absolute right-6 top-1/2 transform -translate-y-1/2 z-60 w-12 h-12 bg-black/50 hover:bg-black/70 disabled:opacity-30 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center text-2xl transition-all duration-200"
+            title="Página siguiente"
+            aria-label="Página siguiente"
+          >
+            ›
+          </button>
 
-            {/* Reading content */}
+          {/* Font size controls - bottom right */}
+          <div className="absolute bottom-6 right-6 z-60 flex items-center gap-2 bg-black/50 hover:bg-black/70 rounded-full p-2 transition-all duration-200">
+            <button
+              onClick={() => setFontSize(Math.max(12, fontSize - 2))}
+              className="w-8 h-8 text-white hover:text-gray-300 rounded-full flex items-center justify-center text-lg font-bold transition-colors"
+              title="Disminuir tamaño de fuente"
+            >
+              −
+            </button>
+            <span className="text-white text-sm font-medium min-w-[2rem] text-center">{fontSize}</span>
+            <button
+              onClick={() => setFontSize(Math.min(32, fontSize + 2))}
+              className="w-8 h-8 text-white hover:text-gray-300 rounded-full flex items-center justify-center text-lg font-bold transition-colors"
+              title="Aumentar tamaño de fuente"
+            >
+              +
+            </button>
+          </div>
+
+          {/* Reading content - centered and full focus */}
+          <div className="flex-1 flex items-center justify-center p-12">
             <div
-              className="flex-1 bg-white/95 rounded-2xl p-8 overflow-y-auto text-gray-800 leading-relaxed"
-              style={{ fontSize: `${fontSize + 2}px`, lineHeight: 1.8 }}
+              className="max-w-4xl w-full text-white leading-relaxed text-justify select-text"
+              style={{
+                fontSize: `${fontSize + 6}px`,
+                lineHeight: 1.8,
+                fontFamily: fontFamily === 'serif' ? 'serif' : 'sans-serif'
+              }}
+              onMouseUp={handleTextSelection}
+              onTouchEnd={handleTextSelection}
               role="article"
               aria-label={`Contenido del ${chapters[currentChapter].title}`}
             >
               {chapters[currentChapter].text}
             </div>
+          </div>
+        </div>
+      )}
 
-            {/* Bottom controls */}
-            <div className="flex items-center justify-between mt-6 bg-white/10 backdrop-blur-sm rounded-2xl p-4">
-              {/* Navigation controls */}
-              <div className="flex items-center gap-4">
-                <button
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/20 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/30 transition-all duration-200"
-                  onClick={() => setCurrentChapter((c) => Math.max(0, c - 1))}
-                  disabled={currentChapter === 0}
-                >
-                  <span>←</span>
-                </button>
+      {/* Audio Fullscreen Mode */}
+      {isAudioFullscreen && (
+        <div className="fixed inset-0 bg-gradient-to-br from-green-900 to-blue-900 z-50 flex flex-col items-center justify-center">
+          {/* Exit fullscreen button - top right corner */}
+          <button
+            onClick={() => {
+              setIsAudioFullscreen(false);
+              if (audioRef.current) {
+                audioRef.current.pause();
+              }
+            }}
+            className="absolute top-6 right-6 z-60 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg transition-all duration-200"
+            title="Salir de pantalla completa"
+            aria-label="Salir de pantalla completa"
+          >
+            ×
+          </button>
 
-                <button
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/20 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/30 transition-all duration-200"
-                  onClick={() => setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1))}
-                  disabled={currentChapter === chapters.length - 1}
-                >
-                  <span>→</span>
-                </button>
-              </div>
-
-              {/* Audio controls */}
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-3 bg-gradient-to-r from-white/20 to-white/10 backdrop-blur-sm rounded-xl px-6 py-3 border border-white/20 shadow-lg">
-                  <button
-                    onClick={() => {
-                      if (audioRef.current) {
-                        if (audioPlaying) {
-                          audioRef.current.pause();
-                        } else {
-                          audioRef.current.play();
-                        }
-                      }
-                    }}
-                    className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white flex items-center justify-center transition-all duration-200 shadow-lg transform hover:scale-110"
-                  >
-                    {audioPlaying ? (
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                    ) : (
-                      <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                      </svg>
-                    )}
-                  </button>
-                  <div className="flex flex-col">
-                    <span className="text-white text-sm font-medium" aria-live="polite">
-                      {audioPlaying ? 'Reproduciendo' : 'Audiolibro, dar click para escuchar'}
-                    </span>
-                    <span className="text-white/70 text-xs">
-                      {chapters[currentChapter].title}
-                    </span>
-                    <div className="mt-2 w-48" role="group" aria-label="Control de progreso de audio">
-                      <div className="w-full h-2 bg-white/30 rounded-full cursor-pointer" onClick={handleAudioSeek} aria-hidden={false}>
-                        <div className="h-2 bg-white rounded-full" style={{ width: `${(audioDuration ? (audioCurrentTime / audioDuration) : 0) * 100}%` }} />
-                      </div>
-                      <div className="text-xs text-white/80 mt-1 flex justify-between">
-                        <span aria-label="tiempo actual">{formatTime(audioCurrentTime)}</span>
-                        <span aria-label="duración">{formatTime(audioDuration)}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsFullscreenReading(false)}
-                className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
-              >
-                Salir Pantalla Completa
-              </button>
+          {/* Chapter title */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{chapters[currentChapter].title}</h2>
+            <div className="text-white/80 text-lg">
+              Capítulo {currentChapter + 1} de {chapters.length}
             </div>
+          </div>
+
+          {/* Large audio player */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-2xl max-w-md w-full mx-4">
+            <button
+              onClick={() => {
+                if (audioRef.current) {
+                  if (audioPlaying) {
+                    audioRef.current.pause();
+                  } else {
+                    audioRef.current.play();
+                  }
+                }
+              }}
+              className="w-24 h-24 rounded-full bg-white text-green-600 hover:bg-gray-100 flex items-center justify-center mx-auto mb-6 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+              title={audioPlaying ? 'Pausar audiolibro' : 'Reproducir audiolibro'}
+            >
+              {audioPlaying ? (
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-10 h-10 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                </svg>
+              )}
+            </button>
+
+            {/* Progress bar */}
+            <div className="mb-4">
+              <div
+                className="w-full h-2 bg-white/30 rounded-full cursor-pointer"
+                onClick={handleAudioSeek}
+              >
+                <div
+                  className="h-2 bg-white rounded-full transition-all duration-300"
+                  style={{ width: `${(audioDuration ? (audioCurrentTime / audioDuration) : 0) * 100}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Time display */}
+            <div className="flex justify-between text-white/80 text-sm">
+              <span>{formatTime(audioCurrentTime)}</span>
+              <span>{formatTime(audioDuration)}</span>
+            </div>
+          </div>
+
+          {/* Navigation buttons */}
+          <div className="flex items-center gap-8 mt-8">
+            <button
+              onClick={() => setCurrentChapter((c) => Math.max(0, c - 1))}
+              disabled={currentChapter === 0}
+              className="w-12 h-12 bg-white/20 hover:bg-white/30 disabled:opacity-30 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center text-2xl transition-all duration-200"
+              title="Capítulo anterior"
+              aria-label="Capítulo anterior"
+            >
+              ‹
+            </button>
+
+            <button
+              onClick={() => setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1))}
+              disabled={currentChapter === chapters.length - 1}
+              className="w-12 h-12 bg-white/20 hover:bg-white/30 disabled:opacity-30 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center text-2xl transition-all duration-200"
+              title="Capítulo siguiente"
+              aria-label="Capítulo siguiente"
+            >
+              ›
+            </button>
           </div>
         </div>
       )}
@@ -417,41 +502,41 @@ const ReadBookPage: React.FC = () => {
                     <span className="hidden sm:inline">Destacados ({highlights.length})</span>
                     <span className="sm:hidden">{highlights.length}</span>
                   </button>
+                  {/* Fullscreen Button */}
+                  <button
+                    onClick={toggleFullscreen}
+                    className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-200 text-sm"
+                    title="Modo pantalla completa"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                  </button>
                   {/* Minimal Audio Player */}
-                  <div className="flex items-center gap-2 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg px-3 py-2 border border-green-100 shadow-sm">
-                    <button
-                      onClick={() => {
-                        if (audioRef.current) {
-                          if (audioPlaying) {
-                            audioRef.current.pause();
-                          } else {
-                            audioRef.current.play();
-                            setIsFullscreenReading(true);
-                          }
+                  <button
+                    onClick={() => {
+                      if (audioRef.current) {
+                        if (audioPlaying) {
+                          audioRef.current.pause();
+                        } else {
+                          audioRef.current.play();
+                          setIsAudioFullscreen(true);
                         }
-                      }}
-                      className="w-8 h-8 rounded-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center transition-colors shadow-lg"
-                      title={audioPlaying ? 'Pausar audiolibro' : 'Reproducir audiolibro'}
-                    >
-                      {audioPlaying ? (
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                        </svg>
-                      ) : (
-                        <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </button>
-                    <div className="hidden sm:flex flex-col">
-                      <span className="text-xs font-medium text-gray-700 truncate max-w-32" title={chapters[currentChapter].title}>
-                        {chapters[currentChapter].title}
-                      </span>
-                      <div className="w-20 h-1 bg-gray-200 rounded-full">
-                        <div className="h-1 bg-green-600 rounded-full" style={{ width: `${(audioDuration ? (audioCurrentTime / audioDuration) : 0) * 100}%` }} />
-                      </div>
-                    </div>
-                  </div>
+                      }
+                    }}
+                    className="w-10 h-10 rounded-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center transition-colors shadow-lg"
+                    title={audioPlaying ? 'Pausar audiolibro' : 'Reproducir audiolibro'}
+                  >
+                    {audioPlaying ? (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </button>
                 </div>
                 <div className="flex items-center gap-2">
                   <select
@@ -506,16 +591,42 @@ const ReadBookPage: React.FC = () => {
             {/* Highlight Menu */}
             {showHighlightMenu && (
               <div
-                className="fixed z-50 bg-white border border-gray-300 rounded-lg shadow-lg p-2 flex gap-2 highlight-menu"
-                style={{ left: menuPosition.x - 50, top: menuPosition.y }}
+                className={`fixed ${isFullscreenReading ? 'z-[70]' : 'z-50'} animate-in fade-in-0 zoom-in-95 duration-200 highlight-menu`}
+                style={{ left: menuPosition.x - 60, top: menuPosition.y + 10 }}
               >
+                {/* Tooltip arrow */}
+                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
+
+                {/* Main button */}
                 <button
                   onClick={addHighlight}
-                  className="px-3 py-1 bg-yellow-200 hover:bg-yellow-300 text-yellow-800 text-sm rounded transition-colors"
-                  title="Resaltar texto"
+                  className="group relative bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-white px-4 py-2.5 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 font-medium text-sm border border-amber-300"
+                  title="Resaltar texto seleccionado"
                 >
-                  🖊️
+                  {/* Highlight icon */}
+                  <svg
+                    className="w-4 h-4 group-hover:animate-pulse"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    />
+                  </svg>
+
+                  {/* Text */}
+                  <span className="hidden sm:inline">Resaltar</span>
+
+                  {/* Sparkle effect */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-shimmer"></div>
                 </button>
+
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 rounded-xl bg-amber-400/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
               </div>
             )}
 
@@ -572,31 +683,92 @@ const ReadBookPage: React.FC = () => {
               {highlights.length === 0 ? (
                 <p className="text-gray-500 text-center">No tienes pasajes destacados aún.</p>
               ) : (
-                <div className="space-y-4">
-                  {highlights.map((highlight, index) => (
-                    <div key={highlight.id} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded relative">
+                <>
+                  <div className="space-y-4 mb-4">
+                    {currentHighlights.map((highlight, index) => (
+                      <div key={highlight.id} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded relative">
+                        <button
+                          onClick={() => {
+                            axios.delete(`https://f88-backend-production.up.railway.app/api/books/highlights/${highlight.id}`)
+                              .then(() => {
+                                setHighlights(prev => {
+                                  const newHighlights = prev.filter(h => h.id !== highlight.id);
+                                  // Reset to page 1 if current page becomes empty
+                                  const newTotalPages = Math.ceil(newHighlights.length / highlightsPerPage);
+                                  if (currentHighlightsPage > newTotalPages && newTotalPages > 0) {
+                                    setCurrentHighlightsPage(newTotalPages);
+                                  }
+                                  return newHighlights;
+                                });
+                              })
+                              .catch(error => {
+                                console.error('Error deleting highlight:', error);
+                              });
+                          }}
+                          className="absolute top-2 right-2 text-gray-400 hover:text-red-600 text-lg"
+                          title="Eliminar highlight"
+                        >
+                          ×
+                        </button>
+                        <p className="text-gray-800 italic text-sm sm:text-base pr-6">"{highlight.text}"</p>
+                        <p className="text-sm text-gray-500 mt-2">
+                          Capítulo {highlight.chapter + 1} • {new Date(highlight.created_at).toLocaleDateString()}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Pagination Controls */}
+                  {totalHighlightsPages > 1 && (
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                       <button
-                        onClick={() => {
-                          axios.delete(`http://localhost:4000/api/books/highlights/${highlight.id}`)
-                            .then(() => {
-                              setHighlights(prev => prev.filter(h => h.id !== highlight.id));
-                            })
-                            .catch(error => {
-                              console.error('Error deleting highlight:', error);
-                            });
-                        }}
-                        className="absolute top-2 right-2 text-gray-400 hover:text-red-600 text-lg"
-                        title="Eliminar highlight"
+                        onClick={() => setCurrentHighlightsPage(prev => Math.max(1, prev - 1))}
+                        disabled={currentHighlightsPage === 1}
+                        className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 font-medium rounded-lg transition-all duration-200 text-sm"
                       >
-                        ×
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Anterior
                       </button>
-                      <p className="text-gray-800 italic text-sm sm:text-base pr-6">"{highlight.text}"</p>
-                      <p className="text-sm text-gray-500 mt-2">
-                        Capítulo {highlight.chapter + 1} • {new Date(highlight.created_at).toLocaleDateString()}
-                      </p>
+
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-600">
+                          Página {currentHighlightsPage} de {totalHighlightsPages}
+                        </span>
+                        <div className="flex gap-1">
+                          {Array.from({ length: Math.min(5, totalHighlightsPages) }, (_, i) => {
+                            const pageNum = Math.max(1, Math.min(totalHighlightsPages - 4, currentHighlightsPage - 2)) + i;
+                            if (pageNum > totalHighlightsPages) return null;
+                            return (
+                              <button
+                                key={pageNum}
+                                onClick={() => setCurrentHighlightsPage(pageNum)}
+                                className={`px-3 py-1 text-sm font-medium rounded ${pageNum === currentHighlightsPage
+                                  ? 'bg-blue-600 text-white'
+                                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                                  } transition-colors`}
+                              >
+                                {pageNum}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => setCurrentHighlightsPage(prev => Math.min(totalHighlightsPages, prev + 1))}
+                        disabled={currentHighlightsPage === totalHighlightsPages}
+                        className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 font-medium rounded-lg transition-all duration-200 text-sm"
+                      >
+                        Siguiente
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
                     </div>
-                  ))}
-                </div>
+                  )}
+                </>
               )}
             </div>
           </div>
