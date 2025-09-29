@@ -1,5 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useAuth } from '../contexts/AuthContext';
+
+// Interfaces for API responses
+interface Highlight {
+  id: number;
+  text: string;
+  chapter: number;
+  created_at: string;
+}
+
+interface GetHighlightsResponse {
+  highlights: Highlight[];
+}
+
+interface AddHighlightResponse {
+  highlight: Highlight;
+}
 
 // Dummy data for chapters and audio (replace with real data/fetch)
 const chapters = [
@@ -26,11 +44,18 @@ const ReadBookPage: React.FC = () => {
   const [currentChapter, setCurrentChapter] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [fontSize, setFontSize] = useState(16);
+  const [fontFamily, setFontFamily] = useState('serif');
   const [isFullscreenReading, setIsFullscreenReading] = useState(false);
+  const [highlights, setHighlights] = useState<Highlight[]>([]);
+  const [showHighlightMenu, setShowHighlightMenu] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [selectedText, setSelectedText] = useState('');
+  const [showHighlightsModal, setShowHighlightsModal] = useState(false);
   const [audioCurrentTime, setAudioCurrentTime] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   // Update audio source when chapter changes
   useEffect(() => {
@@ -59,20 +84,25 @@ const ReadBookPage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Handle escape key to exit fullscreen
+  // Handle clicks outside to hide menu
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isFullscreenReading) {
-        setIsFullscreenReading(false);
-        if (audioRef.current) {
-          audioRef.current.pause();
-        }
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (showHighlightMenu && !(e.target as Element).closest('.highlight-menu')) {
+        setShowHighlightMenu(false);
+        window.getSelection()?.removeAllRanges();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isFullscreenReading]);
+    if (showHighlightMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [showHighlightMenu]);
 
   // Handle audio play/pause for fullscreen mode
   const handleAudioPlay = () => {
@@ -85,6 +115,20 @@ const ReadBookPage: React.FC = () => {
     // Keep fullscreen on pause - only exit when explicitly requested
   };
 
+  // Load highlights from backend
+  useEffect(() => {
+    if (user) {
+      axios.get(`https://f88-backend-production.up.railway.app/api/books/highlights/${user.id}`)
+        .then(response => {
+          const data = response.data as GetHighlightsResponse;
+          setHighlights(data.highlights);
+        })
+        .catch(error => {
+          console.error('Error loading highlights:', error);
+        });
+    }
+  }, [user]);
+
   // Format seconds to mm:ss
   const formatTime = (s: number) => {
     if (!s || isNaN(s)) return '0:00';
@@ -93,7 +137,55 @@ const ReadBookPage: React.FC = () => {
     return `${m}:${sec}`;
   };
 
-  // Seek audio when clicking on progress bar
+  // Handle text selection for both mouse and touch
+  const handleTextSelection = (e: React.MouseEvent | React.TouchEvent) => {
+    // Small delay to ensure selection is complete
+    setTimeout(() => {
+      const selection = window.getSelection();
+      if (selection && selection.toString().trim()) {
+        const text = selection.toString().trim();
+        const range = selection.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+
+        // For touch events, use different positioning
+        let x = rect.left + rect.width / 2;
+        let y = rect.top - 10;
+
+        if ('touches' in e) {
+          // Touch event - position relative to viewport
+          const touch = (e as React.TouchEvent).changedTouches[0];
+          x = touch.clientX;
+          y = touch.clientY - 20; // Position above finger
+        }
+
+        setSelectedText(text);
+        setMenuPosition({ x, y });
+        setShowHighlightMenu(true);
+      } else {
+        setShowHighlightMenu(false);
+      }
+    }, 10);
+  };
+
+  // Add highlight
+  const addHighlight = () => {
+    if (selectedText && user) {
+      axios.post('https://f88-backend-production.up.railway.app/api/books/highlights', {
+        userId: user.id,
+        text: selectedText,
+        chapter: currentChapter
+      })
+        .then(response => {
+          const data = response.data as AddHighlightResponse;
+          setHighlights(prev => [...prev, data.highlight]);
+          setShowHighlightMenu(false);
+          window.getSelection()?.removeAllRanges();
+        })
+        .catch(error => {
+          console.error('Error adding highlight:', error);
+        });
+    }
+  };  // Seek audio when clicking on progress bar
   const handleAudioSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = e.currentTarget as HTMLDivElement;
     const rect = el.getBoundingClientRect();
@@ -271,21 +363,21 @@ const ReadBookPage: React.FC = () => {
       )}
 
       {/* Normal Mode */}
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-100 flex flex-col items-center py-2 px-2">
-        <div className="w-full max-w-7xl bg-white/90 rounded-3xl shadow-2xl p-4 flex flex-col lg:flex-row gap-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-100 flex flex-col items-center py-2 px-2 sm:px-4">
+        <div className="w-full max-w-7xl bg-white/90 rounded-3xl shadow-2xl p-4 sm:p-6 flex flex-col lg:flex-row gap-4">
           {/* Book reading section */}
           <div className="flex-1 flex flex-col">
             {/* Header with progress */}
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-2xl font-bold text-blue-800 mb-1">{chapters[currentChapter].title}</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-1">{chapters[currentChapter].title}</h2>
                 <div className="text-sm text-gray-600">
                   Página {currentChapter + 1} de {chapters.length}
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 {/* Navigation Links */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <button
                     onClick={() => navigate('/dashboard')}
                     className="flex items-center gap-2 px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 font-medium rounded-lg transition-all duration-200 text-sm"
@@ -295,7 +387,7 @@ const ReadBookPage: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
                     </svg>
-                    Panel
+                    <span className="hidden sm:inline">Panel</span>
                   </button>
                   <button
                     onClick={() => navigate('/jordan-chat')}
@@ -305,7 +397,18 @@ const ReadBookPage: React.FC = () => {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
-                    Jordan
+                    <span className="hidden sm:inline">Jordan</span>
+                  </button>
+                  <button
+                    onClick={() => setShowHighlightsModal(true)}
+                    className="flex items-center gap-2 px-3 py-2 bg-yellow-100 hover:bg-yellow-200 text-yellow-700 font-medium rounded-lg transition-all duration-200 text-sm"
+                    title="Ver pasajes destacados"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span className="hidden sm:inline">Destacados ({highlights.length})</span>
+                    <span className="sm:hidden">{highlights.length}</span>
                   </button>
                   {/* Minimal Audio Player */}
                   <div className="flex items-center gap-2 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg px-3 py-2 border border-green-100 shadow-sm">
@@ -333,7 +436,7 @@ const ReadBookPage: React.FC = () => {
                         </svg>
                       )}
                     </button>
-                    <div className="flex flex-col">
+                    <div className="hidden sm:flex flex-col">
                       <span className="text-xs font-medium text-gray-700 truncate max-w-32" title={chapters[currentChapter].title}>
                         {chapters[currentChapter].title}
                       </span>
@@ -344,6 +447,14 @@ const ReadBookPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
+                  <select
+                    value={fontFamily}
+                    onChange={(e) => setFontFamily(e.target.value)}
+                    className="text-xs bg-gray-100 py-1 px-2 rounded border hidden sm:block"
+                  >
+                    <option value="serif">Serif</option>
+                    <option value="sans">Sans</option>
+                  </select>
                   <div className="flex gap-1 items-center">
                     <button
                       onClick={() => setFontSize(Math.max(12, fontSize - 2))}
@@ -377,35 +488,113 @@ const ReadBookPage: React.FC = () => {
 
             {/* Book content */}
             <div
-              className="prose max-w-none text-gray-800 bg-slate-50 rounded-xl p-4 mb-4 min-h-[300px] leading-relaxed shadow-inner transition-all duration-200"
-              style={{ fontSize: `${fontSize}px`, lineHeight: 1.7 }}
+              className={`prose prose-lg max-w-none text-gray-900 bg-amber-50 rounded-xl p-4 sm:p-8 mb-4 min-h-[500px] leading-relaxed border border-amber-200 shadow-inner ${fontFamily === 'serif' ? 'font-serif' : 'font-sans'} select-text`}
+              style={{ fontSize: `${fontSize}px`, lineHeight: 1.8, textAlign: 'justify' }}
+              onMouseUp={handleTextSelection}
+              onTouchEnd={handleTextSelection}
             >
               {chapters[currentChapter].text}
             </div>
 
+            {/* Highlight Menu */}
+            {showHighlightMenu && (
+              <div
+                className="fixed z-50 bg-white border border-gray-300 rounded-lg shadow-lg p-2 flex gap-2 highlight-menu"
+                style={{ left: menuPosition.x - 50, top: menuPosition.y }}
+              >
+                <button
+                  onClick={addHighlight}
+                  className="px-3 py-1 bg-yellow-200 hover:bg-yellow-300 text-yellow-800 text-sm rounded transition-colors"
+                  title="Resaltar texto"
+                >
+                  🖊️
+                </button>
+              </div>
+            )}
+
             {/* Navigation */}
             <div className="flex justify-between items-center mb-4">
               <button
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-100 text-blue-900 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-200 transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 text-amber-800 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-200 transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100 shadow-lg"
                 onClick={() => setCurrentChapter((c) => Math.max(0, c - 1))}
                 disabled={currentChapter === 0}
                 aria-label="Página anterior"
               >
-                <span>←</span>
+                <span className="text-2xl">‹</span>
               </button>
 
+              <div className="flex flex-col items-center">
+                <div className="text-sm text-gray-600 font-medium">
+                  {currentChapter + 1} de {chapters.length}
+                </div>
+                <div className="w-32 bg-gray-200 rounded-full h-1 mt-1">
+                  <div
+                    className="bg-amber-600 h-1 rounded-full transition-all duration-300"
+                    style={{ width: `${((currentChapter + 1) / chapters.length) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+
               <button
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-600 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-700 transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100 shadow-lg"
                 onClick={() => setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1))}
                 disabled={currentChapter === chapters.length - 1}
                 aria-label="Página siguiente"
               >
-                <span>→</span>
+                <span className="text-2xl">›</span>
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Highlights Modal */}
+      {showHighlightsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800">Pasajes Destacados</h3>
+              <button
+                onClick={() => setShowHighlightsModal(false)}
+                className="text-gray-400 hover:text-gray-600 text-2xl"
+              >
+                ×
+              </button>
+            </div>
+            <div className="p-4 sm:p-6 overflow-y-auto max-h-96">
+              {highlights.length === 0 ? (
+                <p className="text-gray-500 text-center">No tienes pasajes destacados aún.</p>
+              ) : (
+                <div className="space-y-4">
+                  {highlights.map((highlight, index) => (
+                    <div key={highlight.id} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded relative">
+                      <button
+                        onClick={() => {
+                          axios.delete(`https://f88-backend-production.up.railway.app/api/books/highlights/${highlight.id}`)
+                            .then(() => {
+                              setHighlights(prev => prev.filter(h => h.id !== highlight.id));
+                            })
+                            .catch(error => {
+                              console.error('Error deleting highlight:', error);
+                            });
+                        }}
+                        className="absolute top-2 right-2 text-gray-400 hover:text-red-600 text-lg"
+                        title="Eliminar highlight"
+                      >
+                        ×
+                      </button>
+                      <p className="text-gray-800 italic text-sm sm:text-base pr-6">"{highlight.text}"</p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Capítulo {highlight.chapter + 1} • {new Date(highlight.created_at).toLocaleDateString()}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

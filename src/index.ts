@@ -7,6 +7,7 @@ import videoRoutes from './routes/videoRoutes';
 import textRoutes from './routes/textRoutes';
 import chatRoutes from './routes/chatRoutes';
 import trainingRoutes from './routes/trainingRoutes';
+import bookRoutes from './routes/bookRoutes';
 import { initializeDatabase } from './utils/databaseInit';
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/audios', audioRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/texts', textRoutes);
 app.use('/api/training', trainingRoutes);
+app.use('/api/books', bookRoutes);
 app.use(chatRoutes);
 
 app.get('/', (req, res) => {

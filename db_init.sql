@@ -112,3 +112,15 @@ CREATE INDEX IF NOT EXISTS idx_training_days_assessment_id ON training_days (ass
 CREATE INDEX IF NOT EXISTS idx_training_days_scheduled_date ON training_days (scheduled_date);
 
 CREATE INDEX IF NOT EXISTS idx_training_progress_user_id ON training_progress (user_id);
+
+-- Tabla para highlights del libro
+CREATE TABLE IF NOT EXISTS book_highlights (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
+    text TEXT NOT NULL,
+    chapter INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Índice para highlights
+CREATE INDEX IF NOT EXISTS idx_book_highlights_user_id ON book_highlights (user_id);

@@ -8,4 +8,12 @@ export interface User {
   country: string;
   tel: string;
   created_at: Date;
+  highlights?: Highlight[];
+}
+
+export interface Highlight {
+  id: number;
+  text: string;
+  chapter: number;
+  created_at: Date;
 }
