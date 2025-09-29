@@ -56,6 +56,10 @@ const ReadBookPage: React.FC = () => {
   const [audioDuration, setAudioDuration] = useState(0);
   const [currentHighlightsPage, setCurrentHighlightsPage] = useState(1);
   const highlightsPerPage = 5;
+  const [isLoadingHighlights, setIsLoadingHighlights] = useState(false);
+  const [highlightsError, setHighlightsError] = useState<string | null>(null);
+  const [isAddingHighlight, setIsAddingHighlight] = useState(false);
+  const [offlineHighlights, setOfflineHighlights] = useState<Highlight[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
   const readingContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -130,16 +134,24 @@ const ReadBookPage: React.FC = () => {
   // Load highlights from backend
   useEffect(() => {
     if (user) {
+      setIsLoadingHighlights(true);
+      setHighlightsError(null);
       console.log('Loading highlights for user:', user.id);
       axios.get(`https://f88-backend-production.up.railway.app/api/books/highlights/${user.id}`)
         .then(response => {
           console.log('Highlights loaded successfully:', response.data);
           const data = response.data as GetHighlightsResponse;
           setHighlights(data.highlights);
+          setIsLoadingHighlights(false);
         })
         .catch(error => {
           console.error('Error loading highlights:', error);
+          const errorMessage = error.code === 'NETWORK_ERROR' || error.message === 'Network Error'
+            ? 'No se pudo conectar al servidor. Los destacados estarán disponibles cuando se restablezca la conexión.'
+            : 'Error al cargar los destacados. Inténtalo de nuevo más tarde.';
+          setHighlightsError(errorMessage);
           console.error('Error details:', error.response?.data || error.message);
+          setIsLoadingHighlights(false);
         });
     }
   }, [user]);
@@ -185,6 +197,7 @@ const ReadBookPage: React.FC = () => {
   // Add highlight
   const addHighlight = () => {
     if (selectedText && user) {
+      setIsAddingHighlight(true);
       console.log('Adding highlight:', { userId: user.id, text: selectedText, chapter: currentChapter });
       axios.post('https://f88-backend-production.up.railway.app/api/books/highlights', {
         userId: user.id,
@@ -197,14 +210,32 @@ const ReadBookPage: React.FC = () => {
           setHighlights(prev => [...prev, data.highlight]);
           setShowHighlightMenu(false);
           window.getSelection()?.removeAllRanges();
+          setSelectedText('');
         })
         .catch(error => {
-          console.error('Error adding highlight:', error);
-          console.error('Error details:', error.response?.data || error.message);
-          console.error('Request config:', error.config);
+          console.error('Error adding highlight to backend:', error);
+
+          // Fallback: Save locally if backend is unavailable
+          const offlineHighlight: Highlight = {
+            id: Date.now(), // Temporary ID for offline highlights
+            text: selectedText,
+            chapter: currentChapter,
+            created_at: new Date().toISOString()
+          };
+
+          setOfflineHighlights(prev => [...prev, offlineHighlight]);
+          setShowHighlightMenu(false);
+          window.getSelection()?.removeAllRanges();
+          setSelectedText('');
+
+          // Show user-friendly message (only if not in fullscreen)
+          if (!isFullscreenReading) {
+            alert('El destacado se guardó localmente. Se sincronizará cuando se restablezca la conexión con el servidor.');
+          }
+          setIsAddingHighlight(false);
         });
     }
-  };  // Seek audio when clicking on progress bar
+  };
   const handleAudioSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = e.currentTarget as HTMLDivElement;
     const rect = el.getBoundingClientRect();
@@ -266,10 +297,11 @@ const ReadBookPage: React.FC = () => {
   }, []);
 
   // Calculate pagination
-  const totalHighlightsPages = Math.ceil(highlights.length / highlightsPerPage);
+  const allHighlights = [...highlights, ...offlineHighlights];
+  const totalHighlightsPages = Math.ceil(allHighlights.length / highlightsPerPage);
   const startIndex = (currentHighlightsPage - 1) * highlightsPerPage;
   const endIndex = startIndex + highlightsPerPage;
-  const currentHighlights = highlights.slice(startIndex, endIndex);
+  const currentHighlights = allHighlights.slice(startIndex, endIndex);
 
   return (
     <>
@@ -499,8 +531,8 @@ const ReadBookPage: React.FC = () => {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    <span className="hidden sm:inline">Destacados ({highlights.length})</span>
-                    <span className="sm:hidden">{highlights.length}</span>
+                    <span className="hidden sm:inline">Destacados ({highlights.length + offlineHighlights.length})</span>
+                    <span className="sm:hidden">{highlights.length + offlineHighlights.length}</span>
                   </button>
                   {/* Fullscreen Button */}
                   <button
@@ -600,29 +632,41 @@ const ReadBookPage: React.FC = () => {
                 {/* Main button */}
                 <button
                   onClick={addHighlight}
-                  className="group relative bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-white px-4 py-2.5 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 font-medium text-sm border border-amber-300"
-                  title="Resaltar texto seleccionado"
+                  disabled={isAddingHighlight}
+                  className="group relative bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 disabled:from-gray-400 disabled:to-gray-500 text-white px-4 py-2.5 rounded-xl shadow-lg hover:shadow-xl disabled:shadow-none transform hover:scale-105 active:scale-95 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all duration-200 flex items-center gap-2 font-medium text-sm border border-amber-300 disabled:border-gray-300"
+                  title={isAddingHighlight ? "Guardando..." : "Resaltar texto seleccionado"}
                 >
-                  {/* Highlight icon */}
-                  <svg
-                    className="w-4 h-4 group-hover:animate-pulse"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                    />
-                  </svg>
+                  {/* Loading spinner or highlight icon */}
+                  {isAddingHighlight ? (
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-4 h-4 group-hover:animate-pulse"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                      />
+                    </svg>
+                  )}
 
                   {/* Text */}
-                  <span className="hidden sm:inline">Resaltar</span>
+                  <span className="hidden sm:inline">
+                    {isAddingHighlight ? "Guardando..." : "Resaltar"}
+                  </span>
 
                   {/* Sparkle effect */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-shimmer"></div>
+                  {!isAddingHighlight && (
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-shimmer"></div>
+                  )}
                 </button>
 
                 {/* Subtle glow effect */}
@@ -680,42 +724,105 @@ const ReadBookPage: React.FC = () => {
               </button>
             </div>
             <div className="p-4 sm:p-6 overflow-y-auto max-h-96">
-              {highlights.length === 0 ? (
+              {isLoadingHighlights ? (
+                <div className="flex items-center justify-center py-8">
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Cargando destacados...</span>
+                  </div>
+                </div>
+              ) : highlightsError ? (
+                <div className="text-center py-8">
+                  <div className="text-red-500 mb-2">
+                    <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                  </div>
+                  <p className="text-gray-600 text-sm">{highlightsError}</p>
+                  <button
+                    onClick={() => {
+                      if (user) {
+                        setIsLoadingHighlights(true);
+                        setHighlightsError(null);
+                        axios.get(`https://f88-backend-production.up.railway.app/api/books/highlights/${user.id}`)
+                          .then(response => {
+                            const data = response.data as GetHighlightsResponse;
+                            setHighlights(data.highlights);
+                            setIsLoadingHighlights(false);
+                          })
+                          .catch(error => {
+                            const errorMessage = error.code === 'NETWORK_ERROR' || error.message === 'Network Error'
+                              ? 'No se pudo conectar al servidor. Los destacados estarán disponibles cuando se restablezca la conexión.'
+                              : 'Error al cargar los destacados. Inténtalo de nuevo más tarde.';
+                            setHighlightsError(errorMessage);
+                            setIsLoadingHighlights(false);
+                          });
+                      }
+                    }}
+                    className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors"
+                  >
+                    Reintentar
+                  </button>
+                </div>
+              ) : highlights.length === 0 ? (
                 <p className="text-gray-500 text-center">No tienes pasajes destacados aún.</p>
               ) : (
                 <>
                   <div className="space-y-4 mb-4">
-                    {currentHighlights.map((highlight, index) => (
-                      <div key={highlight.id} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded relative">
-                        <button
-                          onClick={() => {
-                            axios.delete(`https://f88-backend-production.up.railway.app/api/books/highlights/${highlight.id}`)
-                              .then(() => {
-                                setHighlights(prev => {
-                                  const newHighlights = prev.filter(h => h.id !== highlight.id);
-                                  // Reset to page 1 if current page becomes empty
-                                  const newTotalPages = Math.ceil(newHighlights.length / highlightsPerPage);
-                                  if (currentHighlightsPage > newTotalPages && newTotalPages > 0) {
-                                    setCurrentHighlightsPage(newTotalPages);
-                                  }
-                                  return newHighlights;
-                                });
-                              })
-                              .catch(error => {
-                                console.error('Error deleting highlight:', error);
-                              });
-                          }}
-                          className="absolute top-2 right-2 text-gray-400 hover:text-red-600 text-lg"
-                          title="Eliminar highlight"
-                        >
-                          ×
-                        </button>
-                        <p className="text-gray-800 italic text-sm sm:text-base pr-6">"{highlight.text}"</p>
-                        <p className="text-sm text-gray-500 mt-2">
-                          Capítulo {highlight.chapter + 1} • {new Date(highlight.created_at).toLocaleDateString()}
-                        </p>
-                      </div>
-                    ))}
+                    {currentHighlights.map((highlight, index) => {
+                      const isOffline = offlineHighlights.some(oh => oh.id === highlight.id);
+                      return (
+                        <div key={highlight.id} className={`border-l-4 p-4 rounded relative ${isOffline ? 'bg-orange-50 border-orange-400' : 'bg-yellow-50 border-yellow-400'}`}>
+                          {isOffline && (
+                            <div className="flex items-center gap-1 mb-2 text-xs text-orange-600">
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                              </svg>
+                              <span>Guardado localmente</span>
+                            </div>
+                          )}
+                          <button
+                            onClick={() => {
+                              if (isOffline) {
+                                // Remove from offline highlights
+                                setOfflineHighlights(prev => prev.filter(h => h.id !== highlight.id));
+                              } else {
+                                // Try to delete from backend
+                                axios.delete(`https://f88-backend-production.up.railway.app/api/books/highlights/${highlight.id}`)
+                                  .then(() => {
+                                    setHighlights(prev => {
+                                      const newHighlights = prev.filter(h => h.id !== highlight.id);
+                                      // Reset to page 1 if current page becomes empty
+                                      const newTotalPages = Math.ceil((newHighlights.length + offlineHighlights.length) / highlightsPerPage);
+                                      if (currentHighlightsPage > newTotalPages && newTotalPages > 0) {
+                                        setCurrentHighlightsPage(newTotalPages);
+                                      }
+                                      return newHighlights;
+                                    });
+                                  })
+                                  .catch(error => {
+                                    console.error('Error deleting highlight:', error);
+                                    if (!isFullscreenReading) {
+                                      alert('Error al eliminar el destacado del servidor.');
+                                    }
+                                  });
+                              }
+                            }}
+                            className="absolute top-2 right-2 text-gray-400 hover:text-red-600 text-lg"
+                            title="Eliminar highlight"
+                          >
+                            ×
+                          </button>
+                          <p className="text-gray-800 italic text-sm sm:text-base pr-6">"{highlight.text}"</p>
+                          <p className="text-sm text-gray-500 mt-2">
+                            Capítulo {highlight.chapter + 1} • {new Date(highlight.created_at).toLocaleDateString()}
+                          </p>
+                        </div>
+                      );
+                    })}
                   </div>
 
                   {/* Pagination Controls */}
