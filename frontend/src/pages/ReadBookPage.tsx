@@ -203,7 +203,6 @@ const ReadBookPage: React.FC = () => {
                   disabled={currentChapter === 0}
                 >
                   <span>←</span>
-                  Anterior
                 </button>
 
                 <button
@@ -211,7 +210,6 @@ const ReadBookPage: React.FC = () => {
                   onClick={() => setCurrentChapter((c) => Math.min(chapters.length - 1, c + 1))}
                   disabled={currentChapter === chapters.length - 1}
                 >
-                  Siguiente
                   <span>→</span>
                 </button>
               </div>
@@ -262,10 +260,10 @@ const ReadBookPage: React.FC = () => {
               </div>
 
               <button
-                onClick={toggleFullscreen}
+                onClick={() => setIsFullscreenReading(false)}
                 className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
               >
-                {isFullscreenReading ? 'Salir Pantalla Completa' : 'Pantalla Completa'}
+                Salir Pantalla Completa
               </button>
             </div>
           </div>
@@ -309,9 +307,43 @@ const ReadBookPage: React.FC = () => {
                     </svg>
                     Jordan
                   </button>
+                  {/* Minimal Audio Player */}
+                  <div className="flex items-center gap-2 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg px-3 py-2 border border-green-100 shadow-sm">
+                    <button
+                      onClick={() => {
+                        if (audioRef.current) {
+                          if (audioPlaying) {
+                            audioRef.current.pause();
+                          } else {
+                            audioRef.current.play();
+                            setIsFullscreenReading(true);
+                          }
+                        }
+                      }}
+                      className="w-8 h-8 rounded-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center transition-colors shadow-lg"
+                      title={audioPlaying ? 'Pausar audiolibro' : 'Reproducir audiolibro'}
+                    >
+                      {audioPlaying ? (
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                        </svg>
+                      )}
+                    </button>
+                    <div className="flex flex-col">
+                      <span className="text-xs font-medium text-gray-700 truncate max-w-32" title={chapters[currentChapter].title}>
+                        {chapters[currentChapter].title}
+                      </span>
+                      <div className="w-20 h-1 bg-gray-200 rounded-full">
+                        <div className="h-1 bg-green-600 rounded-full" style={{ width: `${(audioDuration ? (audioCurrentTime / audioDuration) : 0) * 100}%` }} />
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="text-xs text-gray-700 font-medium">Tamaño Letra</div>
                   <div className="flex gap-1 items-center">
                     <button
                       onClick={() => setFontSize(Math.max(12, fontSize - 2))}
@@ -341,9 +373,6 @@ const ReadBookPage: React.FC = () => {
                   style={{ width: `${((currentChapter + 1) / chapters.length) * 100}%` }}
                 ></div>
               </div>
-              <div className="text-xs text-gray-500 mt-1">
-                Progreso: {Math.round(((currentChapter + 1) / chapters.length) * 100)}%
-              </div>
             </div>
 
             {/* Book content */}
@@ -363,26 +392,7 @@ const ReadBookPage: React.FC = () => {
                 aria-label="Página anterior"
               >
                 <span>←</span>
-                Anterior
               </button>
-
-              <div className="flex gap-2" role="tablist" aria-label="Navegación de páginas">
-                {chapters.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentChapter(idx)}
-                    className={`w-10 h-10 rounded-full font-semibold transition-all duration-200 ${idx === currentChapter
-                      ? 'bg-blue-600 text-white shadow-lg scale-110'
-                      : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-                      }`}
-                    aria-selected={idx === currentChapter}
-                    role="tab"
-                    aria-label={`Página ${idx + 1}`}
-                  >
-                    {idx + 1}
-                  </button>
-                ))}
-              </div>
 
               <button
                 className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
@@ -390,79 +400,8 @@ const ReadBookPage: React.FC = () => {
                 disabled={currentChapter === chapters.length - 1}
                 aria-label="Página siguiente"
               >
-                Siguiente
                 <span>→</span>
               </button>
-            </div>
-
-            {/* Enhanced Audio book player */}
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <h4 className="text-lg font-semibold text-blue-800">Audiolibro</h4>
-                <div className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 ${audioPlaying
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-gray-100 text-gray-600'
-                  }`}>
-                  {audioPlaying ? (
-                    <>
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                      <span>Reproduciendo</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                      </svg>
-                      <span>Pausado</span>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Custom audio controls */}
-              <div className="bg-white/80 rounded-lg p-3 mb-2 flex items-center gap-3">
-                <button
-                  onClick={() => {
-                    if (audioRef.current) {
-                      if (audioPlaying) {
-                        audioRef.current.pause();
-                      } else {
-                        audioRef.current.play();
-                        setIsFullscreenReading(true); // Enter fullscreen when play is pressed
-                      }
-                    }
-                  }}
-                  className="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-colors shadow-lg"
-                >
-                  {audioPlaying ? (
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                  ) : (
-                    <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </button>
-
-                <div className="flex-1">
-                  <div className="text-sm font-medium text-gray-700 mb-1">
-                    {chapters[currentChapter].title}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    Capítulo {currentChapter + 1} de {chapters.length}
-                  </div>
-                </div>
-
-                <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
-                  {audioPlaying ? 'Reproduciendo...' : 'Pausado'}
-                </div>
-              </div>
-              <div className="text-sm text-gray-600">
-                Página {currentChapter + 1} de {chapters.length}
-              </div>
             </div>
           </div>
         </div>
