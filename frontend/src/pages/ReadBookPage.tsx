@@ -118,13 +118,16 @@ const ReadBookPage: React.FC = () => {
   // Load highlights from backend
   useEffect(() => {
     if (user) {
-      axios.get(`https://f88-backend-production.up.railway.app/api/books/highlights/${user.id}`)
+      console.log('Loading highlights for user:', user.id);
+      axios.get(`http://localhost:4000/api/books/highlights/${user.id}`)
         .then(response => {
+          console.log('Highlights loaded successfully:', response.data);
           const data = response.data as GetHighlightsResponse;
           setHighlights(data.highlights);
         })
         .catch(error => {
           console.error('Error loading highlights:', error);
+          console.error('Error details:', error.response?.data || error.message);
         });
     }
   }, [user]);
@@ -170,12 +173,14 @@ const ReadBookPage: React.FC = () => {
   // Add highlight
   const addHighlight = () => {
     if (selectedText && user) {
-      axios.post('https://f88-backend-production.up.railway.app/api/books/highlights', {
+      console.log('Adding highlight:', { userId: user.id, text: selectedText, chapter: currentChapter });
+      axios.post('http://localhost:4000/api/books/highlights', {
         userId: user.id,
         text: selectedText,
         chapter: currentChapter
       })
         .then(response => {
+          console.log('Highlight added successfully:', response.data);
           const data = response.data as AddHighlightResponse;
           setHighlights(prev => [...prev, data.highlight]);
           setShowHighlightMenu(false);
@@ -183,6 +188,8 @@ const ReadBookPage: React.FC = () => {
         })
         .catch(error => {
           console.error('Error adding highlight:', error);
+          console.error('Error details:', error.response?.data || error.message);
+          console.error('Request config:', error.config);
         });
     }
   };  // Seek audio when clicking on progress bar
@@ -570,7 +577,7 @@ const ReadBookPage: React.FC = () => {
                     <div key={highlight.id} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded relative">
                       <button
                         onClick={() => {
-                          axios.delete(`https://f88-backend-production.up.railway.app/api/books/highlights/${highlight.id}`)
+                          axios.delete(`http://localhost:4000/api/books/highlights/${highlight.id}`)
                             .then(() => {
                               setHighlights(prev => prev.filter(h => h.id !== highlight.id));
                             })
