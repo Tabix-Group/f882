@@ -141,14 +141,13 @@ const ReadBookPage: React.FC = () => {
           console.log('Highlights loaded successfully:', response.data);
           const data = response.data as GetHighlightsResponse;
           setHighlights(data.highlights);
+          setIsLoadingHighlights(false);
         })
         .catch(error => {
           console.error('Error loading highlights:', error);
           const errorMessage = 'No se pudo cargar los destacados. Verifica tu conexión a internet.';
           setHighlightsError(errorMessage);
           console.error('Error details:', error.response?.data || error.message);
-        })
-        .finally(() => {
           setIsLoadingHighlights(false);
         });
     }
@@ -209,6 +208,7 @@ const ReadBookPage: React.FC = () => {
           setShowHighlightMenu(false);
           window.getSelection()?.removeAllRanges();
           setSelectedText('');
+          setIsAddingHighlight(false);
         })
         .catch(error => {
           console.error('Error adding highlight:', error);
@@ -218,8 +218,6 @@ const ReadBookPage: React.FC = () => {
           }
           console.error('Error details:', error.response?.data || error.message);
           console.error('Request config:', error.config);
-        })
-        .finally(() => {
           setIsAddingHighlight(false);
         });
     }
