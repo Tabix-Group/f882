@@ -136,7 +136,7 @@ const ReadBookPage: React.FC = () => {
       setIsLoadingHighlights(true);
       setHighlightsError(null);
       console.log('Loading highlights for user:', user.id);
-      axios.get(`https://f88-backend-production.up.railway.app/api/books/highlights/${user.id}`)
+      axios.get(`https://be-production-36c6.up.railway.app/api/books/highlights/${user.id}`)
         .then(response => {
           console.log('Highlights loaded successfully:', response.data);
           const data = response.data as GetHighlightsResponse;
@@ -196,7 +196,7 @@ const ReadBookPage: React.FC = () => {
     if (selectedText && user) {
       setIsAddingHighlight(true);
       console.log('Adding highlight:', { userId: user.id, text: selectedText, chapter: currentChapter });
-      axios.post('https://f88-backend-production.up.railway.app/api/books/highlights', {
+      axios.post('https://be-production-36c6.up.railway.app/api/books/highlights', {
         userId: user.id,
         text: selectedText,
         chapter: currentChapter
@@ -732,7 +732,7 @@ const ReadBookPage: React.FC = () => {
                       if (user) {
                         setIsLoadingHighlights(true);
                         setHighlightsError(null);
-                        axios.get(`https://f88-backend-production.up.railway.app/api/books/highlights/${user.id}`)
+                        axios.get(`https://be-production-36c6.up.railway.app/api/books/highlights/${user.id}`)
                           .then(response => {
                             const data = response.data as GetHighlightsResponse;
                             setHighlights(data.highlights);
@@ -761,7 +761,7 @@ const ReadBookPage: React.FC = () => {
                       <div key={highlight.id} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded relative">
                         <button
                           onClick={() => {
-                            axios.delete(`https://f88-backend-production.up.railway.app/api/books/highlights/${highlight.id}`)
+                            axios.delete(`https://be-production-36c6.up.railway.app/api/books/highlights/${highlight.id}`)
                               .then(() => {
                                 setHighlights(prev => {
                                   const newHighlights = prev.filter(h => h.id !== highlight.id);
