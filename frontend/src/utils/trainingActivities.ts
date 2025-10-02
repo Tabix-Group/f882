@@ -9,7 +9,10 @@ export const TRAINING_ACTIVITIES = {
                 type: 'CARDIO',
                 duration: 12,
                 exercises: ['Caminata intensa - 12 min'],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                respiracionConsciente: 'Respiración consciente - 10 min',
+                videos: {
+                    'Caminata intensa': 'https://www.youtube.com/embed/VTioCSVP6WY'
+                }
             }
         },
         2: {
@@ -43,7 +46,11 @@ export const TRAINING_ACTIVITIES = {
                     'Sembrando movimiento - 30 reps - 2 series',
                     'Incentivo a la Flexibilidad - 4 min'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                respiracionConsciente: 'Respiración consciente - 10 min',
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/example1',
+                    'Vortice pendular': 'https://www.youtube.com/embed/example2'
+                }
             }
         },
         4: {
@@ -63,7 +70,12 @@ export const TRAINING_ACTIVITIES = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 15 reps - 2 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                respiracionConsciente: 'Respiración consciente - 10 min',
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/example3',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/example4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/example5'
+                }
             }
         },
         5: {

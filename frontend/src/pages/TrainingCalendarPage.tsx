@@ -30,6 +30,8 @@ const TrainingCalendarPage: React.FC = () => {
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     const [selectedDay, setSelectedDay] = useState<TrainingDay | null>(null);
     const [showActivityModal, setShowActivityModal] = useState(false);
+    const [showVideoModal, setShowVideoModal] = useState(false);
+    const [currentVideoUrl, setCurrentVideoUrl] = useState<string>('');
     const [programStartDate, setProgramStartDate] = useState<Date | null>(null);
     const [restDay, setRestDay] = useState<string>('');
     const navigate = useNavigate();
@@ -147,6 +149,18 @@ const TrainingCalendarPage: React.FC = () => {
     const closeModal = () => {
         setShowActivityModal(false);
         setSelectedDay(null);
+    };
+
+    const openVideoModal = (videoUrl: string) => {
+        // Convertir la URL a formato embed con autoplay
+        const embedUrl = videoUrl.replace('watch?v=', 'embed/') + '?autoplay=1&rel=0';
+        setCurrentVideoUrl(embedUrl);
+        setShowVideoModal(true);
+    };
+
+    const closeVideoModal = () => {
+        setShowVideoModal(false);
+        setCurrentVideoUrl('');
     };
 
     const getDaysInMonth = (month: number, year: number) => {
@@ -527,12 +541,13 @@ const TrainingCalendarPage: React.FC = () => {
                                                                     {/* Tabla horizontal de ejercicios */}
                                                                     <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
                                                                         {/* Header de la tabla */}
-                                                                        <div className="grid grid-cols-5 gap-2 bg-blue-600/20 p-3 border-b border-white/10">
+                                                                        <div className="grid grid-cols-6 gap-2 bg-blue-600/20 p-3 border-b border-white/10">
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-8">#</div>
                                                                             <div className="text-blue-200 font-semibold text-sm">Ejercicio</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-16">Reps</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-16">Min</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-16">Series</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center w-20">Video</div>
                                                                         </div>
 
                                                                         {/* Filas de ejercicios */}
@@ -588,8 +603,20 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                 const isWarmup = exercise.toLowerCase().includes('precalentamiento');
                                                                                 const isRespiracion = exercise.toLowerCase().includes('respiración consciente');
 
+                                                                                // Extraer nombre base del ejercicio para buscar video
+                                                                                const getExerciseBaseName = (exerciseName: string) => {
+                                                                                    // Remover detalles como "- 12 min", "- 4 series", etc.
+                                                                                    return exerciseName
+                                                                                        .replace(/\s*-\s*\d+\s*(min|reps?|sets?)/gi, '')
+                                                                                        .replace(/\s*-\s*\d+\s*x\s*\d+/gi, '') // para casos como "x lado"
+                                                                                        .trim();
+                                                                                };
+
+                                                                                const exerciseBaseName = getExerciseBaseName(parsed.name);
+                                                                                const videoUrl = (activity as any).details.videos?.[exerciseBaseName];
+
                                                                                 return (
-                                                                                    <div key={index} className={`grid grid-cols-5 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : isRespiracion ? 'bg-green-500/10 border-l-4 border-green-400' : ''}`}>
+                                                                                    <div key={index} className={`grid grid-cols-6 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : isRespiracion ? 'bg-green-500/10 border-l-4 border-green-400' : ''}`}>
                                                                                         <div className="text-white font-bold text-center w-8">
                                                                                             {isRespiracion ? '#' : (index + 1)}
                                                                                         </div>
@@ -599,6 +626,22 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                         <div className="text-white text-sm text-center w-16">{parsed.reps}</div>
                                                                                         <div className="text-white text-sm text-center w-16">{parsed.minutes}</div>
                                                                                         <div className="text-white text-sm text-center w-16">{parsed.sets}</div>
+                                                                                        <div className="text-center w-20">
+                                                                                            {videoUrl ? (
+                                                                                                <button
+                                                                                                    onClick={() => openVideoModal(videoUrl)}
+                                                                                                    className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition-colors duration-200 flex items-center gap-1"
+                                                                                                    title="Ver video del ejercicio"
+                                                                                                >
+                                                                                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                                                                                        <path d="M8 5v14l11-7z" />
+                                                                                                    </svg>
+                                                                                                    Ver
+                                                                                                </button>
+                                                                                            ) : (
+                                                                                                <span className="text-gray-500 text-xs">-</span>
+                                                                                            )}
+                                                                                        </div>
                                                                                     </div>
                                                                                 );
                                                                             });
@@ -638,6 +681,36 @@ const TrainingCalendarPage: React.FC = () => {
                                         })()
                                     )}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Video Modal */}
+                {showVideoModal && currentVideoUrl && (
+                    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                        <div className="bg-neutral-900 border border-white/20 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl relative">
+                            {/* Close Button */}
+                            <button
+                                onClick={closeVideoModal}
+                                className="absolute top-4 right-4 z-10 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-200"
+                                title="Cerrar video"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            {/* Video Container */}
+                            <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                                <iframe
+                                    src={currentVideoUrl}
+                                    className="absolute top-0 left-0 w-full h-full rounded-2xl"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    title="Video del ejercicio"
+                                ></iframe>
                             </div>
                         </div>
                     </div>
