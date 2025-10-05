@@ -287,61 +287,100 @@ const ReadBookPage: React.FC = () => {
   const endIndex = startIndex + highlightsPerPage;
   const currentHighlights = highlights.slice(startIndex, endIndex);
 
-  // Function to render text with highlights
+  // Function to render text with highlights as React components
   const renderTextWithHighlights = (text: string, chapterHighlights: Highlight[], isFullscreen: boolean = false) => {
     if (!chapterHighlights.length) return text;
 
-    // Sort highlights by position in text (longest first to avoid conflicts)
-    const sortedHighlights = chapterHighlights
+    // Filter highlights for current chapter and sort by length (longest first)
+    const currentChapterHighlights = chapterHighlights
       .filter(h => h.chapter === currentChapter)
       .sort((a, b) => b.text.length - a.text.length);
 
-    let highlightedText = text;
-    const usedPositions = new Set<number>();
+    if (!currentChapterHighlights.length) return text;
 
-    sortedHighlights.forEach(highlight => {
+    const segments: Array<{ text: string; isHighlight: boolean }> = [];
+    let remainingText = text;
+    const processedPositions = new Set<number>();
+
+    // Process each highlight
+    currentChapterHighlights.forEach(highlight => {
       const highlightText = highlight.text.trim();
       if (!highlightText) return;
 
-      // Find all occurrences and replace them
-      const regex = new RegExp(highlightText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-      let match;
-      let offset = 0;
+      let searchStart = 0;
+      while (true) {
+        const index = remainingText.indexOf(highlightText, searchStart);
+        if (index === -1) break;
 
-      while ((match = regex.exec(highlightedText)) !== null) {
-        const startPos = match.index + offset;
-        const endPos = startPos + highlightText.length;
+        const globalIndex = text.length - remainingText.length + index;
 
-        // Check if this position overlaps with already highlighted text
+        // Check if this position overlaps with already processed highlights
         let hasOverlap = false;
-        for (let pos = startPos; pos < endPos; pos++) {
-          if (usedPositions.has(pos)) {
+        for (let pos = globalIndex; pos < globalIndex + highlightText.length; pos++) {
+          if (processedPositions.has(pos)) {
             hasOverlap = true;
             break;
           }
         }
 
         if (!hasOverlap) {
-          // Mark positions as used
-          for (let pos = startPos; pos < endPos; pos++) {
-            usedPositions.add(pos);
+          // Mark positions as processed
+          for (let pos = globalIndex; pos < globalIndex + highlightText.length; pos++) {
+            processedPositions.add(pos);
           }
 
-          // Replace the text with highlighted version
-          const before = highlightedText.substring(0, startPos);
-          const after = highlightedText.substring(endPos);
-          const highlightColor = isFullscreen 
-            ? 'rgba(255, 215, 0, 0.8)' // Gold color for fullscreen
-            : 'rgba(254, 240, 138, 0.8)'; // Yellow for normal mode
-          const highlightedSpan = `<span class="px-1 rounded" style="background-color: ${highlightColor};">${highlightText}</span>`;
-          
-          highlightedText = before + highlightedSpan + after;
-          offset += highlightedSpan.length - highlightText.length;
+          // Add text before highlight
+          if (index > 0) {
+            segments.push({
+              text: remainingText.substring(0, index),
+              isHighlight: false
+            });
+          }
+
+          // Add highlighted text
+          segments.push({
+            text: highlightText,
+            isHighlight: true
+          });
+
+          // Update remaining text
+          remainingText = remainingText.substring(index + highlightText.length);
+          break; // Only highlight the first occurrence to avoid duplicates
+        } else {
+          // Move search position past this occurrence
+          searchStart = index + 1;
         }
       }
     });
 
-    return highlightedText;
+    // Add remaining text
+    if (remainingText) {
+      segments.push({
+        text: remainingText,
+        isHighlight: false
+      });
+    }
+
+    // If no highlights were found, return original text
+    if (segments.length === 0 || (segments.length === 1 && !segments[0].isHighlight)) {
+      return text;
+    }
+
+    // Render segments as React elements
+    return segments.map((segment, index) => {
+      if (segment.isHighlight) {
+        const highlightStyle = isFullscreen
+          ? { backgroundColor: 'rgba(255, 215, 0, 0.6)', padding: '2px 4px', borderRadius: '3px' }
+          : { backgroundColor: 'rgba(254, 240, 138, 0.8)', padding: '2px 4px', borderRadius: '3px' };
+
+        return (
+          <span key={`highlight-${index}`} style={highlightStyle}>
+            {segment.text}
+          </span>
+        );
+      }
+      return <span key={`text-${index}`}>{segment.text}</span>;
+    });
   };
 
   return (
@@ -423,8 +462,9 @@ const ReadBookPage: React.FC = () => {
               onTouchEnd={handleTextSelection}
               role="article"
               aria-label={`Contenido del ${chapters[currentChapter].title}`}
-              dangerouslySetInnerHTML={{ __html: renderTextWithHighlights(chapters[currentChapter].text, highlights, true) }}
-            />
+            >
+              {renderTextWithHighlights(chapters[currentChapter].text, highlights, true)}
+            </div>
           </div>
         </div>
       )}
@@ -648,8 +688,9 @@ const ReadBookPage: React.FC = () => {
               style={{ fontSize: `${fontSize}px`, lineHeight: 1.8, textAlign: 'justify' }}
               onMouseUp={handleTextSelection}
               onTouchEnd={handleTextSelection}
-              dangerouslySetInnerHTML={{ __html: renderTextWithHighlights(chapters[currentChapter].text, highlights, false) }}
-            />
+            >
+              {renderTextWithHighlights(chapters[currentChapter].text, highlights, false)}
+            </div>
 
             {/* Highlight Menu */}
             {showHighlightMenu && (
