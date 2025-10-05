@@ -13,7 +13,7 @@ const pool = connectionString
       database: process.env.DB_NAME || 'f88',
       password: process.env.DB_PASSWORD || 'postgres',
       port: Number(process.env.DB_PORT) || 5432,
-      ssl: { rejectUnauthorized: false }
+      ssl: false
     });
 
 export default pool;

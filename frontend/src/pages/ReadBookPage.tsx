@@ -44,7 +44,6 @@ const ReadBookPage: React.FC = () => {
   const [currentChapter, setCurrentChapter] = useState(0);
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [fontSize, setFontSize] = useState(16);
-  const [fontFamily, setFontFamily] = useState('serif');
   const [isFullscreenReading, setIsFullscreenReading] = useState(false);
   const [isAudioFullscreen, setIsAudioFullscreen] = useState(false);
   const [highlights, setHighlights] = useState<Highlight[]>([]);
@@ -288,6 +287,63 @@ const ReadBookPage: React.FC = () => {
   const endIndex = startIndex + highlightsPerPage;
   const currentHighlights = highlights.slice(startIndex, endIndex);
 
+  // Function to render text with highlights
+  const renderTextWithHighlights = (text: string, chapterHighlights: Highlight[], isFullscreen: boolean = false) => {
+    if (!chapterHighlights.length) return text;
+
+    // Sort highlights by position in text (longest first to avoid conflicts)
+    const sortedHighlights = chapterHighlights
+      .filter(h => h.chapter === currentChapter)
+      .sort((a, b) => b.text.length - a.text.length);
+
+    let highlightedText = text;
+    const usedPositions = new Set<number>();
+
+    sortedHighlights.forEach(highlight => {
+      const highlightText = highlight.text.trim();
+      if (!highlightText) return;
+
+      // Find all occurrences and replace them
+      const regex = new RegExp(highlightText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      let match;
+      let offset = 0;
+
+      while ((match = regex.exec(highlightedText)) !== null) {
+        const startPos = match.index + offset;
+        const endPos = startPos + highlightText.length;
+
+        // Check if this position overlaps with already highlighted text
+        let hasOverlap = false;
+        for (let pos = startPos; pos < endPos; pos++) {
+          if (usedPositions.has(pos)) {
+            hasOverlap = true;
+            break;
+          }
+        }
+
+        if (!hasOverlap) {
+          // Mark positions as used
+          for (let pos = startPos; pos < endPos; pos++) {
+            usedPositions.add(pos);
+          }
+
+          // Replace the text with highlighted version
+          const before = highlightedText.substring(0, startPos);
+          const after = highlightedText.substring(endPos);
+          const highlightColor = isFullscreen 
+            ? 'rgba(255, 215, 0, 0.8)' // Gold color for fullscreen
+            : 'rgba(254, 240, 138, 0.8)'; // Yellow for normal mode
+          const highlightedSpan = `<span class="px-1 rounded" style="background-color: ${highlightColor};">${highlightText}</span>`;
+          
+          highlightedText = before + highlightedSpan + after;
+          offset += highlightedSpan.length - highlightText.length;
+        }
+      }
+    });
+
+    return highlightedText;
+  };
+
   return (
     <>
       {/* Audio element - hidden but controls both modes */}
@@ -361,15 +417,14 @@ const ReadBookPage: React.FC = () => {
               style={{
                 fontSize: `${fontSize + 6}px`,
                 lineHeight: 1.8,
-                fontFamily: fontFamily === 'serif' ? 'serif' : 'sans-serif'
+                fontFamily: 'serif'
               }}
               onMouseUp={handleTextSelection}
               onTouchEnd={handleTextSelection}
               role="article"
               aria-label={`Contenido del ${chapters[currentChapter].title}`}
-            >
-              {chapters[currentChapter].text}
-            </div>
+              dangerouslySetInnerHTML={{ __html: renderTextWithHighlights(chapters[currentChapter].text, highlights, true) }}
+            />
           </div>
         </div>
       )}
@@ -556,14 +611,6 @@ const ReadBookPage: React.FC = () => {
                   </button>
                 </div>
                 <div className="flex items-center gap-2">
-                  <select
-                    value={fontFamily}
-                    onChange={(e) => setFontFamily(e.target.value)}
-                    className="text-xs bg-gray-100 py-1 px-2 rounded border hidden sm:block"
-                  >
-                    <option value="serif">Serif</option>
-                    <option value="sans">Sans</option>
-                  </select>
                   <div className="flex gap-1 items-center">
                     <button
                       onClick={() => setFontSize(Math.max(12, fontSize - 2))}
@@ -597,13 +644,12 @@ const ReadBookPage: React.FC = () => {
 
             {/* Book content */}
             <div
-              className={`prose prose-lg max-w-none text-gray-900 bg-amber-50 rounded-xl p-4 sm:p-8 mb-4 min-h-[500px] leading-relaxed border border-amber-200 shadow-inner ${fontFamily === 'serif' ? 'font-serif' : 'font-sans'} select-text`}
+              className={`prose prose-lg max-w-none text-gray-900 bg-amber-50 rounded-xl p-4 sm:p-8 mb-4 min-h-[500px] leading-relaxed border border-amber-200 shadow-inner font-serif select-text`}
               style={{ fontSize: `${fontSize}px`, lineHeight: 1.8, textAlign: 'justify' }}
               onMouseUp={handleTextSelection}
               onTouchEnd={handleTextSelection}
-            >
-              {chapters[currentChapter].text}
-            </div>
+              dangerouslySetInnerHTML={{ __html: renderTextWithHighlights(chapters[currentChapter].text, highlights, false) }}
+            />
 
             {/* Highlight Menu */}
             {showHighlightMenu && (
