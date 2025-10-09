@@ -581,11 +581,8 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                         };
                                                                                     }
 
-                                                                                    const name = exerciseText.split(':')[0].trim();
-                                                                                    const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
-
                                                                                     // Caso especial para precalentamiento
-                                                                                    if (name.toLowerCase().includes('precalentamiento')) {
+                                                                                    if (exerciseText.toLowerCase().includes('precalentamiento')) {
                                                                                         return {
                                                                                             name: 'Precalentamiento',
                                                                                             sets: '1',
@@ -594,17 +591,26 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                         };
                                                                                     }
 
-                                                                                    // Extraer sets
-                                                                                    const setsMatch = details.match(/(\d+)\s*sets?/i);
-                                                                                    const sets = setsMatch ? setsMatch[1] : '1';
+                                                                                    // Dividir por ' - ' para parsear mejor
+                                                                                    const parts = exerciseText.split(' - ').map(p => p.trim());
+                                                                                    let name = parts[0];
+                                                                                    let sets = '1';
+                                                                                    let reps = '1';
+                                                                                    let minutes = 'na';
 
-                                                                                    // Extraer repeticiones
-                                                                                    const repsMatch = details.match(/(\d+)\s*reps?/i);
-                                                                                    const reps = repsMatch ? repsMatch[1] : '1';
-
-                                                                                    // Extraer minutos
-                                                                                    const minutesMatch = details.match(/(\d+)\s*min/i);
-                                                                                    const minutes = minutesMatch ? minutesMatch[1] : 'na';
+                                                                                    for (let i = 1; i < parts.length; i++) {
+                                                                                        const part = parts[i].toLowerCase();
+                                                                                        if (part.includes('reps')) {
+                                                                                            const match = part.match(/(\d+)/);
+                                                                                            if (match) reps = match[1];
+                                                                                        } else if (part.includes('series') || part.includes('serie')) {
+                                                                                            const match = part.match(/(\d+)/);
+                                                                                            if (match) sets = match[1];
+                                                                                        } else if (part.includes('min')) {
+                                                                                            const match = part.match(/(\d+)/);
+                                                                                            if (match) minutes = match[1];
+                                                                                        }
+                                                                                    }
 
                                                                                     return { name, sets, reps, minutes };
                                                                                 };
