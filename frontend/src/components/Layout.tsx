@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import { useAuth } from '../contexts/AuthContext';
 
-const navItems = [
+const baseNavItems = [
   { label: 'Pasos a Seguir', path: '/steps-to-do' },
   { label: '¿Qué es F88?', path: '/what-is-f88' },
   { label: 'Comprar', path: '/buy-book' },
@@ -17,6 +17,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  const navItems = user ? [...baseNavItems, { label: 'Dashboard', path: '/dashboard' }] : baseNavItems;
 
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement | null>(null);
@@ -185,33 +187,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
                     {/* Menu Items */}
                     <div className="py-2">
-                      {/* Dashboard */}
-                      <Link
-                        to="/dashboard"
-                        onClick={() => setIsUserMenuOpen(false)}
-                        className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 group"
-                      >
-                        <div className="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors duration-200">
-                          <svg
-                            className="w-5 h-5 text-blue-400"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                            />
-                          </svg>
-                        </div>
-                        <div>
-                          <p className="font-medium">Panel de Control</p>
-                          <p className="text-xs text-gray-400">Accede a tu dashboard</p>
-                        </div>
-                      </Link>
-
                       {/* Settings (placeholder) */}
                       <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 group">
                         <div className="p-2 bg-gray-500/10 rounded-lg group-hover:bg-gray-500/20 transition-colors duration-200">
@@ -385,52 +360,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
                     {/* User Info */}
                     <div className="flex-1">
-                      <Link
-                        to="/dashboard"
-                        className="text-white font-medium text-base hover:text-blue-300 transition-colors duration-200 block"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        title="Ir al Panel de Usuario"
-                      >
+                      <span className="text-white font-medium text-base">
                         {user.name}
-                      </Link>
+                      </span>
                       <span className="text-gray-400 text-sm">Usuario Premium</span>
                     </div>
 
-                    {/* Dashboard Icon */}
-                    <Link
-                      to="/dashboard"
-                      className="p-2 text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg transition-all duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      title="Panel de Control"
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                        />
-                      </svg>
-                    </Link>
+                    {/* Dashboard icon removed - now in main navigation */}
                   </div>
 
                   {/* Quick Actions */}
                   <div className="flex gap-2">
-                    <Link
-                      to="/dashboard"
-                      className="flex-1 flex items-center justify-center gap-2 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 font-medium px-3 py-2 rounded-lg transition-all duration-200 text-sm border border-blue-500/20"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                      </svg>
-                      Panel
-                    </Link>
+                    {/* Panel button removed - now in main navigation */}
                   </div>
                 </div>
 
