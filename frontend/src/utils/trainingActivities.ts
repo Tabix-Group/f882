@@ -1,5 +1,29 @@
+// Interfaces para tipado TypeScript
+interface ActivityDetails {
+    type: 'CARDIO' | 'FLEXIBILIDAD' | 'FUERZA' | 'LIBRE';
+    duration: number | 'na';
+    warmup?: string;
+    restBetweenSets?: string;
+    exercises: string[];
+    respiracionConsciente?: string;
+    videos?: Record<string, string>;
+}
+
+interface Activity {
+    activity: 'CARDIO' | 'FLEXIBILIDAD' | 'FUERZA' | 'LIBRE';
+    warmup: number | 'na';
+    exercise: number | 'na';
+    details: ActivityDetails;
+}
+
+interface TrainingActivities {
+    [level: string]: {
+        [day: number]: Activity;
+    };
+}
+
 // Actividades de entrenamiento por nivel
-export const TRAINING_ACTIVITIES = {
+export const TRAINING_ACTIVITIES: TrainingActivities = {
     INICIAL: {
         1: {
             activity: 'CARDIO',
@@ -111,7 +135,8 @@ export const TRAINING_ACTIVITIES = {
             details: {
                 type: 'LIBRE',
                 duration: 'na',
-                exercises: ['Día libre - Descanso activo']
+                exercises: ['Día libre - Descanso activo'],
+                respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         8: {

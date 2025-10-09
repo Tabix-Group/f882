@@ -547,7 +547,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-16">Reps</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-16">Min</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-16">Series</div>
-                                                                            <div className="text-blue-200 font-semibold text-sm text-center w-20">Video</div>
+                                                                            <div className="text-blue-200 font-semibold text-sm text-center w-20">Ver</div>
                                                                         </div>
 
                                                                         {/* Filas de ejercicios */}
@@ -584,13 +584,23 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                     const name = exerciseText.split(':')[0].trim();
                                                                                     const details = exerciseText.includes(':') ? exerciseText.split(':')[1].trim() : exerciseText;
 
+                                                                                    // Caso especial para precalentamiento
+                                                                                    if (name.toLowerCase().includes('precalentamiento')) {
+                                                                                        return {
+                                                                                            name: 'Precalentamiento',
+                                                                                            sets: '1',
+                                                                                            reps: '1',
+                                                                                            minutes: '3'
+                                                                                        };
+                                                                                    }
+
                                                                                     // Extraer sets
                                                                                     const setsMatch = details.match(/(\d+)\s*sets?/i);
-                                                                                    const sets = setsMatch ? setsMatch[1] : 'na';
+                                                                                    const sets = setsMatch ? setsMatch[1] : '1';
 
                                                                                     // Extraer repeticiones
                                                                                     const repsMatch = details.match(/(\d+)\s*reps?/i);
-                                                                                    const reps = repsMatch ? repsMatch[1] : 'na';
+                                                                                    const reps = repsMatch ? repsMatch[1] : '1';
 
                                                                                     // Extraer minutos
                                                                                     const minutesMatch = details.match(/(\d+)\s*min/i);
