@@ -230,7 +230,7 @@ const TrainingCalendarPage: React.FC = () => {
             days.push(
                 <div
                     key={day}
-                    className={`h-16 flex flex-col justify-between p-2 text-sm font-medium rounded-lg transition-all duration-200 ${trainingDay
+                    className={`h-12 sm:h-16 flex flex-col justify-between p-1 sm:p-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 ${trainingDay
                         ? trainingDay.isRestDay
                             ? 'bg-green-500/20 text-green-300 border border-green-500/30'
                             : trainingDay.isCompleted
@@ -246,19 +246,19 @@ const TrainingCalendarPage: React.FC = () => {
                         <>
                             {/* Número del día del programa en el centro */}
                             <div className="flex-1 flex items-center justify-center">
-                                <span className="text-lg font-bold">{trainingDay.dayNumber}</span>
+                                <span className="text-base sm:text-lg font-bold">{trainingDay.dayNumber}</span>
                             </div>
 
                             {/* Número del día del mes abajo a la derecha */}
                             <div className="flex justify-end">
-                                <span className="text-xs opacity-70 italic">{day}-{selectedMonth + 1}</span>
+                                <span className="text-[10px] sm:text-xs opacity-70 italic">{day}-{selectedMonth + 1}</span>
                             </div>
                         </>
                     ) : (
                         <div className="flex flex-col justify-between h-full">
                             <div className="flex-1"></div>
                             <div className="flex justify-end">
-                                <span className="text-xs opacity-70 italic">{day}-{selectedMonth + 1}</span>
+                                <span className="text-[10px] sm:text-xs opacity-70 italic">{day}-{selectedMonth + 1}</span>
                             </div>
                         </div>
                     )}
@@ -320,9 +320,9 @@ const TrainingCalendarPage: React.FC = () => {
 
             <div className="relative z-10 min-h-screen flex flex-col">
                 {/* Header */}
-                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-4 py-4">
-                    <div className="max-w-6xl mx-auto flex items-center justify-between">
-                        <div className="flex items-center gap-4">
+                <div className="bg-neutral-900/80 backdrop-blur-md border-b border-white/10 px-4 sm:px-6 lg:px-8 py-4">
+                    <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div className="flex items-center gap-4 w-full sm:w-auto">
                             <button
                                 onClick={() => navigate('/dashboard')}
                                 className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
@@ -350,11 +350,11 @@ const TrainingCalendarPage: React.FC = () => {
 
                 {/* Progress Stats */}
                 {progress && (
-                    <div className="bg-neutral-900/50 backdrop-blur-md border-b border-white/10 px-4 py-6">
-                        <div className="max-w-6xl mx-auto">
+                    <div className="bg-neutral-900/50 backdrop-blur-md border-b border-white/10 px-4 sm:px-6 lg:px-8 py-6">
+                        <div className="max-w-7xl mx-auto">
                             {/* Progress Bar */}
                             <div className="mt-6">
-                                <div className="flex justify-between text-sm text-gray-400 mb-2">
+                                <div className="flex flex-col sm:flex-row justify-between text-sm text-gray-400 mb-2 gap-1">
                                     <span>Progreso del programa</span>
                                     <span>{progress.completedDays} de {progress.totalDays} días</span>
                                 </div>
@@ -374,11 +374,11 @@ const TrainingCalendarPage: React.FC = () => {
                 )}
 
                 {/* Main Content */}
-                <div className="flex-1 px-4 py-8">
-                    <div className="max-w-6xl mx-auto">
+                <div className="flex-1 px-4 sm:px-6 lg:px-8 py-8">
+                    <div className="max-w-7xl mx-auto">
                         {/* Calendar Header */}
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-2xl font-bold">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+                            <h2 className="text-xl sm:text-2xl font-bold">
                                 {getMonthName(selectedMonth)} {selectedYear}
                             </h2>
                             <div className="flex gap-2">
@@ -402,45 +402,46 @@ const TrainingCalendarPage: React.FC = () => {
                         </div>
 
                         {/* Calendar Grid */}
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-2xl">
+                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-3 sm:p-6 shadow-2xl overflow-x-auto">
                             {/* Days of week header */}
-                            <div className="grid grid-cols-7 gap-2 mb-4">
+                            <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-4">
                                 {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map((day) => (
-                                    <div key={day} className="text-center text-sm font-medium text-gray-400 py-2">
+                                    <div key={day} className="text-center text-xs sm:text-sm font-medium text-gray-400 py-2">
                                         {day}
                                     </div>
                                 ))}
                             </div>
 
                             {/* Calendar days */}
-                            <div className="grid grid-cols-7 gap-2">
+                            <div className="grid grid-cols-7 gap-1 sm:gap-2">
                                 {renderCalendar()}
                             </div>
                         </div>
 
                         {/* Legend */}
-                        <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm">
+                        <div className="mt-8 flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm px-2">
                             <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-blue-500/20 border border-blue-500/30 rounded"></div>
-                                <span>Día completado</span>
+                                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-500/20 border border-blue-500/30 rounded"></div>
+                                <span>Completado</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-white/5 border border-white/20 rounded"></div>
-                                <span>Día pendiente</span>
+                                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white/5 border border-white/20 rounded"></div>
+                                <span>Pendiente</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-red-500/20 border border-red-500/30 rounded"></div>
-                                <span>Día perdido</span>
+                                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-500/20 border border-red-500/30 rounded"></div>
+                                <span>Perdido</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-4 h-4 bg-green-500/20 border border-green-500/30 rounded"></div>
-                                <span>Día de descanso</span>
+                                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-500/20 border border-green-500/30 rounded"></div>
+                                <span>Descanso</span>
                             </div>
                             {progress && (
                                 <>
                                     <div className="flex items-center gap-2 text-xs">
                                         <span className="text-blue-400 font-bold">{progress.completedDays}</span>
-                                        <span>Días completados</span>
+                                        <span className="hidden sm:inline">Completados</span>
+                                        <span className="sm:hidden">✓</span>
                                     </div>
                                     <div className="flex items-center gap-2 text-xs">
                                         <span className="text-red-400 font-bold">
@@ -450,17 +451,18 @@ const TrainingCalendarPage: React.FC = () => {
                                                 return Math.max(0, daysElapsed - progress.completedDays);
                                             })() : 0}
                                         </span>
-                                        <span>Días perdidos</span>
+                                        <span className="hidden sm:inline">Perdidos</span>
+                                        <span className="sm:hidden">✗</span>
                                     </div>
                                 </>
                             )}
                         </div>                        {/* Motivational Message */}
-                        <div className="mt-8 text-center">
-                            <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/20 rounded-xl p-6">
-                                <h3 className="text-xl font-semibold text-white mb-2">
+                        <div className="mt-6 sm:mt-8 text-center">
+                            <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/20 rounded-xl p-4 sm:p-6">
+                                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
                                     ¡Cada día cuenta en tu transformación!
                                 </h3>
-                                <p className="text-gray-300">
+                                <p className="text-sm sm:text-base text-gray-300">
                                     Marca los días que completes y mantén tu racha viva. ¡Tú puedes lograrlo!
                                 </p>
                             </div>
@@ -470,78 +472,79 @@ const TrainingCalendarPage: React.FC = () => {
 
                 {/* Activity Modal */}
                 {showActivityModal && selectedDay && (
-                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-                        <div className="bg-neutral-900 border border-white/20 rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl">
-                            <div className="p-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="text-xl font-bold text-white">
-                                        Día {selectedDay.dayNumber}
-                                    </h3>
-                                    <button
-                                        onClick={closeModal}
-                                        className="text-gray-400 hover:text-white transition-colors"
-                                    >
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <div className="space-y-4">
-                                    <div className="text-center">
-                                        <p className="text-gray-300 text-sm">
-                                            {new Date(selectedDay.date).toLocaleDateString('es-ES', {
-                                                weekday: 'long',
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric'
-                                            })}
-                                        </p>
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 overflow-y-auto">
+                        <div className="min-h-screen w-screen flex items-center justify-center p-0">
+                            <div className="bg-neutral-900 border border-white/20 rounded-xl sm:rounded-2xl w-full mx-2 sm:mx-auto sm:max-w-4xl max-h-[95vh] sm:max-h-[85vh] overflow-y-auto overflow-x-hidden shadow-2xl">
+                                <div className="p-3 sm:p-6">
+                                    <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
+                                        <h3 className="text-base sm:text-xl font-bold text-white truncate">
+                                            Día {selectedDay.dayNumber}
+                                        </h3>
+                                        <button
+                                            onClick={closeModal}
+                                            className="text-gray-400 hover:text-white transition-colors p-1 flex-shrink-0"
+                                        >
+                                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
                                     </div>
 
-                                    {selectedDay.isRestDay ? (
-                                        <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-4 text-center">
-                                            <h4 className="text-green-300 font-semibold mb-2">Día de Descanso</h4>
-                                            <p className="text-green-200 text-sm">
-                                                Hoy es tu día de recuperación. Descansa, hidrátate y prepárate para los próximos entrenamientos.
+                                    <div className="space-y-3 sm:space-y-4 w-full overflow-hidden">
+                                        <div className="text-center">
+                                            <p className="text-gray-300 text-xs sm:text-sm break-words px-2">
+                                                {new Date(selectedDay.date).toLocaleDateString('es-ES', {
+                                                    weekday: 'long',
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                })}
                                             </p>
+                                        </div>
+
+                                        {selectedDay.isRestDay ? (
+                                            <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-3 sm:p-4 text-center">
+                                                <h4 className="text-green-300 font-semibold mb-2 text-sm sm:text-base">Día de Descanso</h4>
+                                                <p className="text-green-200 text-xs sm:text-sm">
+                                                    Hoy es tu día de recuperación. Descansa, hidrátate y prepárate.
+                                                </p>
                                         </div>
                                     ) : (
                                         (() => {
                                             const activity = getActivityForDay(progress?.level || 'INICIAL', selectedDay.dayNumber);
                                             return activity ? (
-                                                <div className="space-y-4">
+                                                <div className="space-y-3 sm:space-y-4 w-full overflow-hidden">
                                                     {/* Header con tipo de entrenamiento */}
-                                                    <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-4 text-center">
-                                                        <h4 className="text-blue-300 font-bold text-xl mb-1">{activity.activity}</h4>
-                                                        <p className="text-blue-200/80 text-sm">
-                                                            Duración total: {activity.exercise === 'na' ? 'Libre' : (() => {
+                                                    <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-3 sm:p-4 text-center">
+                                                        <h4 className="text-blue-300 font-bold text-sm sm:text-xl mb-1 break-words">{activity.activity}</h4>
+                                                        <p className="text-blue-200/80 text-xs sm:text-sm break-words">
+                                                            Duración: {activity.exercise === 'na' ? 'Libre' : (() => {
                                                                 const baseDuration = parseInt(String(activity.exercise)) || 0;
                                                                 const hasRespiracion = (activity as any).details?.respiracionConsciente;
-                                                                return hasRespiracion ? `${baseDuration + 10} minutos (incluye 10 min de respiración)` : `${baseDuration} minutos`;
+                                                                return hasRespiracion ? `${baseDuration + 10} min (+ resp)` : `${baseDuration} min`;
                                                             })()}
                                                         </p>
                                                         {(activity as any).details?.restBetweenSets && (
-                                                            <p className="text-blue-200/80 text-sm">
-                                                                Descanso entre ejercicios: {(activity as any).details.restBetweenSets}
+                                                            <p className="text-blue-200/80 text-xs sm:text-sm">
+                                                                Descanso: {(activity as any).details.restBetweenSets}
                                                             </p>
                                                         )}
                                                     </div>
 
                                                     {/* Detalles del entrenamiento en formato claro */}
                                                     {(activity as any).details && (
-                                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-white/20 w-full overflow-hidden">
                                                             {/* Lista de ejercicios en formato tabla */}
                                                             {(activity as any).details.exercises && (
-                                                                <div className="space-y-4">
-                                                                    <h6 className="text-white font-semibold flex items-center">
+                                                                <div className="space-y-2 w-full overflow-hidden">
+                                                                    <h6 className="text-white font-semibold text-sm sm:text-base flex items-center">
                                                                         💪 Ejercicios a realizar:
                                                                     </h6>
 
-                                                                    {/* Tabla horizontal de ejercicios */}
-                                                                    <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-                                                                        {/* Header de la tabla */}
-                                                                        <div className="grid grid-cols-6 gap-2 bg-blue-600/20 p-3 border-b border-white/10">
+                                                                    {/* Tabla horizontal de ejercicios - Desktop / Cards - Mobile */}
+                                                                    <div className="space-y-2">
+                                                                        {/* Header de la tabla - Solo Desktop */}
+                                                                        <div className="hidden sm:grid grid-cols-[auto_1fr_auto_auto_auto_auto] gap-2 bg-blue-600/20 p-3 border-b border-white/10 rounded-t-lg">
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-8">#</div>
                                                                             <div className="text-blue-200 font-semibold text-sm">Ejercicio</div>
                                                                             <div className="text-blue-200 font-semibold text-sm text-center w-16">Reps</div>
@@ -632,33 +635,82 @@ const TrainingCalendarPage: React.FC = () => {
                                                                                 const videoUrl = (activity as any).details.videos?.[exerciseBaseName];
 
                                                                                 return (
-                                                                                    <div key={index} className={`grid grid-cols-6 gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : isRespiracion ? 'bg-green-500/10 border-l-4 border-green-400' : ''}`}>
-                                                                                        <div className="text-white font-bold text-center w-8">
-                                                                                            {isRespiracion ? '#' : (index + 1)}
+                                                                                    <React.Fragment key={index}>
+                                                                                        {/* Vista Mobile - Card */}
+                                                                                        <div className={`sm:hidden bg-white/5 rounded-lg p-2.5 w-full overflow-hidden relative ${isWarmup ? 'bg-orange-500/10' : isRespiracion ? 'bg-green-500/10' : ''}`}>
+                                                                                            {/* Indicador de color como borde superior */}
+                                                                                            <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-lg ${isWarmup ? 'bg-orange-400' : isRespiracion ? 'bg-green-400' : 'bg-blue-400'}`}></div>
+                                                                                            
+                                                                                            <div className="flex items-start justify-between gap-2 mt-1">
+                                                                                                <div className="flex-1 min-w-0 overflow-hidden">
+                                                                                                    <div className="flex items-center gap-2 mb-1.5">
+                                                                                                        <span className="text-white font-bold text-xs flex-shrink-0">
+                                                                                                            {isRespiracion ? '#' : `${index + 1}.`}
+                                                                                                        </span>
+                                                                                                        <h4 className={`font-semibold text-xs truncate ${isWarmup ? 'text-orange-200' : isRespiracion ? 'text-green-200' : 'text-white'}`}>
+                                                                                                            {isWarmup && '🔥 '}{isRespiracion && '🧘 '}{parsed.name}
+                                                                                                        </h4>
+                                                                                                    </div>
+                                                                                                    <div className="flex gap-3 text-[10px] text-gray-300">
+                                                                                                        {parsed.reps !== 'na' && (
+                                                                                                            <div className="whitespace-nowrap">
+                                                                                                                <span className="text-blue-300 font-semibold">Reps:</span> {parsed.reps}
+                                                                                                            </div>
+                                                                                                        )}
+                                                                                                        {parsed.minutes !== 'na' && (
+                                                                                                            <div className="whitespace-nowrap">
+                                                                                                                <span className="text-blue-300 font-semibold">Min:</span> {parsed.minutes}
+                                                                                                            </div>
+                                                                                                        )}
+                                                                                                        <div className="whitespace-nowrap">
+                                                                                                            <span className="text-blue-300 font-semibold">Series:</span> {parsed.sets}
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                {videoUrl && (
+                                                                                                    <button
+                                                                                                        onClick={() => openVideoModal(videoUrl)}
+                                                                                                        className="px-2 py-1.5 bg-red-600 hover:bg-red-700 text-white text-[10px] font-semibold rounded transition-colors flex items-center gap-1 flex-shrink-0"
+                                                                                                        title="Ver video"
+                                                                                                    >
+                                                                                                        <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
+                                                                                                            <path d="M8 5v14l11-7z" />
+                                                                                                        </svg>
+                                                                                                        Ver
+                                                                                                    </button>
+                                                                                                )}
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div className={`text-sm font-medium ${isWarmup ? 'text-orange-200' : isRespiracion ? 'text-green-200' : 'text-white'}`}>
-                                                                                            {isWarmup && '🔥 '}{isRespiracion && '🧘 '}{parsed.name}
+
+                                                                                        {/* Vista Desktop - Tabla */}
+                                                                                        <div className={`hidden sm:grid grid-cols-[auto_1fr_auto_auto_auto_auto] gap-2 p-3 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-blue-500/10 transition-colors ${isWarmup ? 'bg-orange-500/10 border-l-4 border-orange-400' : isRespiracion ? 'bg-green-500/10 border-l-4 border-green-400' : ''}`}>
+                                                                                            <div className="text-white font-bold text-center text-sm w-8">
+                                                                                                {isRespiracion ? '#' : (index + 1)}
+                                                                                            </div>
+                                                                                            <div className={`text-sm font-medium ${isWarmup ? 'text-orange-200' : isRespiracion ? 'text-green-200' : 'text-white'}`}>
+                                                                                                {isWarmup && '🔥 '}{isRespiracion && '🧘 '}{parsed.name}
+                                                                                            </div>
+                                                                                            <div className="text-white text-sm text-center w-16">{parsed.reps}</div>
+                                                                                            <div className="text-white text-sm text-center w-16">{parsed.minutes}</div>
+                                                                                            <div className="text-white text-sm text-center w-16">{parsed.sets}</div>
+                                                                                            <div className="text-center w-20">
+                                                                                                {videoUrl ? (
+                                                                                                    <button
+                                                                                                        onClick={() => openVideoModal(videoUrl)}
+                                                                                                        className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-1 w-full"
+                                                                                                        title="Ver video del ejercicio"
+                                                                                                    >
+                                                                                                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                                                                                            <path d="M8 5v14l11-7z" />
+                                                                                                        </svg>
+                                                                                                        Ver
+                                                                                                    </button>
+                                                                                                ) : (
+                                                                                                    <span className="text-gray-500 text-xs">-</span>
+                                                                                                )}
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div className="text-white text-sm text-center w-16">{parsed.reps}</div>
-                                                                                        <div className="text-white text-sm text-center w-16">{parsed.minutes}</div>
-                                                                                        <div className="text-white text-sm text-center w-16">{parsed.sets}</div>
-                                                                                        <div className="text-center w-20">
-                                                                                            {videoUrl ? (
-                                                                                                <button
-                                                                                                    onClick={() => openVideoModal(videoUrl)}
-                                                                                                    className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition-colors duration-200 flex items-center gap-1"
-                                                                                                    title="Ver video del ejercicio"
-                                                                                                >
-                                                                                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                                                                                                        <path d="M8 5v14l11-7z" />
-                                                                                                    </svg>
-                                                                                                    Ver
-                                                                                                </button>
-                                                                                            ) : (
-                                                                                                <span className="text-gray-500 text-xs">-</span>
-                                                                                            )}
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    </React.Fragment>
                                                                                 );
                                                                             });
                                                                         })()}
@@ -667,12 +719,12 @@ const TrainingCalendarPage: React.FC = () => {
                                                             )}
                                                         </div>
                                                     )}                                                    {/* Información de estado y acción */}
-                                                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                                                        <div className="flex items-center justify-between">
-                                                            <div className="flex items-center gap-3">
-                                                                <div className={`w-3 h-3 rounded-full ${selectedDay.isCompleted ? 'bg-green-400' : 'bg-yellow-400'} animate-pulse`}></div>
-                                                                <span className={`font-semibold ${selectedDay.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
-                                                                    {selectedDay.isCompleted ? '✅ Entrenamiento Completado' : '⏳ Pendiente de realizar'}
+                                                    <div className="bg-white/5 rounded-xl p-3 sm:p-4 border border-white/10 w-full overflow-hidden">
+                                                        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+                                                            <div className="flex items-center gap-2 sm:gap-3">
+                                                                <div className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full ${selectedDay.isCompleted ? 'bg-green-400' : 'bg-yellow-400'} animate-pulse`}></div>
+                                                                <span className={`font-semibold text-xs sm:text-base ${selectedDay.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
+                                                                    {selectedDay.isCompleted ? '✅ Completado' : '⏳ Pendiente'}
                                                                 </span>
                                                             </div>
                                                             {!selectedDay.isCompleted && (
@@ -681,7 +733,7 @@ const TrainingCalendarPage: React.FC = () => {
                                                                         handleDayToggle(selectedDay.dayNumber);
                                                                         closeModal();
                                                                     }}
-                                                                    className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg"
+                                                                    className="w-full sm:w-auto px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-xs sm:text-base font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg"
                                                                 >
                                                                     ✓ Marcar Completado
                                                                 </button>
@@ -690,12 +742,13 @@ const TrainingCalendarPage: React.FC = () => {
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-4 text-center">
-                                                    <p className="text-yellow-200">No se encontró actividad para este día.</p>
+                                                <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-3 sm:p-4 text-center w-full overflow-hidden">
+                                                    <p className="text-yellow-200 text-xs sm:text-sm">No se encontró actividad para este día.</p>
                                                 </div>
                                             );
                                         })()
                                     )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
