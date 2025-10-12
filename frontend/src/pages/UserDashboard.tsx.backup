@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth }            icon: '📄',from '../contexts/AuthContext';
 import Spinner from '../components/Spinner';
 
 const UserDashboard: React.FC = () => {
@@ -116,7 +116,7 @@ const UserDashboard: React.FC = () => {
             title: 'Flipbook de Apoyo',
             subtitle: 'Guía interactiva',
             description: 'Accede a tu manual digital personalizado',
-            icon: '📄',
+            icon: '�',
             gradient: 'from-orange-500 to-red-500',
             bgGradient: 'from-orange-900/10 to-red-900/10',
             path: '#',
