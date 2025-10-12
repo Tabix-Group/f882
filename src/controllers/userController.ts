@@ -35,9 +35,10 @@ export const getAssessmentStatus = async (req: Request, res: Response) => {
     return res.status(400).json({ message: 'ID de usuario requerido.' });
   }
   try {
-    const result = await pool.query('SELECT id FROM f88_assessments WHERE user_id = $1', [userId]);
+    const result = await pool.query('SELECT id, level FROM f88_assessments WHERE user_id = $1', [userId]);
     const hasCompletedAssessment = result.rows.length > 0;
-    res.status(200).json({ hasCompletedAssessment });
+    const level = hasCompletedAssessment ? result.rows[0].level : null;
+    res.status(200).json({ hasCompletedAssessment, level });
   } catch (error) {
     console.error('Error al verificar estado de evaluación:', error);
     res.status(500).json({ message: 'Error al verificar estado de evaluación.' });

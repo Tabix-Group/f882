@@ -24,6 +24,10 @@ import UserDashboard from './pages/UserDashboard';
 import JordanChat from './pages/JordanChat';
 import F88AssessmentPage from './pages/F88AssessmentPage';
 import TrainingCalendarPage from './pages/TrainingCalendarPage';
+import FlipbookInitialPage from './pages/FlipbookInitialPage';
+import FlipbookFunctionalPage from './pages/FlipbookFunctionalPage';
+import FlipbookIdealPage from './pages/FlipbookIdealPage';
+import FlipbookSelectorPage from './pages/FlipbookSelectorPage';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -59,6 +63,10 @@ function App() {
                 <Route path="/faq" element={<CustomerServicePage />} />
                 <Route path="/dashboard" element={<UserDashboard />} />
                 <Route path="/f88-assessment" element={<F88AssessmentPage />} />
+                <Route path="/flipbook-selector" element={<FlipbookSelectorPage />} />
+                <Route path="/flipbook/initial" element={<FlipbookInitialPage />} />
+                <Route path="/flipbook/functional" element={<FlipbookFunctionalPage />} />
+                <Route path="/flipbook/ideal" element={<FlipbookIdealPage />} />
               </Routes>
             </Layout>
           } />

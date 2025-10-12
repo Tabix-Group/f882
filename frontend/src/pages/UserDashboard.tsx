@@ -6,6 +6,7 @@ import Spinner from '../components/Spinner';
 const UserDashboard: React.FC = () => {
     const [userName, setUserName] = useState<string>('');
     const [hasCompletedAssessment, setHasCompletedAssessment] = useState<boolean>(false);
+    const [userLevel, setUserLevel] = useState<string>('');
     const navigate = useNavigate();
     const { user, isLoading } = useAuth();
 
@@ -25,6 +26,9 @@ const UserDashboard: React.FC = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setHasCompletedAssessment(data.hasCompletedAssessment);
+                    if (data.hasCompletedAssessment && data.level) {
+                        setUserLevel(data.level);
+                    }
                 }
             } catch (error) {
                 console.error('Error checking assessment status:', error);
@@ -88,9 +92,21 @@ const UserDashboard: React.FC = () => {
         },
     ];
 
-    const handleSectionClick = (path: string) => {
+    const handleSectionClick = (path: string, sectionId?: number) => {
         if (path !== '#') {
             navigate(path);
+        } else if (sectionId === 4) {
+            // Flipbook de apoyo
+            if (!hasCompletedAssessment) {
+                // Si no han completado assessment, mostrar selector de flipbooks
+                navigate('/flipbook-selector');
+            } else {
+                // Si han completado assessment, ir al flipbook correspondiente
+                const levelPath = userLevel === 'INICIAL' ? '/flipbook/initial' :
+                                 userLevel === 'FUNCIONAL' ? '/flipbook/functional' :
+                                 '/flipbook/ideal';
+                navigate(levelPath);
+            }
         }
     };
 
@@ -110,7 +126,7 @@ const UserDashboard: React.FC = () => {
                     {sections.map((section, index) => (
                         <div
                             key={section.id}
-                            onClick={() => handleSectionClick(section.path)}
+                            onClick={() => handleSectionClick(section.path, section.id)}
                             className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer fadein show group"
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
