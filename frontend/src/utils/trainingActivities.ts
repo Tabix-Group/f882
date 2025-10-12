@@ -51,6 +51,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 6 min',
                     'DR (Directa/Reversa) - 6 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -72,8 +76,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 ],
                 respiracionConsciente: 'Respiración consciente - 10 min',
                 videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/example1',
-                    'Vortice pendular': 'https://www.youtube.com/embed/example2'
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
                 }
             }
         },
@@ -114,6 +118,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 6 min',
                     'S/B Escaleras o Step - 6 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -151,6 +158,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'DR (Directa/Reversa) - 8 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -204,6 +215,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'S/B Escaleras o Step - 8 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -223,6 +237,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 35 reps - 2 series',
                     'Incentivo a la Flexibilidad - 5 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -238,6 +256,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'DR (Directa/Reversa) - 8 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -293,6 +315,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 8 min',
                     'DR (Directa/Reversa) - 10 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -335,6 +361,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 8 min',
                     'S/B Escaleras o Step - 10 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -379,6 +408,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'DR (Directa/Reversa) - 14 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -413,6 +446,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'S/B Escaleras o Step - 14 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -533,6 +569,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'S/B Escaleras o Step - 17 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -615,6 +654,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'S/B Escaleras o Step - 18 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -846,6 +888,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 8 min',
                     'S/B Escaleras o Step - 18 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -871,6 +916,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'S/B Escaleras o Step - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1056,6 +1104,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 23 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1127,6 +1178,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 24 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1358,6 +1412,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 25 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1475,6 +1532,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 25 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1511,6 +1571,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 3 min',
                     'S/B Escaleras o Step - 27 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1596,6 +1659,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'DR (Directa/Reversa) - 8 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1615,6 +1682,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 2 series',
                     'Incentivo a la Flexibilidad - 5 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1657,6 +1728,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 7 min',
                     'S/B Escaleras o Step - 8 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1693,6 +1767,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'DR (Directa/Reversa) - 15 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1746,6 +1824,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 6 min',
                     'S/B Escaleras o Step - 14 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1765,6 +1846,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 5 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1780,6 +1865,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 6 min',
                     'DR (Directa/Reversa) - 14 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1820,6 +1909,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1835,6 +1928,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'DR (Directa/Reversa) - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1877,6 +1974,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1896,6 +1996,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1921,6 +2025,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'DR (Directa/Reversa) - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1940,6 +2048,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1955,6 +2067,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2053,6 +2168,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 35 reps - 4 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2068,6 +2187,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2125,6 +2247,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 35 reps - 4 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2150,6 +2276,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2200,6 +2329,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2239,6 +2372,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2299,6 +2436,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2338,6 +2479,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2353,6 +2498,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 25 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2378,6 +2526,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 30 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2417,6 +2568,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2467,6 +2622,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2507,6 +2666,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2542,6 +2705,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 35 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2561,6 +2727,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2606,6 +2776,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 35 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2625,6 +2798,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2675,6 +2852,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2755,6 +2936,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2794,6 +2979,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2809,6 +2998,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 40 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2858,6 +3050,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2897,6 +3093,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2912,6 +3112,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 40 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2948,6 +3151,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 5 min',
                     'S/B Escaleras o Step - 40 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2978,6 +3184,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3045,6 +3255,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 20 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3165,6 +3378,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 23 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3184,6 +3400,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 3 series',
                     'Incentivo a la Flexibilidad - 8 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3262,6 +3482,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 3 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3277,6 +3501,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 26 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3334,6 +3561,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 3 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3359,6 +3590,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 29 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3378,6 +3612,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3393,6 +3631,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'DR (Directa/Reversa) - 29 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E',
+                    'DR (Directa/Reversa)': 'https://www.youtube.com/embed/fvf-tc8qQcY'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3498,6 +3740,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 10 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3513,6 +3759,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 32 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3570,6 +3819,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 10 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3595,6 +3848,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 35 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3652,6 +3908,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 60 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3698,6 +3958,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 60 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3761,6 +4025,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 38 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3780,6 +4047,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 60 reps - 4 series',
                     'Incentivo a la Flexibilidad - 12 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3843,6 +4114,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 41 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3889,6 +4163,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 13 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3946,6 +4224,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 13 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -3986,6 +4268,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 14 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4028,6 +4314,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 44 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4047,6 +4336,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 14 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4099,6 +4392,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 47 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4118,6 +4414,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 15 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4175,6 +4475,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 15 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4269,6 +4573,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4315,6 +4623,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4330,6 +4642,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 50 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4386,6 +4701,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 90 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4432,6 +4751,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 90 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4447,6 +4770,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 50 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4483,6 +4809,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Activacion Lateral - 10 min',
                     'S/B Escaleras o Step - 50 min'
                 ],
+                videos: {
+                    'Activacion Lateral': 'https://www.youtube.com/embed/Y_PMm6qVE5E'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -4513,6 +4842,10 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 90 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
+                videos: {
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
