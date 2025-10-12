@@ -4452,14 +4452,7 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
         },
         83: {
             activity: 'CARDIO',
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
-                    respiracionConsciente: 'Respiración consciente - 10 min'
+            warmup: 'na',
             exercise: 60,
             details: {
                 type: 'CARDIO',
