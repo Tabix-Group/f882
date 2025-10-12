@@ -118,7 +118,8 @@ const F88AssessmentPage: React.FC = () => {
             }
 
             // Evaluación enviada exitosamente
-            navigate('/training-calendar');
+            const level = calculateLevel().toLowerCase(); // inicial, funcional, ideal
+            navigate(`/flipbook-preview/${level}`);
 
         } catch (error) {
             console.error('Error:', error);

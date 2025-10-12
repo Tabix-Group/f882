@@ -28,6 +28,7 @@ import FlipbookInitialPage from './pages/FlipbookInitialPage';
 import FlipbookFunctionalPage from './pages/FlipbookFunctionalPage';
 import FlipbookIdealPage from './pages/FlipbookIdealPage';
 import FlipbookSelectorPage from './pages/FlipbookSelectorPage';
+import FlipbookPreviewPage from './pages/FlipbookPreviewPage';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
                 <Route path="/dashboard" element={<UserDashboard />} />
                 <Route path="/f88-assessment" element={<F88AssessmentPage />} />
                 <Route path="/flipbook-selector" element={<FlipbookSelectorPage />} />
+                <Route path="/flipbook-preview/:level" element={<FlipbookPreviewPage />} />
                 <Route path="/flipbook/initial" element={<FlipbookInitialPage />} />
                 <Route path="/flipbook/functional" element={<FlipbookFunctionalPage />} />
                 <Route path="/flipbook/ideal" element={<FlipbookIdealPage />} />
