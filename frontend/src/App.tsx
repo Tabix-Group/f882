@@ -56,7 +56,7 @@ function App() {
                 <Route path="/start-f88-fitness-change" element={<StartF88FitnessChangePage />} />
                 <Route path="/access-will-88-day-program" element={<AccessWill88DayProgramPage />} />
                 <Route path="/end" element={<EndPage />} />
-                <Route path="/customer-service" element={<CustomerServicePage />} />
+                <Route path="/faq" element={<CustomerServicePage />} />
                 <Route path="/dashboard" element={<UserDashboard />} />
                 <Route path="/f88-assessment" element={<F88AssessmentPage />} />
               </Routes>

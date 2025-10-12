@@ -7,7 +7,6 @@ const baseNavItems = [
   { label: 'Pasos a Seguir', path: '/steps-to-do' },
   { label: '¿Qué es F88?', path: '/what-is-f88' },
   { label: 'Comprar', path: '/buy-book' },
-  { label: 'Atención al Socio', path: '/customer-service' },
 ];
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -18,7 +17,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  const navItems = user ? [...baseNavItems, { label: 'Dashboard', path: '/dashboard' }] : baseNavItems;
+  const navItems = user ? [...baseNavItems, { label: 'Dashboard', path: '/dashboard' }, { label: 'FAQ', path: '/faq' }] : [...baseNavItems, { label: 'FAQ', path: '/faq' }];
 
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement | null>(null);

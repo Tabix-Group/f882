@@ -8,7 +8,7 @@ const CustomerServicePage: React.FC = () => {
         <header className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">Atención al socio</h1>
+              <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">Preguntas Frecuentes</h1>
               <p className="text-gray-300 mt-3">¿Necesitas ayuda? Elige una opción o consulta con Jordan, tu mentor</p>
             </div>
 
