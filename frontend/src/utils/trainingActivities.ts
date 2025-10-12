@@ -96,9 +96,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 ],
                 respiracionConsciente: 'Respiración consciente - 10 min',
                 videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/example3',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/example4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/example5'
+                    'Abandonar la silla': 'https://www.youtube.com/embed/6g1AGrRnwxY',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/24gE9JCVymU',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/BTi4LD3E4To'
                 }
             }
         },
@@ -171,6 +171,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 15 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -306,6 +313,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 5 reps - 2 series',
                     'Reductor Cintura x lado - 15 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -419,6 +433,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 3 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -450,6 +471,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 3 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -525,6 +553,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -600,6 +635,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 30 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -650,6 +692,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 30 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -710,6 +759,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 30 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -749,6 +805,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -828,6 +891,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -878,6 +948,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -957,6 +1034,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1011,6 +1095,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1075,6 +1166,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1125,6 +1223,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1166,6 +1271,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1205,6 +1317,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1269,6 +1388,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1308,6 +1434,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1428,6 +1561,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         }
@@ -1495,6 +1635,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 20 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1566,6 +1713,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 5 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1701,6 +1855,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 2 series',
                     'Reductor Cintura x lado - 40 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1814,6 +1975,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 2 series',
                     'Reductor Cintura x lado - 40 reps - 2 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -1920,6 +2088,13 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 25 reps - 3 series'
                 ],
+                videos: {
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
@@ -2890,7 +3065,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 3 series',
                     'Reductor Cintura x lado - 40 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         5: {
@@ -2961,7 +3143,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 3 series',
                     'Reductor Cintura x lado - 40 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         10: {
@@ -3026,7 +3215,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 3 series',
                     'Reductor Cintura x lado - 40 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         14: {
@@ -3101,7 +3297,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 7 reps - 3 series',
                     'Reductor Cintura x lado - 50 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         19: {
@@ -3210,7 +3413,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 7 reps - 3 series',
                     'Reductor Cintura x lado - 50 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         26: {
@@ -3241,7 +3451,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 7 reps - 3 series',
                     'Reductor Cintura x lado - 50 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         28: {
@@ -3316,7 +3533,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 8 reps - 3 series',
                     'Reductor Cintura x lado - 60 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         33: {
@@ -3391,7 +3615,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 8 reps - 3 series',
                     'Reductor Cintura x lado - 60 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         38: {
@@ -3441,7 +3672,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 8 reps - 3 series',
                     'Reductor Cintura x lado - 60 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         41: {
@@ -3501,7 +3739,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 9 reps - 3 series',
                     'Reductor Cintura x lado - 70 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         45: {
@@ -3566,7 +3811,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 9 reps - 3 series',
                     'Reductor Cintura x lado - 70 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         49: {
@@ -3611,7 +3863,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 10 reps - 3 series',
                     'Reductor Cintura x lado - 80 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         52: {
@@ -3661,7 +3920,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 10 reps - 3 series',
                     'Reductor Cintura x lado - 80 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         55: {
@@ -3740,7 +4006,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 11 reps - 3 series',
                     'Reductor Cintura x lado - 90 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         60: {
@@ -3794,7 +4067,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 11 reps - 3 series',
                     'Reductor Cintura x lado - 90 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         63: {
@@ -3858,7 +4138,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 12 reps - 3 series',
                     'Reductor Cintura x lado - 100 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         67: {
@@ -3908,7 +4195,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 12 reps - 3 series',
                     'Reductor Cintura x lado - 100 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         70: {
@@ -3949,7 +4243,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         73: {
@@ -3988,7 +4289,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         75: {
@@ -4052,7 +4360,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         79: {
@@ -4091,7 +4406,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min'
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         81: {
@@ -4130,7 +4452,14 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
         },
         83: {
             activity: 'CARDIO',
-            warmup: 'na',
+                    videos: {
+                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                    },
+                    respiracionConsciente: 'Respiración consciente - 10 min'
             exercise: 60,
             details: {
                 type: 'CARDIO',
