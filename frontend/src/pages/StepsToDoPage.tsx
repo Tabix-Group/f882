@@ -13,13 +13,12 @@ import { useAuth } from '../contexts/AuthContext';
 const allSteps = [
   { icon: UserPlus, label: 'Completa tu registro' },
   { icon: CreditCard, label: 'Realiza tu pago' },
-  { icon: BookOpenCheck, label: 'Accede a los materiales del programa' },
-  { icon: Users, label: 'Accede a tu mentor' },
   { icon: Book, label: 'Accede a tu libro' },
-  { icon: Dumbbell, label: 'Accede a tu programa de entrenamiento físico' },
+  { icon: Users, label: 'Accede a tu mentor' },
+  { icon: Dumbbell, label: 'Accede a tu dashboard' },
 ];
 
-const allTargetRoutes = ['/register', '/buy-book', '/login', '/login', '/login', '/login'];
+const allTargetRoutes = ['/register', '/buy-book', '/read-book', '/jordan-chat', '/user-dashboard'];
 
 const StepsToDoPage: React.FC = () => {
   const navigate = useNavigate();

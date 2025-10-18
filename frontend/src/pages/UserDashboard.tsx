@@ -79,13 +79,24 @@ const UserDashboard: React.FC = () => {
     const sections = [
         {
             id: 1,
-            title: 'Leer el Libro F88',
+            title: 'Accede a tu libro',
             subtitle: 'Tu guía de transformación',
             description: 'Lee el libro que cambiara tu vida',
             icon: '📖',
             gradient: 'from-purple-500 to-pink-500',
             bgGradient: 'from-purple-900/10 to-pink-900/10',
             path: '/read-book',
+            available: true
+        },
+        {
+            id: 3,
+            title: 'Accede a tu mentor/a',
+            subtitle: 'Tu mentor personal',
+            description: 'Conversa con tu entrenador virtual 24/7',
+            icon: '🤖',
+            gradient: 'from-green-500 to-emerald-500',
+            bgGradient: 'from-green-900/10 to-emerald-900/10',
+            path: '/jordan-chat',
             available: true
         },
         {
@@ -99,17 +110,6 @@ const UserDashboard: React.FC = () => {
             path: hasCompletedAssessment ? '/training-calendar' : '/f88-assessment',
             available: true,
             highlight: !hasCompletedAssessment
-        },
-        {
-            id: 3,
-            title: 'Jordan Chat',
-            subtitle: 'Tu mentor personal',
-            description: 'Conversa con tu entrenador virtual 24/7',
-            icon: '🤖',
-            gradient: 'from-green-500 to-emerald-500',
-            bgGradient: 'from-green-900/10 to-emerald-900/10',
-            path: '/jordan-chat',
-            available: true
         },
         {
             id: 4,
@@ -130,17 +130,6 @@ const UserDashboard: React.FC = () => {
             icon: '🎯',
             gradient: 'from-indigo-500 to-purple-500',
             bgGradient: 'from-indigo-900/10 to-purple-900/10',
-            path: '#',
-            available: false
-        },
-        {
-            id: 6,
-            title: 'Comunidad F88',
-            subtitle: 'Conecta con otros',
-            description: 'Únete a la comunidad de transformación',
-            icon: '👥',
-            gradient: 'from-teal-500 to-cyan-500',
-            bgGradient: 'from-teal-900/10 to-cyan-900/10',
             path: '#',
             available: false
         }
