@@ -17,7 +17,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-  const navItems = user ? [...baseNavItems, { label: 'Dashboard', path: '/dashboard' }, { label: 'FAQ', path: '/faq' }] : [...baseNavItems, { label: 'FAQ', path: '/faq' }];
+  const navItems = user ? [...baseNavItems, { label: 'Dashboard', path: '/dashboard' }, { label: 'Preguntas Frecuentes', path: '/faq' }] : [...baseNavItems, { label: 'Preguntas Frecuentes', path: '/faq' }];
 
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const firstMenuItemRef = useRef<HTMLAnchorElement | null>(null);
