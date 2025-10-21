@@ -171,7 +171,7 @@ const F88AssessmentPage: React.FC = () => {
                 {[
                     { value: 1, text: 'No hago ejercicios físicos ni practico deportes desde hace tiempo.' },
                     { value: 2, text: 'Hago algo de actividad física, aunque sin mucha intensidad o constancia.' },
-                    { value: 3, text: 'Hago actividad física intensa o moderada al menos 3 veces por semana.' }
+                    { value: 3, text: 'Hago actividad física intensa o moderada varias veces por semana.' }
                 ].map((option) => (
                     <label
                         key={option.value}
@@ -200,15 +200,15 @@ const F88AssessmentPage: React.FC = () => {
             <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-white mb-4">Pregunta 2 de 3</h2>
                 <p className="text-gray-300 text-lg">
-                    ¿Cuánto tiempo dedicas semanalmente a ejercitar de forma intencional?
+                    ¿Cuántas veces por semana ejercitas de forma intencional (ejercicios, caminatas, baile, deportes, etc.)?
                 </p>
             </div>
 
             <div className="space-y-4">
                 {[
-                    { value: 1, text: 'Menos de 30 minutos por semana.' },
-                    { value: 2, text: 'Entre 30 y 150 minutos semanales.' },
-                    { value: 3, text: 'Más de 150 minutos por semana.' }
+                    { value: 1, text: 'Ninguna vez por semana.' },
+                    { value: 2, text: 'Una o dos veces por semana.' },
+                    { value: 3, text: 'Tres o más veces por semana.' }
                 ].map((option) => (
                     <label
                         key={option.value}

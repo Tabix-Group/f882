@@ -37,13 +37,13 @@ const HomePage: React.FC = () => {
           backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('${heroImageUrl}')`,
         }}
         role="region"
-        aria-label="Hero - Fortitud 88"
+        aria-label="Hero - Fortitude 88"
       >
         <div className="flex-1 flex flex-col md:flex-row items-center justify-between px-4 py-24 md:py-40 gap-8 max-w-7xl mx-auto w-full">
           {/* Columna Izquierda: Título, Subtítulo y Botón */}
           <div className="w-full md:w-3/5 flex flex-col items-start justify-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 text-white text-left">
-              Fortitud 88
+              Fortitude 88
             </h1>
             <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 text-white text-left" style={{ lineHeight: '1.3' }}>
               Fortaleza Física, Mental, Emocional, de Carácter y de Voluntad en 88 días.
