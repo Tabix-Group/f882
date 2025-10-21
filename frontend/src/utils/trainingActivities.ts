@@ -66,19 +66,22 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 12,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                
+},
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 40 reps - 2 series',
-                    'Vortice pendular - 20 reps - 2 series',
+                    'Vortice pendular - 30 reps - 2 series',
                     'Toque cruzado - 40 reps - 2 series',
                     'Sembrando movimiento - 30 reps - 2 series',
                     'Incentivo a la Flexibilidad - 4 min'
                 ],
-                respiracionConsciente: 'Respiración consciente - 10 min',
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                }
+                respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         4: {
@@ -89,21 +92,24 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 12,
                 warmup: 'Precalentamiento: 3 min',
-                restBetweenSets: '30 a 60 segs',
-                exercises: [
-                    'Abandonar la silla - 20 reps - 2 series',
-                    'Flexión Vertical - 20 reps - 2 series',
-                    'Activador Zen - 20 reps - 2 series',
-                    'Puente de Glúteos - 20 reps - 2 series',
-                    'Abdominal Supino - 4 reps - 2 series',
-                    'Reductor Cintura x lado - 15 reps - 2 series'
-                ],
-                respiracionConsciente: 'Respiración consciente - 10 min',
                 videos: {
+'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+
                     'Abandonar la silla': 'https://www.youtube.com/embed/6g1AGrRnwxY',
                     'Flexión Vertical': 'https://www.youtube.com/embed/24gE9JCVymU',
                     'Puente de Glúteos': 'https://www.youtube.com/embed/BTi4LD3E4To'
-                }
+                
+},
+                restBetweenSets: '30 a 60 segs',
+                exercises: [
+                    'Abandonar la silla - 25 reps - 2 series',
+                    'Flexión Vertical - 15 reps - 2 series',
+                    'Activador Zen - 25 reps - 2 series',
+                    'Puente de Glúteos - 25 reps - 2 series',
+                    'Abdominal Supino - 3 reps - 2 series',
+                    'Reductor Cintura x lado - 12 reps - 2 series'
+                ],
+                respiracionConsciente: 'Respiración consciente - 10 min'
             }
         },
         5: {
@@ -170,9 +176,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 15,
             details: {
+                
                 type: 'FUERZA',
                 duration: 15,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 30 reps - 2 series',
@@ -182,14 +197,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 15 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         10: {
@@ -226,9 +235,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 15,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 15,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 2 series',
@@ -237,11 +252,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 35 reps - 2 series',
                     'Incentivo a la Flexibilidad - 5 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         13: {
@@ -292,6 +304,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 18,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 3 series',
@@ -327,9 +342,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 18,
             details: {
+                
                 type: 'FUERZA',
                 duration: 18,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 2 series',
@@ -339,14 +363,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 5 reps - 2 series',
                     'Reductor Cintura x lado - 15 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         19: {
@@ -375,6 +393,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 18,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 3 series',
@@ -423,6 +444,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 21,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 3 series',
@@ -457,9 +481,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 21,
             details: {
+                
                 type: 'FUERZA',
                 duration: 21,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 30 reps - 3 series',
@@ -469,14 +502,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 3 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         26: {
@@ -495,9 +522,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 21,
             details: {
+                
                 type: 'FUERZA',
                 duration: 21,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 30 reps - 3 series',
@@ -507,14 +543,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 3 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         28: {
@@ -546,6 +576,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 24,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 4 series',
@@ -580,9 +613,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 24,
             details: {
+                
                 type: 'FUERZA',
                 duration: 24,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 30 reps - 3 series',
@@ -592,14 +634,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         33: {
@@ -621,6 +657,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 24,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 4 series',
@@ -665,9 +704,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 25,
             details: {
+                
                 type: 'FUERZA',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 30 reps - 3 series',
@@ -677,14 +725,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 30 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         38: {
@@ -706,6 +748,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 4 series',
@@ -722,9 +767,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 25,
             details: {
+                
                 type: 'FUERZA',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 30 reps - 3 series',
@@ -734,14 +788,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 30 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         41: {
@@ -752,6 +800,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 4 series',
@@ -789,9 +840,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 26,
             details: {
+                
                 type: 'FUERZA',
                 duration: 26,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -801,14 +861,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 30 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         45: {
@@ -819,6 +873,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 26,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 60 reps - 4 series',
@@ -835,9 +892,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 26,
             details: {
+                
                 type: 'FUERZA',
                 duration: 26,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -847,14 +913,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         47: {
@@ -865,6 +925,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 26,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 60 reps - 4 series',
@@ -927,9 +990,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 27,
             details: {
+                
                 type: 'FUERZA',
                 duration: 27,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -939,14 +1011,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         52: {
@@ -957,6 +1023,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 27,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 70 reps - 4 series',
@@ -984,9 +1053,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 27,
             details: {
+                
                 type: 'FUERZA',
                 duration: 27,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -996,14 +1074,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         55: {
@@ -1014,6 +1086,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 27,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 70 reps - 4 series',
@@ -1054,6 +1129,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 28,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 75 reps - 4 series',
@@ -1070,9 +1148,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 28,
             details: {
+                
                 type: 'FUERZA',
                 duration: 28,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -1082,14 +1169,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         60: {
@@ -1118,6 +1199,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 28,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 75 reps - 4 series',
@@ -1134,9 +1218,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 28,
             details: {
+                
                 type: 'FUERZA',
                 duration: 28,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -1146,14 +1239,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 20 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         63: {
@@ -1192,6 +1279,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 29,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 110 reps - 3 series',
@@ -1208,9 +1298,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 28,
             details: {
+                
                 type: 'FUERZA',
                 duration: 28,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 75 reps - 2 series',
@@ -1220,14 +1319,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         67: {
@@ -1249,6 +1342,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 29,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 110 reps - 3 series',
@@ -1265,9 +1361,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 28,
             details: {
+                
                 type: 'FUERZA',
                 duration: 28,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 75 reps - 2 series',
@@ -1277,14 +1382,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         70: {
@@ -1313,9 +1412,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 85 reps - 2 series',
@@ -1325,14 +1433,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         73: {
@@ -1343,6 +1445,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 110 reps - 3 series',
@@ -1359,9 +1464,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 85 reps - 2 series',
@@ -1371,14 +1485,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         75: {
@@ -1389,6 +1497,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 110 reps - 3 series',
@@ -1433,9 +1544,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 85 reps - 2 series',
@@ -1445,14 +1565,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         79: {
@@ -1463,6 +1577,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 3 series',
@@ -1479,9 +1596,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 85 reps - 2 series',
@@ -1491,14 +1617,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         81: {
@@ -1509,6 +1629,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 3 series',
@@ -1596,6 +1719,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 3 series',
@@ -1612,9 +1738,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 85 reps - 2 series',
@@ -1624,14 +1759,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         }
     },
@@ -1671,9 +1800,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 15,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 15,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 2 series',
@@ -1682,11 +1817,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 2 series',
                     'Incentivo a la Flexibilidad - 5 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         4: {
@@ -1694,9 +1826,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 15,
             details: {
+                
                 type: 'FUERZA',
                 duration: 15,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 30 reps - 2 series',
@@ -1706,14 +1847,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 2 series',
                     'Reductor Cintura x lado - 20 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         5: {
@@ -1779,9 +1914,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 20,
             details: {
+                
                 type: 'FUERZA',
                 duration: 20,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 2 series',
@@ -1791,14 +1935,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 5 reps - 2 series',
                     'Reductor Cintura x lado - 30 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         10: {
@@ -1835,9 +1973,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 20,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 20,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 50 reps - 3 series',
@@ -1846,11 +1990,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 5 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         13: {
@@ -1898,9 +2039,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 25,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 80 reps - 3 series',
@@ -1909,11 +2056,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         17: {
@@ -1940,9 +2084,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 25,
             details: {
+                
                 type: 'FUERZA',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 2 series',
@@ -1952,14 +2105,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 2 series',
                     'Reductor Cintura x lado - 40 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         19: {
@@ -1985,9 +2132,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 25,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 80 reps - 3 series',
@@ -1996,11 +2149,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         21: {
@@ -2037,9 +2187,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 25,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 80 reps - 3 series',
@@ -2048,11 +2204,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 3 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         24: {
@@ -2078,9 +2231,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 25,
             details: {
+                
                 type: 'FUERZA',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 2 series',
@@ -2090,14 +2252,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 2 series',
                     'Reductor Cintura x lado - 40 reps - 2 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         26: {
@@ -2119,6 +2275,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 25,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 2 series',
@@ -2157,9 +2316,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 80 reps - 4 series',
@@ -2168,11 +2333,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 35 reps - 4 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         31: {
@@ -2198,9 +2360,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -2210,14 +2381,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 4 reps - 3 series',
                     'Reductor Cintura x lado - 25 reps - 3 series'
                 ],
-                videos: {
-                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         33: {
@@ -2236,9 +2401,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 80 reps - 4 series',
@@ -2247,11 +2418,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 35 reps - 4 series',
                     'Incentivo a la Flexibilidad - 7 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         35: {
@@ -2290,6 +2458,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 40 reps - 3 series',
@@ -2318,9 +2489,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 35,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 4 series',
@@ -2329,11 +2506,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         40: {
@@ -2344,6 +2518,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 3 series',
@@ -2361,9 +2538,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 35,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 4 series',
@@ -2372,11 +2555,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         42: {
@@ -2408,6 +2588,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 3 series',
@@ -2425,9 +2608,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 35,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 4 series',
@@ -2436,11 +2625,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         46: {
@@ -2451,6 +2637,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 3 series',
@@ -2468,9 +2657,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 35,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 4 series',
@@ -2479,11 +2674,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         48: {
@@ -2540,6 +2732,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 3 series',
@@ -2557,9 +2752,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 35,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 4 series',
@@ -2568,11 +2769,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         53: {
@@ -2594,6 +2792,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 50 reps - 3 series',
@@ -2611,9 +2812,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 35,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 35,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 4 series',
@@ -2622,11 +2829,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         56: {
@@ -2655,9 +2859,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 40,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -2666,11 +2876,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         59: {
@@ -2681,6 +2888,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 100 reps - 2 series',
@@ -2716,9 +2926,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 40,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -2727,11 +2943,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         62: {
@@ -2742,6 +2955,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 100 reps - 2 series',
@@ -2787,9 +3003,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 40,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -2798,11 +3020,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         66: {
@@ -2813,6 +3032,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 100 reps - 2 series',
@@ -2841,9 +3063,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 40,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -2852,11 +3080,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         69: {
@@ -2867,6 +3092,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 40,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 100 reps - 2 series',
@@ -2908,6 +3136,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 125 reps - 2 series',
@@ -2925,9 +3156,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -2936,11 +3173,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         74: {
@@ -2951,6 +3185,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 125 reps - 2 series',
@@ -2968,9 +3205,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -2979,11 +3222,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         76: {
@@ -3022,6 +3262,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 125 reps - 2 series',
@@ -3039,9 +3282,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 150 reps - 4 series',
@@ -3050,11 +3299,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         80: {
@@ -3065,6 +3311,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 125 reps - 2 series',
@@ -3082,9 +3331,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 150 reps - 4 series',
@@ -3093,11 +3348,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         82: {
@@ -3173,9 +3425,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 150 reps - 4 series',
@@ -3184,11 +3442,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 40 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         88: {
@@ -3199,6 +3454,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 125 reps - 2 series',
@@ -3232,6 +3490,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 60 reps - 3 series',
@@ -3266,9 +3527,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 30,
             details: {
+                
                 type: 'FUERZA',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 60 reps - 3 series',
@@ -3278,14 +3548,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 3 series',
                     'Reductor Cintura x lado - 40 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         5: {
@@ -3307,6 +3571,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FLEXIBILIDAD',
                 duration: 30,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 60 reps - 3 series',
@@ -3344,9 +3611,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 33,
             details: {
+                
                 type: 'FUERZA',
                 duration: 33,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 60 reps - 3 series',
@@ -3356,14 +3632,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 3 series',
                     'Reductor Cintura x lado - 40 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         10: {
@@ -3389,9 +3659,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 33,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 33,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 80 reps - 3 series',
@@ -3400,11 +3676,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 3 series',
                     'Incentivo a la Flexibilidad - 8 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         12: {
@@ -3423,9 +3696,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 33,
             details: {
+                
                 type: 'FUERZA',
                 duration: 33,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 60 reps - 3 series',
@@ -3435,14 +3717,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 6 reps - 3 series',
                     'Reductor Cintura x lado - 40 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         14: {
@@ -3471,9 +3747,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 36,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 36,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 3 series',
@@ -3482,11 +3764,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 3 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         17: {
@@ -3512,9 +3791,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 36,
             details: {
+                
                 type: 'FUERZA',
                 duration: 36,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 70 reps - 3 series',
@@ -3524,14 +3812,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 7 reps - 3 series',
                     'Reductor Cintura x lado - 50 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         19: {
@@ -3550,9 +3832,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 36,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 36,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 3 series',
@@ -3561,11 +3849,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 3 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         21: {
@@ -3601,9 +3886,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 39,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 39,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 100 reps - 4 series',
@@ -3612,11 +3903,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 9 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         24: {
@@ -3643,9 +3931,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 39,
             details: {
+                
                 type: 'FUERZA',
                 duration: 39,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 70 reps - 3 series',
@@ -3655,14 +3952,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 7 reps - 3 series',
                     'Reductor Cintura x lado - 50 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         26: {
@@ -3681,9 +3972,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 39,
             details: {
+                
                 type: 'FUERZA',
                 duration: 39,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 70 reps - 3 series',
@@ -3693,14 +3993,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 7 reps - 3 series',
                     'Reductor Cintura x lado - 50 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         28: {
@@ -3729,9 +4023,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 42,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 42,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -3740,11 +4040,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 10 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         31: {
@@ -3770,9 +4067,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 42,
             details: {
+                
                 type: 'FUERZA',
                 duration: 42,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 80 reps - 3 series',
@@ -3782,14 +4088,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 8 reps - 3 series',
                     'Reductor Cintura x lado - 60 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         33: {
@@ -3808,9 +4108,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 42,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 42,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 120 reps - 4 series',
@@ -3819,11 +4125,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 50 reps - 4 series',
                     'Incentivo a la Flexibilidad - 10 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         35: {
@@ -3859,9 +4162,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FUERZA',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 80 reps - 3 series',
@@ -3871,14 +4183,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 8 reps - 3 series',
                     'Reductor Cintura x lado - 60 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         38: {
@@ -3897,9 +4203,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 140 reps - 4 series',
@@ -3908,11 +4220,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 60 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         40: {
@@ -3920,9 +4229,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FUERZA',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 80 reps - 3 series',
@@ -3932,14 +4250,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 8 reps - 3 series',
                     'Reductor Cintura x lado - 60 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         41: {
@@ -3947,9 +4259,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 45,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 45,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 140 reps - 4 series',
@@ -3958,11 +4276,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 60 reps - 4 series',
                     'Incentivo a la Flexibilidad - 11 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         42: {
@@ -3991,9 +4306,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 48,
             details: {
+                
                 type: 'FUERZA',
                 duration: 48,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 90 reps - 3 series',
@@ -4003,14 +4327,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 9 reps - 3 series',
                     'Reductor Cintura x lado - 70 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         45: {
@@ -4036,9 +4354,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 48,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 48,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 160 reps - 4 series',
@@ -4047,11 +4371,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 60 reps - 4 series',
                     'Incentivo a la Flexibilidad - 12 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         47: {
@@ -4070,9 +4391,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 48,
             details: {
+                
                 type: 'FUERZA',
                 duration: 48,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 90 reps - 3 series',
@@ -4082,14 +4412,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 9 reps - 3 series',
                     'Reductor Cintura x lado - 70 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         49: {
@@ -4125,9 +4449,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 51,
             details: {
+                
                 type: 'FUERZA',
                 duration: 51,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 100 reps - 3 series',
@@ -4137,14 +4470,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 10 reps - 3 series',
                     'Reductor Cintura x lado - 80 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         52: {
@@ -4152,9 +4479,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 51,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 51,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 180 reps - 4 series',
@@ -4163,11 +4496,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 13 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         53: {
@@ -4186,9 +4516,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 51,
             details: {
+                
                 type: 'FUERZA',
                 duration: 51,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 100 reps - 3 series',
@@ -4198,14 +4537,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 10 reps - 3 series',
                     'Reductor Cintura x lado - 80 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         55: {
@@ -4213,9 +4546,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 51,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 51,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 180 reps - 4 series',
@@ -4224,11 +4563,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 13 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         56: {
@@ -4257,9 +4593,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 54,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 54,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 200 reps - 4 series',
@@ -4268,11 +4610,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 14 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         59: {
@@ -4280,9 +4619,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 54,
             details: {
+                
                 type: 'FUERZA',
                 duration: 54,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 110 reps - 3 series',
@@ -4292,14 +4640,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 11 reps - 3 series',
                     'Reductor Cintura x lado - 90 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         60: {
@@ -4325,9 +4667,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 54,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 54,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 200 reps - 4 series',
@@ -4336,11 +4684,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 70 reps - 4 series',
                     'Incentivo a la Flexibilidad - 14 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         62: {
@@ -4348,9 +4693,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 54,
             details: {
+                
                 type: 'FUERZA',
                 duration: 54,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 110 reps - 3 series',
@@ -4360,14 +4714,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 11 reps - 3 series',
                     'Reductor Cintura x lado - 90 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         63: {
@@ -4403,9 +4751,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 57,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 57,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 220 reps - 4 series',
@@ -4414,11 +4768,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 15 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         66: {
@@ -4426,9 +4777,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 57,
             details: {
+                
                 type: 'FUERZA',
                 duration: 57,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 120 reps - 3 series',
@@ -4438,14 +4798,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 12 reps - 3 series',
                     'Reductor Cintura x lado - 100 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         67: {
@@ -4464,9 +4818,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 57,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 57,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 220 reps - 4 series',
@@ -4475,11 +4835,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 15 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         69: {
@@ -4487,9 +4844,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 57,
             details: {
+                
                 type: 'FUERZA',
                 duration: 57,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 120 reps - 3 series',
@@ -4499,14 +4865,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 12 reps - 3 series',
                     'Reductor Cintura x lado - 100 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         70: {
@@ -4535,9 +4895,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FUERZA',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 130 reps - 3 series',
@@ -4547,14 +4916,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         73: {
@@ -4562,9 +4925,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 240 reps - 4 series',
@@ -4573,11 +4942,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         74: {
@@ -4585,9 +4951,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FUERZA',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 130 reps - 3 series',
@@ -4597,14 +4972,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         75: {
@@ -4612,9 +4981,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 240 reps - 4 series',
@@ -4623,11 +4998,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 80 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         76: {
@@ -4663,9 +5035,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FUERZA',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 130 reps - 3 series',
@@ -4675,14 +5056,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         79: {
@@ -4690,9 +5065,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 260 reps - 4 series',
@@ -4701,11 +5082,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 90 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         80: {
@@ -4713,9 +5091,18 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FUERZA',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
+                    'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
+                    'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
+                    'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
+                    'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 130 reps - 3 series',
@@ -4725,14 +5112,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Abdominal Supino - 13 reps - 3 series',
                     'Reductor Cintura x lado - 110 reps - 3 series'
                 ],
-                    videos: {
-                        'Abandonar la silla': 'https://www.youtube.com/embed/VIDEO_ID1',
-                        'Flexión Vertical': 'https://www.youtube.com/embed/VIDEO_ID7',
-                        'Activador Zen': 'https://www.youtube.com/embed/VIDEO_ID4',
-                        'Puente de Glúteos': 'https://www.youtube.com/embed/VIDEO_ID10',
-                        'Abdominal Supino': 'https://www.youtube.com/embed/VIDEO_ID2'
-                    },
                     respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         81: {
@@ -4740,9 +5121,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 260 reps - 4 series',
@@ -4751,11 +5138,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 90 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         82: {
@@ -4831,9 +5215,15 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
             warmup: 3,
             exercise: 60,
             details: {
+                
                 type: 'FLEXIBILIDAD',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8',
+                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
+                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Aplausos del Colibri - 260 reps - 4 series',
@@ -4842,11 +5232,8 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                     'Sembrando movimiento - 90 reps - 4 series',
                     'Incentivo a la Flexibilidad - 16 min'
                 ],
-                videos: {
-                    'Aplausos del Colibri': 'https://www.youtube.com/embed/FydOu-ETNwk',
-                    'Incentivo a la Flexibilidad': 'https://www.youtube.com/embed/XPBJchZhoZ8'
-                },
                 respiracionConsciente: 'Respiración consciente - 10 min'
+            
             }
         },
         88: {
@@ -4857,6 +5244,9 @@ export const TRAINING_ACTIVITIES: TrainingActivities = {
                 type: 'FUERZA',
                 duration: 60,
                 warmup: 'Precalentamiento: 3 min',
+                videos: {
+                    'Precalentamiento': 'https://www.youtube.com/embed/qTVHqELu3O8'
+                },
                 restBetweenSets: '30 a 60 segs',
                 exercises: [
                     'Abandonar la silla - 130 reps - 3 series',
