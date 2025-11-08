@@ -14,7 +14,8 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
   'https://frontend-production-1b9f.up.railway.app',
-  'http://localhost:3001' // Agregar puerto alternativo si es necesario
+  'http://localhost:3001', // Agregar puerto alternativo si es necesario
+  'https://www.f88.com.ar'
 ];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 const PORT = process.env.PORT || 4000;
